@@ -1,0 +1,118 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+.tla-bespoke-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-bespoke { --gold:#c8af78; --gold-bright:#dfc898; --bg:#0a0a0a; --surface:#0d0d0a; --surface-2:#121210; --text:#f0ebe0; --muted:#7a7060; background:var(--bg); color:var(--text); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+.tla-bespoke * { box-sizing:border-box; }
+.tla-bespoke h1,.tla-bespoke h2,.tla-bespoke h3 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
+.tla-bespoke em { font-style:italic; color:var(--gold); font-weight:300; }
+.tla-bespoke .tlab-hero { min-height:75vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:radial-gradient(ellipse at 50% 100%, rgba(200,175,120,0.08), transparent 60%), linear-gradient(180deg,#0a0a0a 0%,#050505 100%); }
+.tla-bespoke .tlab-hero-inner { max-width:820px; }
+.tla-bespoke .tlab-hero h1 { font-size:clamp(1.8rem,5vw,3.4rem); line-height:1.25; margin-bottom:1rem; }
+.tla-bespoke .tlab-hero h1 + h1 { margin-top:0; }
+.tla-bespoke .tlab-kicker { color:var(--muted); font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1.6rem; }
+.tla-bespoke .tlab-manifesto { max-width:680px; margin:2rem auto 0; color:var(--muted); font-size:0.95rem; line-height:1.9; }
+.tla-bespoke .tlab-tier { width:100%; display:table; table-layout:fixed; border-top:0.5px solid rgba(200,175,120,0.15); }
+.tla-bespoke .tlab-tier.tlab-featured { background:linear-gradient(180deg, rgba(200,175,120,0.06), transparent); }
+.tla-bespoke .tlab-tier-cell { display:table-cell; vertical-align:top; width:50%; padding:4.5rem 4vw; }
+.tla-bespoke .tlab-tier-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:1rem; letter-spacing:0.1em; margin-bottom:0.6rem; display:block; }
+.tla-bespoke .tlab-tier-cell h2 { font-size:clamp(1.6rem,3.4vw,2.2rem); margin-bottom:0.4rem; }
+.tla-bespoke .tlab-tier-access { color:var(--muted); font-size:0.74rem; letter-spacing:0.18em; text-transform:uppercase; margin:0 0 1.6rem; }
+.tla-bespoke .tlab-tier ul { list-style:none; margin:0 0 2rem; padding:0; color:var(--text); font-size:0.92rem; line-height:1.6; }
+.tla-bespoke .tlab-tier ul li { padding:0.5rem 0; border-bottom:0.5px solid rgba(200,175,120,0.1); }
+.tla-bespoke .tlab-tier ul li:before { content:'\2014\0020'; color:var(--gold); }
+.tla-bespoke .tlab-btn { display:inline-block; padding:1em 2.4em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; }
+.tla-bespoke .tlab-btn:hover { background:var(--gold); color:var(--bg); }
+.tla-bespoke .tlab-form { display:grid; gap:0.9rem; max-width:380px; }
+.tla-bespoke .tlab-form input, .tla-bespoke .tlab-form textarea { background:transparent; border:none; border-bottom:1px solid rgba(200,175,120,0.35); color:var(--text); font-family:'Montserrat',sans-serif; font-size:0.9rem; padding:0.6rem 0.2rem; }
+.tla-bespoke .tlab-form input::placeholder, .tla-bespoke .tlab-form textarea::placeholder { color:var(--muted); }
+.tla-bespoke .tlab-form input:focus, .tla-bespoke .tlab-form textarea:focus { outline:none; border-color:var(--gold); }
+.tla-bespoke .tlab-form button { justify-self:start; margin-top:0.4rem; background:transparent; cursor:pointer; }
+.tla-bespoke .tlab-circle-note { font-style:italic; color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:1.05rem; }
+.tla-bespoke .tlab-close { text-align:center; padding:6rem 1.5rem; border-top:0.5px solid rgba(200,175,120,0.15); }
+.tla-bespoke .tlab-close h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; }
+.tla-bespoke .tlab-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.tla-bespoke .tlab-reveal.tlab-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-bespoke .tlab-reveal { opacity:1; transform:none; } }
+@media (max-width:767px) {
+  .tla-bespoke .tlab-tier, .tla-bespoke .tlab-tier-cell { display:block; width:100%; }
+  .tla-bespoke .tlab-tier-cell { padding:3.2rem 1.4rem; }
+}
+</style>
+<div class="tla-bespoke-wrap"><div class="tla-bespoke">
+  <section class="tlab-hero"><div class="tlab-hero-inner">
+    <p class="tlab-kicker">Luxury Bespoke Travel</p>
+    <h1>This is not a travel service.<br><em>This is an inner circle.</em></h1>
+    <p class="tlab-manifesto">I do not build packages. I build access — to people, places, and rooms that are not advertised. What you find here depends on how close you are to me, and what you are ready for.</p>
+  </div></section>
+
+  <section class="tlab-tier tlab-reveal">
+    <div class="tlab-tier-cell">
+      <span class="tlab-tier-num">I</span>
+      <h2>The Wanderer</h2>
+      <p class="tlab-tier-access">Open Access</p>
+      <ul>
+        <li>Group travel sessions with Andy</li>
+        <li>The Travel Like Andy newsletter</li>
+        <li>Fora hotel and resort upgrades</li>
+        <li>Flight planning support</li>
+        <li>Curated group tours</li>
+      </ul>
+      <a href="/contact" class="tlab-btn">Begin</a>
+    </div>
+    <div class="tlab-tier-cell"></div>
+  </section>
+
+  <section class="tlab-tier tlab-featured tlab-reveal">
+    <div class="tlab-tier-cell"></div>
+    <div class="tlab-tier-cell">
+      <span class="tlab-tier-num">II</span>
+      <h2>The Curator</h2>
+      <p class="tlab-tier-access">By Referral</p>
+      <ul>
+        <li>Custom-built itineraries</li>
+        <li>Private dining arrangements</li>
+        <li>Jet and charter coordination</li>
+        <li>Hidden suites, not listed rooms</li>
+        <li>Direct access to Andy's contacts</li>
+      </ul>
+      <form class="tlab-form" onsubmit="event.preventDefault(); var n=this.curname.value,e=this.curemail.value,r=this.curref.value,d=this.curdream.value; window.location.href='mailto:andreweisenmann@gmail.com?subject=' + encodeURIComponent('The Curator — Referral') + '&body=' + encodeURIComponent('Name: '+n+'\nEmail: '+e+'\nReferred by: '+r+'\nWhere I dream of going: '+d);">
+        <input type="text" name="curname" placeholder="Name" required>
+        <input type="email" name="curemail" placeholder="Email" required>
+        <input type="text" name="curref" placeholder="Who referred you">
+        <input type="text" name="curdream" placeholder="Where you dream of going">
+        <button type="submit" class="tlab-btn">Request Access</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="tlab-tier tlab-reveal">
+    <div class="tlab-tier-cell">
+      <span class="tlab-tier-num">III</span>
+      <h2>The Circle</h2>
+      <p class="tlab-tier-access">Invitation Only &middot; 10 Per Season</p>
+      <ul>
+        <li>Andy travels with you, personally</li>
+        <li>Private villas and estates</li>
+        <li>Yacht and jet charters</li>
+        <li>Opera &amp; Arts access</li>
+        <li>24/7 WhatsApp line to Andy</li>
+      </ul>
+      <p class="tlab-circle-note">Andy reaches out.</p>
+    </div>
+    <div class="tlab-tier-cell"></div>
+  </section>
+
+  <section class="tlab-close">
+    <h2>You will know if this is for you.</h2>
+  </section>
+</div></div>
+<script>
+(function(){
+  var els = document.querySelectorAll('.tlab-reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlab-in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlab-in'); io.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>

@@ -1,0 +1,80 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+.tla-leisure-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-leisure { --bg:#f5ede0; --surface:#ffffff; --surface-2:#fbf6ec; --gold:#a8894e; --navy:#1a3a5c; --ink:#1a1a1a; --muted:#7a7263; background:var(--bg); color:var(--ink); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+.tla-leisure * { box-sizing:border-box; }
+.tla-leisure h1,.tla-leisure h2,.tla-leisure h3 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--ink); margin:0; }
+.tla-leisure em { font-style:italic; color:var(--gold); font-weight:300; }
+.tla-leisure .tlal-hero { min-height:70vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(168,137,78,0.12), transparent 60%), var(--bg); border-bottom:0.5px solid rgba(26,58,92,0.15); }
+.tla-leisure .tlal-hero-inner { max-width:880px; }
+.tla-leisure .tlal-hero h1 { font-size:clamp(2rem,5.5vw,4rem); line-height:1.15; margin-bottom:1.4rem; }
+.tla-leisure .tlal-sub { color:var(--navy); font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; margin:0 0 2.5rem; }
+.tla-leisure .tlal-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; }
+.tla-leisure .tlal-btn:hover { background:var(--gold); color:#fff; }
+.tla-leisure .tlal-section { padding:5.5rem 1.5rem; }
+.tla-leisure .tlal-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.tla-leisure .tlal-card { background:var(--surface); border:1px solid rgba(26,58,92,0.12); padding:2.6rem 1.6rem; text-align:center; transition:all 0.4s ease; }
+.tla-leisure .tlal-card:hover { border-color:var(--gold); transform:translateY(-5px); box-shadow:0 20px 50px rgba(26,58,92,0.1); }
+.tla-leisure .tlal-mark { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-style:italic; color:var(--gold); margin-bottom:1rem; }
+.tla-leisure .tlal-card h3 { font-size:1.3rem; margin-bottom:0.7rem; }
+.tla-leisure .tlal-card p { color:var(--muted); font-size:0.85rem; line-height:1.6; margin:0; }
+.tla-leisure .tlal-feature { width:100%; display:table; table-layout:fixed; background:var(--surface-2); }
+.tla-leisure .tlal-feature-cell { display:table-cell; vertical-align:middle; width:50%; padding:4.5rem 4vw; }
+.tla-leisure .tlal-feature-cell.tlal-img { background:url('https://images.unsplash.com/photo-1559599189-fe84dea4eac3?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; min-height:420px; }
+.tla-leisure .tlal-feature h2 { font-size:clamp(1.6rem,3.6vw,2.4rem); font-style:italic; margin-bottom:1.2rem; }
+.tla-leisure .tlal-feature p { color:var(--muted); font-size:0.95rem; line-height:1.8; margin:0 0 1.8rem; }
+.tla-leisure .tlal-close { background:var(--navy); color:#f0ebe0; text-align:center; padding:5.5rem 1.5rem; }
+.tla-leisure .tlal-close h2 { color:#f0ebe0; font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; margin-bottom:1.6rem; }
+.tla-leisure .tlal-close .tlal-btn { border-color:#dcc89a; color:#dcc89a; }
+.tla-leisure .tlal-close .tlal-btn:hover { background:#dcc89a; color:var(--navy); }
+.tla-leisure .tlal-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.tla-leisure .tlal-reveal.tlal-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-leisure .tlal-reveal { opacity:1; transform:none; } }
+@media (max-width:767px) {
+  .tla-leisure .tlal-grid { grid-template-columns:1fr; }
+  .tla-leisure .tlal-feature, .tla-leisure .tlal-feature-cell { display:block; width:100%; }
+  .tla-leisure .tlal-feature-cell.tlal-img { min-height:260px; }
+  .tla-leisure .tlal-feature-cell { padding:3rem 1.4rem; }
+  .tla-leisure .tlal-section { padding:3.5rem 1.2rem; }
+}
+</style>
+<div class="tla-leisure-wrap"><div class="tla-leisure">
+  <section class="tlal-hero"><div class="tlal-hero-inner">
+    <h1>The trip you have always meant to take.<br><em>Now is the time.</em></h1>
+    <p class="tlal-sub">Vacations &middot; Resorts &middot; Cruises</p>
+    <a href="/contact" class="tlal-btn">Tell Andy where you dream of going</a>
+  </div></section>
+
+  <section class="tlal-section tlal-reveal"><div class="tlal-grid">
+    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h3>Family Vacations</h3><p>Itineraries that work for every generation, from the youngest to the most particular.</p></div>
+    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h3>Honeymoons</h3><p>The first journey of a marriage, designed around the two people taking it.</p></div>
+    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h3>Cruises</h3><p>From intimate small-ship sailings to the grand classics, mapped to how you actually want to travel.</p></div>
+    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h3>Group Tours</h3><p>Friends, family, milestone trips — coordinated so no one is left managing logistics.</p></div>
+    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h3>Resort Stays</h3><p>The right resort, the right room category, the right week — not just any week.</p></div>
+    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h3>Fora Hotel Upgrades</h3><p>Access to upgrades, amenities, and attention through my Fora Travel partnership.</p></div>
+  </div></section>
+
+  <section class="tlal-feature tlal-reveal">
+    <div class="tlal-feature-cell tlal-img" role="img" aria-label="Resort coastline at golden hour"></div>
+    <div class="tlal-feature-cell">
+      <h2>I plan the way I travel myself.</h2>
+      <p>Every itinerary I build comes from places I have actually stood — resorts I have walked through, ships I have sailed, rooms I have slept in. I do not send you somewhere I would not go.</p>
+      <a href="/contact" class="tlal-btn">Start The Conversation</a>
+    </div>
+  </section>
+
+  <section class="tlal-close">
+    <h2>Tell Andy where you dream of going.</h2>
+    <a href="/contact" class="tlal-btn">Tell Andy</a>
+  </section>
+</div></div>
+<script>
+(function(){
+  var els = document.querySelectorAll('.tlal-reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlal-in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlal-in'); io.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>

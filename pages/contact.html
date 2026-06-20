@@ -1,0 +1,63 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+.tla-contact-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-contact { --gold:#c8af78; --gold-bright:#dfc898; --bg:#0a0a0a; --surface:#0d0d0a; --text:#f0ebe0; --muted:#7a7060; background:var(--bg); color:var(--text); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+.tla-contact * { box-sizing:border-box; }
+.tla-contact h1,.tla-contact h2 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
+.tla-contact em { font-style:italic; color:var(--gold); font-weight:300; }
+.tla-contact .tlact-hero { padding:6rem 1.5rem 3rem; text-align:center; }
+.tla-contact .tlact-hero h1 { font-size:clamp(1.9rem,5vw,3.2rem); line-height:1.2; max-width:760px; margin:0 auto; }
+.tla-contact .tlact-wrap-inner { max-width:560px; margin:0 auto; padding:0 1.5rem 5rem; }
+.tla-contact .tlact-form { display:grid; gap:1.1rem; }
+.tla-contact .tlact-form label { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem; display:block; }
+.tla-contact .tlact-form input, .tla-contact .tlact-form textarea { width:100%; background:transparent; border:none; border-bottom:1px solid rgba(200,175,120,0.35); color:var(--text); font-family:'Montserrat',sans-serif; font-size:0.95rem; padding:0.7rem 0.2rem; resize:vertical; }
+.tla-contact .tlact-form input::placeholder, .tla-contact .tlact-form textarea::placeholder { color:var(--muted); }
+.tla-contact .tlact-form input:focus, .tla-contact .tlact-form textarea:focus { outline:none; border-color:var(--gold); }
+.tla-contact .tlact-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); background:transparent; cursor:pointer; text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; justify-self:start; margin-top:0.6rem; font-family:'Montserrat',sans-serif; }
+.tla-contact .tlact-btn:hover { background:var(--gold); color:var(--bg); }
+.tla-contact .tlact-or { text-align:center; padding:0 1.5rem 1.5rem; color:var(--muted); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; border-top:0.5px solid rgba(200,175,120,0.15); padding-top:3rem; max-width:560px; margin:0 auto; }
+.tla-contact .tlact-cards { max-width:560px; margin:0 auto; display:grid; gap:1rem; padding:1.5rem; }
+.tla-contact .tlact-card { display:flex; align-items:center; justify-content:space-between; gap:1rem; background:var(--surface); border:1px solid rgba(200,175,120,0.18); padding:1.3rem 1.5rem; text-decoration:none; color:var(--text); transition:all 0.3s ease; }
+.tla-contact .tlact-card:hover { border-color:var(--gold); transform:translateX(4px); }
+.tla-contact .tlact-card .tlact-label { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:0.2rem; }
+.tla-contact .tlact-card .tlact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; color:var(--gold); }
+.tla-contact .tlact-sig { text-align:center; padding:3rem 1.5rem 6rem; font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--muted); font-size:0.95rem; }
+.tla-contact .tlact-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.tla-contact .tlact-reveal.tlact-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-contact .tlact-reveal { opacity:1; transform:none; } }
+</style>
+<div class="tla-contact-wrap"><div class="tla-contact">
+  <section class="tlact-hero">
+    <h1>Tell Andy where you dream of going.</h1>
+  </section>
+
+  <section class="tlact-wrap-inner tlact-reveal">
+    <form class="tlact-form" onsubmit="event.preventDefault(); var n=this.cname.value,e=this.cemail.value,dr=this.cdream.value,rf=this.cref.value,m=this.cmsg.value; var body='Name: '+n+'\nEmail: '+e+'\nWhere I dream of going: '+dr+'\nReferred by: '+rf+'\n\n'+m; window.location.href='mailto:andreweisenmann@gmail.com?subject='+encodeURIComponent('Tell Andy — '+n)+'&body='+encodeURIComponent(body);">
+      <div><label for="cname">Name</label><input id="cname" name="cname" type="text" placeholder="Your name" required></div>
+      <div><label for="cemail">Email</label><input id="cemail" name="cemail" type="email" placeholder="your@email.com" required></div>
+      <div><label for="cdream">Where you dream of going</label><input id="cdream" name="cdream" type="text" placeholder="A place, a feeling, a country" required></div>
+      <div><label for="cref">Referred by (optional)</label><input id="cref" name="cref" type="text" placeholder="Who sent you here"></div>
+      <div><label for="cmsg">Message</label><textarea id="cmsg" name="cmsg" rows="4" placeholder="Tell Andy more"></textarea></div>
+      <button type="submit" class="tlact-btn">Tell Andy</button>
+    </form>
+  </section>
+
+  <p class="tlact-or">Or reach Andy directly</p>
+  <section class="tlact-cards tlact-reveal">
+    <a class="tlact-card" href="https://wa.me/525579495570" target="_blank" rel="noopener"><span><span class="tlact-label">WhatsApp</span><span class="tlact-value">+52 55 7949 5570</span></span><span>&rarr;</span></a>
+    <a class="tlact-card" href="tel:+14422348624"><span><span class="tlact-label">Phone</span><span class="tlact-value">+1 (442) 234-8624</span></span><span>&rarr;</span></a>
+    <a class="tlact-card" href="https://instagram.com/travellikeandy" target="_blank" rel="noopener"><span><span class="tlact-label">Instagram</span><span class="tlact-value">@travellikeandy</span></span><span>&rarr;</span></a>
+  </section>
+
+  <p class="tlact-sig">"Where do you dream of going?" &mdash; Andy Eisenmann</p>
+</div></div>
+<script>
+(function(){
+  var els = document.querySelectorAll('.tlact-reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlact-in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlact-in'); io.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>

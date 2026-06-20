@@ -1,0 +1,89 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+.tla-about-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-about { --gold:#c8af78; --gold-bright:#dfc898; --bg:#0a0a0a; --surface:#0d0d0a; --surface-2:#121210; --text:#f0ebe0; --muted:#7a7060; background:var(--bg); color:var(--text); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+.tla-about * { box-sizing:border-box; }
+.tla-about h1,.tla-about h2,.tla-about h3 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
+.tla-about em { font-style:italic; color:var(--gold); font-weight:300; }
+.tla-about .tlaa-hero { min-height:70vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; position:relative; background:linear-gradient(180deg, rgba(10,10,10,0.55), rgba(10,10,10,0.85)), url('https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; }
+.tla-about .tlaa-hero-inner { max-width:880px; }
+.tla-about .tlaa-hero h1 { font-size:clamp(2rem,5.5vw,4rem); line-height:1.15; }
+.tla-about .tlaa-tag { color:var(--gold); font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; margin-top:1.4rem; }
+.tla-about .tlaa-intro { max-width:760px; margin:0 auto; padding:6rem 1.5rem; text-align:center; }
+.tla-about .tlaa-intro p { color:var(--text); font-size:clamp(1.1rem,2.2vw,1.4rem); line-height:1.9; font-family:'Cormorant Garamond',serif; font-style:italic; }
+.tla-about .tlaa-stats { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; padding:0 1.5rem 6rem; }
+.tla-about .tlaa-stat { text-align:center; border:1px solid rgba(200,175,120,0.18); background:var(--surface); padding:2.4rem 1rem; }
+.tla-about .tlaa-stat .tlaa-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:2.4rem; display:block; margin-bottom:0.4rem; }
+.tla-about .tlaa-stat p { color:var(--muted); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; margin:0; }
+.tla-about .tlaa-story { width:100%; display:table; table-layout:fixed; background:var(--surface-2); border-top:0.5px solid rgba(200,175,120,0.15); border-bottom:0.5px solid rgba(200,175,120,0.15); }
+.tla-about .tlaa-story-cell { display:table-cell; vertical-align:middle; width:50%; padding:5rem 4vw; }
+.tla-about .tlaa-story-cell.tlaa-img { background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; min-height:460px; }
+.tla-about .tlaa-story h2 { font-size:clamp(1.6rem,3.6vw,2.4rem); font-style:italic; margin-bottom:1.4rem; }
+.tla-about .tlaa-story p { color:var(--muted); font-size:0.95rem; line-height:1.85; margin:0 0 1.2rem; }
+.tla-about .tlaa-quotes { max-width:820px; margin:0 auto; padding:6rem 1.5rem; text-align:center; }
+.tla-about .tlaa-quotes h3 { font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:2.5rem; }
+.tla-about .tlaa-quote { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.7; color:var(--text); margin:0 0 2.2rem; }
+.tla-about .tlaa-quote span { display:block; margin-top:0.8rem; color:var(--gold); font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; font-style:normal; font-family:'Montserrat',sans-serif; }
+.tla-about .tlaa-close { text-align:center; padding:6rem 1.5rem; }
+.tla-about .tlaa-close h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; margin-bottom:2rem; }
+.tla-about .tlaa-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; }
+.tla-about .tlaa-btn:hover { background:var(--gold); color:var(--bg); }
+.tla-about .tlaa-sig { margin-top:2.5rem; color:var(--muted); font-size:0.75rem; letter-spacing:0.1em; }
+.tla-about .tlaa-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.tla-about .tlaa-reveal.tlaa-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-about .tlaa-reveal { opacity:1; transform:none; } }
+@media (max-width:767px) {
+  .tla-about .tlaa-stats { grid-template-columns:1fr; padding:0 1.2rem 4rem; }
+  .tla-about .tlaa-story, .tla-about .tlaa-story-cell { display:block; width:100%; }
+  .tla-about .tlaa-story-cell.tlaa-img { min-height:260px; }
+  .tla-about .tlaa-story-cell { padding:3rem 1.4rem; }
+  .tla-about .tlaa-intro, .tla-about .tlaa-quotes, .tla-about .tlaa-close { padding:4rem 1.2rem; }
+}
+</style>
+<div class="tla-about-wrap"><div class="tla-about">
+  <section class="tlaa-hero"><div class="tlaa-hero-inner">
+    <h1>Some people see the world.<br><em>Andy lives in it.</em></h1>
+    <p class="tlaa-tag">#travellikeandy</p>
+  </div></section>
+
+  <section class="tlaa-intro tlaa-reveal">
+    <p>I have never planned a trip I did not want to take myself. Everything I send people on, I have lived first.</p>
+  </section>
+
+  <section class="tlaa-stats tlaa-reveal">
+    <div class="tlaa-stat"><span class="tlaa-num">2&times;</span><p>Circled The Globe</p></div>
+    <div class="tlaa-stat"><span class="tlaa-num">50+</span><p>Countries</p></div>
+    <div class="tlaa-stat"><span class="tlaa-num">&infin;</span><p>Network</p></div>
+  </section>
+
+  <section class="tlaa-story tlaa-reveal">
+    <div class="tlaa-story-cell tlaa-img" role="img" aria-label="Portrait placeholder for Andy Eisenmann"></div>
+    <div class="tlaa-story-cell">
+      <h2>From the stage to the world.</h2>
+      <p>I started as a professional musician with the Perth Symphony, the kind of work that teaches you to listen before you act. That training followed me everywhere — into an opera performance for the King of Thailand, onto trails through the Himalayas, into kitchens and rooms most travelers never see.</p>
+      <p>Today I am a Certified Fora Travel Partner. I circled the globe twice in 2024 alone. Every itinerary I build still carries that same instinct: listen first, then design the experience that fits.</p>
+    </div>
+  </section>
+
+  <section class="tlaa-quotes tlaa-reveal">
+    <h3>In His Own Words</h3>
+    <p class="tlaa-quote">"I know the chef in Mexico City who opens his kitchen after midnight." <span>Andy Eisenmann</span></p>
+    <p class="tlaa-quote">"I know the room at the Taj Palace in Delhi that faces the sunrise." <span>Andy Eisenmann</span></p>
+  </section>
+
+  <section class="tlaa-close tlaa-reveal">
+    <h2>Where do you dream of going?</h2>
+    <a href="/contact" class="tlaa-btn">Tell Andy</a>
+    <p class="tlaa-sig">&mdash; Andy Eisenmann &middot; Fora Travel Partner &middot; #travellikeandy</p>
+  </section>
+</div></div>
+<script>
+(function(){
+  var els = document.querySelectorAll('.tlaa-reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlaa-in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlaa-in'); io.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>

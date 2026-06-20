@@ -1,0 +1,73 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+.tla-home-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-home { --gold:#c8af78; --gold-bright:#dfc898; --bg:#0a0a0a; --surface:#0d0d0a; --text:#f0ebe0; --muted:#7a7060; background:var(--bg); color:var(--text); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+.tla-home * { box-sizing:border-box; }
+.tla-home h1,.tla-home h2,.tla-home h3 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
+.tla-home em { font-style:italic; color:var(--gold); font-weight:300; }
+.tla-home .tlah-hero { min-height:80vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:radial-gradient(ellipse at 50% 100%, rgba(200,175,120,0.08), transparent 60%), linear-gradient(180deg,#0a0a0a 0%,#050505 100%); }
+.tla-home .tlah-hero-inner { max-width:900px; }
+.tla-home .tlah-hero h1 { font-size:clamp(2rem,6vw,4.5rem); line-height:1.1; margin-bottom:1.5rem; }
+.tla-home .tlah-sub { color:var(--muted); font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; margin:0 0 2.5rem; line-height:1.6; }
+.tla-home .tlah-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; background:transparent; }
+.tla-home .tlah-btn:hover { background:var(--gold); color:var(--bg); }
+.tla-home .tlah-div { padding:5rem 1.5rem; background:var(--bg); }
+.tla-home .tlah-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.tla-home .tlah-card { background:var(--surface); border:1px solid rgba(200,175,120,0.18); padding:3rem 1.5rem; text-decoration:none; color:var(--text); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:all 0.5s ease; min-height:300px; }
+.tla-home .tlah-card:hover { border-color:var(--gold); transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,0,0,0.6); }
+.tla-home .tlah-mark { font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-style:italic; color:var(--gold); line-height:1; margin-bottom:1.2rem; }
+.tla-home .tlah-card h2 { font-size:1.5rem; margin-bottom:0.8rem; letter-spacing:0.03em; line-height:1.2; }
+.tla-home .tlah-card p { color:var(--muted); font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 1.8rem; line-height:1.5; }
+.tla-home .tlah-card .tlah-invite { color:var(--gold); font-style:italic; text-transform:none; letter-spacing:0.05em; font-size:0.85rem; font-family:'Cormorant Garamond',serif; }
+.tla-home .tlah-arrow { color:var(--gold); font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; transition:transform 0.4s ease; }
+.tla-home .tlah-card:hover .tlah-arrow { transform:translateX(8px); }
+.tla-home .tlah-trust { padding:3rem 1.5rem; border-top:0.5px solid rgba(200,175,120,0.2); border-bottom:0.5px solid rgba(200,175,120,0.2); text-align:center; }
+.tla-home .tlah-trust p { color:var(--muted); font-size:0.72rem; letter-spacing:0.25em; text-transform:uppercase; margin:0; line-height:1.8; }
+.tla-home .tlah-about { padding:6rem 1.5rem; background:var(--bg); }
+.tla-home .tlah-about-inner { max-width:760px; margin:0 auto; text-align:center; }
+.tla-home .tlah-about-inner h3 { font-size:clamp(1.6rem,4vw,2.6rem); font-style:italic; margin-bottom:1.5rem; }
+.tla-home .tlah-about-inner p { color:var(--text); font-size:1rem; line-height:1.8; font-weight:300; margin:0 0 2rem; }
+.tla-home .tlah-link { color:var(--gold); text-decoration:none; letter-spacing:0.18em; text-transform:uppercase; font-size:0.75rem; border-bottom:1px solid var(--gold); padding-bottom:0.3rem; transition:all 0.3s ease; }
+.tla-home .tlah-link:hover { color:var(--gold-bright); }
+.tla-home .tlah-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.tla-home .tlah-reveal.tlah-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-home .tlah-reveal { opacity:1; transform:none; transition:none; } }
+@media (max-width:767px) {
+  .tla-home .tlah-grid { grid-template-columns:1fr; gap:1rem; }
+  .tla-home .tlah-card { min-height:200px; padding:2.5rem 1.5rem; }
+  .tla-home .tlah-hero { min-height:70vh; padding:4rem 1.2rem; }
+  .tla-home .tlah-mark { font-size:3rem; }
+  .tla-home .tlah-card h2 { font-size:1.4rem; }
+  .tla-home .tlah-div,.tla-home .tlah-about { padding:4rem 1.2rem; }
+  .tla-home .tlah-sub { font-size:0.72rem; letter-spacing:0.15em; }
+  .tla-home .tlah-trust p { font-size:0.62rem; letter-spacing:0.15em; }
+}
+</style>
+<div class="tla-home-wrap"><div class="tla-home">
+  <section class="tlah-hero"><div class="tlah-hero-inner">
+    <h1>Some people see the world.<br><em>A rare few experience it.</em></h1>
+    <p class="tlah-sub">Curated journeys by Andy Eisenmann<br>Fora Travel Partner</p>
+    <a href="/contact" class="tlah-btn">Tell Andy where you dream of going</a>
+  </div></section>
+  <section class="tlah-div tlah-reveal"><div class="tlah-grid">
+    <a href="/leisure" class="tlah-card"><div class="tlah-mark">L</div><h2>Leisure Travel</h2><p>Vacations &middot; Resorts &middot; Cruises</p><span class="tlah-arrow">Explore &rarr;</span></a>
+    <a href="/corporate" class="tlah-card"><div class="tlah-mark">C</div><h2>Corporate &amp; Group Travel</h2><span class="tlah-arrow">Explore &rarr;</span></a>
+    <a href="/bespoke" class="tlah-card"><div class="tlah-mark">B</div><h2>Luxury Bespoke Travel</h2><p class="tlah-invite">By Invitation Only</p><span class="tlah-arrow">Enter &rarr;</span></a>
+  </div></section>
+  <section class="tlah-trust tlah-reveal"><p>Fora Travel Partner &nbsp;&middot;&nbsp; 50+ Countries &nbsp;&middot;&nbsp; #travellikeandy</p></section>
+  <section class="tlah-about tlah-reveal"><div class="tlah-about-inner">
+    <h3>I have circled the globe twice.</h3>
+    <p>I sang opera for the King of Thailand. I hiked the Himalayas. I know the chef in Mexico City who opens his kitchen after midnight, and the room at the Taj Palace that faces the sunrise.</p>
+    <a href="/about" class="tlah-link">More about Andy &rarr;</a>
+  </div></section>
+</div></div>
+<script>
+(function(){
+  var els = document.querySelectorAll('.tlah-reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlah-in'); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlah-in'); io.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  els.forEach(function(e){ io.observe(e); });
+})();
+</script>
