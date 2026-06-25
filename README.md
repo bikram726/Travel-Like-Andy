@@ -12,7 +12,8 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 | `pages/bespoke.html` | Bespoke (password: `LuxeAccess`) | `/bespoke` |
 | `pages/about.html` | About | `/about` |
 | `pages/contact.html` | Contact | `/contact` |
-| `pages/global-custom-css.css` | Site-wide header/footer/lock-screen | Design → Custom CSS |
+| `pages/global-custom-css.css` | Site-wide header/footer | Design → Custom CSS |
+| `pages/code-injection-header.html` | Bespoke password-gate styling (luxury background + welcome message) | Settings → Advanced → Code Injection → Header |
 
 ## How to publish a page
 

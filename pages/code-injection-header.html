@@ -1,0 +1,51 @@
+<style>
+/* BESPOKE LUXURY LOCK SCREEN — paste into Settings -> Advanced -> Code Injection -> HEADER */
+.sqs-password-page-wrapper,
+.password-page,
+body.password-protected,
+.sqs-password-page {
+  background: linear-gradient(180deg, rgba(5,5,5,0.82), rgba(10,10,10,0.92)),
+    url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
+  min-height: 100vh !important;
+}
+.sqs-password-page input[type="password"],
+.password-page input[type="password"] {
+  background: rgba(0,0,0,0.3) !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(200,175,120,0.6) !important;
+  color: #f0ebe0 !important;
+  font-family: 'Montserrat', sans-serif !important;
+}
+.sqs-password-page input[type="submit"],
+.password-page .sqs-system-button,
+.password-page button {
+  background: #c8af78 !important;
+  color: #0a0a0a !important;
+  border: none !important;
+}
+#tla-lock-msg {
+  max-width: 640px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.75;
+  color: #dfc898;
+  padding: 0 1.5rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var page = document.querySelector('.sqs-password-page, .password-page, .sqs-password-page-wrapper');
+  if (page && !document.getElementById('tla-lock-msg')) {
+    var msg = document.createElement('div');
+    msg.id = 'tla-lock-msg';
+    msg.innerHTML = "Welcome to your next amazing and luxurious memory. Andy’s personally curated bespoke travel division is available by invitation or referral only.<br><br>Please enter your password below. Thank you for the visit.";
+    var form = page.querySelector('form');
+    if (form) { form.parentNode.insertBefore(msg, form); }
+    else { page.insertBefore(msg, page.firstChild); }
+  }
+});
+</script>
