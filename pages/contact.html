@@ -20,7 +20,7 @@
 .tla-contact .tlact-card { display:flex; align-items:center; justify-content:space-between; gap:1rem; background:var(--surface); border:1px solid rgba(200,175,120,0.18); padding:1.3rem 1.5rem; text-decoration:none; color:var(--text); transition:all 0.3s ease; }
 .tla-contact .tlact-card:hover { border-color:var(--gold); transform:translateX(4px); }
 .tla-contact .tlact-card .tlact-label { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:0.2rem; }
-.tla-contact .tlact-card .tlact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; color:var(--gold); }
+.tla-contact .tlact-card .tlact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.1rem; color:var(--gold); word-break:break-word; }
 .tla-contact .tlact-sig { text-align:center; padding:3rem 1.5rem 6rem; font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--muted); font-size:0.95rem; }
 .tla-contact .tlact-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
 .tla-contact .tlact-reveal.tlact-in { opacity:1; transform:translateY(0); }
@@ -32,7 +32,7 @@
   </section>
 
   <section class="tlact-wrap-inner tlact-reveal">
-    <form class="tlact-form" onsubmit="event.preventDefault(); var n=this.cname.value,e=this.cemail.value,dr=this.cdream.value,rf=this.cref.value,m=this.cmsg.value; var body='Name: '+n+'\nEmail: '+e+'\nWhere I dream of going: '+dr+'\nReferred by: '+rf+'\n\n'+m; window.location.href='mailto:andreweisenmann@gmail.com?subject='+encodeURIComponent('Tell Andy — '+n)+'&body='+encodeURIComponent(body);">
+    <form class="tlact-form" onsubmit="event.preventDefault(); var n=this.cname.value,e=this.cemail.value,dr=this.cdream.value,rf=this.cref.value,m=this.cmsg.value; var body='Name: '+n+'\nEmail: '+e+'\nWhere I dream of going: '+dr+'\nReferred by: '+rf+'\n\n'+m; window.location.href='mailto:andrew.eisenmann@fora.travel?subject='+encodeURIComponent('Tell Andy — '+n)+'&body='+encodeURIComponent(body);">
       <div><label for="cname">Name</label><input id="cname" name="cname" type="text" placeholder="Your name" required></div>
       <div><label for="cemail">Email</label><input id="cemail" name="cemail" type="email" placeholder="your@email.com" required></div>
       <div><label for="cdream">Where you dream of going</label><input id="cdream" name="cdream" type="text" placeholder="A place, a feeling, a country" required></div>
@@ -44,6 +44,7 @@
 
   <p class="tlact-or">Or reach Andy directly</p>
   <section class="tlact-cards tlact-reveal">
+    <a class="tlact-card" href="mailto:andrew.eisenmann@fora.travel"><span><span class="tlact-label">Email</span><span class="tlact-value">andrew.eisenmann@fora.travel</span></span><span>&rarr;</span></a>
     <a class="tlact-card" href="https://wa.me/525579495570" target="_blank" rel="noopener"><span><span class="tlact-label">WhatsApp</span><span class="tlact-value">+52 55 7949 5570</span></span><span>&rarr;</span></a>
     <a class="tlact-card" href="tel:+14422348624"><span><span class="tlact-label">Phone</span><span class="tlact-value">+1 (442) 234-8624</span></span><span>&rarr;</span></a>
     <a class="tlact-card" href="https://instagram.com/travellikeandy" target="_blank" rel="noopener"><span><span class="tlact-label">Instagram</span><span class="tlact-value">@travellikeandy</span></span><span>&rarr;</span></a>
