@@ -37,12 +37,13 @@
   <section class="tlact-wrap-inner tlact-reveal">
     <form id="tlact-form" class="tlact-form" action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
-      <input type="hidden" name="subject" value="New traveler inquiry — travellikeandy.com">
-      <input type="hidden" name="from_name" value="Travel Like Andy — Website">
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input type="hidden" name="to" value="andrew.eisenmann@fora.travel">
+      <input type="hidden" name="subject" value="New inquiry from travellikeandy.com">
+      <input type="hidden" name="from_name" value="Travel Like Andy Website">
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
       <div><label for="cname">Name</label><input id="cname" name="name" type="text" placeholder="Your name" required></div>
       <div><label for="cemail">Email</label><input id="cemail" name="email" type="email" placeholder="your@email.com" required></div>
-      <div><label for="cdream">Where you dream of going</label><input id="cdream" name="dream_destination" type="text" placeholder="A place, a feeling, a country" required></div>
+      <div><label for="cdream">Where you dream of going</label><input id="cdream" name="destination" type="text" placeholder="A place, a feeling, a country" required></div>
       <div><label for="cref">Referred by (optional)</label><input id="cref" name="referred_by" type="text" placeholder="Who sent you here"></div>
       <div><label for="cmsg">Message</label><textarea id="cmsg" name="message" rows="4" placeholder="Tell Andy more"></textarea></div>
       <button type="submit" class="tlact-btn">Tell Andy</button>
@@ -52,6 +53,7 @@
 
   <p class="tlact-or">Or reach Andy directly</p>
   <section class="tlact-cards tlact-reveal">
+    <a class="tlact-card" href="mailto:andy@travellikeandy.com"><span><span class="tlact-label">Email</span><span class="tlact-value">andy@travellikeandy.com</span></span><span>&rarr;</span></a>
     <a class="tlact-card" href="https://wa.me/525579495570" target="_blank" rel="noopener"><span><span class="tlact-label">WhatsApp</span><span class="tlact-value">+52 55 7949 5570</span></span><span>&rarr;</span></a>
     <a class="tlact-card" href="tel:+14422348624"><span><span class="tlact-label">Phone</span><span class="tlact-value">+1 (442) 234-8624</span></span><span>&rarr;</span></a>
     <a class="tlact-card" href="https://instagram.com/travellikeandy" target="_blank" rel="noopener"><span><span class="tlact-label">Instagram</span><span class="tlact-value">@travellikeandy</span></span><span>&rarr;</span></a>
@@ -72,7 +74,7 @@
     els.forEach(function(e){ io.observe(e); });
   }
 
-  // AJAX form submit to Web3Forms — no redirect, inline success message
+  // AJAX form submit to Web3Forms — no redirect, inline success/error message
   var form = document.getElementById('tlact-form');
   var result = document.getElementById('tlact-result');
   var btn = form ? form.querySelector('.tlact-btn') : null;
@@ -93,7 +95,7 @@
       .then(function(r){
         if (r.ok) {
           form.reset();
-          result.textContent = 'Thank you — your note is on its way to Andy. He will be in touch personally.';
+          result.textContent = 'Thank you — Andy will be in touch.';
         } else {
           result.classList.add('tlact-error');
           result.textContent = (r.json && r.json.message) ? r.json.message : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.';
