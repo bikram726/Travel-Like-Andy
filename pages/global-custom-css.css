@@ -17,9 +17,11 @@
 
 /* REMOVE EXTRA SECTION GAPS — every page is a single code block that
    controls its own internal spacing, so strip Squarespace's default
-   80px/40px section padding site-wide to kill the empty bands. */
-.page-section { padding-top:0 !important; padding-bottom:0 !important; }
+   section/fluid-engine padding. Scoped to .page-section so it can NOT
+   affect the header, footer, or nav (which also use .content-wrapper). */
+.page-section { padding-top:0 !important; padding-bottom:0 !important; margin-top:0 !important; margin-bottom:0 !important; }
 .page-section .content-wrapper { padding-top:0 !important; padding-bottom:0 !important; }
+.page-section .fluid-engine, .page-section .fe-block { padding:0 !important; margin:0 !important; }
 
 /* BESPOKE LOCK SCREEN */
 .sqs-password-page, .password-protected, .password-page { background:#0a0a0a !important; }
