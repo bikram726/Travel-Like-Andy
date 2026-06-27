@@ -15,6 +15,12 @@
 .footer-sections p, footer p { color:#7a7060 !important; font-family:'Montserrat',sans-serif !important; font-size:0.78rem !important; letter-spacing:0.1em; text-align:center; }
 .footer-sections a, footer a { color:#c8af78 !important; }
 
+/* REMOVE EXTRA SECTION GAPS — every page is a single code block that
+   controls its own internal spacing, so strip Squarespace's default
+   80px/40px section padding site-wide to kill the empty bands. */
+.page-section { padding-top:0 !important; padding-bottom:0 !important; }
+.page-section .content-wrapper { padding-top:0 !important; padding-bottom:0 !important; }
+
 /* BESPOKE LOCK SCREEN */
 .sqs-password-page, .password-protected, .password-page { background:#0a0a0a !important; }
 .password-page h1 { font-family:'Cormorant Garamond',serif !important; font-style:italic !important; color:#f0ebe0 !important; font-weight:300 !important; }
