@@ -15,6 +15,9 @@
 .tla-contact .tlact-form input:focus, .tla-contact .tlact-form textarea:focus { outline:none; border-color:var(--gold); }
 .tla-contact .tlact-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); background:transparent; cursor:pointer; text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; justify-self:start; margin-top:0.6rem; font-family:'Montserrat',sans-serif; }
 .tla-contact .tlact-btn:hover { background:var(--gold); color:var(--bg); }
+.tla-contact .tlact-btn:disabled { opacity:0.5; cursor:default; }
+.tla-contact .tlact-result { display:none; margin-top:1.2rem; padding:1rem 1.2rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; line-height:1.5; border:1px solid rgba(200,175,120,0.35); color:var(--gold); background:rgba(200,175,120,0.05); }
+.tla-contact .tlact-result.tlact-error { border-color:rgba(200,90,90,0.5); color:#e3a3a3; background:rgba(200,90,90,0.06); }
 .tla-contact .tlact-or { text-align:center; padding:0 1.5rem 1.5rem; color:var(--muted); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; border-top:0.5px solid rgba(200,175,120,0.15); padding-top:3rem; max-width:560px; margin:0 auto; }
 .tla-contact .tlact-cards { max-width:560px; margin:0 auto; display:grid; gap:1rem; padding:1.5rem; }
 .tla-contact .tlact-card { display:flex; align-items:center; justify-content:space-between; gap:1rem; background:var(--surface); border:1px solid rgba(200,175,120,0.18); padding:1.3rem 1.5rem; text-decoration:none; color:var(--text); transition:all 0.3s ease; }
@@ -32,13 +35,18 @@
   </section>
 
   <section class="tlact-wrap-inner tlact-reveal">
-    <form class="tlact-form" onsubmit="event.preventDefault(); var n=this.cname.value,e=this.cemail.value,dr=this.cdream.value,rf=this.cref.value,m=this.cmsg.value; var body='Name: '+n+'\nEmail: '+e+'\nWhere I dream of going: '+dr+'\nReferred by: '+rf+'\n\n'+m; window.location.href='mailto:andy@travellikeandy.com?subject='+encodeURIComponent('Tell Andy — '+n)+'&body='+encodeURIComponent(body);">
-      <div><label for="cname">Name</label><input id="cname" name="cname" type="text" placeholder="Your name" required></div>
-      <div><label for="cemail">Email</label><input id="cemail" name="cemail" type="email" placeholder="your@email.com" required></div>
-      <div><label for="cdream">Where you dream of going</label><input id="cdream" name="cdream" type="text" placeholder="A place, a feeling, a country" required></div>
-      <div><label for="cref">Referred by (optional)</label><input id="cref" name="cref" type="text" placeholder="Who sent you here"></div>
-      <div><label for="cmsg">Message</label><textarea id="cmsg" name="cmsg" rows="4" placeholder="Tell Andy more"></textarea></div>
+    <form id="tlact-form" class="tlact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY">
+      <input type="hidden" name="subject" value="New traveler inquiry — travellikeandy.com">
+      <input type="hidden" name="from_name" value="Travel Like Andy — Website">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div><label for="cname">Name</label><input id="cname" name="name" type="text" placeholder="Your name" required></div>
+      <div><label for="cemail">Email</label><input id="cemail" name="email" type="email" placeholder="your@email.com" required></div>
+      <div><label for="cdream">Where you dream of going</label><input id="cdream" name="dream_destination" type="text" placeholder="A place, a feeling, a country" required></div>
+      <div><label for="cref">Referred by (optional)</label><input id="cref" name="referred_by" type="text" placeholder="Who sent you here"></div>
+      <div><label for="cmsg">Message</label><textarea id="cmsg" name="message" rows="4" placeholder="Tell Andy more"></textarea></div>
       <button type="submit" class="tlact-btn">Tell Andy</button>
+      <div id="tlact-result" class="tlact-result" role="status" aria-live="polite"></div>
     </form>
   </section>
 
@@ -53,11 +61,50 @@
 </div></div>
 <script>
 (function(){
+  // Scroll reveal
   var els = document.querySelectorAll('.tlact-reveal');
-  if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlact-in'); }); return; }
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlact-in'); io.unobserve(entry.target); } });
-  }, { threshold: 0.15 });
-  els.forEach(function(e){ io.observe(e); });
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(e){ e.classList.add('tlact-in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlact-in'); io.unobserve(entry.target); } });
+    }, { threshold: 0.15 });
+    els.forEach(function(e){ io.observe(e); });
+  }
+
+  // AJAX form submit to Web3Forms — no redirect, inline success message
+  var form = document.getElementById('tlact-form');
+  var result = document.getElementById('tlact-result');
+  var btn = form ? form.querySelector('.tlact-btn') : null;
+  if (form) {
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      result.classList.remove('tlact-error');
+      result.style.display = 'block';
+      result.textContent = 'Sending your note to Andy…';
+      if (btn) { btn.disabled = true; }
+      var payload = JSON.stringify(Object.fromEntries(new FormData(form)));
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: payload
+      })
+      .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
+      .then(function(r){
+        if (r.ok) {
+          form.reset();
+          result.textContent = 'Thank you — your note is on its way to Andy. He will be in touch personally.';
+        } else {
+          result.classList.add('tlact-error');
+          result.textContent = (r.json && r.json.message) ? r.json.message : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.';
+        }
+      })
+      .catch(function(){
+        result.classList.add('tlact-error');
+        result.textContent = 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.';
+      })
+      .then(function(){ if (btn) { btn.disabled = false; } });
+    });
+  }
 })();
 </script>
