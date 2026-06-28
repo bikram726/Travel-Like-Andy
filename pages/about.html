@@ -5,7 +5,7 @@
 .tla-about * { box-sizing:border-box; }
 .tla-about h1,.tla-about h2,.tla-about h3 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
 .tla-about em { font-style:italic; color:var(--gold); font-weight:300; }
-.tla-about .tlaa-hero { min-height:70vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; position:relative; background:linear-gradient(180deg, rgba(10,10,10,0.55), rgba(10,10,10,0.85)), url('https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; }
+.tla-about .tlaa-hero { min-height:82vh; display:flex; align-items:flex-end; justify-content:center; padding:6rem 1.5rem 4rem; text-align:center; position:relative; background:linear-gradient(180deg, rgba(10,10,10,0.30) 0%, rgba(10,10,10,0.45) 55%, rgba(10,10,10,0.92) 100%), url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/e1a4d987-f7d6-4b04-9cdf-99684442d07c/04-andy-sydney-opera-house+%281%29.jpg') center 28%/cover no-repeat; }
 .tla-about .tlaa-hero-inner { max-width:880px; }
 .tla-about .tlaa-hero h1 { font-size:clamp(2rem,5.5vw,4rem); line-height:1.15; }
 .tla-about .tlaa-tag { color:var(--gold); font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; margin-top:1.4rem; }
@@ -17,9 +17,18 @@
 .tla-about .tlaa-stat p { color:var(--muted); font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; margin:0; }
 .tla-about .tlaa-story { width:100%; display:table; table-layout:fixed; background:var(--surface-2); border-top:0.5px solid rgba(200,175,120,0.15); border-bottom:0.5px solid rgba(200,175,120,0.15); }
 .tla-about .tlaa-story-cell { display:table-cell; vertical-align:middle; width:50%; padding:5rem 4vw; }
-.tla-about .tlaa-story-cell.tlaa-img { background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; min-height:460px; }
+.tla-about .tlaa-story-cell.tlaa-img { background:url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5c4c2909-7be2-4a73-9326-fd644a207322/01-andy-conducting-orchestra.jpg') center/cover no-repeat; min-height:460px; }
 .tla-about .tlaa-story h2 { font-size:clamp(1.6rem,3.6vw,2.4rem); font-style:italic; margin-bottom:1.4rem; }
 .tla-about .tlaa-story p { color:var(--muted); font-size:0.95rem; line-height:1.85; margin:0 0 1.2rem; }
+.tla-about .tlaa-gallery-head { text-align:center; padding:6rem 1.5rem 2.5rem; }
+.tla-about .tlaa-gallery-head h2 { font-size:clamp(1.6rem,3.6vw,2.4rem); font-style:italic; }
+.tla-about .tlaa-gallery-head p { color:var(--muted); font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:1rem; }
+.tla-about .tlaa-gallery { display:grid; grid-template-columns:repeat(3,1fr); gap:0.5rem; padding:0 0.5rem 1rem; }
+.tla-about .tlaa-shot { position:relative; aspect-ratio:3/4; overflow:hidden; }
+.tla-about .tlaa-shot img { width:100%; height:100%; object-fit:cover; display:block; transition:transform 0.8s ease; }
+.tla-about .tlaa-shot:hover img { transform:scale(1.05); }
+.tla-about .tlaa-shot .tlaa-cap { position:absolute; left:0; right:0; bottom:0; padding:1.4rem 1.2rem 1.1rem; background:linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.85) 100%); color:var(--text); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; }
+.tla-about .tlaa-shot .tlaa-cap span { display:block; color:var(--gold); font-family:'Montserrat',sans-serif; font-style:normal; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; margin-top:0.3rem; }
 .tla-about .tlaa-quotes { max-width:820px; margin:0 auto; padding:6rem 1.5rem; text-align:center; }
 .tla-about .tlaa-quotes h3 { font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:2.5rem; }
 .tla-about .tlaa-quote { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.7; color:var(--text); margin:0 0 2.2rem; }
@@ -33,11 +42,14 @@
 .tla-about .tlaa-reveal.tlaa-in { opacity:1; transform:translateY(0); }
 @media (prefers-reduced-motion: reduce) { .tla-about .tlaa-reveal { opacity:1; transform:none; } }
 @media (max-width:767px) {
+  .tla-about .tlaa-hero { min-height:78vh; background-position:center 22%; }
   .tla-about .tlaa-stats { grid-template-columns:1fr; padding:0 1.2rem 4rem; }
   .tla-about .tlaa-story, .tla-about .tlaa-story-cell { display:block; width:100%; }
-  .tla-about .tlaa-story-cell.tlaa-img { min-height:260px; }
+  .tla-about .tlaa-story-cell.tlaa-img { min-height:300px; }
   .tla-about .tlaa-story-cell { padding:3rem 1.4rem; }
-  .tla-about .tlaa-intro, .tla-about .tlaa-quotes, .tla-about .tlaa-close { padding:4rem 1.2rem; }
+  .tla-about .tlaa-gallery { grid-template-columns:1fr; gap:0.4rem; }
+  .tla-about .tlaa-shot { aspect-ratio:4/5; }
+  .tla-about .tlaa-gallery-head, .tla-about .tlaa-intro, .tla-about .tlaa-quotes, .tla-about .tlaa-close { padding-left:1.2rem; padding-right:1.2rem; }
 }
 </style>
 <div class="tla-about-wrap"><div class="tla-about">
@@ -47,28 +59,47 @@
   </div></section>
 
   <section class="tlaa-intro tlaa-reveal">
-    <p>I have never planned a trip I did not want to take myself. Everything I send people on, I have lived first.</p>
+    <p>I have never planned a journey I would not take myself. Everything I send people on, I have lived first.</p>
   </section>
 
   <section class="tlaa-stats tlaa-reveal">
-    <div class="tlaa-stat"><span class="tlaa-num">2&times;</span><p>Circled The Globe</p></div>
-    <div class="tlaa-stat"><span class="tlaa-num">50+</span><p>Countries</p></div>
-    <div class="tlaa-stat"><span class="tlaa-num">&infin;</span><p>Network</p></div>
+    <div class="tlaa-stat"><span class="tlaa-num">2&times;</span><p>Around The World</p></div>
+    <div class="tlaa-stat"><span class="tlaa-num">6</span><p>Continents Explored</p></div>
+    <div class="tlaa-stat"><span class="tlaa-num">&infin;</span><p>Connections Worldwide</p></div>
   </section>
 
   <section class="tlaa-story tlaa-reveal">
-    <div class="tlaa-story-cell tlaa-img" role="img" aria-label="Portrait placeholder for Andy Eisenmann"></div>
+    <div class="tlaa-story-cell tlaa-img" role="img" aria-label="Andy conducting an orchestra"></div>
     <div class="tlaa-story-cell">
       <h2>From the stage to the world.</h2>
-      <p>I started as a professional musician with the Perth Symphony, the kind of work that teaches you to listen before you act. That training followed me everywhere — into an opera performance for the King of Thailand, onto trails through the Himalayas, into kitchens and rooms most travelers never see.</p>
-      <p>Today I am a Certified Fora Travel Partner. I circled the globe twice in 2024 alone. Every itinerary I build still carries that same instinct: listen first, then design the experience that fits.</p>
+      <p>I came up as a performer &mdash; years on concert stages, learning to listen before I act. That instinct followed me everywhere: onto trails and into cities, into kitchens and rooms most travelers never see.</p>
+      <p>Today I am a Certified Fora Travel Partner. Every itinerary I build still carries that same instinct &mdash; listen first, then design the experience that fits the person taking it.</p>
+    </div>
+  </section>
+
+  <section class="tlaa-gallery-head tlaa-reveal">
+    <h2>A life lived out loud.</h2>
+    <p>This is the world I travel &mdash; come see it with me</p>
+  </section>
+  <section class="tlaa-gallery tlaa-reveal">
+    <div class="tlaa-shot">
+      <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/f6644c09-ec9d-44b9-969a-53daeb33df89/02-andy-taj-mahal-jump.jpg" alt="Andy leaping in front of the Taj Mahal at sunrise" loading="lazy">
+      <div class="tlaa-cap">Sunrise at the Taj Mahal<span>Agra, India</span></div>
+    </div>
+    <div class="tlaa-shot">
+      <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c0edd476-af81-4a96-893c-eaae5559ac46/05-andy-la-fortuna-waterfall+%281%29.jpg" alt="Andy at La Fortuna waterfall in the rainforest" loading="lazy">
+      <div class="tlaa-cap">Into the rainforest<span>La Fortuna Waterfall</span></div>
+    </div>
+    <div class="tlaa-shot">
+      <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/49a8e400-d044-4bf8-8191-ee9db0ad91d1/03-andy-red-carpet.jpg" alt="Andy on the red carpet at a film event" loading="lazy">
+      <div class="tlaa-cap">On the red carpet<span>Asia Pillars Film Connection</span></div>
     </div>
   </section>
 
   <section class="tlaa-quotes tlaa-reveal">
-    <h3>In His Own Words</h3>
-    <p class="tlaa-quote">"I know the chef in Mexico City who opens his kitchen after midnight." <span>Andy Eisenmann</span></p>
-    <p class="tlaa-quote">"I know the room at the Taj Palace in Delhi that faces the sunrise." <span>Andy Eisenmann</span></p>
+    <h3>The Way I Travel</h3>
+    <p class="tlaa-quote">"I do not send you somewhere I would not go myself." <span>Andy Eisenmann</span></p>
+    <p class="tlaa-quote">"The best journeys are not booked. They are designed &mdash; around you." <span>Andy Eisenmann</span></p>
   </section>
 
   <section class="tlaa-close tlaa-reveal">
