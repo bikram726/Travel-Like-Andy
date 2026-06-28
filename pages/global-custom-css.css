@@ -23,6 +23,15 @@
 .page-section .content-wrapper { padding-top:0 !important; padding-bottom:0 !important; }
 .page-section .fluid-engine, .page-section .fe-block { padding:0 !important; margin:0 !important; }
 
+/* KILL THE TOP GAP UNDER THE HEADER (first section only) */
+#sections, #content, main { padding-top:0 !important; margin-top:0 !important; }
+#sections > .page-section:first-child,
+#sections > .page-section:first-child .content-wrapper,
+#sections > .page-section:first-child .fluid-engine,
+#sections > .page-section:first-child .sqs-block-content { padding-top:0 !important; margin-top:0 !important; }
+/* fluid-engine sections enforce a min row-height that shows as empty space */
+#sections > .page-section:first-child .fluid-engine { min-height:0 !important; }
+
 /* BESPOKE LOCK SCREEN */
 .sqs-password-page, .password-protected, .password-page { background:#0a0a0a !important; }
 .password-page h1 { font-family:'Cormorant Garamond',serif !important; font-style:italic !important; color:#f0ebe0 !important; font-weight:300 !important; }
