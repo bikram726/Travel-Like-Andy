@@ -29,8 +29,10 @@
 #sections > .page-section:first-child .content-wrapper,
 #sections > .page-section:first-child .fluid-engine,
 #sections > .page-section:first-child .sqs-block-content { padding-top:0 !important; margin-top:0 !important; }
-/* fluid-engine sections enforce a min row-height that shows as empty space */
-#sections > .page-section:first-child .fluid-engine { min-height:0 !important; }
+/* fluid-engine sections enforce a min/fixed row-height that shows as empty
+   cream space below the code block — force them to collapse to content */
+.page-section .fluid-engine { min-height:0 !important; height:auto !important; }
+.page-section { min-height:0 !important; }
 
 /* BESPOKE LOCK SCREEN */
 .sqs-password-page, .password-protected, .password-page { background:#0a0a0a !important; }
