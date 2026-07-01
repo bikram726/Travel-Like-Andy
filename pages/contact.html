@@ -30,8 +30,6 @@
 .tla-contact .tlact-card .tlact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.15rem; color:var(--gold); line-height:1.2; }
 .tla-contact .tlact-card .tlact-action { flex:0 0 auto; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); transition:color 0.3s ease; }
 .tla-contact .tlact-card:hover .tlact-action { color:var(--gold); }
-.tla-contact .tlact-card.tlact-copied { border-color:var(--gold); }
-.tla-contact .tlact-card.tlact-copied .tlact-action { color:var(--gold-bright); }
 .tla-contact .tlact-sig { text-align:center; padding:3rem 1.5rem 6rem; font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--muted); font-size:0.95rem; }
 .tla-contact .tlact-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
 .tla-contact .tlact-reveal.tlact-in { opacity:1; transform:translateY(0); }
@@ -41,7 +39,6 @@
   .tla-contact .tlact-card { gap:0.9rem; padding:1.15rem 1.2rem; }
   .tla-contact .tlact-card .tlact-value { font-size:1.05rem; }
   .tla-contact .tlact-card .tlact-action { display:none; }
-  .tla-contact .tlact-card.tlact-copied .tlact-action { display:block; }
 }
 </style>
 <div class="tla-contact-wrap"><div class="tla-contact">
@@ -103,32 +100,6 @@
       entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlact-in'); io.unobserve(entry.target); } });
     }, { threshold: 0.15 });
     els.forEach(function(e){ io.observe(e); });
-  }
-
-  var copyCards = document.querySelectorAll('.tlact-copy');
-  copyCards.forEach(function(card){
-    var original = card.querySelector('.tlact-action').textContent;
-    card.addEventListener('click', function(){
-      var text = card.getAttribute('data-copy');
-      var action = card.querySelector('.tlact-action');
-      var done = function(){
-        card.classList.add('tlact-copied');
-        action.textContent = 'Copied ✓';
-        setTimeout(function(){ card.classList.remove('tlact-copied'); action.textContent = original; }, 2200);
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text, done); });
-      } else {
-        fallbackCopy(text, done);
-      }
-    });
-  });
-  function fallbackCopy(text, cb){
-    var t = document.createElement('textarea');
-    t.value = text; t.setAttribute('readonly',''); t.style.position='absolute'; t.style.left='-9999px';
-    document.body.appendChild(t); t.select();
-    try { document.execCommand('copy'); } catch(e){}
-    document.body.removeChild(t); if (cb) cb();
   }
 
   var form = document.getElementById('tlact-form');
