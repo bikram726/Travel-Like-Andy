@@ -44,3 +44,9 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 - Real photos to replace Unsplash placeholders (Istanbul/Bosphorus shot, Luxembourg panorama, hotel suite, portrait of Andy).
 - Corporate + Bespoke logo variants (currently letter marks on Home).
 - Publish + point DNS per the handoff doc's DNS section.
+
+## Logo placement (completed)
+
+1. **Footer logo (main):** Squarespace → Edit any page → scroll to Footer → Add Block → Image → upload `logo-main-transparent.png` → size to ~200px tall → center → Save. Footer is site-wide.
+2. **Header logo:** Hidden via `global-custom-css.css` (`.header-title-logo { display: none !important; }`) so the footer logo is the only logo. Home page link now replaces the header logo.
+3. **Bespoke lock-screen logo:** Replace the placeholder `src` in `pages/lock-screen.html` line 114 with the actual Squarespace CDN URL for `logo-bespoke-transparent.png`. The lock screen file goes in **Settings → Advanced → Code Injection → Lock Page**.
