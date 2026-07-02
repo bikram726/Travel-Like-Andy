@@ -1,0 +1,98 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide {
+  background:radial-gradient(ellipse at 50% 30%, rgba(200,175,120,0.10), transparent 60%), linear-gradient(180deg,#0a0a0a 0%,#050505 100%) !important;
+}
+
+.sqs-slice-password {
+  font-family:'Montserrat',sans-serif !important;
+  text-align:center !important;
+  padding:2rem !important;
+}
+
+.sqs-slice-password * {
+  color:#f0ebe0;
+}
+
+.sqs-slice-password h1,
+.sqs-slice-password h2 {
+  font-family:'Cormorant Garamond',serif !important;
+  font-style:italic !important;
+  font-weight:300 !important;
+  color:#f0ebe0 !important;
+  font-size:clamp(1.8rem,4vw,2.6rem) !important;
+  line-height:1.25 !important;
+  margin:0 0 1.2rem !important;
+}
+
+.sqs-slice-password p {
+  font-family:'Montserrat',sans-serif !important;
+  color:#7a7060 !important;
+  font-size:0.85rem !important;
+  letter-spacing:0.03em !important;
+  margin:0 0 2rem !important;
+}
+
+/* kicker line injected above the default heading, matching the Bespoke page tone */
+.sqs-slice-password:before {
+  content:"Luxury Bespoke Travel";
+  display:block;
+  color:#7a7060;
+  font-family:'Montserrat',sans-serif;
+  font-size:0.75rem;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  margin-bottom:1.4rem;
+}
+
+.input-container {
+  max-width:320px;
+  margin:0 auto !important;
+}
+
+input[type="password"] {
+  background:transparent !important;
+  border:none !important;
+  border-bottom:1px solid rgba(200,175,120,0.4) !important;
+  border-radius:0 !important;
+  color:#f0ebe0 !important;
+  font-family:'Montserrat',sans-serif !important;
+  font-size:0.95rem !important;
+  letter-spacing:0.05em !important;
+  text-align:center !important;
+  padding:0.8rem 0.2rem !important;
+  box-shadow:none !important;
+}
+input[type="password"]::placeholder { color:#7a7060 !important; opacity:1 !important; }
+input[type="password"]:focus { outline:none !important; border-bottom-color:#c8af78 !important; }
+
+.icon-wrapper.arrow,
+.arrow-icon .icon-wrapper {
+  fill:#c8af78 !important;
+  opacity:1 !important;
+}
+
+/* tagline injected below the password field */
+.input-container:after {
+  content:"Access is by invitation.";
+  display:block;
+  margin-top:1.8rem;
+  color:#c8af78;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:0.95rem;
+}
+
+.error-message {
+  background:rgba(200,90,90,0.06) !important;
+  border:1px solid rgba(200,90,90,0.5) !important;
+  color:#e3a3a3 !important;
+  font-family:'Montserrat',sans-serif !important;
+  font-size:0.8rem !important;
+  letter-spacing:0.03em !important;
+  padding:0.7rem 1rem !important;
+  margin-top:1.2rem !important;
+  border-radius:0 !important;
+}
+</style>

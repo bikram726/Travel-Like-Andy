@@ -12,7 +12,8 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 | `pages/bespoke.html` | Bespoke (password: `LuxeAccess`) | `/bespoke` |
 | `pages/about.html` | About | `/about` |
 | `pages/contact.html` | Contact | `/contact` |
-| `pages/global-custom-css.css` | Site-wide header/footer/lock-screen | Design → Custom CSS |
+| `pages/global-custom-css.css` | Site-wide header/footer styling | Design → Custom CSS |
+| `pages/lock-screen.html` | Bespoke password lock screen | Settings → Advanced → Code Injection → **Lock Page** (not Design → Custom CSS — the lock screen has its own separate styling system) |
 
 ## How to publish a page
 
@@ -20,6 +21,15 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 2. Select all, delete, paste the full contents of the corresponding file.
 3. Save. Scroll the full page afterward to confirm no leftover/duplicate Beacon sections exist below the block (recurring issue noted in the handoff doc).
 4. Scripts show "embedded scripts disabled" in the editor — that's expected; they run on the published site.
+
+## How to publish the lock screen
+
+`pages/lock-screen.html` does **not** go in a Code Block or Design → Custom CSS — Squarespace's password lock screen has its own separate styling system.
+
+1. Squarespace dashboard → **Settings → Advanced → Code Injection**.
+2. Find the **Lock Page** field (separate from Header/Footer).
+3. Paste the full contents of `pages/lock-screen.html` in there and save.
+4. Visit `/bespoke` in a private/incognito window (so you're not already unlocked) to see it live.
 
 ## What changed from the original handoff doc
 
