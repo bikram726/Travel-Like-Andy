@@ -24,12 +24,13 @@
 .tla-about .tlaa-gallery-head h2 { font-size:clamp(1.6rem,3.6vw,2.4rem); font-style:italic; }
 .tla-about .tlaa-gallery-head p { color:var(--muted); font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:1rem; }
 .tla-about .tlaa-gallery { column-count:3; column-gap:0.5rem; padding:0 0.5rem 1rem; }
-.tla-about .tlaa-shot { position:relative; overflow:hidden; break-inside:avoid; margin-bottom:0.5rem; }
+.tla-about .tlaa-shot { break-inside:avoid; margin-bottom:0.5rem; }
+.tla-about .tlaa-shot-photo { position:relative; overflow:hidden; }
 .tla-about .tlaa-shot img { width:100%; height:auto; display:block; transition:transform 0.8s ease; }
-.tla-about .tlaa-shot:hover img { transform:scale(1.05); }
+.tla-about .tlaa-shot-photo:hover img { transform:scale(1.05); }
 .tla-about .tlaa-shot .tlaa-cap { position:absolute; left:0; right:0; bottom:0; padding:1.4rem 1.2rem 1.1rem; background:linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.85) 100%); color:var(--text); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; }
 .tla-about .tlaa-shot .tlaa-cap span { display:block; color:var(--gold); font-family:'Montserrat',sans-serif; font-style:normal; font-size:0.62rem; letter-spacing:0.18em; text-transform:uppercase; margin-top:0.3rem; }
-.tla-about .tlaa-shot-logo { background:#f5ede0; padding:1.4rem; display:flex; align-items:center; justify-content:center; border-top:2px solid var(--gold); }
+.tla-about .tlaa-shot-logo { background:var(--surface); padding:1.4rem; display:flex; align-items:center; justify-content:center; border-top:2px solid var(--gold); }
 .tla-about .tlaa-shot-logo img { max-width:170px; width:55%; height:auto; display:block; }
 .tla-about .tlaa-quotes { max-width:820px; margin:0 auto; padding:6rem 1.5rem; text-align:center; }
 .tla-about .tlaa-quotes h3 { font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--muted); margin-bottom:2.5rem; }
@@ -85,17 +86,23 @@
   </section>
   <section class="tlaa-gallery tlaa-reveal">
     <div class="tlaa-shot">
-      <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/38c3aa57-3a05-4b57-8069-752fd88d3065/andyredcarpetUPRIGHT.jpg" alt="Andy on the red carpet at the Asia Pillars Film Connection" loading="lazy">
-      <div class="tlaa-cap">On the red carpet<span>Asia Pillars Film Connection</span></div>
+      <div class="tlaa-shot-photo">
+        <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/38c3aa57-3a05-4b57-8069-752fd88d3065/andyredcarpetUPRIGHT.jpg" alt="Andy on the red carpet at the Asia Pillars Film Connection" loading="lazy">
+        <div class="tlaa-cap">On the red carpet<span>Asia Pillars Film Connection</span></div>
+      </div>
     </div>
     <div class="tlaa-shot">
-      <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/f6644c09-ec9d-44b9-969a-53daeb33df89/02-andy-taj-mahal-jump.jpg" alt="Andy leaping in front of the Taj Mahal at sunrise" loading="lazy">
-      <div class="tlaa-cap">Sunrise at the Taj Mahal<span>Agra, India</span></div>
+      <div class="tlaa-shot-photo">
+        <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/f6644c09-ec9d-44b9-969a-53daeb33df89/02-andy-taj-mahal-jump.jpg" alt="Andy leaping in front of the Taj Mahal at sunrise" loading="lazy">
+        <div class="tlaa-cap">Sunrise at the Taj Mahal<span>Agra, India</span></div>
+      </div>
       <div class="tlaa-shot-logo"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c889b1cc-fad8-4303-b6a3-6531e3d8471c/logo-main-transparent.png" alt="#travellikeandy" loading="lazy"></div>
     </div>
     <div class="tlaa-shot">
-      <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c0edd476-af81-4a96-893c-eaae5559ac46/05-andy-la-fortuna-waterfall+%281%29.jpg" alt="Andy at La Fortuna waterfall in the rainforest" loading="lazy">
-      <div class="tlaa-cap">Into the rainforest<span>La Fortuna Waterfall</span></div>
+      <div class="tlaa-shot-photo">
+        <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c0edd476-af81-4a96-893c-eaae5559ac46/05-andy-la-fortuna-waterfall+%281%29.jpg" alt="Andy at La Fortuna waterfall in the rainforest" loading="lazy">
+        <div class="tlaa-cap">Into the rainforest<span>La Fortuna Waterfall</span></div>
+      </div>
     </div>
   </section>
 
