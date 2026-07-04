@@ -8,12 +8,14 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 |---|---|---|
 | `pages/home.html` | Home | `/` (Not Linked, reached via logo) |
 | `pages/leisure.html` | Leisure | `/leisure` |
-| `pages/corporate.html` | Corporate | `/corporate` |
+| `pages/corporate.html` | Executive (nav label renamed; file/slug still say "corporate") | `/corporate` |
 | `pages/bespoke.html` | Bespoke (password: `LuxeAccess`) | `/bespoke` |
 | `pages/about.html` | About | `/about` |
 | `pages/contact.html` | Contact | `/contact` |
+| `pages/group.html` | Group (bare-bones placeholder — real content pending) | `/group` (page does not exist yet, needs creating) |
+| `pages/gallery.html` | Gallery (placeholder, ready for Slides embed) | `/gallery` (page does not exist yet, needs creating) |
 | `pages/global-custom-css.css` | Site-wide header/footer styling | Design → Custom CSS |
-| `pages/lock-screen.html` | Bespoke password lock screen | Settings → Advanced → Code Injection → **Lock Page** (not Design → Custom CSS — the lock screen has its own separate styling system) |
+| `pages/lock-screen.html` | Bespoke password lock screen + fixed nav bar | Settings → Advanced → Code Injection → **Lock Page** (not Design → Custom CSS — the lock screen has its own separate styling system) |
 
 ## How to publish a page
 
@@ -50,3 +52,31 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 1. **Footer logo (main):** Squarespace → Edit any page → scroll to Footer → Add Block → Image → upload `logo-main-transparent.png` → size to ~200px tall → center → Save. Footer is site-wide.
 2. **Header logo:** Hidden via `global-custom-css.css` (`.header-title-logo { display: none !important; }`) so the footer logo is the only logo. Home page link now replaces the header logo.
 3. **Bespoke lock-screen logo:** Replace the placeholder `src` in `pages/lock-screen.html` line 114 with the actual Squarespace CDN URL for `logo-bespoke-transparent.png`. The lock screen file goes in **Settings → Advanced → Code Injection → Lock Page**.
+
+## Client revision checklist (2026-07-04 call)
+
+Full nav should read: **Home, Leisure, Executive, Group, Bespoke, About, Gallery** on every page. Split into what's done in code vs. what needs doing directly in Squarespace admin (page/nav structure isn't stored in these files — only page content and site-wide CSS/JS are).
+
+### Done in code (this repo)
+
+- Lock screen now has a real fixed nav bar (`pages/lock-screen.html`) so visitors on the Bespoke password screen are never stuck with only the browser Back button. This was the actual fix for "I can't click anywhere to go back home" — Squarespace's lock screen never shows the site header by platform design (confirmed via their docs), so the nav had to be injected directly into the Lock Page code slot instead.
+- Confirmed the *unlocked* Bespoke page already shows the normal header fine (it's a regular page, not a Cover Page) — nothing else needed there.
+- Home page card renamed "Corporate & Group Travel" → "Executive Travel" to match the new nav naming.
+- Footer logo enlarged via CSS (`global-custom-css.css`) regardless of whatever size it was dragged to in the editor.
+- `pages/group.html` and `pages/gallery.html` added as bare-bones placeholders (heading + CTA only) — deliberately not designed further per "don't build placeholder content," pending the client's Saturday materials.
+
+### Needs doing in Squarespace admin (not code — page/nav structure lives there)
+
+- **Add "Home" as a real nav item.** It currently sits under "Not Linked" in the Pages panel. Move/link it into Main Navigation as the first item, labeled "Home".
+- **Rename the nav label** "Corporate & Group Travel" → "Executive" (Pages panel → click the page → rename the navigation title; this doesn't need to change the URL slug).
+- **Create the Group page** in Main Navigation at slug `/group`, then paste `pages/group.html` into its code block.
+- **Create the Gallery page** in Main Navigation at slug `/gallery`, then paste `pages/gallery.html` into its code block.
+- **Footer text**: replace the current "© 2026 Travel Like Andy. All rights reserved." with exactly `Travel Like Andy LLC` (only the T in Travel capitalized, "Like Andy" normal case, "LLC" all caps).
+- **Footer block order**: drag the logo Image Block above the text block so the logo sits above "Travel Like Andy LLC".
+- Once Group/Executive page slugs are finalized, double check the links in `pages/lock-screen.html`'s nav bar (`/corporate`, `/group`, `/gallery`) match the real slugs — update here if any slug ends up different.
+
+### Waiting on client
+
+- Saturday: landing page content, offers, marketing copy, password-protected page content.
+- Once Group content arrives, decide whether "Small Group Tours" and any other group-oriented cards move from the Executive page (`pages/corporate.html`) into `pages/group.html`.
+- Confirm the single dedicated landing page the Bespoke password should lead to (client wants one password → one destination page, no extra pages in between) — currently password leads straight to `pages/bespoke.html` itself, which already satisfies this unless the new Saturday content changes that.

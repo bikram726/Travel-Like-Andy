@@ -1,0 +1,21 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+.tla-group-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-group { --bg:#0f1a2e; --gold:#c8af78; --text:#f0ebe0; --muted:#8a96a8; background:var(--bg); color:var(--text); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+.tla-group * { box-sizing:border-box; }
+.tla-group h1 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
+.tla-group em { font-style:italic; color:var(--gold); font-weight:300; }
+.tla-group .tlg-hero { min-height:70vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(200,175,120,0.1), transparent 60%), linear-gradient(180deg,#0f1a2e 0%,#0a1322 100%); }
+.tla-group .tlg-hero-inner { max-width:820px; }
+.tla-group .tlg-kicker { color:var(--muted); font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1.6rem; }
+.tla-group .tlg-hero h1 { font-size:clamp(2rem,5.5vw,4rem); line-height:1.15; margin-bottom:1.6rem; }
+.tla-group .tlg-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; }
+.tla-group .tlg-btn:hover { background:var(--gold); color:var(--bg); }
+</style>
+<div class="tla-group-wrap"><div class="tla-group">
+  <section class="tlg-hero"><div class="tlg-hero-inner">
+    <p class="tlg-kicker">Group Travel</p>
+    <h1>Something new is coming here.<br><em>Tell Andy where your group is headed.</em></h1>
+    <a href="/contact" class="tlg-btn">Tell Andy</a>
+  </div></section>
+</div></div>

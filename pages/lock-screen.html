@@ -59,6 +59,41 @@
   display:block;
 }
 
+/* Fixed nav bar so visitors are never stranded on the lock screen —
+   Squarespace's lock screen never shows the site header (platform limit,
+   confirmed via their docs), so this is injected directly instead. */
+.tlab-lock-nav {
+  position:fixed;
+  top:0; left:0; right:0;
+  z-index:9999;
+  background:#0a0a0a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:1.8rem;
+  padding:1.1rem 1.5rem;
+  font-family:'Montserrat',sans-serif;
+}
+.tlab-lock-nav a {
+  color:#f0ebe0;
+  text-decoration:none;
+  font-size:0.75rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.tlab-lock-nav a:hover { color:#c8af78; }
+
+/* push lock screen content down so the fixed nav never overlaps it */
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide {
+  padding-top:5rem !important;
+}
+@media (max-width:600px) {
+  .tlab-lock-nav { gap:1rem 1.2rem; padding:0.9rem 1rem; }
+  .tlab-lock-nav a { font-size:0.68rem; }
+}
+
 .input-container {
   max-width:320px;
   margin:0 auto !important;
@@ -109,6 +144,15 @@ input[type="password"]:focus { outline:none !important; border-bottom-color:#c8a
   border-radius:0 !important;
 }
 </style>
+<nav class="tlab-lock-nav">
+  <a href="/">Home</a>
+  <a href="/leisure">Leisure</a>
+  <a href="/corporate">Executive</a>
+  <a href="/group">Group</a>
+  <a href="/bespoke">Bespoke</a>
+  <a href="/about">About</a>
+  <a href="/gallery">Gallery</a>
+</nav>
 <div class="tla-bespoke-lock">
   <div class="tlab-lock-logo">
     <img src="https://images.squarespace-cdn.com/content/REPLACE_WITH_BESPOKE_LOGO_URL" alt="Travel Like Andy Bespoke">

@@ -18,6 +18,19 @@
 .footer-sections p, footer p { color:#7a7060 !important; font-family:'Montserrat',sans-serif !important; font-size:0.78rem !important; letter-spacing:0.1em; text-align:center; }
 .footer-sections a, footer a { color:#c8af78 !important; }
 
+/* FOOTER LOGO — enlarged so it reads clearly (overrides whatever size the
+   image block was dragged to in the editor). Block order (logo above the
+   "Travel Like Andy LLC" text) is set in the footer editor, not by CSS. */
+.footer-sections .sqs-block-image img,
+footer .sqs-block-image img,
+.sqs-footer .sqs-block-image img {
+  max-width:260px !important;
+  width:100% !important;
+  height:auto !important;
+  margin:0 auto 0.75rem !important;
+  display:block !important;
+}
+
 /* REMOVE EXTRA SECTION GAPS — every page is a single code block that
    controls its own internal spacing, so strip Squarespace's default
    section/fluid-engine padding. Scoped to .page-section so it can NOT
