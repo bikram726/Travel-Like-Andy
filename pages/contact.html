@@ -14,6 +14,9 @@
 .tla-contact .tlact-form input, .tla-contact .tlact-form textarea { width:100%; background:transparent; border:none; border-bottom:1px solid rgba(200,175,120,0.35); color:var(--text); font-family:'Montserrat',sans-serif; font-size:0.95rem; padding:0.7rem 0.2rem; resize:vertical; }
 .tla-contact .tlact-form input::placeholder, .tla-contact .tlact-form textarea::placeholder { color:var(--muted); }
 .tla-contact .tlact-form input:focus, .tla-contact .tlact-form textarea:focus { outline:none; border-color:var(--gold); }
+.tla-contact .tlact-form input[aria-invalid="true"], .tla-contact .tlact-form textarea[aria-invalid="true"] { border-color:rgba(200,90,90,0.6); }
+.tla-contact .tlact-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.tla-contact .tlact-field-error { display:block; min-height:1.1em; color:#e3a3a3; font-size:0.72rem; letter-spacing:0.03em; margin-top:0.35rem; font-family:'Montserrat',sans-serif; }
 .tla-contact .tlact-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); background:transparent; cursor:pointer; text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; justify-self:start; margin-top:0.6rem; font-family:'Montserrat',sans-serif; }
 .tla-contact .tlact-btn:hover { background:var(--gold); color:var(--bg); }
 .tla-contact .tlact-btn:disabled { opacity:0.5; cursor:default; }
@@ -48,17 +51,67 @@
   </section>
 
   <section class="tlact-wrap-inner tlact-reveal">
-    <form id="tlact-form" class="tlact-form" action="https://api.web3forms.com/submit" method="POST">
+    <form id="tlact-form" class="tlact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+      <!-- SECURITY: this access_key is meant to be public -- Web3Forms forms submit
+           client-side, so the key is always visible in page source, by design.
+           To stop other sites from copying this exact key and using it as their
+           own contact form, enable "Domain Restriction" / "Allowed Hostnames" for
+           this key in the Web3Forms dashboard (Settings > Allowed Domains) and
+           restrict it to travellikeandy.com. Do not replace this with a server-side
+           secret -- that isn't how Web3Forms works, and hiding it here would just
+           break the form. -->
       <input type="hidden" name="access_key" value="ed14fb9c-32df-4969-85c0-f05217c9724c">
+      <!-- NOTE: this "to" field is not an actual Web3Forms feature. Web3Forms
+           always delivers to whichever email address the access_key above was
+           created under, regardless of what's typed here. Redirecting delivery
+           to a different address requires either a Pro-plan "ccemail" field or a
+           new access_key created under that address. Left here as documentation
+           only -- changing this value has no effect on where the email goes. -->
       <input type="hidden" name="to" value="andy@travellikeandy.com">
       <input type="hidden" name="subject" value="New inquiry from travellikeandy.com">
       <input type="hidden" name="from_name" value="Travel Like Andy Website">
-      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
-      <div><label for="cname">Name</label><input id="cname" name="name" type="text" placeholder="Your name" required></div>
-      <div><label for="cemail">Email</label><input id="cemail" name="email" type="email" placeholder="your@email.com" required></div>
-      <div><label for="cdream">Where you dream of going</label><input id="cdream" name="destination" type="text" placeholder="A place, a feeling, a country" required></div>
-      <div><label for="cref">Referred by (optional)</label><input id="cref" name="referred_by" type="text" placeholder="Who sent you here"></div>
+
+      <!-- Honeypot: real visitors never see or reach this field (hidden off-screen
+           via CSS, unreachable via Tab, excluded from autofill and screen readers).
+           Any submission with this checked is a bot; the submit handler below
+           drops it silently -- no error shown, no request sent -- so bots get no
+           signal they were caught. -->
+      <input type="checkbox" name="botcheck" class="tlact-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div>
+        <label for="cname">Name</label>
+        <input id="cname" name="name" type="text" placeholder="Your name" autocomplete="name" required aria-describedby="cname-error">
+        <span id="cname-error" class="tlact-field-error" aria-live="polite"></span>
+      </div>
+      <div>
+        <label for="cemail">Email</label>
+        <input id="cemail" name="email" type="email" inputmode="email" placeholder="your@email.com" autocomplete="email" required aria-describedby="cemail-error">
+        <span id="cemail-error" class="tlact-field-error" aria-live="polite"></span>
+      </div>
+      <div>
+        <label for="cdream">Where you dream of going</label>
+        <input id="cdream" name="destination" type="text" placeholder="A place, a feeling, a country" required aria-describedby="cdream-error">
+        <span id="cdream-error" class="tlact-field-error" aria-live="polite"></span>
+      </div>
+      <div><label for="cref">Referred by (optional)</label><input id="cref" name="referred_by" type="text" placeholder="Who sent you here" autocomplete="off"></div>
       <div><label for="cmsg">Message</label><textarea id="cmsg" name="message" rows="4" placeholder="Tell Andy more"></textarea></div>
+
+      <!-- OPTIONAL SPAM CHALLENGE (disabled by default). To turn this on: register a
+           site key with hCaptcha or Cloudflare Turnstile, enable the matching option
+           under Web3Forms Dashboard > Settings > Spam Protection, then uncomment ONE
+           of the two blocks below (inside this form, e.g. right here). The submit
+           handler in the script block below auto-detects whichever widget is present and
+           blocks submission until it's completed -- no other code changes needed.
+
+      hCaptcha:
+      <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+      <div class="h-captcha" data-sitekey="YOUR_HCAPTCHA_SITE_KEY"></div>
+
+      Cloudflare Turnstile:
+      <script src="https://challenge.cloudflare.com/turnstile/v0/api.js" async defer></script>
+      <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
+      -->
+
       <button type="submit" class="tlact-btn">Tell Andy</button>
       <div id="tlact-result" class="tlact-result" role="status" aria-live="polite"></div>
     </form>
@@ -105,35 +158,96 @@
   var form = document.getElementById('tlact-form');
   var result = document.getElementById('tlact-result');
   var btn = form ? form.querySelector('.tlact-btn') : null;
-  if (form) {
-    form.addEventListener('submit', function(e){
-      e.preventDefault();
-      result.classList.remove('tlact-error');
-      result.style.display = 'block';
-      result.textContent = 'Sending your note to Andy…';
-      if (btn) { btn.disabled = true; }
-      var payload = JSON.stringify(Object.fromEntries(new FormData(form)));
-      fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: payload
-      })
-      .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
-      .then(function(r){
-        if (r.ok) {
-          form.reset();
-          result.textContent = 'Thank you — Andy will be in touch.';
-        } else {
-          result.classList.add('tlact-error');
-          result.textContent = (r.json && r.json.message) ? r.json.message : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.';
-        }
-      })
-      .catch(function(){
-        result.classList.add('tlact-error');
-        result.textContent = 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.';
-      })
-      .then(function(){ if (btn) { btn.disabled = false; } });
-    });
+  if (!form) { return; }
+
+  function trimVal(v) { return (v || '').trim(); }
+  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+  function setFieldError(input, msg) {
+    var errorEl = document.getElementById(input.id + '-error');
+    if (errorEl) { errorEl.textContent = msg || ''; }
+    if (msg) { input.setAttribute('aria-invalid', 'true'); }
+    else { input.removeAttribute('aria-invalid'); }
   }
+
+  function validateForm() {
+    var valid = true;
+
+    var nameVal = trimVal(form.name.value);
+    if (!nameVal) { setFieldError(form.name, 'Please enter your name.'); valid = false; }
+    else { setFieldError(form.name, ''); }
+
+    var emailVal = trimVal(form.email.value);
+    if (!emailVal || !isValidEmail(emailVal)) { setFieldError(form.email, 'Please enter a valid email address.'); valid = false; }
+    else { setFieldError(form.email, ''); }
+
+    var destVal = trimVal(form.destination.value);
+    if (!destVal) { setFieldError(form.destination, 'Please tell Andy where you dream of going.'); valid = false; }
+    else { setFieldError(form.destination, ''); }
+
+    return valid;
+  }
+
+  // Returns the completed captcha token, an empty string if a captcha widget is
+  // present but not yet completed, or null if no captcha widget is configured
+  // (i.e. the optional block above is still commented out).
+  function getCaptchaResponse() {
+    if (form.querySelector('.h-captcha')) {
+      var h = form.querySelector('[name="h-captcha-response"]');
+      return h ? h.value : '';
+    }
+    if (form.querySelector('.cf-turnstile')) {
+      var t = form.querySelector('[name="cf-turnstile-response"]');
+      return t ? t.value : '';
+    }
+    return null;
+  }
+
+  function showResult(msg, isError) {
+    result.classList.toggle('tlact-error', !!isError);
+    result.style.display = 'block';
+    result.textContent = msg;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    if (form.botcheck && form.botcheck.checked) { return; }
+
+    if (!validateForm()) {
+      showResult('Please fix the highlighted fields above.', true);
+      return;
+    }
+
+    var captchaResponse = getCaptchaResponse();
+    if (captchaResponse !== null && !captchaResponse) {
+      showResult('Please complete the verification challenge.', true);
+      return;
+    }
+
+    if (btn) { btn.disabled = true; }
+    showResult('Sending your note to Andy…', false);
+
+    var payload = JSON.stringify(Object.fromEntries(new FormData(form)));
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: payload
+    })
+    .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
+    .then(function(r){
+      if (r.ok && r.json && r.json.success) {
+        form.reset();
+        showResult('Thank you — Andy will be in touch.', false);
+      } else {
+        showResult((r.json && r.json.message) ? r.json.message : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
+      }
+    })
+    .catch(function(err){
+      console.error('Contact form submission failed:', err);
+      showResult('Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
+    })
+    .then(function(){ if (btn) { btn.disabled = false; } });
+  });
 })();
 </script>
