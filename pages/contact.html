@@ -96,21 +96,17 @@
       <div><label for="cref">Referred by (optional)</label><input id="cref" name="referred_by" type="text" placeholder="Who sent you here" autocomplete="off"></div>
       <div><label for="cmsg">Message</label><textarea id="cmsg" name="message" rows="4" placeholder="Tell Andy more"></textarea></div>
 
-      <!-- OPTIONAL SPAM CHALLENGE (disabled by default). To turn this on: register a
-           site key with hCaptcha or Cloudflare Turnstile, enable the matching option
-           under Web3Forms Dashboard > Settings > Spam Protection, then uncomment ONE
-           of the two blocks below (inside this form, e.g. right here). The submit
-           handler in the script block below auto-detects whichever widget is present and
-           blocks submission until it's completed -- no other code changes needed.
-
-      hCaptcha:
-      <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
-      <div class="h-captcha" data-sitekey="YOUR_HCAPTCHA_SITE_KEY"></div>
-
-      Cloudflare Turnstile:
-      <script src="https://challenge.cloudflare.com/turnstile/v0/api.js" async defer></script>
-      <div class="cf-turnstile" data-sitekey="YOUR_TURNSTILE_SITE_KEY"></div>
-      -->
+      <!-- OPTIONAL SPAM CHALLENGE (disabled by default, nothing active here right
+           now). The submit handler in the script block below already knows how to
+           require either hCaptcha or Cloudflare Turnstile automatically, IF one of
+           those widgets is added to this form later -- no JS changes would be
+           needed at that point. Ask me (Claude) when you're ready to turn this on
+           and I'll add the two required lines (the loader tag for whichever
+           provider you pick, plus its widget div with your site key) directly
+           above this comment -- intentionally left out of this comment block
+           itself, since literal script-tag text sitting inside an HTML comment is
+           exactly what caused Squarespace's code-block sanitizer to choke and
+           spam "Script Disabled" across this whole block. -->
 
       <button type="submit" class="tlact-btn">Tell Andy</button>
       <div id="tlact-result" class="tlact-result" role="status" aria-live="polite"></div>
