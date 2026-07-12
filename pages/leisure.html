@@ -27,9 +27,10 @@
 .tla-leisure .tlal-close h2 { color:#f0ebe0; font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; margin-bottom:1.6rem; }
 .tla-leisure .tlal-close .tlal-btn { border-color:#dcc89a; color:#dcc89a; }
 .tla-leisure .tlal-close .tlal-btn:hover { background:#dcc89a; color:var(--navy); }
-.tla-leisure .tlal-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
-.tla-leisure .tlal-reveal.tlal-in { opacity:1; transform:translateY(0); }
-@media (prefers-reduced-motion: reduce) { .tla-leisure .tlal-reveal { opacity:1; transform:none; } }
+.tla-leisure .tlal-reveal { opacity:1; transform:none; }
+.tla-leisure .js-reveal .tlal-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.tla-leisure .js-reveal .tlal-reveal.tlal-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-leisure .js-reveal .tlal-reveal { opacity:1; transform:none; transition:none; } }
 @media (max-width:767px) {
   .tla-leisure .tlal-grid { grid-template-columns:1fr; }
   .tla-leisure .tlal-feature, .tla-leisure .tlal-feature-cell { display:block; width:100%; }
@@ -68,12 +69,16 @@
   </section>
 </div></div>
 <script>
-(function(){
+function tlalInitReveal(){
+  var wrap = document.querySelector('.tla-leisure');
+  if (wrap) { wrap.classList.add('js-reveal'); }
   var els = document.querySelectorAll('.tlal-reveal');
   if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlal-in'); }); return; }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlal-in'); io.unobserve(entry.target); } });
-  }, { threshold: 0.15 });
+  }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
   els.forEach(function(e){ io.observe(e); });
-})();
+}
+if (document.readyState !== "loading") { tlalInitReveal(); }
+else { document.addEventListener("DOMContentLoaded", tlalInitReveal); }
 </script>

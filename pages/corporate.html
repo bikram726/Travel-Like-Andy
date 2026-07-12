@@ -29,9 +29,10 @@
 .tla-corp .tlac-feature p { color:var(--muted); font-size:0.95rem; line-height:1.8; margin:0 0 1.8rem; }
 .tla-corp .tlac-close { text-align:center; padding:5.5rem 1.5rem; border-top:0.5px solid rgba(200,175,120,0.15); }
 .tla-corp .tlac-close h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; margin-bottom:1.6rem; }
-.tla-corp .tlac-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
-.tla-corp .tlac-reveal.tlac-in { opacity:1; transform:translateY(0); }
-@media (prefers-reduced-motion: reduce) { .tla-corp .tlac-reveal { opacity:1; transform:none; } }
+.tla-corp .tlac-reveal { opacity:1; transform:none; }
+.tla-corp .js-reveal .tlac-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.tla-corp .js-reveal .tlac-reveal.tlac-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-corp .js-reveal .tlac-reveal { opacity:1; transform:none; transition:none; } }
 @media (max-width:767px) {
   .tla-corp .tlac-grid { grid-template-columns:1fr; }
   .tla-corp .tlac-feature, .tla-corp .tlac-feature-cell { display:block; width:100%; }
@@ -75,12 +76,16 @@
   </section>
 </div></div>
 <script>
-(function(){
+function tlacInitReveal(){
+  var wrap = document.querySelector('.tla-corp');
+  if (wrap) { wrap.classList.add('js-reveal'); }
   var els = document.querySelectorAll('.tlac-reveal');
   if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlac-in'); }); return; }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlac-in'); io.unobserve(entry.target); } });
-  }, { threshold: 0.15 });
+  }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
   els.forEach(function(e){ io.observe(e); });
-})();
+}
+if (document.readyState !== "loading") { tlacInitReveal(); }
+else { document.addEventListener("DOMContentLoaded", tlacInitReveal); }
 </script>
