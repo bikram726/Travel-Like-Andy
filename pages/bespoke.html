@@ -31,14 +31,17 @@
 .tla-bespoke .tlab-partners { padding:5.5rem 1.5rem; text-align:center; border-top:0.5px solid rgba(200,175,120,0.15); }
 .tla-bespoke .tlab-partners-eyebrow { color:var(--muted); font-size:0.74rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1rem; }
 .tla-bespoke .tlab-partners h2 { font-size:clamp(1.6rem,3.4vw,2.4rem); margin:0 0 3rem; }
-.tla-bespoke .tlab-partners-grid { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); border-top:0.5px solid rgba(200,175,120,0.15); border-left:0.5px solid rgba(200,175,120,0.15); }
-.tla-bespoke .tlab-partner { padding:1.8rem 1.2rem; border-right:0.5px solid rgba(200,175,120,0.15); border-bottom:0.5px solid rgba(200,175,120,0.15); font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--text); transition:color 0.3s ease; }
-.tla-bespoke .tlab-partner:hover { color:var(--gold); }
+.tla-bespoke .tlab-partners-grid { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(200,175,120,0.18); border:1px solid rgba(200,175,120,0.18); }
+.tla-bespoke .tlab-partner { background:var(--bg); aspect-ratio:3/2; }
+.tla-bespoke .tlab-partner-in { width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#f6f1e7; padding:1.4rem; filter:grayscale(100%); opacity:0.9; transition:all 0.5s ease; }
+.tla-bespoke .tlab-partner-in img { max-width:100%; max-height:100%; object-fit:contain; display:block; }
+.tla-bespoke .tlab-partner:hover .tlab-partner-in { filter:grayscale(0%); opacity:1; transform:scale(1.04); }
 .tla-bespoke .tlab-close { text-align:center; padding:6rem 1.5rem; border-top:0.5px solid rgba(200,175,120,0.15); }
 .tla-bespoke .tlab-close h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; }
 .tla-bespoke .tlab-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
 .tla-bespoke .tlab-reveal.tlab-in { opacity:1; transform:translateY(0); }
 @media (prefers-reduced-motion: reduce) { .tla-bespoke .tlab-reveal { opacity:1; transform:none; } }
+@media (max-width:900px) { .tla-bespoke .tlab-partners-grid { grid-template-columns:repeat(3,1fr); } }
 @media (max-width:767px) {
   .tla-bespoke .tlab-tier, .tla-bespoke .tlab-tier-cell { display:block; width:100%; }
   .tla-bespoke .tlab-tier-cell { padding:3.2rem 1.4rem; }
@@ -115,15 +118,22 @@
     <p class="tlab-partners-eyebrow">In Partnership With</p>
     <h2>The world's most <em>extraordinary</em> names.</h2>
     <div class="tlab-partners-grid">
-      <div class="tlab-partner">Micato Safaris</div>
-      <div class="tlab-partner">One &amp; Only Resorts</div>
-      <div class="tlab-partner">Four Seasons Preferred</div>
-      <div class="tlab-partner">Leading Hotels of the World</div>
-      <div class="tlab-partner">The Ritz-Carlton</div>
-      <div class="tlab-partner">St. Regis</div>
-      <div class="tlab-partner">Aman Resorts</div>
-      <div class="tlab-partner">Rosewood Elite</div>
-      <div class="tlab-partner">Elaine Macy Collection</div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_TAJ" alt="Taj Hotels, Resorts &amp; Palaces" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_MANDARIN_ORIENTAL" alt="Mandarin Oriental" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_AMAN" alt="Aman" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_ROSEWOOD" alt="Rosewood Hotels &amp; Resorts" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_FOUR_SEASONS" alt="Four Seasons" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_CAPELLA" alt="Capella Hotels &amp; Resorts" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_ONE_AND_ONLY" alt="One&amp;Only Resorts" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_MARINA_BAY_SANDS" alt="Marina Bay Sands" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_AUBERGE" alt="Auberge Resorts Collection" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_RELAIS_CHATEAUX" alt="Relais &amp; Ch&acirc;teaux" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_LEADING_HOTELS" alt="The Leading Hotels of the World" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_HYATT_PRIVE" alt="Hyatt Priv&eacute;" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_MARRIOTT_STARS" alt="Marriott STARS &amp; Luminous" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_VIRTUOSO" alt="Virtuoso" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_ELAINE_MACY" alt="The Elaine Macy Collective" loading="lazy"></div></div>
+      <div class="tlab-partner"><div class="tlab-partner-in"><img src="URL_VIKING" alt="Viking Cruises" loading="lazy"></div></div>
     </div>
   </section>
 
