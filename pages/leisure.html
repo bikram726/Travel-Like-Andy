@@ -27,6 +27,15 @@
 .tla-leisure .tlal-close h2 { color:#f0ebe0; font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; margin-bottom:1.6rem; }
 .tla-leisure .tlal-close .tlal-btn { border-color:#dcc89a; color:#dcc89a; }
 .tla-leisure .tlal-close .tlal-btn:hover { background:#dcc89a; color:var(--navy); }
+.tla-leisure .tlal-gallery-head { text-align:center; padding:5.5rem 1.5rem 2.5rem; }
+.tla-leisure .tlal-gallery-head h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; }
+.tla-leisure .tlal-gallery-head p { color:var(--muted); font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:1rem; }
+.tla-leisure .tlal-gallery { column-count:3; column-gap:0.6rem; max-width:1200px; margin:0 auto; padding:0 1.5rem 5.5rem; }
+.tla-leisure .tlal-shot { position:relative; overflow:hidden; break-inside:avoid; margin-bottom:0.6rem; border:1px solid rgba(26,58,92,0.12); }
+.tla-leisure .tlal-shot img { width:100%; height:auto; display:block; transition:transform 0.8s ease; }
+.tla-leisure .tlal-shot:hover img { transform:scale(1.05); }
+@media (max-width:900px){ .tla-leisure .tlal-gallery { column-count:2; } }
+@media (max-width:560px){ .tla-leisure .tlal-gallery { column-count:1; } }
 .tla-leisure .tlal-reveal { opacity:1; transform:none; }
 .tla-leisure .js-reveal .tlal-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
 .tla-leisure .js-reveal .tlal-reveal.tlal-in { opacity:1; transform:translateY(0); }
@@ -62,6 +71,22 @@
       <p>Every itinerary I build comes from places I have actually stood — resorts I have walked through, ships I have sailed, rooms I have slept in. I do not send you somewhere I would not go.</p>
       <a href="/contact" class="tlal-btn">Start The Conversation</a>
     </div>
+  </section>
+
+  <section class="tlal-gallery-head tlal-reveal">
+    <h2>The world, <em>first-hand.</em></h2>
+    <p>Every place here, Andy has stood</p>
+  </section>
+  <section class="tlal-gallery tlal-reveal">
+    <div class="tlal-shot"><img src="LURL_INFINITY_POOL" alt="Infinity pool at the water's edge" loading="lazy"></div>
+    <div class="tlal-shot"><img src="LURL_RAINBOW" alt="Rainbow over green hills" loading="lazy"></div>
+    <div class="tlal-shot"><img src="LURL_FIERY_SUNSET" alt="Fiery sunset over the mountains" loading="lazy"></div>
+    <div class="tlal-shot"><img src="LURL_SKY_BRIDGE" alt="Mountain sky bridge above the rainforest" loading="lazy"></div>
+    <div class="tlal-shot"><img src="LURL_MONKEY" alt="Macaque and her baby in the wild" loading="lazy"></div>
+    <div class="tlal-shot"><img src="LURL_JUNGLE_RIVER" alt="River winding through the jungle" loading="lazy"></div>
+    <div class="tlal-shot"><img src="LURL_ABOVE_CLOUDS" alt="Above the clouds from the window seat" loading="lazy"></div>
+    <div class="tlal-shot"><img src="LURL_SKYLINE_DUSK" alt="City skyline at dusk" loading="lazy"></div>
+    <div class="tlal-shot"><img src="LURL_CAVERN" alt="Lantern-lit cavern" loading="lazy"></div>
   </section>
 
   <section class="tlal-close">
