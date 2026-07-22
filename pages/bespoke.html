@@ -27,6 +27,10 @@
 .tla-bespoke .tlab-form input::placeholder, .tla-bespoke .tlab-form textarea::placeholder { color:var(--muted); }
 .tla-bespoke .tlab-form input:focus, .tla-bespoke .tlab-form textarea:focus { outline:none; border-color:var(--gold); }
 .tla-bespoke .tlab-form button { justify-self:start; margin-top:0.4rem; background:transparent; cursor:pointer; }
+.tla-bespoke .tlab-form button:disabled { opacity:0.5; cursor:default; }
+.tla-bespoke .tlab-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.tla-bespoke .tlab-form-result { display:none; margin-top:0.2rem; padding:0.9rem 1.1rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.98rem; line-height:1.5; border:1px solid rgba(200,175,120,0.35); color:var(--gold); background:rgba(200,175,120,0.05); }
+.tla-bespoke .tlab-form-result.tlab-form-error { border-color:rgba(200,90,90,0.5); color:#e3a3a3; background:rgba(200,90,90,0.06); }
 .tla-bespoke .tlab-circle-note { font-style:italic; color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:1.05rem; }
 .tla-bespoke .tlab-partners { padding:5.5rem 1.5rem; text-align:center; border-top:0.5px solid rgba(200,175,120,0.15); }
 .tla-bespoke .tlab-partners-eyebrow { color:var(--muted); font-size:0.74rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1rem; }
@@ -87,12 +91,23 @@
         <li>Hidden suites, not listed rooms</li>
         <li>Direct access to Andy's contacts</li>
       </ul>
-      <form class="tlab-form" onsubmit="event.preventDefault(); var n=this.curname.value,e=this.curemail.value,r=this.curref.value,d=this.curdream.value; window.location.href='mailto:andy@travellikeandy.com?subject=' + encodeURIComponent('The Curator — Referral') + '&body=' + encodeURIComponent('Name: '+n+'\nEmail: '+e+'\nReferred by: '+r+'\nWhere I dream of going: '+d);">
-        <input type="text" name="curname" placeholder="Name" required>
-        <input type="email" name="curemail" placeholder="Email" required>
-        <input type="text" name="curref" placeholder="Who referred you">
-        <input type="text" name="curdream" placeholder="Where you dream of going">
+      <form id="tlab-curator-form" class="tlab-form" action="https://api.web3forms.com/submit" method="POST">
+        <!-- SECURITY: this access_key is meant to be public -- see the matching
+             comment on the Contact page form for why, and how to restrict it to
+             travellikeandy.com via the Web3Forms dashboard. -->
+        <input type="hidden" name="access_key" value="ed14fb9c-32df-4969-85c0-f05217c9724c">
+        <!-- NOTE: "to" is documentation only and has no effect on delivery -- see
+             the matching comment on the Contact page form. -->
+        <input type="hidden" name="to" value="andy@travellikeandy.com">
+        <input type="hidden" name="subject" value="The Curator — Referral">
+        <input type="hidden" name="from_name" value="Travel Like Andy — The Curator">
+        <input type="checkbox" name="botcheck" class="tlab-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input id="curname" type="text" name="name" placeholder="Name" required>
+        <input id="curemail" type="email" name="email" placeholder="Email" required>
+        <input id="curref" type="text" name="referred_by" placeholder="Who referred you">
+        <input id="curdream" type="text" name="destination" placeholder="Where you dream of going">
         <button type="submit" class="tlab-btn">Request Access</button>
+        <div id="tlab-curator-result" class="tlab-form-result" role="status" aria-live="polite"></div>
       </form>
     </div>
   </section>
@@ -149,5 +164,54 @@
     entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlab-in'); io.unobserve(entry.target); } });
   }, { threshold: 0.15 });
   els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+<script>
+(function(){
+  var form = document.getElementById('tlab-curator-form');
+  var result = document.getElementById('tlab-curator-result');
+  var btn = form ? form.querySelector('.tlab-btn') : null;
+  if (!form) { return; }
+
+  function showResult(msg, isError) {
+    result.classList.toggle('tlab-form-error', !!isError);
+    result.style.display = 'block';
+    result.textContent = msg;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    if (form.botcheck && form.botcheck.checked) { return; }
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    if (btn) { btn.disabled = true; }
+    showResult('Sending your request to Andy…', false);
+
+    var payload = JSON.stringify(Object.fromEntries(new FormData(form)));
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: payload
+    })
+    .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
+    .then(function(r){
+      if (r.ok && r.json && r.json.success) {
+        form.reset();
+        showResult('Thank you — Andy will be in touch.', false);
+      } else {
+        showResult((r.json && r.json.message) ? r.json.message : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
+      }
+    })
+    .catch(function(err){
+      console.error('Curator form submission failed:', err);
+      showResult('Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
+    })
+    .then(function(){ if (btn) { btn.disabled = false; } });
+  });
 })();
 </script>
