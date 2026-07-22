@@ -40,6 +40,32 @@
 .tla-bespoke .tlab-partner-in { width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#f6f1e7; padding:1.4rem; filter:grayscale(100%); opacity:0.9; transition:all 0.5s ease; }
 .tla-bespoke .tlab-partner-in img { max-width:100%; max-height:100%; object-fit:contain; display:block; }
 .tla-bespoke .tlab-partner:hover .tlab-partner-in { filter:grayscale(0%); opacity:1; transform:scale(1.04); }
+.tla-bespoke .tlab-places { padding:5.5rem 1.5rem; text-align:center; border-top:0.5px solid rgba(200,175,120,0.15); }
+.tla-bespoke .tlab-places-eyebrow { color:var(--muted); font-size:0.74rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1rem; }
+.tla-bespoke .tlab-places h2 { font-size:clamp(1.6rem,3.4vw,2.4rem); margin:0 0 3rem; }
+.tla-bespoke .tlab-places-grid { max-width:1080px; margin:0 auto; column-count:3; column-gap:0.6rem; }
+.tla-bespoke .tlab-place { position:relative; overflow:hidden; break-inside:avoid; display:block; width:100%; margin:0 0 0.6rem; padding:0; border:1px solid rgba(200,175,120,0.18); background:none; font:inherit; text-align:left; cursor:zoom-in; appearance:none; -webkit-appearance:none; }
+.tla-bespoke .tlab-place img { width:100%; height:auto; display:block; transition:transform 0.8s ease; }
+.tla-bespoke .tlab-place:hover img { transform:scale(1.05); }
+.tla-bespoke .tlab-place:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+.tla-bespoke .tlab-place-hint { position:absolute; inset:auto 0 0 0; padding:0.6rem 0.8rem; background:linear-gradient(0deg, rgba(0,0,0,0.65), transparent); color:#fff; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0; transition:opacity 0.35s ease; pointer-events:none; }
+.tla-bespoke .tlab-place:hover .tlab-place-hint, .tla-bespoke .tlab-place:focus-visible .tlab-place-hint { opacity:1; }
+@media (max-width:900px){ .tla-bespoke .tlab-places-grid { column-count:2; } }
+@media (max-width:560px){ .tla-bespoke .tlab-places-grid { column-count:1; } }
+.tla-bespoke .tlab-lightbox { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:5vh 1.5rem; background:rgba(5,5,5,0.94); }
+.tla-bespoke .tlab-lightbox.tlab-lb-open { display:flex; }
+.tla-bespoke .tlab-lb-dialog { position:relative; max-width:min(1100px,92vw); max-height:90vh; }
+.tla-bespoke .tlab-lb-dialog img { max-width:100%; max-height:72vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain; }
+.tla-bespoke .tlab-lb-cap { text-align:center; padding:1.2rem 1rem 0; color:#f0ebe0; }
+.tla-bespoke .tlab-lb-cap-title { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; margin:0 0 0.3rem; }
+.tla-bespoke .tlab-lb-cap-loc { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin:0; }
+.tla-bespoke .tlab-lb-close, .tla-bespoke .tlab-lb-prev, .tla-bespoke .tlab-lb-next { position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; border-radius:50%; background:rgba(10,10,10,0.55); border:1px solid rgba(240,235,224,0.35); color:#f0ebe0; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.3rem; line-height:1; transition:background 0.3s ease, border-color 0.3s ease; }
+.tla-bespoke .tlab-lb-close:hover, .tla-bespoke .tlab-lb-prev:hover, .tla-bespoke .tlab-lb-next:hover { background:rgba(200,175,120,0.25); border-color:var(--gold); }
+.tla-bespoke .tlab-lb-close:focus-visible, .tla-bespoke .tlab-lb-prev:focus-visible, .tla-bespoke .tlab-lb-next:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+.tla-bespoke .tlab-lb-close { top:0.6rem; right:0.6rem; transform:none; width:2.4rem; height:2.4rem; font-size:1.1rem; }
+.tla-bespoke .tlab-lb-prev { left:0.6rem; }
+.tla-bespoke .tlab-lb-next { right:0.6rem; }
+@media (prefers-reduced-motion: reduce) { .tla-bespoke .tlab-lightbox, .tla-bespoke .tlab-lb-close, .tla-bespoke .tlab-lb-prev, .tla-bespoke .tlab-lb-next, .tla-bespoke .tlab-place-hint { transition:none; } }
 .tla-bespoke .tlab-close { text-align:center; padding:6rem 1.5rem; border-top:0.5px solid rgba(200,175,120,0.15); }
 .tla-bespoke .tlab-close h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; }
 .tla-bespoke .tlab-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
@@ -153,9 +179,32 @@
     </div>
   </section>
 
+  <section class="tlab-places tlab-reveal">
+    <p class="tlab-places-eyebrow">A Few Moments</p>
+    <h2>Where the circle has <em>gathered.</em></h2>
+    <div class="tlab-places-grid">
+      <button type="button" class="tlab-place" data-cap-title="A Table on the Sand" data-cap-location="Cabo San Lucas, Mexico" aria-label="View photo — A Table on the Sand"><img src="REPLACE_WITH_CABO_DINNER_CDN_URL" alt="Long dinner table set beachside among palm trees at dusk" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="One&amp;Only Palmilla" data-cap-location="Los Cabos, Mexico" aria-label="View photo — One and Only Palmilla"><img src="REPLACE_WITH_PALMILLA_ENTRANCE_CDN_URL" alt="One&amp;Only Palmilla entrance with lit urn and blooming oleander" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Reflections at Palmilla" data-cap-location="Los Cabos, Mexico" aria-label="View photo — Reflections at Palmilla"><img src="REPLACE_WITH_PALMILLA_REFLECTION_CDN_URL" alt="Palm trees reflected in still pool water at sunset" loading="lazy"><span class="tlab-place-hint">View</span></button>
+    </div>
+  </section>
+
   <section class="tlab-close">
     <h2>You will know if this is for you.</h2>
   </section>
+
+  <div class="tlab-lightbox" id="tlab-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+    <div class="tlab-lb-dialog">
+      <button type="button" class="tlab-lb-close" aria-label="Close">&times;</button>
+      <button type="button" class="tlab-lb-prev" aria-label="Previous photo">&#8249;</button>
+      <button type="button" class="tlab-lb-next" aria-label="Next photo">&#8250;</button>
+      <img id="tlab-lb-img" src="" alt="">
+      <div class="tlab-lb-cap">
+        <p class="tlab-lb-cap-title" id="tlab-lb-title"></p>
+        <p class="tlab-lb-cap-loc" id="tlab-lb-loc"></p>
+      </div>
+    </div>
+  </div>
 </div></div>
 <script>
 (function(){
@@ -214,5 +263,78 @@
     })
     .then(function(){ if (btn) { btn.disabled = false; } });
   });
+})();
+</script>
+<script>
+(function(){
+  var places = Array.prototype.slice.call(document.querySelectorAll('.tlab-place'));
+  var lb = document.getElementById('tlab-lightbox');
+  if (!places.length || !lb) { return; }
+
+  var imgEl = document.getElementById('tlab-lb-img');
+  var titleEl = document.getElementById('tlab-lb-title');
+  var locEl = document.getElementById('tlab-lb-loc');
+  var closeBtn = lb.querySelector('.tlab-lb-close');
+  var prevBtn = lb.querySelector('.tlab-lb-prev');
+  var nextBtn = lb.querySelector('.tlab-lb-next');
+  var focusables = [prevBtn, nextBtn, closeBtn];
+
+  var current = -1;
+  var lastTrigger = null;
+
+  function render(i){
+    var place = places[i];
+    var img = place.querySelector('img');
+    imgEl.src = img.src;
+    imgEl.alt = img.alt || '';
+    titleEl.textContent = place.getAttribute('data-cap-title') || img.alt || '';
+    var loc = place.getAttribute('data-cap-location') || '';
+    locEl.textContent = loc;
+    locEl.style.display = loc ? '' : 'none';
+  }
+
+  function open(i, trigger){
+    current = i;
+    lastTrigger = trigger || null;
+    render(current);
+    lb.classList.add('tlab-lb-open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function close(){
+    lb.classList.remove('tlab-lb-open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKeydown);
+    if (lastTrigger) { lastTrigger.focus(); }
+  }
+
+  function step(delta){
+    current = (current + delta + places.length) % places.length;
+    render(current);
+  }
+
+  function onKeydown(e){
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowLeft') { step(-1); return; }
+    if (e.key === 'ArrowRight') { step(1); return; }
+    if (e.key === 'Tab') {
+      var idx = focusables.indexOf(document.activeElement);
+      e.preventDefault();
+      var next = e.shiftKey ? (idx <= 0 ? focusables.length - 1 : idx - 1) : (idx === focusables.length - 1 ? 0 : idx + 1);
+      focusables[next].focus();
+    }
+  }
+
+  places.forEach(function(place, i){
+    place.addEventListener('click', function(){ open(i, place); });
+  });
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', function(){ step(-1); });
+  nextBtn.addEventListener('click', function(){ step(1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) { close(); } });
 })();
 </script>
