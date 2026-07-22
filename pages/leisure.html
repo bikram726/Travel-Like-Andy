@@ -31,9 +31,26 @@
 .tla-leisure .tlal-gallery-head h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; }
 .tla-leisure .tlal-gallery-head p { color:var(--muted); font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:1rem; }
 .tla-leisure .tlal-gallery { column-count:3; column-gap:0.6rem; max-width:1200px; margin:0 auto; padding:0 1.5rem 5.5rem; }
-.tla-leisure .tlal-shot { position:relative; overflow:hidden; break-inside:avoid; margin-bottom:0.6rem; border:1px solid rgba(26,58,92,0.12); }
+.tla-leisure .tlal-shot { position:relative; overflow:hidden; break-inside:avoid; display:block; width:100%; margin:0 0 0.6rem; padding:0; border:1px solid rgba(26,58,92,0.12); background:none; font:inherit; text-align:left; cursor:zoom-in; appearance:none; -webkit-appearance:none; }
 .tla-leisure .tlal-shot img { width:100%; height:auto; display:block; transition:transform 0.8s ease; }
 .tla-leisure .tlal-shot:hover img { transform:scale(1.05); }
+.tla-leisure .tlal-shot:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+.tla-leisure .tlal-shot-hint { position:absolute; inset:auto 0 0 0; padding:0.6rem 0.8rem; background:linear-gradient(0deg, rgba(0,0,0,0.55), transparent); color:#fff; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0; transition:opacity 0.35s ease; pointer-events:none; }
+.tla-leisure .tlal-shot:hover .tlal-shot-hint, .tla-leisure .tlal-shot:focus-visible .tlal-shot-hint { opacity:1; }
+.tla-leisure .tlal-lightbox { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:5vh 1.5rem; background:rgba(10,10,10,0.92); }
+.tla-leisure .tlal-lightbox.tlal-lb-open { display:flex; }
+.tla-leisure .tlal-lb-dialog { position:relative; max-width:min(1100px,92vw); max-height:90vh; }
+.tla-leisure .tlal-lb-dialog img { max-width:100%; max-height:72vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain; }
+.tla-leisure .tlal-lb-cap { text-align:center; padding:1.2rem 1rem 0; color:#f0ebe0; }
+.tla-leisure .tlal-lb-cap-title { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; margin:0 0 0.3rem; }
+.tla-leisure .tlal-lb-cap-loc { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin:0; }
+.tla-leisure .tlal-lb-close, .tla-leisure .tlal-lb-prev, .tla-leisure .tlal-lb-next { position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; border-radius:50%; background:rgba(10,10,10,0.55); border:1px solid rgba(240,235,224,0.35); color:#f0ebe0; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.3rem; line-height:1; transition:background 0.3s ease, border-color 0.3s ease; }
+.tla-leisure .tlal-lb-close:hover, .tla-leisure .tlal-lb-prev:hover, .tla-leisure .tlal-lb-next:hover { background:rgba(200,175,120,0.25); border-color:var(--gold); }
+.tla-leisure .tlal-lb-close:focus-visible, .tla-leisure .tlal-lb-prev:focus-visible, .tla-leisure .tlal-lb-next:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+.tla-leisure .tlal-lb-close { top:0.6rem; right:0.6rem; transform:none; width:2.4rem; height:2.4rem; font-size:1.1rem; }
+.tla-leisure .tlal-lb-prev { left:0.6rem; }
+.tla-leisure .tlal-lb-next { right:0.6rem; }
+@media (prefers-reduced-motion: reduce) { .tla-leisure .tlal-lightbox, .tla-leisure .tlal-lb-close, .tla-leisure .tlal-lb-prev, .tla-leisure .tlal-lb-next, .tla-leisure .tlal-shot-hint { transition:none; } }
 @media (max-width:900px){ .tla-leisure .tlal-gallery { column-count:2; } }
 @media (max-width:560px){ .tla-leisure .tlal-gallery { column-count:1; } }
 .tla-leisure .tlal-reveal { opacity:1; transform:none; }
@@ -78,21 +95,34 @@
     <p>Every place here, Andy has stood</p>
   </section>
   <section class="tlal-gallery tlal-reveal">
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/6c2f6a84-f653-49b7-aad8-bb770c030429/infinity_pool.png" alt="Infinity pool at the water's edge" loading="lazy"></div>
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/46830cb4-55c2-4cea-969a-bce43f5c3bf8/rainbow.png" alt="Rainbow over green hills" loading="lazy"></div>
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/18101fe0-2d50-46a5-83c6-13a6731278b5/fiery_sunset.png" alt="Fiery sunset over the mountains" loading="lazy"></div>
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/62dea9ae-ba38-4d17-ae0c-0cc264529394/sky_bridge_real.png" alt="Mountain sky bridge above the rainforest" loading="lazy"></div>
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/d44d9b68-3ee8-4f31-9d03-f6b54c61e265/monkey.png" alt="Macaque and her baby in the wild" loading="lazy"></div>
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/9037e70c-018d-4377-af2d-29d0c8b7c3ee/jungle_river.png" alt="River winding through the jungle" loading="lazy"></div>
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/f191727c-48ea-4a21-ace3-96e17af7a773/above_clouds.png" alt="Above the clouds from the window seat" loading="lazy"></div>
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/3e448949-cda4-4186-a0f4-58bab701740c/sky_bridge.png" alt="City skyline at dusk" loading="lazy"></div>
-    <div class="tlal-shot"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/a94cfe4c-d227-455c-92e7-5feba0586d15/cavern.png" alt="Lantern-lit cavern" loading="lazy"></div>
+    <button type="button" class="tlal-shot" data-cap-title="Infinity Pool" data-cap-location="" aria-label="View photo — Infinity Pool"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/6c2f6a84-f653-49b7-aad8-bb770c030429/infinity_pool.png" alt="Infinity pool at the water's edge" loading="lazy"><span class="tlal-shot-hint">View</span></button>
+    <button type="button" class="tlal-shot" data-cap-title="Rainbow Over Green Hills" data-cap-location="" aria-label="View photo — Rainbow Over Green Hills"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/46830cb4-55c2-4cea-969a-bce43f5c3bf8/rainbow.png" alt="Rainbow over green hills" loading="lazy"><span class="tlal-shot-hint">View</span></button>
+    <button type="button" class="tlal-shot" data-cap-title="Fiery Sunset" data-cap-location="" aria-label="View photo — Fiery Sunset"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/18101fe0-2d50-46a5-83c6-13a6731278b5/fiery_sunset.png" alt="Fiery sunset over the mountains" loading="lazy"><span class="tlal-shot-hint">View</span></button>
+    <button type="button" class="tlal-shot" data-cap-title="Sky Bridge" data-cap-location="" aria-label="View photo — Sky Bridge"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/62dea9ae-ba38-4d17-ae0c-0cc264529394/sky_bridge_real.png" alt="Mountain sky bridge above the rainforest" loading="lazy"><span class="tlal-shot-hint">View</span></button>
+    <button type="button" class="tlal-shot" data-cap-title="Macaque &amp; Baby" data-cap-location="" aria-label="View photo — Macaque and Baby"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/d44d9b68-3ee8-4f31-9d03-f6b54c61e265/monkey.png" alt="Macaque and her baby in the wild" loading="lazy"><span class="tlal-shot-hint">View</span></button>
+    <button type="button" class="tlal-shot" data-cap-title="Jungle River" data-cap-location="" aria-label="View photo — Jungle River"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/9037e70c-018d-4377-af2d-29d0c8b7c3ee/jungle_river.png" alt="River winding through the jungle" loading="lazy"><span class="tlal-shot-hint">View</span></button>
+    <button type="button" class="tlal-shot" data-cap-title="Above the Clouds" data-cap-location="" aria-label="View photo — Above the Clouds"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/f191727c-48ea-4a21-ace3-96e17af7a773/above_clouds.png" alt="Above the clouds from the window seat" loading="lazy"><span class="tlal-shot-hint">View</span></button>
+    <button type="button" class="tlal-shot" data-cap-title="Skyline at Dusk" data-cap-location="" aria-label="View photo — Skyline at Dusk"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/3e448949-cda4-4186-a0f4-58bab701740c/sky_bridge.png" alt="City skyline at dusk" loading="lazy"><span class="tlal-shot-hint">View</span></button>
+    <button type="button" class="tlal-shot" data-cap-title="Lantern-Lit Cavern" data-cap-location="" aria-label="View photo — Lantern-Lit Cavern"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/a94cfe4c-d227-455c-92e7-5feba0586d15/cavern.png" alt="Lantern-lit cavern" loading="lazy"><span class="tlal-shot-hint">View</span></button>
   </section>
 
   <section class="tlal-close">
     <h2>Tell Andy where you dream of going.</h2>
     <a href="/contact" class="tlal-btn">Tell Andy</a>
   </section>
+
+  <div class="tlal-lightbox" id="tlal-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+    <div class="tlal-lb-dialog">
+      <button type="button" class="tlal-lb-close" aria-label="Close">&times;</button>
+      <button type="button" class="tlal-lb-prev" aria-label="Previous photo">&#8249;</button>
+      <button type="button" class="tlal-lb-next" aria-label="Next photo">&#8250;</button>
+      <img id="tlal-lb-img" src="" alt="">
+      <div class="tlal-lb-cap">
+        <p class="tlal-lb-cap-title" id="tlal-lb-title"></p>
+        <p class="tlal-lb-cap-loc" id="tlal-lb-loc"></p>
+      </div>
+    </div>
+  </div>
 </div></div>
 <script>
 function tlalInitReveal(){
@@ -105,6 +135,78 @@ function tlalInitReveal(){
   }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
   els.forEach(function(e){ io.observe(e); });
 }
-if (document.readyState !== "loading") { tlalInitReveal(); }
-else { document.addEventListener("DOMContentLoaded", tlalInitReveal); }
+function tlalInitLightbox(){
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.tlal-shot'));
+  var lb = document.getElementById('tlal-lightbox');
+  if (!shots.length || !lb) { return; }
+
+  var imgEl = document.getElementById('tlal-lb-img');
+  var titleEl = document.getElementById('tlal-lb-title');
+  var locEl = document.getElementById('tlal-lb-loc');
+  var closeBtn = lb.querySelector('.tlal-lb-close');
+  var prevBtn = lb.querySelector('.tlal-lb-prev');
+  var nextBtn = lb.querySelector('.tlal-lb-next');
+  var focusables = [prevBtn, nextBtn, closeBtn];
+
+  var current = -1;
+  var lastTrigger = null;
+
+  function render(i){
+    var shot = shots[i];
+    var img = shot.querySelector('img');
+    imgEl.src = img.src;
+    imgEl.alt = img.alt || '';
+    titleEl.textContent = shot.getAttribute('data-cap-title') || img.alt || '';
+    var loc = shot.getAttribute('data-cap-location') || '';
+    locEl.textContent = loc;
+    locEl.style.display = loc ? '' : 'none';
+  }
+
+  function open(i, trigger){
+    current = i;
+    lastTrigger = trigger || null;
+    render(current);
+    lb.classList.add('tlal-lb-open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function close(){
+    lb.classList.remove('tlal-lb-open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKeydown);
+    if (lastTrigger) { lastTrigger.focus(); }
+  }
+
+  function step(delta){
+    current = (current + delta + shots.length) % shots.length;
+    render(current);
+  }
+
+  function onKeydown(e){
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowLeft') { step(-1); return; }
+    if (e.key === 'ArrowRight') { step(1); return; }
+    if (e.key === 'Tab') {
+      var idx = focusables.indexOf(document.activeElement);
+      e.preventDefault();
+      var next = e.shiftKey ? (idx <= 0 ? focusables.length - 1 : idx - 1) : (idx === focusables.length - 1 ? 0 : idx + 1);
+      focusables[next].focus();
+    }
+  }
+
+  shots.forEach(function(shot, i){
+    shot.addEventListener('click', function(){ open(i, shot); });
+  });
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', function(){ step(-1); });
+  nextBtn.addEventListener('click', function(){ step(1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) { close(); } });
+}
+
+if (document.readyState !== "loading") { tlalInitReveal(); tlalInitLightbox(); }
+else { document.addEventListener("DOMContentLoaded", function(){ tlalInitReveal(); tlalInitLightbox(); }); }
 </script>
