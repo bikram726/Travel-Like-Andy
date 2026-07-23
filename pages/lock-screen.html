@@ -59,6 +59,56 @@
   display:block;
 }
 
+/* Partner-logo strip below the password field */
+.tlab-lock-partners-eyebrow {
+  text-align:center;
+  color:#7a7060;
+  font-family:'Montserrat',sans-serif;
+  font-size:0.68rem;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  margin:2.8rem 0 1.2rem;
+}
+.tlab-lock-partners {
+  max-width:640px;
+  margin:0 auto;
+  padding-top:1.8rem;
+  border-top:1px solid rgba(200,175,120,0.15);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:0.6rem;
+}
+.tlab-lock-partner {
+  background:#f6f1e7;
+  padding:0.5rem 0.9rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  filter:grayscale(100%);
+  opacity:0.85;
+  transition:opacity 0.4s ease, filter 0.4s ease;
+}
+.tlab-lock-partner:hover {
+  filter:grayscale(0%);
+  opacity:1;
+}
+.tlab-lock-partner img {
+  height:18px;
+  width:auto;
+  max-width:80px;
+  object-fit:contain;
+  display:block;
+}
+@media (max-width:600px) {
+  .tlab-lock-partner img { height:15px; max-width:64px; }
+  .tlab-lock-partner { padding:0.4rem 0.7rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tlab-lock-partner { transition:none; }
+}
+
 /* Fixed nav bar so visitors are never stranded on the lock screen —
    Squarespace's lock screen never shows the site header (platform limit,
    confirmed via their docs), so this is injected directly instead. */
@@ -155,6 +205,35 @@ input[type="password"]:focus { outline:none !important; border-bottom-color:#c8a
 </nav>
 <div class="tla-bespoke-lock">
   <div class="tlab-lock-logo">
-    <img src="https://images.squarespace-cdn.com/content/REPLACE_WITH_BESPOKE_LOGO_URL" alt="Travel Like Andy Bespoke">
+    <!-- TEMPORARY: no dedicated Bespoke logo variant exists yet (README's
+         "Still outstanding" list -- logo-bespoke-transparent.png hasn't been
+         created). Using the main site logo as a stand-in so this doesn't
+         render as a broken image. Swap for the real Bespoke logo URL once
+         Andy provides that asset. -->
+    <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c889b1cc-fad8-4303-b6a3-6531e3d8471c/logo-main-transparent.png" alt="Travel Like Andy">
   </div>
+</div>
+
+<p class="tlab-lock-partners-eyebrow">In Partnership With</p>
+<div class="tlab-lock-partners">
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/e67e1a3c-244a-4b21-9a6f-9dbb9fd9887f/taj-hotels.png" alt="Taj Hotels, Resorts &amp; Palaces"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/4062930e-2c72-4fc1-a327-e593486c21f3/mandarin-oriental.png" alt="Mandarin Oriental"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/71d7fa83-832d-42ff-b48c-4a25b8baba99/aman.png" alt="Aman"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/c1f7e745-a6df-4e81-bcd4-a86ce750a0fa/rosewood.png" alt="Rosewood Hotels &amp; Resorts"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/2416c7bc-edcb-4e2d-8ed5-d0722b5d4edd/four-seasons.png" alt="Four Seasons"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/c14ba250-2ad4-4168-856f-0b5e22b1aeee/capella.png" alt="Capella Hotels &amp; Resorts"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/31f06392-c5d5-4666-91fb-a4beeb014763/one-and-only.png" alt="One&amp;Only Resorts"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/a5f31408-3155-46a6-a93d-9b9f1b085809/marina-bay-sands.png" alt="Marina Bay Sands"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/99a17f7a-4478-475a-9100-05f6b64db45a/auberge-resorts.png" alt="Auberge Resorts Collection"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/fc10547e-bb00-49aa-beb5-d39d2609661a/relais-chateaux.png" alt="Relais &amp; Ch&acirc;teaux"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/c0e68fb2-8404-419c-a42b-e57a05dedb34/leading-hotels-of-the-world.png" alt="The Leading Hotels of the World"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/58a5a204-2f1a-4e7f-bf30-e7b41e4d82b2/hyatt-prive.png" alt="Hyatt Priv&eacute;"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/36b580a5-ccc7-4eb4-b047-885ed71aa6be/marriott-stars-luminous.png" alt="Marriott STARS &amp; Luminous"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/b6a66828-be60-49c2-8a75-f6b6a97c5b2b/virtuoso.png" alt="Virtuoso"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/c65622d2-c76a-4935-b0ff-cdf5caf4c7d1/elaine-macy-collective.png" alt="The Elaine Macy Collective"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/d55dc839-aaaf-4f3b-ba56-57667f3d5bf7/viking-cruises.png" alt="Viking Cruises"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/ca046cfc-2aae-4b8a-b32d-e8c782789f84/photo-crystal-cruise.jpeg" alt="Crystal Cruises"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/6a26e275-01d9-401f-99ec-c27f60af3f1c/seabourn.png" alt="Seabourn"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/e2325b8e-383f-442a-96e7-87bb532213c2/photo-private-jet.png" alt="Private jet charter"></div>
+  <div class="tlab-lock-partner"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/4000ee0f-4bf1-4869-bfcb-ce5db355002f/photo-yacht.jpeg" alt="Four Seasons Yachts"></div>
 </div>
