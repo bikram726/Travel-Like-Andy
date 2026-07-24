@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
 
 .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide {
-  background:radial-gradient(ellipse at 50% 30%, rgba(200,175,120,0.10), transparent 60%), linear-gradient(180deg,#0a0a0a 0%,#050505 100%) !important;
+  background:linear-gradient(180deg, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.45) 22%, rgba(10,10,10,0.16) 48%, rgba(10,10,10,0.25) 75%, rgba(10,10,10,0.60) 100%), url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5d1e2052-9307-49f9-8bd9-cfa992ee8b17/bespoke-onlyandonly-palmilla-entrance-UPRIGHT.jpg') center/contain no-repeat !important;
+  background-color:#0a0a0a !important;
 }
 
 .sqs-slice-password {
@@ -46,17 +47,18 @@
   margin-bottom:1.4rem;
 }
 
-/* Bespoke logo above password field */
+/* Bespoke wordmark above password field -- gold text by construction so it can
+   never render "in black" like the old generic logo image did. Swap for a real
+   logo-bespoke-transparent.png <img> the moment Andy delivers that asset. */
 .tlab-lock-logo {
-  max-width:280px;
-  width:90%;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-weight:300;
+  font-size:clamp(2.2rem,6vw,3.2rem);
+  color:#dfc898;
+  letter-spacing:0.02em;
+  text-shadow:0 2px 24px rgba(200,175,120,0.35);
   margin:0 auto 2.5rem;
-  display:block;
-}
-.tlab-lock-logo img {
-  width:100%;
-  height:auto;
-  display:block;
 }
 
 /* Partner-logo strip below the password field */
@@ -82,28 +84,27 @@
 }
 .tlab-lock-partner {
   background:#f6f1e7;
-  padding:0.5rem 0.9rem;
+  padding:0.6rem 1rem;
   display:flex;
   align-items:center;
   justify-content:center;
-  filter:grayscale(100%);
-  opacity:0.85;
-  transition:opacity 0.4s ease, filter 0.4s ease;
+  box-shadow:inset 0 0 0 1px rgba(200,175,120,0.25);
+  transition:transform 0.4s ease, box-shadow 0.4s ease;
 }
 .tlab-lock-partner:hover {
-  filter:grayscale(0%);
-  opacity:1;
+  transform:translateY(-2px);
+  box-shadow:inset 0 0 0 1px rgba(200,175,120,0.6), 0 6px 16px rgba(0,0,0,0.35);
 }
 .tlab-lock-partner img {
-  height:18px;
+  height:24px;
   width:auto;
-  max-width:80px;
+  max-width:96px;
   object-fit:contain;
   display:block;
 }
 @media (max-width:600px) {
-  .tlab-lock-partner img { height:15px; max-width:64px; }
-  .tlab-lock-partner { padding:0.4rem 0.7rem; }
+  .tlab-lock-partner img { height:19px; max-width:76px; }
+  .tlab-lock-partner { padding:0.5rem 0.8rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tlab-lock-partner { transition:none; }
@@ -163,7 +164,7 @@ input[type="password"] {
   box-shadow:none !important;
 }
 input[type="password"]::placeholder { color:#7a7060 !important; opacity:1 !important; }
-input[type="password"]:focus { outline:none !important; border-bottom-color:#c8af78 !important; }
+input[type="password"]:focus { outline:none !important; border-bottom-color:#c8af78 !important; box-shadow:0 0 0 3px rgba(200,175,120,0.15) !important; }
 
 .icon-wrapper.arrow,
 .arrow-icon .icon-wrapper {
@@ -204,14 +205,7 @@ input[type="password"]:focus { outline:none !important; border-bottom-color:#c8a
   <a href="/gallery">Gallery</a>
 </nav>
 <div class="tla-bespoke-lock">
-  <div class="tlab-lock-logo">
-    <!-- TEMPORARY: no dedicated Bespoke logo variant exists yet (README's
-         "Still outstanding" list -- logo-bespoke-transparent.png hasn't been
-         created). Using the main site logo as a stand-in so this doesn't
-         render as a broken image. Swap for the real Bespoke logo URL once
-         Andy provides that asset. -->
-    <img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c889b1cc-fad8-4303-b6a3-6531e3d8471c/logo-main-transparent.png" alt="Travel Like Andy">
-  </div>
+  <div class="tlab-lock-logo">Bespoke</div>
 </div>
 
 <p class="tlab-lock-partners-eyebrow">In Partnership With</p>
