@@ -5,44 +5,69 @@
 .tla-home * { box-sizing:border-box; }
 .tla-home h1,.tla-home h2,.tla-home h3 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
 .tla-home em { font-style:italic; color:var(--gold); font-weight:300; }
-.tla-home .tlah-hero { min-height:80vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:radial-gradient(ellipse at 50% 100%, rgba(200,175,120,0.08), transparent 60%), linear-gradient(180deg,#0a0a0a 0%,#050505 100%); }
+.tla-home .tlah-hero {
+  min-height:88vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:6rem 1.5rem;
+  text-align:center;
+  background:
+    linear-gradient(180deg, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.58) 30%, rgba(10,10,10,0.68) 65%, rgba(10,10,10,0.92) 100%),
+    url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/f6644c09-ec9d-44b9-969a-53daeb33df89/02-andy-taj-mahal-jump.jpg') center 30%/cover no-repeat;
+  background-color:#0a0a0a;
+}
 .tla-home .tlah-hero-inner { max-width:900px; }
 .tla-home .tlah-page-logo { max-width:200px; width:60%; margin:0 auto 2rem; display:block; }
 .tla-home .tlah-page-logo img { width:100%; height:auto; display:block; }
-.tla-home .tlah-hero h1 { font-size:clamp(2rem,6vw,4.5rem); line-height:1.1; margin-bottom:1.5rem; }
-.tla-home .tlah-sub { color:var(--muted); font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; margin:0 0 2.5rem; line-height:1.6; }
-.tla-home .tlah-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; background:transparent; }
-.tla-home .tlah-btn:hover { background:var(--gold); color:var(--bg); }
-.tla-home .tlah-div { padding:5rem 1.5rem; background:var(--bg); }
+.tla-home .tlah-hero h1 { font-size:clamp(2rem,6vw,4.5rem); line-height:1.1; margin-bottom:1.5rem; text-shadow:0 4px 28px rgba(0,0,0,0.45); }
+.tla-home .tlah-sub { color:var(--text); opacity:0.85; font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; margin:0 0 2.5rem; line-height:1.6; }
+.tla-home .tlah-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; background:rgba(10,10,10,0.25); backdrop-filter:blur(2px); }
+.tla-home .tlah-btn:hover { background:var(--gold); color:var(--bg); transform:translateY(-2px); box-shadow:0 12px 34px rgba(200,175,120,0.3); }
+.tla-home .tlah-scroll-cue { display:inline-flex; flex-direction:column; align-items:center; gap:0.5rem; margin-top:2.8rem; color:var(--text); opacity:0.7; text-decoration:none; font-size:0.66rem; letter-spacing:0.22em; text-transform:uppercase; transition:opacity 0.3s ease; }
+.tla-home .tlah-scroll-cue:hover { opacity:1; color:var(--gold); }
+.tla-home .tlah-scroll-cue svg { width:13px; height:13px; display:block; animation:tlah-bob 2.4s ease-in-out infinite; }
+@keyframes tlah-bob { 0%,100% { transform:translateY(0); } 50% { transform:translateY(5px); } }
+.tla-home .tlah-div { padding:6rem 1.5rem; background:var(--bg); scroll-margin-top:70px; }
+.tla-home .tlah-section-eyebrow { text-align:center; color:var(--muted); font-size:0.74rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1rem; }
+.tla-home .tlah-section-head { text-align:center; font-size:clamp(1.7rem,3.8vw,2.6rem); margin:0 0 3.5rem; }
 .tla-home .tlah-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-.tla-home .tlah-card { background:var(--surface); border:1px solid rgba(200,175,120,0.18); padding:3rem 1.5rem; text-decoration:none; color:var(--text); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:all 0.5s ease; min-height:300px; }
+.tla-home .tlah-card { background:var(--surface); border:1px solid rgba(200,175,120,0.18); border-top:2px solid rgba(200,175,120,0.35); padding:3rem 1.5rem; text-decoration:none; color:var(--text); text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center; transition:all 0.5s ease; min-height:300px; }
 .tla-home .tlah-card:hover { border-color:var(--gold); transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,0,0,0.6); }
 .tla-home .tlah-mark { font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-style:italic; color:var(--gold); line-height:1; margin-bottom:1.2rem; }
-.tla-home .tlah-card h2 { font-size:1.5rem; margin-bottom:0.8rem; letter-spacing:0.03em; line-height:1.2; }
+.tla-home .tlah-card h3 { font-size:1.5rem; margin-bottom:0.8rem; letter-spacing:0.03em; line-height:1.2; font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); }
 .tla-home .tlah-card p { color:var(--muted); font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 1.8rem; line-height:1.5; }
 .tla-home .tlah-card .tlah-invite { color:var(--gold); font-style:italic; text-transform:none; letter-spacing:0.05em; font-size:0.85rem; font-family:'Cormorant Garamond',serif; }
 .tla-home .tlah-arrow { color:var(--gold); font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; transition:transform 0.4s ease; }
 .tla-home .tlah-card:hover .tlah-arrow { transform:translateX(8px); }
 .tla-home .tlah-trust { padding:3rem 1.5rem; border-top:0.5px solid rgba(200,175,120,0.2); border-bottom:0.5px solid rgba(200,175,120,0.2); text-align:center; }
 .tla-home .tlah-trust p { color:var(--muted); font-size:0.72rem; letter-spacing:0.25em; text-transform:uppercase; margin:0; line-height:1.8; }
-.tla-home .tlah-about { padding:6rem 1.5rem; background:var(--bg); }
-.tla-home .tlah-about-inner { max-width:760px; margin:0 auto; text-align:center; }
-.tla-home .tlah-about-inner h3 { font-size:clamp(1.6rem,4vw,2.6rem); font-style:italic; margin-bottom:1.5rem; }
-.tla-home .tlah-about-inner p { color:var(--text); font-size:1rem; line-height:1.8; font-weight:300; margin:0 0 2rem; }
+.tla-home .tlah-story { width:100%; display:table; table-layout:fixed; background:var(--surface); }
+.tla-home .tlah-story-cell { display:table-cell; vertical-align:middle; width:50%; padding:6rem 4vw; }
+.tla-home .tlah-story-cell.tlah-img { background:url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5c4c2909-7be2-4a73-9326-fd644a207322/01-andy-conducting-orchestra.jpg') center/cover no-repeat; min-height:460px; }
+.tla-home .tlah-story h2 { font-size:clamp(1.8rem,4vw,2.8rem); font-style:italic; margin-bottom:1.5rem; }
+.tla-home .tlah-story p { color:var(--text); font-size:1rem; line-height:1.85; font-weight:300; margin:0 0 2rem; }
 .tla-home .tlah-link { color:var(--gold); text-decoration:none; letter-spacing:0.18em; text-transform:uppercase; font-size:0.75rem; border-bottom:1px solid var(--gold); padding-bottom:0.3rem; transition:all 0.3s ease; }
 .tla-home .tlah-link:hover { color:var(--gold-bright); }
 .tla-home .tlah-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
 .tla-home .tlah-reveal.tlah-in { opacity:1; transform:translateY(0); }
-@media (prefers-reduced-motion: reduce) { .tla-home .tlah-reveal { opacity:1; transform:none; transition:none; } }
+@media (prefers-reduced-motion: reduce) {
+  .tla-home .tlah-reveal { opacity:1; transform:none; transition:none; }
+  .tla-home .tlah-scroll-cue svg { animation:none; }
+}
 @media (max-width:767px) {
   .tla-home .tlah-grid { grid-template-columns:1fr; gap:1rem; }
   .tla-home .tlah-card { min-height:200px; padding:2.5rem 1.5rem; }
-  .tla-home .tlah-hero { min-height:70vh; padding:4rem 1.2rem; }
+  .tla-home .tlah-hero { min-height:78vh; padding:4rem 1.2rem; background-position:center 20%; }
   .tla-home .tlah-mark { font-size:3rem; }
-  .tla-home .tlah-card h2 { font-size:1.4rem; }
-  .tla-home .tlah-div,.tla-home .tlah-about { padding:4rem 1.2rem; }
+  .tla-home .tlah-card h3 { font-size:1.4rem; }
+  .tla-home .tlah-div { padding:4rem 1.2rem; }
+  .tla-home .tlah-section-head { margin-bottom:2.5rem; }
   .tla-home .tlah-sub { font-size:0.72rem; letter-spacing:0.15em; }
   .tla-home .tlah-trust p { font-size:0.62rem; letter-spacing:0.15em; }
+  .tla-home .tlah-story, .tla-home .tlah-story-cell { display:block; width:100%; }
+  .tla-home .tlah-story-cell.tlah-img { min-height:280px; }
+  .tla-home .tlah-story-cell { padding:3.5rem 1.4rem; text-align:center; }
 }
 </style>
 <div class="tla-home-wrap"><div class="tla-home">
@@ -51,18 +76,29 @@
     <h1>Some people see the world.<br><em>A rare few experience it.</em></h1>
     <p class="tlah-sub">Curated journeys by Andy Eisenmann<br>Fora Travel Partner</p>
     <a href="/contact" class="tlah-btn">Tell Andy where you dream of going</a>
+    <a href="#tlah-explore" class="tlah-scroll-cue" aria-label="Scroll to explore the three ways to travel">
+      <span>Explore</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 4v15M6 13l6 6 6-6"/></svg>
+    </a>
   </div></section>
-  <section class="tlah-div tlah-reveal"><div class="tlah-grid">
-    <a href="/leisure" class="tlah-card"><div class="tlah-mark">L</div><h2>Leisure Travel</h2><p>Vacations &middot; Resorts &middot; Cruises</p><span class="tlah-arrow">Explore &rarr;</span></a>
-    <a href="/corporate" class="tlah-card"><div class="tlah-mark">E</div><h2>Executive Travel</h2><span class="tlah-arrow">Explore &rarr;</span></a>
-    <a href="/bespoke" class="tlah-card"><div class="tlah-mark">B</div><h2>Luxury Bespoke Travel</h2><p class="tlah-invite">By Invitation Only</p><span class="tlah-arrow">Enter &rarr;</span></a>
-  </div></section>
+  <section id="tlah-explore" class="tlah-div tlah-reveal">
+    <p class="tlah-section-eyebrow">Three Ways To Travel</p>
+    <h2 class="tlah-section-head">Where would you like to <em>begin?</em></h2>
+    <div class="tlah-grid">
+      <a href="/leisure" class="tlah-card"><div class="tlah-mark">L</div><h3>Leisure Travel</h3><p>Vacations &middot; Resorts &middot; Cruises</p><span class="tlah-arrow">Explore &rarr;</span></a>
+      <a href="/corporate" class="tlah-card"><div class="tlah-mark">E</div><h3>Executive Travel</h3><p>Conferences &middot; Retreats &middot; Groups</p><span class="tlah-arrow">Explore &rarr;</span></a>
+      <a href="/bespoke" class="tlah-card"><div class="tlah-mark">B</div><h3>Luxury Bespoke Travel</h3><p class="tlah-invite">By Invitation Only</p><span class="tlah-arrow">Enter &rarr;</span></a>
+    </div>
+  </section>
   <section class="tlah-trust tlah-reveal"><p>Fora Travel Partner &nbsp;&middot;&nbsp; 50+ Countries &nbsp;&middot;&nbsp; #travellikeandy</p></section>
-  <section class="tlah-about tlah-reveal"><div class="tlah-about-inner">
-    <h3>I have circled the globe twice.</h3>
-    <p>I sang opera for the King of Thailand. I hiked the Himalayas. I know the chef in Mexico City who opens his kitchen after midnight, and the room at the Taj Palace that faces the sunrise.</p>
-    <a href="/about" class="tlah-link">More about Andy &rarr;</a>
-  </div></section>
+  <section class="tlah-story tlah-reveal">
+    <div class="tlah-story-cell tlah-img" role="img" aria-label="Andy conducting an orchestra"></div>
+    <div class="tlah-story-cell">
+      <h2>I have circled the globe twice.</h2>
+      <p>I sang opera for the King of Thailand. I hiked the Himalayas. I know the chef in Mexico City who opens his kitchen after midnight, and the room at the Taj Palace that faces the sunrise.</p>
+      <a href="/about" class="tlah-link">More about Andy &rarr;</a>
+    </div>
+  </section>
 </div></div>
 <script>
 (function(){

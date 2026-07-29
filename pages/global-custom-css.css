@@ -1,3 +1,8 @@
+/* SMOOTH IN-PAGE SCROLLING — supports anchor links like Home's hero
+   "Explore" scroll-cue. Respects reduced-motion preference. */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
 /* Hide header logo — logo moved to footer, HOME replaces it */
 .header-title-logo, .header-title { display: none !important; }
 
