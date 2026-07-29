@@ -12,8 +12,9 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 | `pages/bespoke.html` | Bespoke (password: `LuxeAccess`) | `/bespoke` |
 | `pages/about.html` | About | `/about` |
 | `pages/contact.html` | Contact | `/contact` |
-| `pages/group.html` | Group (bare-bones placeholder — real content pending) | `/group` (page does not exist yet, needs creating) |
-| `pages/gallery.html` | Gallery (placeholder, ready for Slides embed) | `/gallery` (page does not exist yet, needs creating) |
+| `pages/group.html` | OLD "Group" family-travel placeholder — doesn't map to any page in the Brand Bible's new site map (added 2026-07-29); fate undecided, see `travel-like-andy-brand-bible` memory | `/group` (page does not exist yet, needs creating) |
+| `pages/gallery.html` | Gallery (placeholder, ready for Slides embed) — also doesn't map to the new site map; fate undecided | `/gallery` (page does not exist yet, needs creating) |
+| `pages/collections.html` | Collections — new page added 2026-07-29 per the Brand Bible (Hosted Departures). Bare-bones placeholder, deliberately not built out further — no real "current journeys" content exists yet | `/collections` (page does not exist yet, needs creating) |
 | `pages/global-custom-css.css` | Site-wide header/footer styling | Design → Custom CSS |
 | `pages/lock-screen.html` | Bespoke password lock screen + fixed nav bar | Settings → Advanced → Code Injection → **Lock Page** (not Design → Custom CSS — the lock screen has its own separate styling system) |
 | `pages/header-injection.html` | Site-wide `<head>` injection (contains legacy content — see below) | Settings → Advanced → Code Injection → **HEADER** (a 5th, separate injection location — different from Lock Page, Design → Custom CSS, and any page's Code Block) |
