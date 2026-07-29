@@ -16,6 +16,7 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 | `pages/gallery.html` | Gallery (placeholder, ready for Slides embed) | `/gallery` (page does not exist yet, needs creating) |
 | `pages/global-custom-css.css` | Site-wide header/footer styling | Design → Custom CSS |
 | `pages/lock-screen.html` | Bespoke password lock screen + fixed nav bar | Settings → Advanced → Code Injection → **Lock Page** (not Design → Custom CSS — the lock screen has its own separate styling system) |
+| `pages/header-injection.html` | Site-wide `<head>` injection (contains legacy content — see below) | Settings → Advanced → Code Injection → **HEADER** (a 5th, separate injection location — different from Lock Page, Design → Custom CSS, and any page's Code Block) |
 
 ## How to publish a page
 
@@ -32,6 +33,16 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 2. Find the **Lock Page** field (separate from Header/Footer).
 3. Paste the full contents of `pages/lock-screen.html` in there and save.
 4. Visit `/bespoke` in a private/incognito window (so you're not already unlocked) to see it live.
+
+## How to publish the header injection
+
+`pages/header-injection.html` also does **not** go in a Code Block — it's injected into every page's `<head>`, site-wide.
+
+1. Squarespace dashboard → **Settings → Advanced → Code Injection**.
+2. Find the **HEADER** field (separate from Footer, and separate from the Lock Page field used for the lock screen).
+3. Paste the full contents of `pages/header-injection.html` in there and save.
+
+**Discovered 2026-07-24, not created by this repo's authors originally:** this field already contained legacy content before it was ever added to this repo — a pre-dating, likely-superseded attempt at styling the Bespoke lock screen via generic Squarespace password-page selectors (superseded by the more targeted `pages/lock-screen.html`), plus a stale sunset-photo hero design for Home that was actively fighting the current Home hero via `!important` (this part *was* the cause of a real bug — Home's hero rendered with the wrong photo and washed-out text until this was found and removed), plus two "gap fix" `min-height`/`padding` overrides for the Corporate and Leisure heroes that aren't currently causing visible problems. The stale Home-hero block has been removed from the tracked file below; the other three are preserved as-is (not yet verified safe to remove) — see comments inline in the file for details on each. If you ever change `.tlac-hero` or `.tlal-hero`'s `min-height`/`padding` directly in `pages/corporate.html` / `pages/leisure.html`, remember these overrides will still apply on top.
 
 ## What changed from the original handoff doc
 
@@ -51,7 +62,7 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 
 1. **Footer logo (main):** Squarespace → Edit any page → scroll to Footer → Add Block → Image → upload `logo-main-transparent.png` → size to ~200px tall → center → Save. Footer is site-wide.
 2. **Header logo:** Hidden via `global-custom-css.css` (`.header-title-logo { display: none !important; }`) so the footer logo is the only logo. Home page link now replaces the header logo.
-3. **Bespoke lock-screen logo:** Replace the placeholder `src` in `pages/lock-screen.html` line 114 with the actual Squarespace CDN URL for `logo-bespoke-transparent.png`. The lock screen file goes in **Settings → Advanced → Code Injection → Lock Page**.
+3. **Bespoke lock-screen logo:** currently a gold Cormorant Garamond text wordmark ("Bespoke") rather than an image — a deliberate bridge (see the comment above `.tlab-lock-logo` in `pages/lock-screen.html`) since no dedicated `logo-bespoke-transparent.png` exists yet. Swap it for a real `<img>` once Andy provides that asset. The lock screen file goes in **Settings → Advanced → Code Injection → Lock Page**.
 
 ## Client revision checklist (2026-07-04 call)
 
