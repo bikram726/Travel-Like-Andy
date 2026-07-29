@@ -1,31 +1,66 @@
+/* ============================================================
+   BRAND BIBLE FOUNDATION (Aug 2026, v1.0) — replaces the previous
+   dark/gold "Travel Like Andy" system with the official travellikeandy
+   tokens. Per this repo's existing convention, each page's own <style>
+   block is fully self-contained (no shared imports between Squarespace
+   Code Blocks are possible) and duplicates these same token values
+   locally -- this file's copy governs the header/footer/nav chrome,
+   which is the one part of the site NOT inside a page's own code
+   block. Keep both copies in sync if a token value ever changes. */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+:root {
+  --tla-midnight: #12355B;
+  --tla-gold: #C9A96E;
+  --tla-sandstone: #F4EFE6;
+  --tla-white: #FFFFFF;
+  --tla-voyage: #0EA5D9;
+  --tla-sunrise: #F26A21;
+  --tla-canopy: #3C9565;
+  --tla-display: 'Cormorant Garamond', Georgia, serif;
+  --tla-body: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+}
+
 /* SMOOTH IN-PAGE SCROLLING — supports anchor links like Home's hero
    "Explore" scroll-cue. Respects reduced-motion preference. */
 html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-/* Hide header logo — logo moved to footer, HOME replaces it */
+/* Hide header logo — the old icon-badge logo is retired per the Brand
+   Bible's "Retired Visual Language" rule (Section 03). A plain
+   travellikeandy text wordmark now lives in the footer instead, styled
+   below. */
 .header-title-logo, .header-title { display: none !important; }
 
-/* DARK HEADER */
-.header, .header-announcement-bar-wrapper { background:#0a0a0a !important; }
-.header-nav-item a { color:#f0ebe0 !important; font-family:'Montserrat',sans-serif !important; letter-spacing:0.12em; text-transform:uppercase; font-size:0.78rem; }
-.header-nav-item a:hover, .header-nav-item--active a { color:#c8af78 !important; }
+/* MIDNIGHT HEADER (was near-black #0a0a0a) */
+.header, .header-announcement-bar-wrapper { background:var(--tla-midnight) !important; }
+.header-nav-item a { color:var(--tla-white) !important; font-family:var(--tla-body) !important; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; font-size:0.8rem; }
+.header-nav-item a:hover, .header-nav-item--active a { color:var(--tla-gold) !important; }
 .header-title-logo img { max-height:58px !important; width:auto !important; }
 
 /* MOBILE BURGER */
-.header-menu, .header-menu-bg { background:#0a0a0a !important; }
-.header-menu-nav-item a { color:#f0ebe0 !important; font-family:'Cormorant Garamond',serif !important; text-transform:uppercase; }
-.header-menu-nav-item a:hover { color:#c8af78 !important; }
-.burger-inner .top, .burger-inner .middle, .burger-inner .bottom { background:#c8af78 !important; }
+.header-menu, .header-menu-bg { background:var(--tla-midnight) !important; }
+.header-menu-nav-item a { color:var(--tla-white) !important; font-family:var(--tla-body) !important; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; }
+.header-menu-nav-item a:hover { color:var(--tla-gold) !important; }
+.burger-inner .top, .burger-inner .middle, .burger-inner .bottom { background:var(--tla-gold) !important; }
 
-/* DARK FOOTER */
-.footer-sections, #footerSections, .sqs-footer, footer { background:#0a0a0a !important; }
-.footer-sections p, footer p { color:#7a7060 !important; font-family:'Montserrat',sans-serif !important; font-size:0.78rem !important; letter-spacing:0.1em; text-align:center; }
-.footer-sections a, footer a { color:#c8af78 !important; }
+/* MIDNIGHT FOOTER (was near-black #0a0a0a) — wordmark, contact, nav,
+   legal/affiliation disclosure, social link, the Cue, and the
+   "Curated Personally." signature per the Brand Bible's Footer
+   component spec (Section 12). The text wordmark + Cue + signature
+   line are injected via a Code Block in the footer (not this file --
+   Design > Custom CSS can't add new footer content, only style it). */
+.footer-sections, #footerSections, .sqs-footer, footer { background:var(--tla-midnight) !important; }
+.footer-sections p, footer p { color:var(--tla-sandstone) !important; opacity:0.75; font-family:var(--tla-body) !important; font-size:0.8rem !important; letter-spacing:0.05em; text-align:center; }
+.footer-sections a, footer a { color:var(--tla-gold) !important; }
 
-/* FOOTER LOGO — enlarged so it reads clearly (overrides whatever size the
-   image block was dragged to in the editor). Block order (logo above the
-   "Travel Like Andy LLC" text) is set in the footer editor, not by CSS. */
+/* FOOTER LOGO — STILL THE OLD RETIRED ICON-BADGE IMAGE as of 2026-07-29.
+   This rule just sizes whatever image block sits there; it can't replace
+   the image with the new text wordmark by itself. That needs a manual
+   Squarespace admin swap: delete the footer's Image Block, add a Text
+   Block reading "travellikeandy" (or a Code Block for more control),
+   styled via the .tla-footer-wordmark rule below once that block exists.
+   Sizing rule kept as a harmless no-op fallback until that swap happens. */
 .footer-sections .sqs-block-image img,
 footer .sqs-block-image img,
 .sqs-footer .sqs-block-image img {
@@ -34,6 +69,17 @@ footer .sqs-block-image img,
   height:auto !important;
   margin:0 auto 0.75rem !important;
   display:block !important;
+}
+.tla-footer-wordmark {
+  display:block;
+  text-align:center;
+  font-family:var(--tla-display);
+  font-weight:400;
+  font-style:normal;
+  font-size:1.8rem;
+  color:var(--tla-white);
+  letter-spacing:0.01em;
+  margin:0 auto 0.75rem;
 }
 
 /* REMOVE EXTRA SECTION GAPS — every page is a single code block that
