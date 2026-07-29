@@ -8,7 +8,7 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 |---|---|---|
 | `pages/home.html` | Home | `/` (Not Linked, reached via logo) |
 | `pages/leisure.html` | Leisure | `/leisure` |
-| `pages/corporate.html` | Executive (nav label renamed; file/slug still say "corporate") | `/corporate` |
+| `pages/groups.html` | Groups (replaces the old Corporate/Executive page 2026-07-29 per the Brand Bible — see `travel-like-andy-brand-bible` memory) | Likely still `/corporate` unless the Squarespace page slug is changed — reuse the existing page's Code Block and just retitle the nav label to "Groups", rather than creating a new page, to avoid breaking the existing URL |
 | `pages/bespoke.html` | Bespoke (password: `LuxeAccess`) | `/bespoke` |
 | `pages/about.html` | About | `/about` |
 | `pages/contact.html` | Contact | `/contact` |
