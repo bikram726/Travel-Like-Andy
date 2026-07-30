@@ -27,12 +27,6 @@
 .tla-about .tlaa-intro { background:var(--sandstone); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
 .tla-about .tlaa-intro p { max-width:700px; margin:0 auto; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; color:var(--midnight); font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.7; }
 
-.tla-about .tlaa-stats { background:var(--white); padding:clamp(4rem,9vh,6rem) 1.5rem; }
-.tla-about .tlaa-stats-grid { max-width:1000px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-.tla-about .tlaa-stat { text-align:center; background:var(--sandstone); border-radius:12px; padding:2.6rem 1rem; }
-.tla-about .tlaa-stat .tlaa-num { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; color:var(--gold); font-size:2.6rem; display:block; margin-bottom:0.5rem; }
-.tla-about .tlaa-stat p { color:var(--midnight); font-size:0.78rem; letter-spacing:0.15em; text-transform:uppercase; margin:0; font-family:'Source Sans 3',sans-serif; }
-
 .tla-about .tlaa-story { background:var(--midnight); color:var(--white); width:100%; display:table; table-layout:fixed; }
 .tla-about .tlaa-story-cell { display:table-cell; vertical-align:middle; width:50%; padding:clamp(3rem,8vh,5rem) 4vw; }
 .tla-about .tlaa-story-cell.tlaa-img { background:url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5c4c2909-7be2-4a73-9326-fd644a207322/01-andy-conducting-orchestra.jpg') center/cover no-repeat; min-height:460px; }
@@ -73,7 +67,6 @@
 @media (max-width:900px) { .tla-about .tlaa-gallery { column-count:2; } }
 @media (max-width:767px) {
   .tla-about .tlaa-hero { min-height:70vh; }
-  .tla-about .tlaa-stats-grid { grid-template-columns:1fr; }
   .tla-about .tlaa-story, .tla-about .tlaa-story-cell { display:block; width:100%; }
   .tla-about .tlaa-story-cell.tlaa-img { min-height:300px; }
   .tla-about .tlaa-story-cell { padding:3rem 1.4rem; }
@@ -93,14 +86,6 @@
 
   <section class="tlaa-intro tlaa-reveal">
     <p>I have never planned a journey I would not take myself.<br>Everything I send people on, I have lived first.</p>
-  </section>
-
-  <section class="tlaa-stats tlaa-reveal">
-    <div class="tlaa-stats-grid">
-      <div class="tlaa-stat"><span class="tlaa-num">2&times;</span><p>Around The World</p></div>
-      <div class="tlaa-stat"><span class="tlaa-num">6</span><p>Continents Explored</p></div>
-      <div class="tlaa-stat"><span class="tlaa-num">&infin;</span><p>Connections Worldwide</p></div>
-    </div>
   </section>
 
   <section class="tlaa-story tlaa-reveal">

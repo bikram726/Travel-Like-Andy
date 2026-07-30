@@ -2,23 +2,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 .tla-collections-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
 .tla-collections {
-  --midnight:#12355B; --gold:#C9A96E; --white:#FFFFFF;
-  --muted-on-dark:rgba(244,239,230,0.75);
-  background:var(--midnight); color:var(--white);
-  font-family:'Source Sans 3',sans-serif; font-weight:300; width:100%;
+  --midnight:#12355B; --gold:#C9A96E; --sandstone:#F4EFE6; --white:#FFFFFF; --sunrise:#F26A21;
+  --muted-on-light:rgba(18,53,91,0.65); --muted-on-dark:rgba(244,239,230,0.75);
+  font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
 }
 .tla-collections * { box-sizing:border-box; }
-.tla-collections h1 { font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--white); margin:0; font-size:clamp(3rem,7vw,6.5rem); line-height:0.95; letter-spacing:-0.02em; }
+.tla-collections h1,.tla-collections h2 { font-family:'Cormorant Garamond',serif; font-weight:600; margin:0; }
+.tla-collections h1 { font-size:clamp(3rem,7vw,6.5rem); line-height:0.95; letter-spacing:-0.02em; }
+.tla-collections h2 { font-size:clamp(1.8rem,3.6vw,2.6rem); line-height:1.05; }
 .tla-collections em { font-style:italic; color:var(--gold); }
-.tla-collections .tlco-hero { min-height:70vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; }
-.tla-collections .tlco-hero-inner { max-width:780px; }
+.tla-collections p { font-size:1.05rem; line-height:1.65; }
+.tla-collections .tlco-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); }
 .tla-collections .tlco-lockup { display:flex; flex-direction:column; align-items:center; gap:0.35rem; margin-bottom:2rem; }
 .tla-collections .tlco-lockup-word { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:1.6rem; color:var(--white); }
 .tla-collections .tlco-lockup-division { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); }
-.tla-collections .tlco-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin:0 0 1.4rem; }
-.tla-collections .tlco-deck { color:var(--muted-on-dark); font-size:1.08rem; line-height:1.65; max-width:560px; margin:1.6rem auto 2.4rem; }
-.tla-collections .tlco-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; background:#F26A21; color:var(--white); border:1px solid #F26A21; transition:background 0.3s ease-out, border-color 0.3s ease-out; }
+
+.tla-collections .tlco-hero { background:var(--midnight); color:var(--white); min-height:60vh; display:flex; align-items:center; justify-content:center; padding:clamp(4rem,10vh,7rem) 1.5rem; text-align:center; }
+.tla-collections .tlco-hero-inner { max-width:780px; }
+.tla-collections .tlco-hero .tlco-eyebrow { margin:0 0 1.4rem; display:block; }
+.tla-collections .tlco-deck { color:var(--muted-on-dark); max-width:560px; margin:1.6rem auto 0; }
+
+.tla-collections .tlco-intro { background:var(--sandstone); color:var(--midnight); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
+.tla-collections .tlco-intro p { max-width:700px; margin:0 auto; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:clamp(1.15rem,2.2vw,1.5rem); line-height:1.7; }
+
+.tla-collections .tlco-interest { background:var(--white); color:var(--midnight); padding:clamp(4rem,10vh,7rem) 1.5rem; }
+.tla-collections .tlco-interest-inner { max-width:520px; margin:0 auto; text-align:center; }
+.tla-collections .tlco-interest-inner .tlco-eyebrow { display:block; margin:0 0 1rem; }
+.tla-collections .tlco-interest-inner p { color:var(--muted-on-light); margin:0.8rem 0 2.2rem; }
+.tla-collections .tlco-form { display:grid; gap:1.1rem; text-align:left; }
+.tla-collections .tlco-form label { font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.4rem; display:block; }
+.tla-collections .tlco-form input, .tla-collections .tlco-form textarea { width:100%; background:transparent; border:none; border-bottom:1px solid rgba(18,53,91,0.25); color:var(--midnight); font-family:'Source Sans 3',sans-serif; font-size:0.98rem; padding:0.7rem 0.2rem; resize:vertical; }
+.tla-collections .tlco-form input::placeholder, .tla-collections .tlco-form textarea::placeholder { color:var(--muted-on-light); }
+.tla-collections .tlco-form input:focus, .tla-collections .tlco-form textarea:focus { outline:none; border-color:var(--gold); }
+.tla-collections .tlco-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.tla-collections .tlco-form-result { display:none; margin-top:0.4rem; padding:1rem 1.2rem; border-radius:8px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1rem; line-height:1.5; border:1px solid rgba(18,53,91,0.18); color:var(--midnight); background:var(--sandstone); }
+.tla-collections .tlco-form-result.tlco-form-error { border-color:rgba(200,60,60,0.4); color:#a83a3a; background:rgba(200,60,60,0.06); }
+
+.tla-collections .tlco-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; background:var(--sunrise); color:var(--white); border:1px solid var(--sunrise); cursor:pointer; transition:background 0.3s ease-out, border-color 0.3s ease-out; justify-self:start; margin-top:0.4rem; }
 .tla-collections .tlco-btn:hover { background:#d85a15; border-color:#d85a15; }
+.tla-collections .tlco-btn:disabled { opacity:0.5; cursor:default; }
 </style>
 <div class="tla-collections-wrap"><div class="tla-collections">
   <section class="tlco-hero"><div class="tlco-hero-inner">
@@ -28,7 +50,87 @@
     </div>
     <p class="tlco-eyebrow">Hosted Departures</p>
     <h1>Journeys are being <em>curated.</em></h1>
-    <p class="tlco-deck">Small-group departures, personally led or endorsed by Andy, are coming to this page soon.</p>
-    <a href="/contact" class="tlco-btn">Begin a Journey</a>
+    <p class="tlco-deck">Small-group departures, personally led or endorsed by Andy. The first hosted departures are being finalized &mdash; join the interest list to hear about them first.</p>
   </div></section>
+
+  <section class="tlco-intro">
+    <p>Every departure carries the same standard as a private itinerary &mdash; Andy has been to the places, and travels the route himself before anyone else does.</p>
+  </section>
+
+  <section class="tlco-interest">
+    <div class="tlco-interest-inner">
+      <span class="tlco-eyebrow">Interest List</span>
+      <h2>Be the first to know.</h2>
+      <p>Leave your details and Andy will reach out personally once the first departures are set.</p>
+      <form id="tlco-form" class="tlco-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+        <input type="hidden" name="access_key" value="ed14fb9c-32df-4969-85c0-f05217c9724c">
+        <input type="hidden" name="to" value="webmaster@travellikeandy.com">
+        <input type="hidden" name="subject" value="Collections — Interest List">
+        <input type="hidden" name="from_name" value="travellikeandy — Collections">
+        <input type="checkbox" name="botcheck" class="tlco-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div>
+          <label for="tlco-name">Name</label>
+          <input id="tlco-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="tlco-email">Email</label>
+          <input id="tlco-email" name="email" type="email" inputmode="email" placeholder="your@email.com" autocomplete="email" required>
+        </div>
+        <div>
+          <label for="tlco-interest">What kind of departure interests you?</label>
+          <textarea id="tlco-interest" name="message" rows="3" placeholder="A region, a season, a type of trip — whatever comes to mind"></textarea>
+        </div>
+        <button type="submit" class="tlco-btn">Join the Interest List</button>
+        <div id="tlco-result" class="tlco-form-result" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
 </div></div>
+<script>
+(function(){
+  var form = document.getElementById('tlco-form');
+  var result = document.getElementById('tlco-result');
+  var btn = form ? form.querySelector('.tlco-btn') : null;
+  if (!form) { return; }
+
+  function showResult(msg, isError) {
+    result.classList.toggle('tlco-form-error', !!isError);
+    result.style.display = 'block';
+    result.textContent = msg;
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (form.botcheck && form.botcheck.checked) { return; }
+
+    var name = (form.name.value || '').trim();
+    var email = (form.email.value || '').trim();
+    if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showResult('Please enter your name and a valid email address.', true);
+      return;
+    }
+
+    if (btn) { btn.disabled = true; }
+    showResult('Adding you to the list…', false);
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(Object.fromEntries(new FormData(form)))
+    })
+    .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
+    .then(function(r){
+      if (r.ok && r.json && r.json.success) {
+        form.reset();
+        showResult('Thank you — Andy will be in touch when the first departures are set.', false);
+      } else {
+        showResult((r.json && r.json.message) ? r.json.message : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
+      }
+    })
+    .catch(function(){
+      showResult('Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
+    })
+    .then(function(){ if (btn) { btn.disabled = false; } });
+  });
+})();
+</script>
