@@ -12,8 +12,6 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 | `pages/bespoke.html` | Bespoke (password: `LuxeAccess`) | `/bespoke` |
 | `pages/about.html` | About | `/about` |
 | `pages/contact.html` | Contact | `/contact` |
-| `pages/group.html` | OLD "Group" family-travel placeholder — doesn't map to any page in the Brand Bible's new site map (added 2026-07-29); fate undecided, see `travel-like-andy-brand-bible` memory | `/group` (page does not exist yet, needs creating) |
-| `pages/gallery.html` | Gallery (placeholder, ready for Slides embed) — also doesn't map to the new site map; fate undecided | `/gallery` (page does not exist yet, needs creating) |
 | `pages/collections.html` | Collections — new page added 2026-07-29 per the Brand Bible (Hosted Departures). Bare-bones placeholder, deliberately not built out further — no real "current journeys" content exists yet | `/collections` (page does not exist yet, needs creating) |
 | `pages/global-custom-css.css` | Site-wide header/footer styling | Design → Custom CSS |
 | `pages/lock-screen.html` | Bespoke password lock screen + fixed nav bar | Settings → Advanced → Code Injection → **Lock Page** (not Design → Custom CSS — the lock screen has its own separate styling system) |
@@ -66,6 +64,8 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 3. **Bespoke lock-screen logo:** currently a gold Cormorant Garamond text wordmark ("Bespoke") rather than an image — a deliberate bridge (see the comment above `.tlab-lock-logo` in `pages/lock-screen.html`) since no dedicated `logo-bespoke-transparent.png` exists yet. Swap it for a real `<img>` once Andy provides that asset. The lock screen file goes in **Settings → Advanced → Code Injection → Lock Page**.
 
 ## Client revision checklist (2026-07-04 call)
+
+**Superseded 2026-07-30 by the Brand Bible rebrand** (see `travel-like-andy-brand-bible` memory) — kept below for history, not as current instructions. The nav/page set it describes (Executive, Group, Gallery) no longer applies: Executive was renamed Groups and rebuilt (`pages/groups.html`), and `pages/group.html`/`pages/gallery.html` were retired outright (never published, zero real content, and Group's function is now covered by the Groups page) — their `/group` and `/gallery` links have already been removed from `pages/lock-screen.html`'s nav. Current page set lives in the Files table above.
 
 Full nav should read: **Home, Leisure, Executive, Group, Bespoke, About, Gallery** on every page. Split into what's done in code vs. what needs doing directly in Squarespace admin (page/nav structure isn't stored in these files — only page content and site-wide CSS/JS are).
 
