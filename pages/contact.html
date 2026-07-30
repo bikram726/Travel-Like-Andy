@@ -1,46 +1,62 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 .tla-contact-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
-.tla-contact { --gold:#c8af78; --gold-bright:#dfc898; --bg:#0a0a0a; --surface:#0d0d0a; --surface-2:#131310; --text:#f0ebe0; --muted:#7a7060; background:var(--bg); color:var(--text); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+.tla-contact {
+  --midnight:#12355B; --gold:#C9A96E; --sandstone:#F4EFE6; --white:#FFFFFF;
+  --voyage:#0EA5D9; --sunrise:#F26A21; --canopy:#3C9565;
+  --muted-on-light:rgba(18,53,91,0.65); --muted-on-dark:rgba(244,239,230,0.75);
+  background:var(--white); color:var(--midnight);
+  font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
+}
 .tla-contact * { box-sizing:border-box; }
-.tla-contact h1,.tla-contact h2 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
-.tla-contact em { font-style:italic; color:var(--gold); font-weight:300; }
-.tla-contact .tlact-hero { padding:6rem 1.5rem 1rem; text-align:center; }
-.tla-contact .tlact-hero h1 { font-size:clamp(1.9rem,5vw,3.2rem); line-height:1.2; max-width:760px; margin:0 auto; }
-.tla-contact .tlact-page-logo { max-width:200px; width:60%; margin:0 auto 2rem; display:block; }
-.tla-contact .tlact-page-logo img { width:100%; height:auto; display:block; }
-.tla-contact .tlact-hero p { color:var(--muted); font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:1.3rem; }
-.tla-contact .tlact-wrap-inner { max-width:560px; margin:0 auto; padding:2.5rem 1.5rem 4rem; }
+.tla-contact h1,.tla-contact h2 { font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--white); margin:0; }
+.tla-contact em { font-style:italic; color:var(--gold); }
+.tla-contact .tlact-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); }
+.tla-contact .tlact-lockup { display:flex; flex-direction:column; align-items:center; gap:0.35rem; margin-bottom:2rem; }
+.tla-contact .tlact-lockup-word { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:1.6rem; color:var(--white); letter-spacing:0.01em; }
+.tla-contact .tlact-lockup-division { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); }
+
+.tla-contact .tlact-hero { background:var(--midnight); color:var(--white); padding:clamp(4.5rem,10vh,7rem) 1.5rem clamp(3rem,7vh,5rem); text-align:center; }
+.tla-contact .tlact-hero h1 { font-size:clamp(2.4rem,6vw,4.4rem); line-height:1.02; letter-spacing:-0.015em; max-width:760px; margin:0 auto; }
+.tla-contact .tlact-hero p { color:var(--muted-on-dark); font-size:1.05rem; margin-top:1.3rem; }
+
+.tla-contact .tlact-wrap-inner { max-width:560px; margin:0 auto; padding:clamp(3rem,7vh,4.5rem) 1.5rem 4rem; }
 .tla-contact .tlact-form { display:grid; gap:1.1rem; }
-.tla-contact .tlact-form label { font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem; display:block; }
-.tla-contact .tlact-form input, .tla-contact .tlact-form textarea { width:100%; background:transparent; border:none; border-bottom:1px solid rgba(200,175,120,0.35); color:var(--text); font-family:'Montserrat',sans-serif; font-size:0.95rem; padding:0.7rem 0.2rem; resize:vertical; }
-.tla-contact .tlact-form input::placeholder, .tla-contact .tlact-form textarea::placeholder { color:var(--muted); }
+.tla-contact .tlact-form label { font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.4rem; display:block; }
+.tla-contact .tlact-form input, .tla-contact .tlact-form textarea { width:100%; background:transparent; border:none; border-bottom:1px solid rgba(18,53,91,0.25); color:var(--midnight); font-family:'Source Sans 3',sans-serif; font-size:0.98rem; padding:0.7rem 0.2rem; resize:vertical; }
+.tla-contact .tlact-form input::placeholder, .tla-contact .tlact-form textarea::placeholder { color:var(--muted-on-light); }
 .tla-contact .tlact-form input:focus, .tla-contact .tlact-form textarea:focus { outline:none; border-color:var(--gold); }
-.tla-contact .tlact-form input[aria-invalid="true"], .tla-contact .tlact-form textarea[aria-invalid="true"] { border-color:rgba(200,90,90,0.6); }
+.tla-contact .tlact-form input[aria-invalid="true"], .tla-contact .tlact-form textarea[aria-invalid="true"] { border-color:rgba(200,60,60,0.6); }
 .tla-contact .tlact-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-.tla-contact .tlact-field-error { display:block; min-height:1.1em; color:#e3a3a3; font-size:0.72rem; letter-spacing:0.03em; margin-top:0.35rem; font-family:'Montserrat',sans-serif; }
-.tla-contact .tlact-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); background:transparent; cursor:pointer; text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; justify-self:start; margin-top:0.6rem; font-family:'Montserrat',sans-serif; }
-.tla-contact .tlact-btn:hover { background:var(--gold); color:var(--bg); }
+.tla-contact .tlact-field-error { display:block; min-height:1.1em; color:#a83a3a; font-size:0.74rem; letter-spacing:0.02em; margin-top:0.35rem; font-family:'Source Sans 3',sans-serif; }
+.tla-contact .tlact-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; border:1px solid var(--sunrise); background:var(--sunrise); color:var(--white); cursor:pointer; transition:background 0.3s ease-out, border-color 0.3s ease-out; justify-self:start; margin-top:0.6rem; }
+.tla-contact .tlact-btn:hover { background:#d85a15; border-color:#d85a15; }
 .tla-contact .tlact-btn:disabled { opacity:0.5; cursor:default; }
-.tla-contact .tlact-result { display:none; margin-top:1.2rem; padding:1rem 1.2rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; line-height:1.5; border:1px solid rgba(200,175,120,0.35); color:var(--gold); background:rgba(200,175,120,0.05); }
-.tla-contact .tlact-result.tlact-error { border-color:rgba(200,90,90,0.5); color:#e3a3a3; background:rgba(200,90,90,0.06); }
-.tla-contact .tlact-or { text-align:center; padding:3rem 1.5rem 0.5rem; color:var(--muted); font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; border-top:0.5px solid rgba(200,175,120,0.15); max-width:560px; margin:0 auto; }
+.tla-contact .tlact-result { display:none; margin-top:1.2rem; padding:1rem 1.2rem; border-radius:8px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; line-height:1.5; border:1px solid rgba(18,53,91,0.18); color:var(--midnight); background:var(--sandstone); }
+.tla-contact .tlact-result.tlact-error { border-color:rgba(200,60,60,0.4); color:#a83a3a; background:rgba(200,60,60,0.06); }
+
+.tla-contact .tlact-or { text-align:center; padding:clamp(3rem,6vh,4rem) 1.5rem 0.5rem; color:var(--muted-on-light); font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; max-width:560px; margin:0 auto; }
 .tla-contact .tlact-cards { max-width:560px; margin:0 auto; display:grid; gap:1rem; padding:1.5rem; }
-.tla-contact .tlact-card { position:relative; display:flex; align-items:center; gap:1.2rem; background:var(--surface); border:1px solid rgba(200,175,120,0.18); padding:1.3rem 1.5rem; text-decoration:none; color:var(--text); transition:all 0.35s ease; cursor:pointer; text-align:left; width:100%; font-family:inherit; }
-.tla-contact .tlact-card:hover { border-color:var(--gold); transform:translateX(4px); background:var(--surface-2); }
+.tla-contact .tlact-card { position:relative; display:flex; align-items:center; gap:1.2rem; background:var(--sandstone); border-radius:12px; padding:1.3rem 1.5rem; text-decoration:none; color:var(--midnight); transition:all 0.32s cubic-bezier(.22,.61,.36,1); cursor:pointer; text-align:left; width:100%; font-family:inherit; }
+.tla-contact .tlact-card:hover { transform:translateX(4px); box-shadow:0 14px 32px rgba(18,53,91,0.12); }
 .tla-contact .tlact-icon { flex:0 0 auto; width:24px; height:24px; color:var(--gold); display:flex; align-items:center; justify-content:center; }
 .tla-contact .tlact-icon svg { width:22px; height:22px; stroke:var(--gold); fill:none; stroke-width:1.4; }
 .tla-contact .tlact-card .tlact-body { flex:1 1 auto; }
-.tla-contact .tlact-card .tlact-label { font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:0.25rem; }
-.tla-contact .tlact-card .tlact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.15rem; color:var(--gold); line-height:1.2; }
-.tla-contact .tlact-card .tlact-action { flex:0 0 auto; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); transition:color 0.3s ease; }
+.tla-contact .tlact-card .tlact-label { font-size:0.68rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted-on-light); display:block; margin-bottom:0.25rem; }
+.tla-contact .tlact-card .tlact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:1.15rem; color:var(--midnight); line-height:1.2; }
+.tla-contact .tlact-card .tlact-action { flex:0 0 auto; font-size:0.62rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted-on-light); transition:color 0.3s ease; }
 .tla-contact .tlact-card:hover .tlact-action { color:var(--gold); }
-.tla-contact .tlact-sig { text-align:center; padding:3rem 1.5rem 6rem; font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--muted); font-size:0.95rem; }
-.tla-contact .tlact-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
-.tla-contact .tlact-reveal.tlact-in { opacity:1; transform:translateY(0); }
-@media (prefers-reduced-motion: reduce) { .tla-contact .tlact-reveal { opacity:1; transform:none; } }
+
+.tla-contact .tlact-close { background:var(--midnight); color:var(--white); text-align:center; padding:clamp(4rem,8vh,5.5rem) 1.5rem; }
+.tla-contact .tlact-cue { display:block; color:var(--gold); font-size:1.1rem; letter-spacing:0.3em; margin:0 0 0.6rem; opacity:0.8; }
+.tla-contact .tlact-sig { font-family:'Cormorant Garamond',serif; font-style:italic; margin:0; color:var(--muted-on-dark); }
+
+.tla-contact .tlact-reveal { opacity:1; transform:none; }
+.tla-contact .js-reveal .tlact-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
+.tla-contact .js-reveal .tlact-reveal.tlact-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-contact .js-reveal .tlact-reveal { opacity:1; transform:none; transition:none; } }
 @media (max-width:767px) {
-  .tla-contact .tlact-hero { padding:4.5rem 1.2rem 1rem; }
+  .tla-contact .tlact-hero { padding:3.5rem 1.2rem 2.5rem; }
   .tla-contact .tlact-card { gap:0.9rem; padding:1.15rem 1.2rem; }
   .tla-contact .tlact-card .tlact-value { font-size:1.05rem; }
   .tla-contact .tlact-card .tlact-action { display:none; }
@@ -48,8 +64,11 @@
 </style>
 <div class="tla-contact-wrap"><div class="tla-contact">
   <section class="tlact-hero">
-    <div class="tlact-page-logo"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c889b1cc-fad8-4303-b6a3-6531e3d8471c/logo-main-transparent.png" alt="#travellikeandy" loading="lazy"></div>
-    <h1>Tell Andy where you <em>dream</em> of going.</h1>
+    <div class="tlact-lockup">
+      <span class="tlact-lockup-word">travellikeandy</span>
+      <span class="tlact-lockup-division">Contact</span>
+    </div>
+    <h1>Let's begin the <em>conversation.</em></h1>
     <p>Every journey begins with a note</p>
   </section>
 
@@ -74,7 +93,7 @@
            bug to fix. -->
       <input type="hidden" name="to" value="webmaster@travellikeandy.com">
       <input type="hidden" name="subject" value="New inquiry from travellikeandy.com">
-      <input type="hidden" name="from_name" value="Travel Like Andy Website">
+      <input type="hidden" name="from_name" value="travellikeandy Website">
 
       <!-- Honeypot: real visitors never see or reach this field (hidden off-screen
            via CSS, unreachable via Tab, excluded from autofill and screen readers).
@@ -94,7 +113,7 @@
         <span id="cemail-error" class="tlact-field-error" aria-live="polite"></span>
       </div>
       <div>
-        <label for="cdream">Where you dream of going</label>
+        <label for="cdream">Where this journey begins</label>
         <input id="cdream" name="destination" type="text" placeholder="A place, a feeling, a country" required aria-describedby="cdream-error">
         <span id="cdream-error" class="tlact-field-error" aria-live="polite"></span>
       </div>
@@ -113,7 +132,7 @@
            exactly what caused Squarespace's code-block sanitizer to choke and
            spam "Script Disabled" across this whole block. -->
 
-      <button type="submit" class="tlact-btn">Tell Andy</button>
+      <button type="submit" class="tlact-btn">Begin a Journey</button>
       <div id="tlact-result" class="tlact-result" role="status" aria-live="polite"></div>
     </form>
   </section>
@@ -142,17 +161,22 @@
     </a>
   </section>
 
-  <p class="tlact-sig">"Where do you dream of going?" &mdash; Andy Eisenmann</p>
+  <section class="tlact-close">
+    <span class="tlact-cue">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;/ &#10022; &#10022; &#10022;</span>
+    <p class="tlact-sig">Curated Personally.<br>Andy Eisenmann &middot; Fora Travel Partner</p>
+  </section>
 </div></div>
 <script>
 (function(){
   var els = document.querySelectorAll('.tlact-reveal');
+  var wrap = document.querySelector('.tla-contact');
+  if (wrap) { wrap.classList.add('js-reveal'); }
   if (!('IntersectionObserver' in window)) {
     els.forEach(function(e){ e.classList.add('tlact-in'); });
   } else {
     var io = new IntersectionObserver(function(entries){
       entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlact-in'); io.unobserve(entry.target); } });
-    }, { threshold: 0.15 });
+    }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
     els.forEach(function(e){ io.observe(e); });
   }
 
@@ -183,7 +207,7 @@
     else { setFieldError(form.email, ''); }
 
     var destVal = trimVal(form.destination.value);
-    if (!destVal) { setFieldError(form.destination, 'Please tell Andy where you dream of going.'); valid = false; }
+    if (!destVal) { setFieldError(form.destination, 'Please tell Andy where this journey begins.'); valid = false; }
     else { setFieldError(form.destination, ''); }
 
     return valid;

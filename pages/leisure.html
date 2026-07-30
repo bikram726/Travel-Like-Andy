@@ -1,53 +1,73 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
-.tla-leisure-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; margin-bottom:-90px; }
-.tla-leisure { --bg:#f5ede0; --surface:#ffffff; --surface-2:#fbf6ec; --gold:#a8894e; --navy:#1a3a5c; --ink:#1a1a1a; --muted:#7a7263; background:var(--bg); color:var(--ink); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+.tla-leisure-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-leisure {
+  --midnight:#12355B; --gold:#C9A96E; --sandstone:#F4EFE6; --white:#FFFFFF;
+  --voyage:#0EA5D9; --sunrise:#F26A21; --canopy:#3C9565;
+  --muted-on-light:rgba(18,53,91,0.65); --muted-on-dark:rgba(244,239,230,0.75);
+  background:var(--white); color:var(--midnight);
+  font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
+}
 .tla-leisure * { box-sizing:border-box; }
-.tla-leisure h1,.tla-leisure h2,.tla-leisure h3 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--ink); margin:0; }
-.tla-leisure em { font-style:italic; color:var(--gold); font-weight:300; }
-.tla-leisure .tlal-hero { min-height:70vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:radial-gradient(ellipse at 50% 0%, rgba(168,137,78,0.12), transparent 60%), var(--bg); border-bottom:0.5px solid rgba(26,58,92,0.15); }
+.tla-leisure h1,.tla-leisure h2,.tla-leisure h3 { font-family:'Cormorant Garamond',serif; font-weight:600; margin:0; }
+.tla-leisure h1 { font-size:clamp(2.6rem,6vw,4.8rem); line-height:1.0; letter-spacing:-0.02em; }
+.tla-leisure h2 { font-size:clamp(2rem,4vw,3.2rem); line-height:1.05; letter-spacing:-0.015em; }
+.tla-leisure h3 { font-size:clamp(1.4rem,2.4vw,1.8rem); }
+.tla-leisure em { font-style:italic; color:var(--gold); }
+.tla-leisure p { font-size:1.05rem; line-height:1.65; }
+.tla-leisure .tlal-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; }
+.tla-leisure .tlal-lockup { display:flex; flex-direction:column; align-items:center; gap:0.35rem; margin-bottom:2rem; }
+.tla-leisure .tlal-lockup-word { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:1.6rem; color:var(--midnight); letter-spacing:0.01em; }
+.tla-leisure .tlal-lockup-division { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); }
+
+.tla-leisure .tlal-hero { min-height:60vh; display:flex; align-items:center; justify-content:center; padding:clamp(4.5rem,10vh,7rem) 1.5rem; text-align:center; background:var(--sandstone); }
 .tla-leisure .tlal-hero-inner { max-width:880px; }
-.tla-leisure .tlal-page-logo { max-width:200px; width:60%; margin:0 auto 2rem; display:block; }
-.tla-leisure .tlal-page-logo img { width:100%; height:auto; display:block; }
-.tla-leisure .tlal-hero h1 { font-size:clamp(2rem,5.5vw,4rem); line-height:1.15; margin-bottom:1.4rem; }
-.tla-leisure .tlal-sub { color:var(--navy); font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; margin:0 0 2.5rem; }
-.tla-leisure .tlal-btn { display:inline-block; padding:1.1em 2.6em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.75rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; }
-.tla-leisure .tlal-btn:hover { background:var(--gold); color:#fff; }
-.tla-leisure .tlal-section { padding:5.5rem 1.5rem; }
+.tla-leisure .tlal-hero .tlal-eyebrow { color:var(--gold); margin:0 0 1.4rem; }
+.tla-leisure .tlal-hero h1 { margin-bottom:1.4rem; }
+.tla-leisure .tlal-sub { color:var(--muted-on-light); font-size:0.85rem; letter-spacing:0.2em; text-transform:uppercase; margin:0 0 2.5rem; }
+.tla-leisure .tlal-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; border:1px solid var(--sunrise); background:var(--sunrise); color:var(--white); transition:background 0.3s ease-out, border-color 0.3s ease-out; }
+.tla-leisure .tlal-btn:hover { background:#d85a15; border-color:#d85a15; }
+.tla-leisure .tlal-btn-secondary { background:transparent; color:var(--midnight); border:1px solid var(--midnight); }
+.tla-leisure .tlal-btn-secondary:hover { background:rgba(18,53,91,0.08); }
+
+.tla-leisure .tlal-section { background:var(--white); padding:clamp(4rem,10vh,7rem) 1.5rem; }
 .tla-leisure .tlal-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
-.tla-leisure .tlal-card { background:var(--surface); border:1px solid rgba(26,58,92,0.12); padding:2.6rem 1.6rem; text-align:center; transition:all 0.4s ease; }
-.tla-leisure .tlal-card:hover { border-color:var(--gold); transform:translateY(-5px); box-shadow:0 20px 50px rgba(26,58,92,0.1); }
-.tla-leisure .tlal-mark { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-style:italic; color:var(--gold); margin-bottom:1rem; }
-.tla-leisure .tlal-card h2 { font-size:1.3rem; margin-bottom:0.7rem; }
-.tla-leisure .tlal-card p { color:var(--muted); font-size:0.85rem; line-height:1.6; margin:0; }
-.tla-leisure .tlal-feature { width:100%; display:table; table-layout:fixed; background:var(--surface-2); }
-.tla-leisure .tlal-feature-cell { display:table-cell; vertical-align:middle; width:50%; padding:4.5rem 4vw; }
+.tla-leisure .tlal-card { background:var(--sandstone); border-radius:12px; padding:2.6rem 1.8rem; text-align:left; transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1); }
+.tla-leisure .tlal-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(18,53,91,0.12); }
+.tla-leisure .tlal-card h2 { color:var(--midnight); font-size:1.3rem; margin-bottom:0.6rem; }
+.tla-leisure .tlal-card p { color:var(--muted-on-light); font-size:0.92rem; margin:0; }
+
+.tla-leisure .tlal-feature { width:100%; display:table; table-layout:fixed; background:var(--midnight); color:var(--white); }
+.tla-leisure .tlal-feature-cell { display:table-cell; vertical-align:middle; width:50%; padding:clamp(3rem,8vh,5rem) 4vw; }
 .tla-leisure .tlal-feature-cell.tlal-img { background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat; min-height:420px; }
-.tla-leisure .tlal-feature h2 { font-size:clamp(1.6rem,3.6vw,2.4rem); font-style:italic; margin-bottom:1.2rem; }
-.tla-leisure .tlal-feature p { color:var(--muted); font-size:0.95rem; line-height:1.8; margin:0 0 1.8rem; }
-.tla-leisure .tlal-close { background:var(--navy); color:#f0ebe0; text-align:center; padding:5.5rem 1.5rem; }
-.tla-leisure .tlal-close h2 { color:#f0ebe0; font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; margin-bottom:1.6rem; }
-.tla-leisure .tlal-close .tlal-btn { border-color:#dcc89a; color:#dcc89a; }
-.tla-leisure .tlal-close .tlal-btn:hover { background:#dcc89a; color:var(--navy); }
-.tla-leisure .tlal-gallery-head { text-align:center; padding:5.5rem 1.5rem 2.5rem; }
-.tla-leisure .tlal-gallery-head h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; }
-.tla-leisure .tlal-gallery-head p { color:var(--muted); font-size:0.8rem; letter-spacing:0.2em; text-transform:uppercase; margin-top:1rem; }
-.tla-leisure .tlal-gallery { column-count:3; column-gap:0.6rem; max-width:1200px; margin:0 auto; padding:0 1.5rem 5.5rem; }
-.tla-leisure .tlal-shot { position:relative; overflow:hidden; break-inside:avoid; display:block; width:100%; margin:0 0 0.6rem; padding:0; border:1px solid rgba(26,58,92,0.12); background:none; font:inherit; text-align:left; cursor:zoom-in; appearance:none; -webkit-appearance:none; }
+.tla-leisure .tlal-feature h2 { font-style:italic; margin-bottom:1.2rem; }
+.tla-leisure .tlal-feature p { color:var(--muted-on-dark); margin:0 0 1.8rem; }
+
+.tla-leisure .tlal-gallery-head { text-align:center; background:var(--white); padding:clamp(4rem,9vh,6rem) 1.5rem 2.5rem; }
+.tla-leisure .tlal-gallery-head .tlal-eyebrow { color:var(--gold); display:block; margin:0 0 1rem; }
+.tla-leisure .tlal-gallery-head h2 { font-style:italic; }
+.tla-leisure .tlal-gallery { column-count:3; column-gap:0.6rem; max-width:1200px; margin:0 auto; padding:0 1.5rem 6rem; background:var(--white); }
+.tla-leisure .tlal-shot { position:relative; overflow:hidden; break-inside:avoid; display:block; width:100%; margin:0 0 0.6rem; padding:0; border-radius:12px; border:none; background:none; font:inherit; text-align:left; cursor:zoom-in; appearance:none; -webkit-appearance:none; }
 .tla-leisure .tlal-shot img { width:100%; height:auto; display:block; transition:transform 0.8s ease; }
 .tla-leisure .tlal-shot:hover img { transform:scale(1.05); }
-.tla-leisure .tlal-shot:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
-.tla-leisure .tlal-shot-hint { position:absolute; inset:auto 0 0 0; padding:0.6rem 0.8rem; background:linear-gradient(0deg, rgba(0,0,0,0.55), transparent); color:#fff; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0; transition:opacity 0.35s ease; pointer-events:none; }
+.tla-leisure .tlal-shot:focus-visible { outline:2px solid var(--voyage); outline-offset:2px; }
+.tla-leisure .tlal-shot-hint { position:absolute; inset:auto 0 0 0; padding:0.6rem 0.8rem; background:linear-gradient(0deg, rgba(18,53,91,0.7), transparent); color:#fff; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0; transition:opacity 0.35s ease; pointer-events:none; }
 .tla-leisure .tlal-shot:hover .tlal-shot-hint, .tla-leisure .tlal-shot:focus-visible .tlal-shot-hint { opacity:1; }
-.tla-leisure .tlal-lightbox { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:5vh 1.5rem; background:rgba(10,10,10,0.92); }
+
+.tla-leisure .tlal-close { background:var(--midnight); color:var(--white); text-align:center; padding:clamp(4.5rem,10vh,7rem) 1.5rem; }
+.tla-leisure .tlal-close h2 { color:var(--white); font-style:italic; margin-bottom:1.8rem; }
+.tla-leisure .tlal-cue { display:block; color:var(--gold); font-size:1.1rem; letter-spacing:0.3em; margin:2.2rem 0 0.6rem; opacity:0.8; }
+.tla-leisure .tlal-sig { font-family:'Cormorant Garamond',serif; font-style:italic; margin:0; color:var(--muted-on-dark); }
+
+.tla-leisure .tlal-lightbox { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:5vh 1.5rem; background:rgba(18,53,91,0.94); }
 .tla-leisure .tlal-lightbox.tlal-lb-open { display:flex; }
 .tla-leisure .tlal-lb-dialog { position:relative; max-width:min(1100px,92vw); max-height:90vh; }
-.tla-leisure .tlal-lb-dialog img { max-width:100%; max-height:72vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain; }
-.tla-leisure .tlal-lb-cap { text-align:center; padding:1.2rem 1rem 0; color:#f0ebe0; }
+.tla-leisure .tlal-lb-dialog img { max-width:100%; max-height:72vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain; border-radius:12px; }
+.tla-leisure .tlal-lb-cap { text-align:center; padding:1.2rem 1rem 0; color:var(--white); }
 .tla-leisure .tlal-lb-cap-title { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; margin:0 0 0.3rem; }
 .tla-leisure .tlal-lb-cap-loc { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin:0; }
-.tla-leisure .tlal-lb-close, .tla-leisure .tlal-lb-prev, .tla-leisure .tlal-lb-next { position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; border-radius:50%; background:rgba(10,10,10,0.55); border:1px solid rgba(240,235,224,0.35); color:#f0ebe0; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.3rem; line-height:1; transition:background 0.3s ease, border-color 0.3s ease; }
-.tla-leisure .tlal-lb-close:hover, .tla-leisure .tlal-lb-prev:hover, .tla-leisure .tlal-lb-next:hover { background:rgba(200,175,120,0.25); border-color:var(--gold); }
+.tla-leisure .tlal-lb-close, .tla-leisure .tlal-lb-prev, .tla-leisure .tlal-lb-next { position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; border-radius:50%; background:rgba(18,53,91,0.6); border:1px solid rgba(255,255,255,0.35); color:var(--white); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.3rem; line-height:1; transition:background 0.3s ease, border-color 0.3s ease; }
+.tla-leisure .tlal-lb-close:hover, .tla-leisure .tlal-lb-prev:hover, .tla-leisure .tlal-lb-next:hover { background:rgba(201,169,110,0.4); border-color:var(--gold); }
 .tla-leisure .tlal-lb-close:focus-visible, .tla-leisure .tlal-lb-prev:focus-visible, .tla-leisure .tlal-lb-next:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
 .tla-leisure .tlal-lb-close { top:0.6rem; right:0.6rem; transform:none; width:2.4rem; height:2.4rem; font-size:1.1rem; }
 .tla-leisure .tlal-lb-prev { left:0.6rem; }
@@ -56,7 +76,7 @@
 @media (max-width:900px){ .tla-leisure .tlal-gallery { column-count:2; } }
 @media (max-width:560px){ .tla-leisure .tlal-gallery { column-count:1; } }
 .tla-leisure .tlal-reveal { opacity:1; transform:none; }
-.tla-leisure .js-reveal .tlal-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
+.tla-leisure .js-reveal .tlal-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
 .tla-leisure .js-reveal .tlal-reveal.tlal-in { opacity:1; transform:translateY(0); }
 @media (prefers-reduced-motion: reduce) { .tla-leisure .js-reveal .tlal-reveal { opacity:1; transform:none; transition:none; } }
 @media (max-width:767px) {
@@ -70,18 +90,21 @@
 </style>
 <div class="tla-leisure-wrap"><div class="tla-leisure">
   <section class="tlal-hero"><div class="tlal-hero-inner">
-    <div class="tlal-page-logo"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c889b1cc-fad8-4303-b6a3-6531e3d8471c/logo-main-transparent.png" alt="#travellikeandy" loading="lazy"></div>
+    <div class="tlal-lockup">
+      <span class="tlal-lockup-word">travellikeandy</span>
+      <span class="tlal-lockup-division">Leisure</span>
+    </div>
+    <p class="tlal-eyebrow">Vacations &middot; Resorts &middot; Cruises</p>
     <h1>The trip you have always meant to take.<br><em>Now is the time.</em></h1>
-    <p class="tlal-sub">Vacations &middot; Resorts &middot; Cruises</p>
-    <a href="/contact" class="tlal-btn">Tell Andy where you dream of going</a>
+    <a href="/contact" class="tlal-btn">Begin a Journey</a>
   </div></section>
 
   <section class="tlal-section tlal-reveal"><div class="tlal-grid">
-    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h2>Family Vacations</h2><p>Itineraries that work for every generation, from the youngest to the most particular.</p></div>
-    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h2>Honeymoons</h2><p>The first journey of a marriage, designed around the two people taking it.</p></div>
-    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h2>Cruises</h2><p>From intimate small-ship sailings to the grand classics, mapped to how you actually want to travel.</p></div>
-    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h2>Resort Stays</h2><p>The right resort, the right room category, the right week — not just any week.</p></div>
-    <div class="tlal-card"><div class="tlal-mark">&#10042;</div><h2>Fora Hotel Upgrades</h2><p>Access to upgrades, amenities, and attention through my Fora Travel partnership.</p></div>
+    <div class="tlal-card"><h2>Family Vacations</h2><p>Itineraries that work for every generation, from the youngest to the most particular.</p></div>
+    <div class="tlal-card"><h2>Honeymoons</h2><p>The first journey of a marriage, designed around the two people taking it.</p></div>
+    <div class="tlal-card"><h2>Cruises</h2><p>From intimate small-ship sailings to the grand classics, mapped to how you actually want to travel.</p></div>
+    <div class="tlal-card"><h2>Resort Stays</h2><p>The right resort, the right room category, the right week — not just any week.</p></div>
+    <div class="tlal-card"><h2>Fora Hotel Upgrades</h2><p>Access to upgrades, amenities, and attention through my Fora Travel partnership.</p></div>
   </div></section>
 
   <section class="tlal-feature tlal-reveal">
@@ -89,13 +112,13 @@
     <div class="tlal-feature-cell">
       <h2>I plan the way I travel myself.</h2>
       <p>Every itinerary I build comes from places I have actually stood — resorts I have walked through, ships I have sailed, rooms I have slept in. I do not send you somewhere I would not go.</p>
-      <a href="/contact" class="tlal-btn">Start The Conversation</a>
+      <a href="/contact" class="tlal-btn tlal-btn-secondary" style="border-color:rgba(255,255,255,0.6); color:var(--white);">Start the Conversation</a>
     </div>
   </section>
 
   <section class="tlal-gallery-head tlal-reveal">
-    <h2>The world, <em>first-hand.</em></h2>
-    <p>Every place here, Andy has stood</p>
+    <span class="tlal-eyebrow">The World, First-Hand</span>
+    <h2>Every place here, <em>Andy has stood.</em></h2>
   </section>
   <section class="tlal-gallery tlal-reveal">
     <button type="button" class="tlal-shot" data-cap-title="Infinity Pool" data-cap-location="" aria-label="View photo — Infinity Pool"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/6c2f6a84-f653-49b7-aad8-bb770c030429/infinity_pool.png" alt="Infinity pool at the water's edge" loading="lazy"><span class="tlal-shot-hint">View</span></button>
@@ -109,9 +132,11 @@
     <button type="button" class="tlal-shot" data-cap-title="Lantern-Lit Cavern" data-cap-location="" aria-label="View photo — Lantern-Lit Cavern"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/a94cfe4c-d227-455c-92e7-5feba0586d15/cavern.png" alt="Lantern-lit cavern" loading="lazy"><span class="tlal-shot-hint">View</span></button>
   </section>
 
-  <section class="tlal-close">
-    <h2>Tell Andy where you dream of going.</h2>
-    <a href="/contact" class="tlal-btn">Tell Andy</a>
+  <section class="tlal-close tlal-reveal">
+    <h2>Ready when you are.</h2>
+    <a href="/contact" class="tlal-btn">Begin a Journey</a>
+    <span class="tlal-cue">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;/ &#10022; &#10022; &#10022;</span>
+    <p class="tlal-sig">Curated Personally.</p>
   </section>
 
   <div class="tlal-lightbox" id="tlal-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">

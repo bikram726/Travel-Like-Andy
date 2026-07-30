@@ -1,93 +1,112 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 .tla-bespoke-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
-.tla-bespoke { --gold:#c8af78; --gold-bright:#dfc898; --bg:#0a0a0a; --surface:#0d0d0a; --surface-2:#121210; --text:#f0ebe0; --muted:#7a7060; background:var(--bg); color:var(--text); font-family:'Montserrat',sans-serif; font-weight:300; width:100%; }
+.tla-bespoke {
+  --midnight:#12355B; --gold:#C9A96E; --sandstone:#F4EFE6; --white:#FFFFFF;
+  --voyage:#0EA5D9; --sunrise:#F26A21; --canopy:#3C9565;
+  --muted-on-light:rgba(18,53,91,0.65); --muted-on-dark:rgba(244,239,230,0.75);
+  font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
+}
 .tla-bespoke * { box-sizing:border-box; }
-.tla-bespoke h1,.tla-bespoke h2,.tla-bespoke h3 { font-family:'Cormorant Garamond',serif; font-weight:300; color:var(--text); margin:0; }
-.tla-bespoke em { font-style:italic; color:var(--gold); font-weight:300; }
-.tla-bespoke .tlab-hero { min-height:75vh; display:flex; align-items:center; justify-content:center; padding:6rem 1.5rem; text-align:center; background:radial-gradient(ellipse at 50% 100%, rgba(200,175,120,0.08), transparent 60%), linear-gradient(180deg,#0a0a0a 0%,#050505 100%); }
-.tla-bespoke .tlab-hero-inner { max-width:820px; }
-.tla-bespoke .tlab-page-logo { max-width:200px; width:60%; margin:0 auto 2rem; display:block; }
-.tla-bespoke .tlab-page-logo img { width:100%; height:auto; display:block; }
-.tla-bespoke .tlab-hero h1 { font-size:clamp(1.8rem,5vw,3.4rem); line-height:1.25; margin-bottom:1rem; }
-.tla-bespoke .tlab-hero h1 + h1 { margin-top:0; }
-.tla-bespoke .tlab-kicker { color:var(--muted); font-size:0.78rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1.6rem; }
-.tla-bespoke .tlab-manifesto { max-width:680px; margin:2rem auto 0; color:var(--muted); font-size:0.95rem; line-height:1.9; }
-.tla-bespoke .tlab-tier { width:100%; display:table; table-layout:fixed; border-top:0.5px solid rgba(200,175,120,0.15); }
-.tla-bespoke .tlab-tier.tlab-featured { background:linear-gradient(180deg, rgba(200,175,120,0.06), transparent); }
-.tla-bespoke .tlab-tier-cell { display:table-cell; vertical-align:top; width:50%; padding:4.5rem 4vw; }
+.tla-bespoke h1,.tla-bespoke h2,.tla-bespoke h3 { font-family:'Cormorant Garamond',serif; font-weight:600; margin:0; }
+.tla-bespoke h1 { font-size:clamp(2.6rem,6vw,4.6rem); line-height:1.0; letter-spacing:-0.02em; }
+.tla-bespoke h2 { font-size:clamp(2.2rem,4.5vw,3.4rem); line-height:1.05; letter-spacing:-0.015em; }
+.tla-bespoke em { font-style:italic; color:var(--gold); }
+.tla-bespoke p { font-size:1.05rem; line-height:1.65; }
+.tla-bespoke .tlab-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; line-height:1.3; letter-spacing:0.16em; text-transform:uppercase; }
+.tla-bespoke .tlab-lockup { display:flex; flex-direction:column; align-items:center; gap:0.35rem; margin-bottom:2rem; }
+.tla-bespoke .tlab-lockup-word { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:1.6rem; color:var(--white); letter-spacing:0.01em; }
+.tla-bespoke .tlab-lockup-division { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); }
+
+.tla-bespoke .tlab-hero { background:var(--midnight); color:var(--white); min-height:60vh; display:flex; align-items:center; justify-content:center; padding:clamp(4rem,10vh,7rem) 1.5rem; text-align:center; }
+.tla-bespoke .tlab-hero-inner { max-width:760px; }
+.tla-bespoke .tlab-hero .tlab-eyebrow { color:var(--gold); margin:0 0 1.4rem; }
+.tla-bespoke .tlab-manifesto { max-width:640px; margin:1.8rem auto 0; color:var(--muted-on-dark); }
+
+.tla-bespoke .tlab-tier { width:100%; display:table; table-layout:fixed; background:var(--white); border-top:1px solid rgba(18,53,91,0.1); }
+.tla-bespoke .tlab-tier.tlab-featured { background:var(--sandstone); }
+.tla-bespoke .tlab-tier-cell { display:table-cell; vertical-align:top; width:50%; padding:clamp(3rem,7vh,4.5rem) 4vw; }
 .tla-bespoke .tlab-tier-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:1rem; letter-spacing:0.1em; margin-bottom:0.6rem; display:block; }
-.tla-bespoke .tlab-tier-cell h2 { font-size:clamp(1.6rem,3.4vw,2.2rem); margin-bottom:0.4rem; }
-.tla-bespoke .tlab-tier-access { color:var(--muted); font-size:0.74rem; letter-spacing:0.18em; text-transform:uppercase; margin:0 0 1.6rem; }
-.tla-bespoke .tlab-tier ul { list-style:none; margin:0 0 2rem; padding:0; color:var(--text); font-size:0.92rem; line-height:1.6; }
-.tla-bespoke .tlab-tier ul li { padding:0.5rem 0; border-bottom:0.5px solid rgba(200,175,120,0.1); }
+.tla-bespoke .tlab-tier-cell h2 { color:var(--midnight); font-size:clamp(1.7rem,3.2vw,2.2rem); margin-bottom:0.4rem; }
+.tla-bespoke .tlab-tier-access { color:var(--muted-on-light); font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; margin:0 0 1.6rem; }
+.tla-bespoke .tlab-tier ul { list-style:none; margin:0 0 2rem; padding:0; color:var(--midnight); font-size:0.94rem; line-height:1.6; }
+.tla-bespoke .tlab-tier ul li { padding:0.55rem 0; border-bottom:1px solid rgba(18,53,91,0.1); }
 .tla-bespoke .tlab-tier ul li:before { content:'\2014\0020'; color:var(--gold); }
-.tla-bespoke .tlab-btn { display:inline-block; padding:1em 2.4em; border:1px solid var(--gold); color:var(--gold); text-decoration:none; font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.4s ease; }
-.tla-bespoke .tlab-btn:hover { background:var(--gold); color:var(--bg); }
+.tla-bespoke .tlab-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; transition:all 0.3s ease-out; border:1px solid var(--sunrise); background:var(--sunrise); color:var(--white); }
+.tla-bespoke .tlab-btn:hover { background:#d85a15; border-color:#d85a15; }
 .tla-bespoke .tlab-form { display:grid; gap:0.9rem; max-width:380px; }
-.tla-bespoke .tlab-form input, .tla-bespoke .tlab-form textarea { background:transparent; border:none; border-bottom:1px solid rgba(200,175,120,0.35); color:var(--text); font-family:'Montserrat',sans-serif; font-size:0.9rem; padding:0.6rem 0.2rem; }
-.tla-bespoke .tlab-form input::placeholder, .tla-bespoke .tlab-form textarea::placeholder { color:var(--muted); }
+.tla-bespoke .tlab-form input, .tla-bespoke .tlab-form textarea { background:transparent; border:none; border-bottom:1px solid rgba(18,53,91,0.3); color:var(--midnight); font-family:'Source Sans 3',sans-serif; font-size:0.92rem; padding:0.6rem 0.2rem; }
+.tla-bespoke .tlab-form input::placeholder, .tla-bespoke .tlab-form textarea::placeholder { color:var(--muted-on-light); }
 .tla-bespoke .tlab-form input:focus, .tla-bespoke .tlab-form textarea:focus { outline:none; border-color:var(--gold); }
-.tla-bespoke .tlab-form button { justify-self:start; margin-top:0.4rem; background:transparent; cursor:pointer; }
+.tla-bespoke .tlab-form button { justify-self:start; margin-top:0.4rem; cursor:pointer; }
 .tla-bespoke .tlab-form button:disabled { opacity:0.5; cursor:default; }
 .tla-bespoke .tlab-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-.tla-bespoke .tlab-form-result { display:none; margin-top:0.2rem; padding:0.9rem 1.1rem; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.98rem; line-height:1.5; border:1px solid rgba(200,175,120,0.35); color:var(--gold); background:rgba(200,175,120,0.05); }
-.tla-bespoke .tlab-form-result.tlab-form-error { border-color:rgba(200,90,90,0.5); color:#e3a3a3; background:rgba(200,90,90,0.06); }
+.tla-bespoke .tlab-form-result { display:none; margin-top:0.2rem; padding:0.9rem 1.1rem; border-radius:8px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.98rem; line-height:1.5; border:1px solid rgba(18,53,91,0.2); color:var(--midnight); background:rgba(18,53,91,0.05); }
+.tla-bespoke .tlab-form-result.tlab-form-error { border-color:rgba(200,60,60,0.4); color:#a83a3a; background:rgba(200,60,60,0.06); }
 .tla-bespoke .tlab-circle-note { font-style:italic; color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:1.05rem; }
-.tla-bespoke .tlab-partners { padding:5.5rem 1.5rem; text-align:center; border-top:0.5px solid rgba(200,175,120,0.15); }
-.tla-bespoke .tlab-partners-eyebrow { color:var(--muted); font-size:0.74rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1rem; }
-.tla-bespoke .tlab-partners h2 { font-size:clamp(1.6rem,3.4vw,2.4rem); margin:0 0 3rem; }
-.tla-bespoke .tlab-partners-grid { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(200,175,120,0.18); border:1px solid rgba(200,175,120,0.18); }
-.tla-bespoke .tlab-partner { background:var(--bg); aspect-ratio:3/2; }
-.tla-bespoke .tlab-partner-in { width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:#f6f1e7; padding:1.4rem; filter:grayscale(100%); opacity:0.9; transition:all 0.5s ease; }
+
+.tla-bespoke .tlab-partners { background:var(--midnight); color:var(--white); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
+.tla-bespoke .tlab-partners .tlab-eyebrow { color:var(--gold); margin:0 0 1rem; }
+.tla-bespoke .tlab-partners h2 { margin:0 0 3rem; font-style:italic; }
+.tla-bespoke .tlab-partners-grid { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:0.7rem; }
+.tla-bespoke .tlab-partner { aspect-ratio:3/2; border-radius:8px; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(201,169,110,0.35); transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1); }
+.tla-bespoke .tlab-partner-in { width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--sandstone); padding:1.2rem; }
 .tla-bespoke .tlab-partner-in img { max-width:100%; max-height:100%; object-fit:contain; display:block; }
-.tla-bespoke .tlab-partner:hover .tlab-partner-in { filter:grayscale(0%); opacity:1; transform:scale(1.04); }
-.tla-bespoke .tlab-places { padding:5.5rem 1.5rem; text-align:center; border-top:0.5px solid rgba(200,175,120,0.15); }
-.tla-bespoke .tlab-places-eyebrow { color:var(--muted); font-size:0.74rem; letter-spacing:0.25em; text-transform:uppercase; margin:0 0 1rem; }
-.tla-bespoke .tlab-places h2 { font-size:clamp(1.6rem,3.4vw,2.4rem); margin:0 0 3rem; }
+.tla-bespoke .tlab-partner:hover { transform:translateY(-3px); box-shadow:inset 0 0 0 1px var(--gold), 0 14px 28px rgba(0,0,0,0.3); }
+
+.tla-bespoke .tlab-places { background:var(--white); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
+.tla-bespoke .tlab-places .tlab-eyebrow { color:var(--gold); margin:0 0 1rem; }
+.tla-bespoke .tlab-places h2 { color:var(--midnight); margin:0 0 3rem; font-style:italic; }
 .tla-bespoke .tlab-places-grid { max-width:1080px; margin:0 auto; column-count:3; column-gap:0.6rem; }
-.tla-bespoke .tlab-place { position:relative; overflow:hidden; break-inside:avoid; display:block; width:100%; margin:0 0 0.6rem; padding:0; border:1px solid rgba(200,175,120,0.18); background:none; font:inherit; text-align:left; cursor:zoom-in; appearance:none; -webkit-appearance:none; }
+.tla-bespoke .tlab-place { position:relative; overflow:hidden; break-inside:avoid; display:block; width:100%; margin:0 0 0.6rem; padding:0; border-radius:12px; border:none; background:none; font:inherit; text-align:left; cursor:zoom-in; appearance:none; -webkit-appearance:none; }
 .tla-bespoke .tlab-place img { width:100%; height:auto; display:block; transition:transform 0.8s ease; }
 .tla-bespoke .tlab-place:hover img { transform:scale(1.05); }
-.tla-bespoke .tlab-place:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
-.tla-bespoke .tlab-place-hint { position:absolute; inset:auto 0 0 0; padding:0.6rem 0.8rem; background:linear-gradient(0deg, rgba(0,0,0,0.65), transparent); color:#fff; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0; transition:opacity 0.35s ease; pointer-events:none; }
+.tla-bespoke .tlab-place:focus-visible { outline:2px solid var(--voyage); outline-offset:2px; }
+.tla-bespoke .tlab-place-hint { position:absolute; inset:auto 0 0 0; padding:0.6rem 0.8rem; background:linear-gradient(0deg, rgba(18,53,91,0.75), transparent); color:#fff; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0; transition:opacity 0.35s ease; pointer-events:none; }
 .tla-bespoke .tlab-place:hover .tlab-place-hint, .tla-bespoke .tlab-place:focus-visible .tlab-place-hint { opacity:1; }
 @media (max-width:900px){ .tla-bespoke .tlab-places-grid { column-count:2; } }
 @media (max-width:560px){ .tla-bespoke .tlab-places-grid { column-count:1; } }
-.tla-bespoke .tlab-lightbox { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:5vh 1.5rem; background:rgba(5,5,5,0.94); }
+
+.tla-bespoke .tlab-lightbox { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:5vh 1.5rem; background:rgba(18,53,91,0.94); }
 .tla-bespoke .tlab-lightbox.tlab-lb-open { display:flex; }
 .tla-bespoke .tlab-lb-dialog { position:relative; max-width:min(1100px,92vw); max-height:90vh; }
-.tla-bespoke .tlab-lb-dialog img { max-width:100%; max-height:72vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain; }
-.tla-bespoke .tlab-lb-cap { text-align:center; padding:1.2rem 1rem 0; color:#f0ebe0; }
+.tla-bespoke .tlab-lb-dialog img { max-width:100%; max-height:72vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain; border-radius:12px; }
+.tla-bespoke .tlab-lb-cap { text-align:center; padding:1.2rem 1rem 0; color:var(--white); }
 .tla-bespoke .tlab-lb-cap-title { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; margin:0 0 0.3rem; }
 .tla-bespoke .tlab-lb-cap-loc { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin:0; }
-.tla-bespoke .tlab-lb-close, .tla-bespoke .tlab-lb-prev, .tla-bespoke .tlab-lb-next { position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; border-radius:50%; background:rgba(10,10,10,0.55); border:1px solid rgba(240,235,224,0.35); color:#f0ebe0; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.3rem; line-height:1; transition:background 0.3s ease, border-color 0.3s ease; }
-.tla-bespoke .tlab-lb-close:hover, .tla-bespoke .tlab-lb-prev:hover, .tla-bespoke .tlab-lb-next:hover { background:rgba(200,175,120,0.25); border-color:var(--gold); }
+.tla-bespoke .tlab-lb-close, .tla-bespoke .tlab-lb-prev, .tla-bespoke .tlab-lb-next { position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; border-radius:50%; background:rgba(18,53,91,0.6); border:1px solid rgba(255,255,255,0.35); color:var(--white); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.3rem; line-height:1; transition:background 0.3s ease, border-color 0.3s ease; }
+.tla-bespoke .tlab-lb-close:hover, .tla-bespoke .tlab-lb-prev:hover, .tla-bespoke .tlab-lb-next:hover { background:rgba(201,169,110,0.4); border-color:var(--gold); }
 .tla-bespoke .tlab-lb-close:focus-visible, .tla-bespoke .tlab-lb-prev:focus-visible, .tla-bespoke .tlab-lb-next:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
 .tla-bespoke .tlab-lb-close { top:0.6rem; right:0.6rem; transform:none; width:2.4rem; height:2.4rem; font-size:1.1rem; }
 .tla-bespoke .tlab-lb-prev { left:0.6rem; }
 .tla-bespoke .tlab-lb-next { right:0.6rem; }
 @media (prefers-reduced-motion: reduce) { .tla-bespoke .tlab-lightbox, .tla-bespoke .tlab-lb-close, .tla-bespoke .tlab-lb-prev, .tla-bespoke .tlab-lb-next, .tla-bespoke .tlab-place-hint { transition:none; } }
-.tla-bespoke .tlab-close { text-align:center; padding:6rem 1.5rem; border-top:0.5px solid rgba(200,175,120,0.15); }
-.tla-bespoke .tlab-close h2 { font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; }
-.tla-bespoke .tlab-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s ease; }
-.tla-bespoke .tlab-reveal.tlab-in { opacity:1; transform:translateY(0); }
-@media (prefers-reduced-motion: reduce) { .tla-bespoke .tlab-reveal { opacity:1; transform:none; } }
+
+.tla-bespoke .tlab-close { background:var(--midnight); color:var(--white); text-align:center; padding:clamp(4.5rem,10vh,7rem) 1.5rem; }
+.tla-bespoke .tlab-close h2 { font-style:italic; margin-bottom:2rem; }
+.tla-bespoke .tlab-cue { display:block; text-align:center; color:var(--gold); font-size:1.1rem; letter-spacing:0.3em; margin:2.2rem 0 0.6rem; opacity:0.8; }
+.tla-bespoke .tlab-sig { font-family:'Cormorant Garamond',serif; font-style:italic; margin:0; color:var(--muted-on-dark); }
+
+.tla-bespoke .tlab-reveal { opacity:1; transform:none; }
+.tla-bespoke .js-reveal .tlab-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
+.tla-bespoke .js-reveal .tlab-reveal.tlab-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-bespoke .js-reveal .tlab-reveal { opacity:1; transform:none; transition:none; } }
 @media (max-width:900px) { .tla-bespoke .tlab-partners-grid { grid-template-columns:repeat(3,1fr); } }
 @media (max-width:767px) {
   .tla-bespoke .tlab-tier, .tla-bespoke .tlab-tier-cell { display:block; width:100%; }
-  .tla-bespoke .tlab-tier-cell { padding:3.2rem 1.4rem; }
+  .tla-bespoke .tlab-tier-cell { padding:3rem 1.4rem; }
   .tla-bespoke .tlab-partners-grid { grid-template-columns:repeat(2,1fr); }
-  .tla-bespoke .tlab-partners { padding:3.5rem 1.2rem; }
-  .tla-bespoke .tlab-close { padding:4rem 1.2rem; }
 }
 </style>
 <div class="tla-bespoke-wrap"><div class="tla-bespoke">
   <section class="tlab-hero"><div class="tlab-hero-inner">
-    <div class="tlab-page-logo"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/c889b1cc-fad8-4303-b6a3-6531e3d8471c/logo-main-transparent.png" alt="#travellikeandy" loading="lazy"></div>
-    <p class="tlab-kicker">Luxury Bespoke Travel</p>
-    <h1>This is not a travel service.<br><em>This is an inner circle.</em></h1>
-    <p class="tlab-manifesto">I do not build packages. I build access — to people, places, and rooms that are not advertised. What you find here depends on how close you are to me, and what you are ready for.</p>
+    <div class="tlab-lockup">
+      <span class="tlab-lockup-word">travellikeandy</span>
+      <span class="tlab-lockup-division">Bespoke</span>
+    </div>
+    <p class="tlab-eyebrow">Private Journeys</p>
+    <h1>Some journeys are <em>not advertised.</em></h1>
+    <p class="tlab-manifesto">I do not build packages. I build access &mdash; to people, places, and rooms that are not listed. What you find here depends on how close you are to me, and what you are ready for.</p>
   </div></section>
 
   <section class="tlab-tier tlab-reveal">
@@ -97,12 +116,12 @@
       <p class="tlab-tier-access">Open Access</p>
       <ul>
         <li>Group travel sessions with Andy</li>
-        <li>The Travel Like Andy newsletter</li>
+        <li>The travellikeandy newsletter</li>
         <li>Fora hotel and resort upgrades</li>
         <li>Flight planning support</li>
         <li>Curated group tours</li>
       </ul>
-      <a href="/contact" class="tlab-btn">Begin</a>
+      <a href="/contact" class="tlab-btn">Begin a Journey</a>
     </div>
     <div class="tlab-tier-cell"></div>
   </section>
@@ -130,12 +149,12 @@
              webmaster@ is the intended destination, not a bug to fix. -->
         <input type="hidden" name="to" value="webmaster@travellikeandy.com">
         <input type="hidden" name="subject" value="The Curator — Referral">
-        <input type="hidden" name="from_name" value="Travel Like Andy — The Curator">
+        <input type="hidden" name="from_name" value="travellikeandy — The Curator">
         <input type="checkbox" name="botcheck" class="tlab-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input id="curname" type="text" name="name" placeholder="Name" required>
         <input id="curemail" type="email" name="email" placeholder="Email" required>
         <input id="curref" type="text" name="referred_by" placeholder="Who referred you">
-        <input id="curdream" type="text" name="destination" placeholder="Where you dream of going">
+        <input id="curdream" type="text" name="destination" placeholder="Where this journey begins">
         <button type="submit" class="tlab-btn">Request Access</button>
         <div id="tlab-curator-result" class="tlab-form-result" role="status" aria-live="polite"></div>
       </form>
@@ -160,7 +179,7 @@
   </section>
 
   <section class="tlab-partners tlab-reveal">
-    <p class="tlab-partners-eyebrow">In Partnership With</p>
+    <p class="tlab-eyebrow">In Partnership With</p>
     <h2>The world's most <em>extraordinary</em> names.</h2>
     <div class="tlab-partners-grid">
       <div class="tlab-partner"><div class="tlab-partner-in"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/e67e1a3c-244a-4b21-9a6f-9dbb9fd9887f/taj-hotels.png" alt="Taj Hotels, Resorts &amp; Palaces" loading="lazy"></div></div>
@@ -187,7 +206,7 @@
   </section>
 
   <section class="tlab-places tlab-reveal">
-    <p class="tlab-places-eyebrow">A Few Moments</p>
+    <p class="tlab-eyebrow">A Few Moments</p>
     <h2>Where the circle has <em>gathered.</em></h2>
     <div class="tlab-places-grid">
       <button type="button" class="tlab-place" data-cap-title="A Table on the Sand" data-cap-location="Cabo San Lucas, Mexico" aria-label="View photo — A Table on the Sand"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/3271a4c6-a1ed-4616-bb43-902689fa786d/bespoke-cabo-palm-table-dinner-UPRIGHT.jpg" alt="Long dinner table set beachside among palm trees at dusk" loading="lazy"><span class="tlab-place-hint">View</span></button>
@@ -196,8 +215,10 @@
     </div>
   </section>
 
-  <section class="tlab-close">
+  <section class="tlab-close tlab-reveal">
     <h2>You will know if this is for you.</h2>
+    <span class="tlab-cue">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;/ &#10022; &#10022; &#10022;</span>
+    <p class="tlab-sig">Curated Personally.</p>
   </section>
 
   <div class="tlab-lightbox" id="tlab-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
@@ -214,14 +235,18 @@
   </div>
 </div></div>
 <script>
-(function(){
+function tlabInitReveal(){
+  var wrap = document.querySelector('.tla-bespoke');
+  if (wrap) { wrap.classList.add('js-reveal'); }
   var els = document.querySelectorAll('.tlab-reveal');
   if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlab-in'); }); return; }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlab-in'); io.unobserve(entry.target); } });
-  }, { threshold: 0.15 });
+  }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
   els.forEach(function(e){ io.observe(e); });
-})();
+}
+if (document.readyState !== "loading") { tlabInitReveal(); }
+else { document.addEventListener("DOMContentLoaded", tlabInitReveal); }
 </script>
 <script>
 (function(){
