@@ -1,35 +1,39 @@
 <style>
-/* BESPOKE LUXURY LOCK SCREEN — paste into Settings -> Advanced -> Code Injection -> HEADER */
+/* BESPOKE LOCK SCREEN — paste into Settings -> Advanced -> Code Injection -> HEADER */
 /* LEGACY, pre-dates pages/lock-screen.html. Uses generic Squarespace password-page
    selectors (.sqs-password-page, .password-page, body.password-protected) instead
    of the more specific .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide
    selector pages/lock-screen.html uses. Very likely superseded by that file (which
    is confirmed live and rendering correctly as of 2026-07-23/24), but left in place
-   here rather than removed -- its selectors' current match/no-match status against
-   Squarespace's actual DOM hasn't been verified live, so deleting it is a decision
-   for a dedicated pass, not a side effect of fixing the Home hero bug below. */
+   rather than removed -- its selectors' current match/no-match status against
+   Squarespace's actual DOM hasn't been verified live. Brought onto the Brand Bible
+   token system 2026-07-30 (was still shipping the pre-rebrand dark palette, Montserrat,
+   a stock photo, and "invitation-only circle" copy) so that IF it is still live, it no
+   longer contradicts the rest of the site. Bespoke stays password-protected per the
+   client's 2026-07-30 decision -- this only restyles the lock screen, it doesn't change
+   the gate itself. */
 .sqs-password-page-wrapper,
 .password-page,
 body.password-protected,
 .sqs-password-page {
-  background: linear-gradient(180deg, rgba(5,5,5,0.82), rgba(10,10,10,0.92)),
-    url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
+  background: linear-gradient(180deg, #0e2c4c 0%, #12355B 55%, #0e2c4c 100%) !important;
   min-height: 100vh !important;
 }
 .sqs-password-page input[type="password"],
 .password-page input[type="password"] {
-  background: rgba(0,0,0,0.3) !important;
+  background: rgba(255,255,255,0.06) !important;
   border: none !important;
-  border-bottom: 1px solid rgba(200,175,120,0.6) !important;
-  color: #f0ebe0 !important;
-  font-family: 'Montserrat', sans-serif !important;
+  border-bottom: 1px solid rgba(201,169,110,0.55) !important;
+  color: #FFFFFF !important;
+  font-family: 'Source Sans 3', sans-serif !important;
 }
 .sqs-password-page input[type="submit"],
 .password-page .sqs-system-button,
 .password-page button {
-  background: #c8af78 !important;
-  color: #0a0a0a !important;
+  background: #F26A21 !important;
+  color: #FFFFFF !important;
   border: none !important;
+  border-radius: 8px !important;
 }
 #tla-lock-msg {
   max-width: 640px;
@@ -39,9 +43,9 @@ body.password-protected,
   font-style: italic;
   font-size: 1.3rem;
   line-height: 1.75;
-  color: #dfc898;
+  color: #C9A96E;
   padding: 0 1.5rem;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 </style>
 <script>
@@ -50,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function(){
   if (page && !document.getElementById('tla-lock-msg')) {
     var msg = document.createElement('div');
     msg.id = 'tla-lock-msg';
-    msg.innerHTML = "This is where your next extraordinary journey begins. Andy&rsquo;s bespoke travel division is a private, invitation-only circle &mdash; every escape personally designed, every detail quietly handled.<br><br>Enter your password below to step inside.";
+    msg.innerHTML = "This is where your next journey is conducted. Bespoke is Andy&rsquo;s private-journey practice &mdash; every trip personally designed, every detail quietly handled.<br><br>Enter your password below to step inside.";
     var form = page.querySelector('form');
     if (form) { form.parentNode.insertBefore(msg, form); }
     else { page.insertBefore(msg, page.firstChild); }
@@ -58,37 +62,3 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
-<style>
-/* ===== TLAC-HERO-GAP-FIX — remove the empty gap under the Executive hero (desktop + mobile) ===== */
-/* LEGACY, pre-dates this session's Corporate work. Not currently causing any known
-   visual problem (Corporate verified rendering correctly 2026-07-24), so left as-is.
-   Worth knowing about before ever changing .tlac-hero's min-height/padding in
-   pages/corporate.html directly -- this override will still apply on top of it. */
-.tla-corp .tlac-hero {
-  min-height: auto !important;
-  padding: clamp(4rem, 9vh, 7rem) 1.5rem !important;
-}
-@media (max-width: 767px) {
-  .tla-corp .tlac-hero {
-    min-height: auto !important;
-    padding: clamp(3rem, 8vh, 4.5rem) 1.25rem !important;
-  }
-}
-</style>
-
-<style>
-/* ===== TLAL-HERO-GAP-FIX — remove the empty gap under the Leisure hero (desktop + mobile) ===== */
-/* LEGACY, pre-dates this session's Leisure work. Same status as the Corporate gap-fix
-   above: not currently causing a known problem, left as-is, but will apply on top of
-   any future direct changes to .tlal-hero's min-height/padding in pages/leisure.html. */
-.tla-leisure .tlal-hero {
-  min-height: auto !important;
-  padding: clamp(4rem, 9vh, 7rem) 1.5rem !important;
-}
-@media (max-width: 767px) {
-  .tla-leisure .tlal-hero {
-    min-height: auto !important;
-    padding: clamp(3rem, 8vh, 4.5rem) 1.25rem !important;
-  }
-}
-</style>

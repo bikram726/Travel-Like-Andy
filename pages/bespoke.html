@@ -11,6 +11,7 @@
 .tla-bespoke h1,.tla-bespoke h2,.tla-bespoke h3 { font-family:'Cormorant Garamond',serif; font-weight:600; margin:0; }
 .tla-bespoke h1 { font-size:clamp(2.6rem,6vw,4.6rem); line-height:1.0; letter-spacing:-0.02em; }
 .tla-bespoke h2 { font-size:clamp(2.2rem,4.5vw,3.4rem); line-height:1.05; letter-spacing:-0.015em; }
+.tla-bespoke h3 { font-size:1.3rem; }
 .tla-bespoke em { font-style:italic; color:var(--gold); }
 .tla-bespoke p { font-size:1.05rem; line-height:1.65; }
 .tla-bespoke .tlab-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; line-height:1.3; letter-spacing:0.16em; text-transform:uppercase; }
@@ -23,27 +24,30 @@
 .tla-bespoke .tlab-hero .tlab-eyebrow { color:var(--gold); margin:0 0 1.4rem; }
 .tla-bespoke .tlab-manifesto { max-width:640px; margin:1.8rem auto 0; color:var(--muted-on-dark); }
 
-.tla-bespoke .tlab-tier { width:100%; display:table; table-layout:fixed; background:var(--white); border-top:1px solid rgba(18,53,91,0.1); }
-.tla-bespoke .tlab-tier.tlab-featured { background:var(--sandstone); }
-.tla-bespoke .tlab-tier-cell { display:table-cell; vertical-align:top; width:50%; padding:clamp(3rem,7vh,4.5rem) 4vw; }
-.tla-bespoke .tlab-tier-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:1rem; letter-spacing:0.1em; margin-bottom:0.6rem; display:block; }
-.tla-bespoke .tlab-tier-cell h2 { color:var(--midnight); font-size:clamp(1.7rem,3.2vw,2.2rem); margin-bottom:0.4rem; }
-.tla-bespoke .tlab-tier-access { color:var(--muted-on-light); font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; margin:0 0 1.6rem; }
-.tla-bespoke .tlab-tier ul { list-style:none; margin:0 0 2rem; padding:0; color:var(--midnight); font-size:0.94rem; line-height:1.6; }
-.tla-bespoke .tlab-tier ul li { padding:0.55rem 0; border-bottom:1px solid rgba(18,53,91,0.1); }
-.tla-bespoke .tlab-tier ul li:before { content:'\2014\0020'; color:var(--gold); }
+.tla-bespoke .tlab-intro { background:var(--sandstone); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
+.tla-bespoke .tlab-intro p { max-width:700px; margin:0 auto; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; color:var(--midnight); font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.7; }
+
+.tla-bespoke .tlab-process { background:var(--white); padding:clamp(4rem,10vh,7rem) 1.5rem; text-align:center; }
+.tla-bespoke .tlab-process-head { max-width:640px; margin:0 auto clamp(2.5rem,6vh,3.5rem); }
+.tla-bespoke .tlab-process-head .tlab-eyebrow { color:var(--gold); display:block; margin:0 0 1rem; }
+.tla-bespoke .tlab-process-head h2 { color:var(--midnight); font-style:italic; }
+.tla-bespoke .tlab-process-grid { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; text-align:left; }
+.tla-bespoke .tlab-step-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:1.6rem; margin-bottom:0.6rem; display:block; }
+.tla-bespoke .tlab-process-grid h3 { color:var(--midnight); margin-bottom:0.5rem; }
+.tla-bespoke .tlab-process-grid p { color:var(--muted-on-light); font-size:0.96rem; }
+.tla-bespoke .tlab-process-cta { margin-top:clamp(2.5rem,6vh,3.5rem); }
+
+.tla-bespoke .tlab-services { background:var(--sandstone); padding:clamp(4rem,10vh,7rem) 1.5rem; }
+.tla-bespoke .tlab-services-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+.tla-bespoke .tlab-service-card { background:var(--white); border-radius:12px; padding:2.4rem 1.7rem; transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1); }
+.tla-bespoke .tlab-service-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(18,53,91,0.1); }
+.tla-bespoke .tlab-service-card h3 { color:var(--midnight); margin-bottom:0.6rem; }
+.tla-bespoke .tlab-service-card p { color:var(--muted-on-light); font-size:0.92rem; margin:0; }
+
 .tla-bespoke .tlab-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; transition:all 0.3s ease-out; border:1px solid var(--sunrise); background:var(--sunrise); color:var(--white); }
 .tla-bespoke .tlab-btn:hover { background:#d85a15; border-color:#d85a15; }
-.tla-bespoke .tlab-form { display:grid; gap:0.9rem; max-width:380px; }
-.tla-bespoke .tlab-form input, .tla-bespoke .tlab-form textarea { background:transparent; border:none; border-bottom:1px solid rgba(18,53,91,0.3); color:var(--midnight); font-family:'Source Sans 3',sans-serif; font-size:0.92rem; padding:0.6rem 0.2rem; }
-.tla-bespoke .tlab-form input::placeholder, .tla-bespoke .tlab-form textarea::placeholder { color:var(--muted-on-light); }
-.tla-bespoke .tlab-form input:focus, .tla-bespoke .tlab-form textarea:focus { outline:none; border-color:var(--gold); }
-.tla-bespoke .tlab-form button { justify-self:start; margin-top:0.4rem; cursor:pointer; }
-.tla-bespoke .tlab-form button:disabled { opacity:0.5; cursor:default; }
-.tla-bespoke .tlab-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-.tla-bespoke .tlab-form-result { display:none; margin-top:0.2rem; padding:0.9rem 1.1rem; border-radius:8px; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:0.98rem; line-height:1.5; border:1px solid rgba(18,53,91,0.2); color:var(--midnight); background:rgba(18,53,91,0.05); }
-.tla-bespoke .tlab-form-result.tlab-form-error { border-color:rgba(200,60,60,0.4); color:#a83a3a; background:rgba(200,60,60,0.06); }
-.tla-bespoke .tlab-circle-note { font-style:italic; color:var(--gold); font-family:'Cormorant Garamond',serif; font-size:1.05rem; }
+.tla-bespoke .tlab-btn-secondary { background:transparent; color:var(--midnight); border:1px solid var(--midnight); }
+.tla-bespoke .tlab-btn-secondary:hover { background:rgba(18,53,91,0.08); }
 
 .tla-bespoke .tlab-partners { background:var(--midnight); color:var(--white); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
 .tla-bespoke .tlab-partners .tlab-eyebrow { color:var(--gold); margin:0 0 1rem; }
@@ -93,8 +97,8 @@
 @media (prefers-reduced-motion: reduce) { .tla-bespoke .js-reveal .tlab-reveal { opacity:1; transform:none; transition:none; } }
 @media (max-width:900px) { .tla-bespoke .tlab-partners-grid { grid-template-columns:repeat(3,1fr); } }
 @media (max-width:767px) {
-  .tla-bespoke .tlab-tier, .tla-bespoke .tlab-tier-cell { display:block; width:100%; }
-  .tla-bespoke .tlab-tier-cell { padding:3rem 1.4rem; }
+  .tla-bespoke .tlab-process-grid { grid-template-columns:1fr; gap:2.2rem; }
+  .tla-bespoke .tlab-services-grid { grid-template-columns:1fr; }
   .tla-bespoke .tlab-partners-grid { grid-template-columns:repeat(2,1fr); }
 }
 </style>
@@ -105,77 +109,50 @@
       <span class="tlab-lockup-division">Bespoke</span>
     </div>
     <p class="tlab-eyebrow">Private Journeys</p>
-    <h1>Some journeys are <em>not advertised.</em></h1>
-    <p class="tlab-manifesto">I do not build packages. I build access &mdash; to people, places, and rooms that are not listed. What you find here depends on how close you are to me, and what you are ready for.</p>
+    <h1>Every journey, <em>considered from the ground up.</em></h1>
+    <p class="tlab-manifesto">I do not build packages. I build access &mdash; to people, places, and rooms that are not listed. Every itinerary starts with a conversation about how you want to feel, not a form to fill out.</p>
   </div></section>
 
-  <section class="tlab-tier tlab-reveal">
-    <div class="tlab-tier-cell">
-      <span class="tlab-tier-num">I</span>
-      <h2>The Wanderer</h2>
-      <p class="tlab-tier-access">Open Access</p>
-      <ul>
-        <li>Group travel sessions with Andy</li>
-        <li>The travellikeandy newsletter</li>
-        <li>Fora hotel and resort upgrades</li>
-        <li>Flight planning support</li>
-        <li>Curated group tours</li>
-      </ul>
-      <a href="/contact" class="tlab-btn">Begin a Journey</a>
-    </div>
-    <div class="tlab-tier-cell"></div>
+  <section class="tlab-intro tlab-reveal">
+    <p>This is for travelers who want more than a booking &mdash; a trip shaped entirely around them, planned by someone who has actually stood where he is sending you.</p>
   </section>
 
-  <section class="tlab-tier tlab-featured tlab-reveal">
-    <div class="tlab-tier-cell"></div>
-    <div class="tlab-tier-cell">
-      <span class="tlab-tier-num">II</span>
-      <h2>The Curator</h2>
-      <p class="tlab-tier-access">By Referral</p>
-      <ul>
-        <li>Custom-built itineraries</li>
-        <li>Private dining arrangements</li>
-        <li>Jet and charter coordination</li>
-        <li>Hidden suites, not listed rooms</li>
-        <li>Direct access to Andy's contacts</li>
-      </ul>
-      <form id="tlab-curator-form" class="tlab-form" action="https://api.web3forms.com/submit" method="POST">
-        <!-- SECURITY: this access_key is meant to be public -- see the matching
-             comment on the Contact page form for why, and how to restrict it to
-             travellikeandy.com via the Web3Forms dashboard. -->
-        <input type="hidden" name="access_key" value="ed14fb9c-32df-4969-85c0-f05217c9724c">
-        <!-- NOTE: "to" is documentation only and has no effect on delivery -- see
-             the matching comment on the Contact page form. Confirmed 2026-07-22:
-             webmaster@ is the intended destination, not a bug to fix. -->
-        <input type="hidden" name="to" value="webmaster@travellikeandy.com">
-        <input type="hidden" name="subject" value="The Curator — Referral">
-        <input type="hidden" name="from_name" value="travellikeandy — The Curator">
-        <input type="checkbox" name="botcheck" class="tlab-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <input id="curname" type="text" name="name" placeholder="Name" required>
-        <input id="curemail" type="email" name="email" placeholder="Email" required>
-        <input id="curref" type="text" name="referred_by" placeholder="Who referred you">
-        <input id="curdream" type="text" name="destination" placeholder="Where this journey begins">
-        <button type="submit" class="tlab-btn">Request Access</button>
-        <div id="tlab-curator-result" class="tlab-form-result" role="status" aria-live="polite"></div>
-      </form>
+  <section class="tlab-process tlab-reveal">
+    <div class="tlab-process-head">
+      <span class="tlab-eyebrow">How It Works</span>
+      <h2>Three steps. <em>No forms.</em></h2>
+    </div>
+    <div class="tlab-process-grid">
+      <div>
+        <span class="tlab-step-num">I</span>
+        <h3>We talk.</h3>
+        <p>A real conversation about how you want to feel, not just where you want to go.</p>
+      </div>
+      <div>
+        <span class="tlab-step-num">II</span>
+        <h3>I design.</h3>
+        <p>A considered itinerary, built from places I have actually visited and people I actually know.</p>
+      </div>
+      <div>
+        <span class="tlab-step-num">III</span>
+        <h3>You travel.</h3>
+        <p>I remain reachable across time zones for as long as your journey lasts.</p>
+      </div>
+    </div>
+    <div class="tlab-process-cta">
+      <a href="/contact" class="tlab-btn tlab-btn-secondary">Start the Conversation</a>
     </div>
   </section>
 
-  <section class="tlab-tier tlab-reveal">
-    <div class="tlab-tier-cell">
-      <span class="tlab-tier-num">III</span>
-      <h2>The Circle</h2>
-      <p class="tlab-tier-access">Invitation Only &middot; 10 Per Season</p>
-      <ul>
-        <li>Andy travels with you, personally</li>
-        <li>Private villas and estates</li>
-        <li>Yacht and jet charters</li>
-        <li>Opera &amp; Arts access</li>
-        <li>24/7 WhatsApp line to Andy</li>
-      </ul>
-      <p class="tlab-circle-note">Andy reaches out.</p>
+  <section class="tlab-services tlab-reveal">
+    <div class="tlab-services-grid">
+      <div class="tlab-service-card"><h3>Family Vacations</h3><p>Itineraries that work for every generation, from the youngest to the most particular.</p></div>
+      <div class="tlab-service-card"><h3>Honeymoons</h3><p>The first journey of a marriage, designed around the two people taking it.</p></div>
+      <div class="tlab-service-card"><h3>Cruises</h3><p>From intimate small-ship sailings to the grand classics, mapped to how you actually want to travel.</p></div>
+      <div class="tlab-service-card"><h3>Resort Stays</h3><p>The right resort, the right room category, the right week &mdash; not just any week.</p></div>
+      <div class="tlab-service-card"><h3>Fora Hotel Upgrades</h3><p>Access to upgrades, amenities, and attention through my Fora Travel partnership.</p></div>
+      <div class="tlab-service-card"><h3>Private Access</h3><p>Private dining, jet and charter coordination, and rooms that are never listed publicly.</p></div>
     </div>
-    <div class="tlab-tier-cell"></div>
   </section>
 
   <section class="tlab-partners tlab-reveal">
@@ -206,17 +183,27 @@
   </section>
 
   <section class="tlab-places tlab-reveal">
-    <p class="tlab-eyebrow">A Few Moments</p>
-    <h2>Where the circle has <em>gathered.</em></h2>
+    <p class="tlab-eyebrow">The World, First-Hand</p>
+    <h2>Every place here, <em>Andy has stood.</em></h2>
     <div class="tlab-places-grid">
       <button type="button" class="tlab-place" data-cap-title="A Table on the Sand" data-cap-location="Cabo San Lucas, Mexico" aria-label="View photo — A Table on the Sand"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/3271a4c6-a1ed-4616-bb43-902689fa786d/bespoke-cabo-palm-table-dinner-UPRIGHT.jpg" alt="Long dinner table set beachside among palm trees at dusk" loading="lazy"><span class="tlab-place-hint">View</span></button>
       <button type="button" class="tlab-place" data-cap-title="One&amp;Only Palmilla" data-cap-location="Los Cabos, Mexico" aria-label="View photo — One and Only Palmilla"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5d1e2052-9307-49f9-8bd9-cfa992ee8b17/bespoke-onlyandonly-palmilla-entrance-UPRIGHT.jpg" alt="One&amp;Only Palmilla entrance with lit urn and blooming oleander" loading="lazy"><span class="tlab-place-hint">View</span></button>
       <button type="button" class="tlab-place" data-cap-title="Reflections at Palmilla" data-cap-location="Los Cabos, Mexico" aria-label="View photo — Reflections at Palmilla"><img src="https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/788fb2ec-7300-4616-8c2b-83ed44868d98/bespoke-onlyandonly-palmilla-reflection.jpg" alt="Palm trees reflected in still pool water at sunset" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Infinity Pool" data-cap-location="" aria-label="View photo — Infinity Pool"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/6c2f6a84-f653-49b7-aad8-bb770c030429/infinity_pool.png" alt="Infinity pool at the water's edge" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Rainbow Over Green Hills" data-cap-location="" aria-label="View photo — Rainbow Over Green Hills"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/46830cb4-55c2-4cea-969a-bce43f5c3bf8/rainbow.png" alt="Rainbow over green hills" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Fiery Sunset" data-cap-location="" aria-label="View photo — Fiery Sunset"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/18101fe0-2d50-46a5-83c6-13a6731278b5/fiery_sunset.png" alt="Fiery sunset over the mountains" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Sky Bridge" data-cap-location="" aria-label="View photo — Sky Bridge"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/62dea9ae-ba38-4d17-ae0c-0cc264529394/sky_bridge_real.png" alt="Mountain sky bridge above the rainforest" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Macaque &amp; Baby" data-cap-location="" aria-label="View photo — Macaque and Baby"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/d44d9b68-3ee8-4f31-9d03-f6b54c61e265/monkey.png" alt="Macaque and her baby in the wild" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Jungle River" data-cap-location="" aria-label="View photo — Jungle River"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/9037e70c-018d-4377-af2d-29d0c8b7c3ee/jungle_river.png" alt="River winding through the jungle" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Above the Clouds" data-cap-location="" aria-label="View photo — Above the Clouds"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/f191727c-48ea-4a21-ace3-96e17af7a773/above_clouds.png" alt="Above the clouds from the window seat" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Skyline at Dusk" data-cap-location="" aria-label="View photo — Skyline at Dusk"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/3e448949-cda4-4186-a0f4-58bab701740c/sky_bridge.png" alt="City skyline at dusk" loading="lazy"><span class="tlab-place-hint">View</span></button>
+      <button type="button" class="tlab-place" data-cap-title="Lantern-Lit Cavern" data-cap-location="" aria-label="View photo — Lantern-Lit Cavern"><img src="https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/a94cfe4c-d227-455c-92e7-5feba0586d15/cavern.png" alt="Lantern-lit cavern" loading="lazy"><span class="tlab-place-hint">View</span></button>
     </div>
   </section>
 
   <section class="tlab-close tlab-reveal">
-    <h2>You will know if this is for you.</h2>
+    <h2>Every itinerary begins with a conversation.</h2>
+    <a href="/contact" class="tlab-btn">Begin a Journey</a>
     <span class="tlab-cue">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;/ &#10022; &#10022; &#10022;</span>
     <p class="tlab-sig">Curated Personally.</p>
   </section>
@@ -250,58 +237,9 @@ else { document.addEventListener("DOMContentLoaded", tlabInitReveal); }
 </script>
 <script>
 (function(){
-  var form = document.getElementById('tlab-curator-form');
-  var result = document.getElementById('tlab-curator-result');
-  var btn = form ? form.querySelector('.tlab-btn') : null;
-  if (!form) { return; }
-
-  function showResult(msg, isError) {
-    result.classList.toggle('tlab-form-error', !!isError);
-    result.style.display = 'block';
-    result.textContent = msg;
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-
-    if (form.botcheck && form.botcheck.checked) { return; }
-
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-
-    if (btn) { btn.disabled = true; }
-    showResult('Sending your request to Andy…', false);
-
-    var payload = JSON.stringify(Object.fromEntries(new FormData(form)));
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: payload
-    })
-    .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
-    .then(function(r){
-      if (r.ok && r.json && r.json.success) {
-        form.reset();
-        showResult('Thank you — Andy will be in touch.', false);
-      } else {
-        showResult((r.json && r.json.message) ? r.json.message : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
-      }
-    })
-    .catch(function(err){
-      console.error('Curator form submission failed:', err);
-      showResult('Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
-    })
-    .then(function(){ if (btn) { btn.disabled = false; } });
-  });
-})();
-</script>
-<script>
-(function(){
-  var places = Array.prototype.slice.call(document.querySelectorAll('.tlab-place'));
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.tlab-place'));
   var lb = document.getElementById('tlab-lightbox');
-  if (!places.length || !lb) { return; }
+  if (!shots.length || !lb) { return; }
 
   var imgEl = document.getElementById('tlab-lb-img');
   var titleEl = document.getElementById('tlab-lb-title');
@@ -315,12 +253,12 @@ else { document.addEventListener("DOMContentLoaded", tlabInitReveal); }
   var lastTrigger = null;
 
   function render(i){
-    var place = places[i];
-    var img = place.querySelector('img');
+    var shot = shots[i];
+    var img = shot.querySelector('img');
     imgEl.src = img.src;
     imgEl.alt = img.alt || '';
-    titleEl.textContent = place.getAttribute('data-cap-title') || img.alt || '';
-    var loc = place.getAttribute('data-cap-location') || '';
+    titleEl.textContent = shot.getAttribute('data-cap-title') || img.alt || '';
+    var loc = shot.getAttribute('data-cap-location') || '';
     locEl.textContent = loc;
     locEl.style.display = loc ? '' : 'none';
   }
@@ -345,7 +283,7 @@ else { document.addEventListener("DOMContentLoaded", tlabInitReveal); }
   }
 
   function step(delta){
-    current = (current + delta + places.length) % places.length;
+    current = (current + delta + shots.length) % shots.length;
     render(current);
   }
 
@@ -361,8 +299,8 @@ else { document.addEventListener("DOMContentLoaded", tlabInitReveal); }
     }
   }
 
-  places.forEach(function(place, i){
-    place.addEventListener('click', function(){ open(i, place); });
+  shots.forEach(function(shot, i){
+    shot.addEventListener('click', function(){ open(i, shot); });
   });
   closeBtn.addEventListener('click', close);
   prevBtn.addEventListener('click', function(){ step(-1); });

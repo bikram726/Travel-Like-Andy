@@ -1,35 +1,35 @@
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@200;300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 
 .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide {
-  background:linear-gradient(180deg, rgba(10,10,10,0.82) 0%, rgba(10,10,10,0.45) 22%, rgba(10,10,10,0.16) 48%, rgba(10,10,10,0.25) 75%, rgba(10,10,10,0.60) 100%), url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5d1e2052-9307-49f9-8bd9-cfa992ee8b17/bespoke-onlyandonly-palmilla-entrance-UPRIGHT.jpg') center/contain no-repeat !important;
-  background-color:#0a0a0a !important;
+  background:linear-gradient(180deg, rgba(18,53,91,0.90) 0%, rgba(18,53,91,0.55) 22%, rgba(18,53,91,0.28) 48%, rgba(18,53,91,0.45) 75%, rgba(18,53,91,0.88) 100%), url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5d1e2052-9307-49f9-8bd9-cfa992ee8b17/bespoke-onlyandonly-palmilla-entrance-UPRIGHT.jpg') center/contain no-repeat !important;
+  background-color:#12355B !important;
 }
 
 .sqs-slice-password {
-  font-family:'Montserrat',sans-serif !important;
+  font-family:'Source Sans 3',sans-serif !important;
   text-align:center !important;
   padding:2rem !important;
 }
 
 .sqs-slice-password * {
-  color:#f0ebe0;
+  color:#FFFFFF;
 }
 
 .sqs-slice-password h1,
 .sqs-slice-password h2 {
   font-family:'Cormorant Garamond',serif !important;
   font-style:italic !important;
-  font-weight:300 !important;
-  color:#f0ebe0 !important;
+  font-weight:600 !important;
+  color:#FFFFFF !important;
   font-size:clamp(1.8rem,4vw,2.6rem) !important;
   line-height:1.25 !important;
   margin:0 0 1.2rem !important;
 }
 
 .sqs-slice-password p {
-  font-family:'Montserrat',sans-serif !important;
-  color:#7a7060 !important;
+  font-family:'Source Sans 3',sans-serif !important;
+  color:rgba(244,239,230,0.75) !important;
   font-size:0.85rem !important;
   letter-spacing:0.03em !important;
   margin:0 0 2rem !important;
@@ -37,35 +37,49 @@
 
 /* kicker line injected above the default heading, matching the Bespoke page tone */
 .sqs-slice-password:before {
-  content:"Luxury Bespoke Travel";
+  content:"Private Journeys";
   display:block;
-  color:#7a7060;
-  font-family:'Montserrat',sans-serif;
-  font-size:0.75rem;
-  letter-spacing:0.25em;
+  color:#C9A96E;
+  font-family:'Source Sans 3',sans-serif;
+  font-weight:600;
+  font-size:0.78rem;
+  letter-spacing:0.16em;
   text-transform:uppercase;
   margin-bottom:1.4rem;
 }
 
-/* Bespoke wordmark above password field -- gold text by construction so it can
-   never render "in black" like the old generic logo image did. Swap for a real
-   logo-bespoke-transparent.png <img> the moment Andy delivers that asset. */
+/* Wordmark + division lockup above the password field, matching the lockup pattern
+   used on every other rebuilt page. Text-based by construction so it never renders
+   "in black" like the old icon-collage logo image did against a dark background. */
 .tlab-lock-logo {
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-weight:300;
-  font-size:clamp(2.2rem,6vw,3.2rem);
-  color:#dfc898;
-  letter-spacing:0.02em;
-  text-shadow:0 2px 24px rgba(200,175,120,0.35);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.4rem;
   margin:0 auto 2.5rem;
+}
+.tlab-lock-wordmark {
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+  font-size:clamp(1.8rem,5vw,2.4rem);
+  color:#FFFFFF;
+  letter-spacing:0.01em;
+}
+.tlab-lock-division {
+  font-family:'Source Sans 3',sans-serif;
+  font-weight:600;
+  font-size:0.76rem;
+  letter-spacing:0.26em;
+  text-transform:uppercase;
+  color:#C9A96E;
 }
 
 /* Partner-logo strip below the password field */
 .tlab-lock-partners-eyebrow {
   text-align:center;
-  color:#7a7060;
-  font-family:'Montserrat',sans-serif;
+  color:rgba(244,239,230,0.7);
+  font-family:'Source Sans 3',sans-serif;
+  font-weight:600;
   font-size:0.68rem;
   letter-spacing:0.22em;
   text-transform:uppercase;
@@ -75,7 +89,7 @@
   max-width:640px;
   margin:0 auto;
   padding-top:1.8rem;
-  border-top:1px solid rgba(200,175,120,0.15);
+  border-top:1px solid rgba(201,169,110,0.2);
   display:flex;
   flex-wrap:wrap;
   align-items:center;
@@ -83,17 +97,18 @@
   gap:0.6rem;
 }
 .tlab-lock-partner {
-  background:#f6f1e7;
+  background:#F4EFE6;
+  border-radius:6px;
   padding:0.6rem 1rem;
   display:flex;
   align-items:center;
   justify-content:center;
-  box-shadow:inset 0 0 0 1px rgba(200,175,120,0.25);
-  transition:transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow:inset 0 0 0 1px rgba(201,169,110,0.3);
+  transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1);
 }
 .tlab-lock-partner:hover {
   transform:translateY(-2px);
-  box-shadow:inset 0 0 0 1px rgba(200,175,120,0.6), 0 6px 16px rgba(0,0,0,0.35);
+  box-shadow:inset 0 0 0 1px rgba(201,169,110,0.7), 0 6px 16px rgba(0,0,0,0.25);
 }
 .tlab-lock-partner img {
   height:24px;
@@ -117,24 +132,25 @@
   position:fixed;
   top:0; left:0; right:0;
   z-index:9999;
-  background:#0a0a0a;
+  background:#12355B;
   display:flex;
   align-items:center;
   justify-content:center;
   flex-wrap:wrap;
   gap:1.8rem;
   padding:1.1rem 1.5rem;
-  font-family:'Montserrat',sans-serif;
+  font-family:'Source Sans 3',sans-serif;
 }
 .tlab-lock-nav a {
-  color:#f0ebe0;
+  color:#FFFFFF;
   text-decoration:none;
+  font-weight:600;
   font-size:0.75rem;
   letter-spacing:0.12em;
   text-transform:uppercase;
   white-space:nowrap;
 }
-.tlab-lock-nav a:hover { color:#c8af78; }
+.tlab-lock-nav a:hover { color:#C9A96E; }
 
 /* push lock screen content down so the fixed nav never overlaps it */
 .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide {
@@ -153,57 +169,58 @@
 input[type="password"] {
   background:transparent !important;
   border:none !important;
-  border-bottom:1px solid rgba(200,175,120,0.4) !important;
-  border-radius:0 !important;
-  color:#f0ebe0 !important;
-  font-family:'Montserrat',sans-serif !important;
+  border-bottom:1px solid rgba(201,169,110,0.5) !important;
+  color:#FFFFFF !important;
+  font-family:'Source Sans 3',sans-serif !important;
   font-size:0.95rem !important;
   letter-spacing:0.05em !important;
   text-align:center !important;
   padding:0.8rem 0.2rem !important;
   box-shadow:none !important;
 }
-input[type="password"]::placeholder { color:#7a7060 !important; opacity:1 !important; }
-input[type="password"]:focus { outline:none !important; border-bottom-color:#c8af78 !important; box-shadow:0 0 0 3px rgba(200,175,120,0.15) !important; }
+input[type="password"]::placeholder { color:rgba(244,239,230,0.6) !important; opacity:1 !important; }
+input[type="password"]:focus { outline:none !important; border-bottom-color:#C9A96E !important; box-shadow:0 0 0 3px rgba(201,169,110,0.18) !important; }
 
 .icon-wrapper.arrow,
 .arrow-icon .icon-wrapper {
-  fill:#c8af78 !important;
+  fill:#C9A96E !important;
   opacity:1 !important;
 }
 
 /* tagline injected below the password field */
 .input-container:after {
-  content:"Access is by invitation.";
+  content:"Curated Personally.";
   display:block;
   margin-top:1.8rem;
-  color:#c8af78;
+  color:#C9A96E;
   font-family:'Cormorant Garamond',serif;
   font-style:italic;
   font-size:0.95rem;
 }
 
 .error-message {
-  background:rgba(200,90,90,0.06) !important;
-  border:1px solid rgba(200,90,90,0.5) !important;
-  color:#e3a3a3 !important;
-  font-family:'Montserrat',sans-serif !important;
+  background:rgba(200,60,60,0.08) !important;
+  border:1px solid rgba(200,60,60,0.4) !important;
+  color:#f0b0b0 !important;
+  font-family:'Source Sans 3',sans-serif !important;
   font-size:0.8rem !important;
   letter-spacing:0.03em !important;
   padding:0.7rem 1rem !important;
   margin-top:1.2rem !important;
-  border-radius:0 !important;
+  border-radius:8px !important;
 }
 </style>
 <nav class="tlab-lock-nav">
   <a href="/">Home</a>
-  <a href="/leisure">Leisure</a>
-  <a href="/corporate">Executive</a>
+  <a href="/corporate">Groups</a>
   <a href="/bespoke">Bespoke</a>
   <a href="/about">About</a>
 </nav>
 <div class="tla-bespoke-lock">
-  <div class="tlab-lock-logo">Bespoke</div>
+  <div class="tlab-lock-logo">
+    <span class="tlab-lock-wordmark">travellikeandy</span>
+    <span class="tlab-lock-division">Bespoke</span>
+  </div>
 </div>
 
 <p class="tlab-lock-partners-eyebrow">In Partnership With</p>
