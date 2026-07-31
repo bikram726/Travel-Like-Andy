@@ -101,6 +101,24 @@ footer .sqs-block-image img,
 .page-section .fluid-engine { min-height:0 !important; height:auto !important; }
 .page-section { min-height:0 !important; }
 
+/* MOBILE HEADER OVERLAP FIX — found via a live audit 2026-07-30: the site
+   header is a fixed-position bar, and on narrow viewports its height is
+   large enough relative to page content that it covers the top of the
+   hero heading on every page. The top-gap-kill rule above (which sets
+   padding-top:0 on the first section) is correct for desktop but makes
+   this worse on mobile since it removes the last bit of buffer space.
+   This value (76px) is a reasonable starting compensation — verify
+   against the header's actual live mobile height and adjust if any
+   heading is still clipped. */
+@media (max-width:767px) {
+  #sections > .page-section:first-child,
+  #sections > .page-section:first-child .content-wrapper,
+  #sections > .page-section:first-child .fluid-engine,
+  #sections > .page-section:first-child .sqs-block-content {
+    padding-top:76px !important;
+  }
+}
+
 /* BESPOKE LOCK SCREEN — moved out. Squarespace's password lock screen is not
    styled by this file at all; it has its own separate injection point at
    Settings > Advanced > Code Injection > Lock Page. See pages/lock-screen.html. */
