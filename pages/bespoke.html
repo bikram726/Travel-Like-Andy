@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 .tla-bespoke-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
 .tla-bespoke {
-  --midnight:#12355B; --gold:#C9A96E; --sandstone:#F4EFE6; --white:#FFFFFF;
+  --midnight:#12355B; --gold:#C9A96E; --gold-deep:#7a5a2e; --sandstone:#F4EFE6; --white:#FFFFFF;
   --voyage:#0EA5D9; --sunrise:#F26A21; --canopy:#3C9565;
-  --muted-on-light:rgba(18,53,91,0.65); --muted-on-dark:rgba(244,239,230,0.75);
+  --muted-on-light:rgba(18,53,91,0.72); --muted-on-dark:rgba(244,239,230,0.75);
   font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
 }
 .tla-bespoke * { box-sizing:border-box; }
@@ -29,10 +29,11 @@
 
 .tla-bespoke .tlab-process { background:var(--white); padding:clamp(4rem,10vh,7rem) 1.5rem; text-align:center; }
 .tla-bespoke .tlab-process-head { max-width:640px; margin:0 auto clamp(2.5rem,6vh,3.5rem); }
-.tla-bespoke .tlab-process-head .tlab-eyebrow { color:var(--gold); display:block; margin:0 0 1rem; }
+.tla-bespoke .tlab-process-head .tlab-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
 .tla-bespoke .tlab-process-head h2 { color:var(--midnight); font-style:italic; }
+.tla-bespoke .tlab-process-head h2 em { color:var(--gold-deep); }
 .tla-bespoke .tlab-process-grid { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; text-align:left; }
-.tla-bespoke .tlab-step-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:1.6rem; margin-bottom:0.6rem; display:block; }
+.tla-bespoke .tlab-step-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold-deep); font-size:1.6rem; margin-bottom:0.6rem; display:block; }
 .tla-bespoke .tlab-process-grid h3 { color:var(--midnight); margin-bottom:0.5rem; }
 .tla-bespoke .tlab-process-grid p { color:var(--muted-on-light); font-size:0.96rem; }
 .tla-bespoke .tlab-process-cta { margin-top:clamp(2.5rem,6vh,3.5rem); }
@@ -59,8 +60,9 @@
 .tla-bespoke .tlab-partner:hover { transform:translateY(-3px); box-shadow:inset 0 0 0 1px var(--gold), 0 14px 28px rgba(0,0,0,0.3); }
 
 .tla-bespoke .tlab-places { background:var(--white); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
-.tla-bespoke .tlab-places .tlab-eyebrow { color:var(--gold); margin:0 0 1rem; }
+.tla-bespoke .tlab-places .tlab-eyebrow { color:var(--gold-deep); margin:0 0 1rem; }
 .tla-bespoke .tlab-places h2 { color:var(--midnight); margin:0 0 3rem; font-style:italic; }
+.tla-bespoke .tlab-places h2 em { color:var(--gold-deep); }
 .tla-bespoke .tlab-places-grid { max-width:1080px; margin:0 auto; column-count:3; column-gap:0.6rem; }
 .tla-bespoke .tlab-place { position:relative; overflow:hidden; break-inside:avoid; display:block; width:100%; margin:0 0 0.6rem; padding:0; border-radius:12px; border:none; background:none; font:inherit; text-align:left; cursor:zoom-in; appearance:none; -webkit-appearance:none; }
 .tla-bespoke .tlab-place img { width:100%; height:auto; display:block; transition:transform 0.8s ease; }

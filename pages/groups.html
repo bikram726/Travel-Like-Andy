@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 .tla-groups-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
 .tla-groups {
-  --midnight:#12355B; --gold:#C9A96E; --sandstone:#F4EFE6; --white:#FFFFFF;
+  --midnight:#12355B; --gold:#C9A96E; --gold-deep:#7a5a2e; --sandstone:#F4EFE6; --white:#FFFFFF;
   --voyage:#0EA5D9; --sunrise:#F26A21; --canopy:#3C9565;
-  --muted-on-light:rgba(18,53,91,0.65); --muted-on-dark:rgba(244,239,230,0.75);
+  --muted-on-light:rgba(18,53,91,0.72); --muted-on-dark:rgba(244,239,230,0.75);
   font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
 }
 .tla-groups * { box-sizing:border-box; }
@@ -36,8 +36,9 @@
 
 .tla-groups .tlgr-section { background:var(--white); padding:clamp(4rem,10vh,7.5rem) 1.5rem; }
 .tla-groups .tlgr-section-head { text-align:center; max-width:640px; margin:0 auto clamp(2.5rem,6vh,4rem); }
-.tla-groups .tlgr-section-head .tlgr-eyebrow { color:var(--gold); display:block; margin:0 0 1rem; }
+.tla-groups .tlgr-section-head .tlgr-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
 .tla-groups .tlgr-section-head h2 { color:var(--midnight); }
+.tla-groups .tlgr-section-head h2 em { color:var(--gold-deep); }
 .tla-groups .tlgr-grid { max-width:1140px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.75rem; }
 .tla-groups .tlgr-card { background:var(--sandstone); border-radius:12px; padding:2.4rem 1.8rem; text-align:left; transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1); }
 .tla-groups .tlgr-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(18,53,91,0.12); }

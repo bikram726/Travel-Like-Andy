@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 .tla-home-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
 .tla-home {
-  --midnight:#12355B; --gold:#C9A96E; --sandstone:#F4EFE6; --white:#FFFFFF;
+  --midnight:#12355B; --gold:#C9A96E; --gold-deep:#7a5a2e; --sandstone:#F4EFE6; --white:#FFFFFF;
   --sunrise:#F26A21; --voyage:#0EA5D9;
-  --muted-on-light:rgba(18,53,91,0.65); --muted-on-dark:rgba(244,239,230,0.75);
+  --muted-on-light:rgba(18,53,91,0.72); --muted-on-dark:rgba(244,239,230,0.75);
   font-family:'Source Sans 3',sans-serif; font-weight:300; width:100%;
 }
 .tla-home * { box-sizing:border-box; }
@@ -52,7 +52,7 @@
 .tla-home .tlah-story-cell.tlah-img { background:url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5c4c2909-7be2-4a73-9326-fd644a207322/01-andy-conducting-orchestra.jpg') center/cover no-repeat; min-height:460px; }
 .tla-home .tlah-story-cell h2 { color:var(--midnight); font-style:italic; margin-bottom:1.4rem; }
 .tla-home .tlah-story-cell p { color:var(--muted-on-light); margin:0 0 1.8rem; }
-.tla-home .tlah-link { color:var(--voyage); text-decoration:underline; text-underline-offset:3px; font-weight:600; font-size:0.95rem; }
+.tla-home .tlah-link { color:#08698c; text-decoration:underline; text-underline-offset:3px; font-weight:600; font-size:0.95rem; }
 .tla-home .tlah-link:hover { color:#0b84ac; }
 
 /* 04 THREE PATHS */
@@ -60,6 +60,7 @@
 .tla-home .tlah-section-head { text-align:center; max-width:640px; margin:0 auto clamp(2.5rem,6vh,4rem); }
 .tla-home .tlah-section-head .tlah-eyebrow { color:var(--midnight); opacity:0.6; display:block; margin:0 0 1rem; }
 .tla-home .tlah-section-head h2 { color:var(--midnight); }
+.tla-home .tlah-paths h2 em { color:var(--gold-deep); }
 .tla-home .tlah-grid { max-width:1180px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.75rem; }
 .tla-home .tlah-card { position:relative; display:block; text-decoration:none; border-radius:12px; overflow:hidden; min-height:360px; display:flex; align-items:flex-end; transition:transform 0.32s cubic-bezier(.22,.61,.36,1); }
 .tla-home .tlah-card:hover { transform:translateY(-6px); }
@@ -90,10 +91,11 @@
 .tla-home .tlah-invite h2 { font-style:italic; margin-bottom:2rem; }
 .tla-home .tlah-signature-line { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); margin-top:0.5rem; }
 
-.tla-home .tlah-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.5s cubic-bezier(.22,.61,.36,1), transform 0.5s cubic-bezier(.22,.61,.36,1); }
-.tla-home .tlah-reveal.tlah-in { opacity:1; transform:translateY(0); }
+.tla-home .tlah-reveal { opacity:1; transform:none; }
+.tla-home .js-reveal .tlah-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
+.tla-home .js-reveal .tlah-reveal.tlah-in { opacity:1; transform:translateY(0); }
 @media (prefers-reduced-motion: reduce) {
-  .tla-home .tlah-reveal { opacity:1; transform:none; transition:none; }
+  .tla-home .js-reveal .tlah-reveal { opacity:1; transform:none; transition:none; }
   .tla-home .tlah-scroll-cue svg { animation:none; }
   .tla-home .tlah-card { transition:none; }
 }
@@ -128,7 +130,7 @@
     <div class="tlah-story-cell">
       <h2>I have circled the globe twice.</h2>
       <p>I sang opera for the King of Thailand. I hiked the Himalayas. I know the chef in Mexico City who opens his kitchen after midnight, and the room at the Taj Palace that faces the sunrise. Every itinerary I build carries that same instinct &mdash; listen first, then design the experience that fits the person taking it.</p>
-      <a href="/about" class="tlah-link">More about Andy &rarr;</a>
+      <a href="/about" class="tlah-link">Read the Story &rarr;</a>
     </div>
   </section>
 
@@ -144,7 +146,7 @@
         <div class="tlah-card-content">
           <span class="tlah-eyebrow">Private Journeys</span>
           <h3>Bespoke</h3>
-          <p>Access, chosen for you &mdash; by invitation or referral.</p>
+          <p>Access to people, places, and rooms that are not listed.</p>
         </div>
       </a>
       <a href="/corporate" class="tlah-card">
@@ -196,11 +198,13 @@
 </div></div>
 <script>
 (function(){
+  var wrap = document.querySelector('.tla-home');
+  if (wrap) { wrap.classList.add('js-reveal'); }
   var els = document.querySelectorAll('.tlah-reveal');
   if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlah-in'); }); return; }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlah-in'); io.unobserve(entry.target); } });
-  }, { threshold: 0.15 });
+  }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
   els.forEach(function(e){ io.observe(e); });
 })();
 </script>

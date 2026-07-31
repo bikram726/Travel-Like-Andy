@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 .tla-collections-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
 .tla-collections {
-  --midnight:#12355B; --gold:#C9A96E; --sandstone:#F4EFE6; --white:#FFFFFF; --sunrise:#F26A21;
-  --muted-on-light:rgba(18,53,91,0.65); --muted-on-dark:rgba(244,239,230,0.75);
+  --midnight:#12355B; --gold:#C9A96E; --gold-deep:#7a5a2e; --sandstone:#F4EFE6; --white:#FFFFFF; --sunrise:#F26A21;
+  --muted-on-light:rgba(18,53,91,0.72); --muted-on-dark:rgba(244,239,230,0.75);
   font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
 }
 .tla-collections * { box-sizing:border-box; }
@@ -27,7 +27,7 @@
 
 .tla-collections .tlco-interest { background:var(--white); color:var(--midnight); padding:clamp(4rem,10vh,7rem) 1.5rem; }
 .tla-collections .tlco-interest-inner { max-width:520px; margin:0 auto; text-align:center; }
-.tla-collections .tlco-interest-inner .tlco-eyebrow { display:block; margin:0 0 1rem; }
+.tla-collections .tlco-interest-inner .tlco-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
 .tla-collections .tlco-interest-inner p { color:var(--muted-on-light); margin:0.8rem 0 2.2rem; }
 .tla-collections .tlco-form { display:grid; gap:1.1rem; text-align:left; }
 .tla-collections .tlco-form label { font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.4rem; display:block; }
