@@ -44,7 +44,21 @@ the live pages say so honestly instead.
 - **Journal has zero real content.** `pages/journal.html` is an honest "first
   stories are being written" stub, matching how Collections already launched.
   No fake article titles. Needs real editorial content before it does anything.
-- **Real wordmark asset.** Every page uses a text-based `travellikeandy` /
+- **Footer content now has a tracked source file.** The site's actual footer
+  text (wordmark, the Cue, "Curated Personally.", disclosure) was previously
+  only referenced in `global-custom-css.css` comments — the real content had
+  never been captured in this repo, presumably hand-typed once directly into
+  Squarespace's footer Code Block. Added `pages/footer-content.html` with the
+  wordmark/Cue/signature and an HTML-comment-only placeholder marking where
+  the FORA disclosure text goes (no fake legal text rendered live). Needs
+  pasting into the footer's Code Block to become the real source of truth —
+  check what's currently live there first in case it's already been hand-
+  edited since the comments in `global-custom-css.css` were written.
+- **Real wordmark asset.** A placeholder text-based SVG wordmark now exists at
+  `assets/wordmark/wordmark-midnight.svg` and `wordmark-white.svg` (lowercase
+  "travellikeandy", Cormorant Garamond, no decoration) — good enough to swap
+  into the footer/header Image Block now if needed, but still a stand-in for
+  a real designer-exported asset. Every page uses a text-based `travellikeandy` /
   division lockup (Cormorant Garamond) in the page content itself, which
   satisfies the Brand Bible's wordmark spec without needing a new asset. But the
   site's actual **header/footer logo image** (a Squarespace Image Block, not
@@ -60,6 +74,34 @@ the live pages say so honestly instead.
   settings, not in these code-block files. Every page (including the three new
   ones) should get a real title + description written once the final page set is
   confirmed live.
+
+## Accessibility audit (2026-07-30, computed via WCAG relative-luminance formula)
+
+- **Fixed:** gold (#C9A96E) as text/accent color only passes AA contrast on
+  Midnight backgrounds. On white or Sandstone it measured 1.95-2.24:1 (needs
+  4.5:1) — every eyebrow label and headline accent-word in a light-background
+  section across About, Bespoke, Collections, Access & Care, Groups, and Home
+  was affected. Added a `--gold-deep` (#7a5a2e, 5.0-6.3:1 on white/Sandstone)
+  token used only in those light-background spots; Midnight sections are
+  unchanged.
+- **Fixed:** Home's "Read the Story" link used Voyage blue as text on white
+  (2.84:1) — darkened to `#08698c` (6.16:1) for that specific link.
+- **Fixed:** `--muted-on-light` (the default body-copy color on white/Sandstone
+  sections, used on nearly every page) measured 4.09-4.32:1 against its real
+  backgrounds — just under the 4.5:1 threshold. Bumped its alpha from 0.65 to
+  0.72 sitewide (now 4.97-5.29:1).
+- **Not fixed, flagged instead:** white button-label text on Sunrise
+  (#F26A21) measures 3.06:1. It clears the 3:1 WCAG threshold for UI
+  components but falls short of 4.5:1 for text at button-label size (~13px,
+  below the "large text" exemption). Both colors are exact Brand Bible tokens
+  (mandated primary CTA color + button text color) — not changed unilaterally,
+  since darkening Sunrise or the button text would be a real brand-color
+  change, not a bug fix. Worth a design decision from whoever owns the Brand
+  Bible if strict AA compliance on button labels matters more than the exact
+  token value.
+- Not independently verified: live keyboard-navigation order, screen-reader
+  behavior, and mobile viewport rendering — all would need a real browser
+  session, not available in this environment.
 
 ## Needs doing in Squarespace admin (not fixable from this repo)
 

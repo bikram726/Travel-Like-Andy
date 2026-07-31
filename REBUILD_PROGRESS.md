@@ -90,6 +90,31 @@ behavior, and whether the legacy generic-selector lock-screen block in
 `prefers-reduced-motion` rules are present in source on every page but weren't
 tested against a live render this pass.
 
+## Second audit round (2026-07-30, later same day)
+
+- Re-audited collections.html, global-custom-css.css, and re-checked
+  home.html/groups.html/about.html/bespoke.html against the full checklist —
+  found and fixed two real hits missed by the first audit: Home's Bespoke
+  card still read "Access, chosen for you — by invitation or referral" (echoed
+  the just-deleted 3-tier/referral system), and Home's "More about Andy →"
+  link used a retired CTA phrase (→ "Read the Story"). Also fixed a robustness
+  gap: Home's scroll-reveal CSS/JS used opacity:0-by-default (invisible
+  content if JS fails/is slow), unlike every other rebuilt page's opacity:1-
+  default + js-reveal-toggle pattern — aligned it.
+- Ran a real WCAG AA contrast audit (see `HANDOFF_NOTES.md` for full detail).
+  Found and fixed genuine failures: gold text/accent on white or Sandstone
+  (1.95-2.24:1), a Voyage-blue link on white (2.84:1), and body-copy muted
+  text sitting just under threshold (4.09-4.32:1). One known shortfall left
+  flagged rather than fixed: white button text on Sunrise fill measures
+  3.06:1, short of 4.5:1 for text-sized labels — both colors are exact Brand
+  Bible tokens, so not changed without a design decision.
+- Created `pages/footer-content.html` (previously the site's real footer text
+  had no tracked source anywhere in the repo) and a placeholder SVG wordmark
+  at `assets/wordmark/`.
+- Final grep re-run across every `pages/*.html` file, including the two new
+  files: zero live hits for old hex, Montserrat, unsplash, banned/retired
+  vocabulary, invitation/referral language, or `border-radius:0`.
+
 ## Not attempted this pass, by design
 
 Full nav rebuild, redirects, page creation in admin, meta tags, favicon, and
