@@ -51,6 +51,11 @@ html { scroll-behavior: smooth; }
    line are injected via a Code Block in the footer (not this file --
    Design > Custom CSS can't add new footer content, only style it). */
 .footer-sections, #footerSections, .sqs-footer, footer { background:var(--tla-midnight) !important; }
+/* Squarespace's inner .section-background div paints a hardcoded #000
+   over the rule above, found live 2026-07-31 -- the footer rendered
+   pure black instead of Midnight. Target it directly so nothing paints
+   over the token color. */
+.footer-sections .section-background, footer .section-background, .sqs-footer .section-background { background-color:var(--tla-midnight) !important; }
 .footer-sections p, footer p { color:var(--tla-sandstone) !important; opacity:0.75; font-family:var(--tla-body) !important; font-size:0.8rem !important; letter-spacing:0.05em; text-align:center; }
 .footer-sections a, footer a { color:var(--tla-gold) !important; }
 

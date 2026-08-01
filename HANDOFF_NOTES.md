@@ -145,6 +145,13 @@ Image test to apply: would this make a discerning traveler want to be *in* the m
   behavior, and mobile viewport rendering — all would need a real browser
   session, not available in this environment.
 
+## Confirmed live 2026-07-31 (verified by the browser session, not just the editor)
+
+- `/leisure` is fully retired: page disabled (not deleted, fully reversible), and a real server-side 301 redirect `/leisure` → `/bespoke` is confirmed firing on anonymous requests (verified against a control 404 path, no redirect loop). Bespoke's nav position and homepage prominence are untouched.
+- `footer-content.html` is live in the footer's Code Block exactly as given — computed styles confirmed correct (wordmark in Cormorant Garamond/white, Cue in gold at the right tracking), FORA/Virtuoso placeholder comment present with nothing invented in it. Old icon-badge logo image confirmed hidden (not deleted) via the filename-keyed rule.
+- **Known, accepted tradeoff, not a bug:** `/bespoke` still returns 401 to logged-out visitors (client's deliberate "stay gated" decision from earlier this project). This means the `/leisure` redirect currently lands anonymous visitors on the lock screen rather than live content — this is the exact consequence flagged when the redirect was set up, not a new issue.
+- **Fixed this pass:** the footer was rendering pure black instead of Midnight (`#12355B`) — Squarespace's inner `.section-background` div has a hardcoded `#000` that was painting over the existing footer background rule. Extended the CSS to target `.section-background` directly inside the footer.
+
 ## Needs doing in Squarespace admin (not fixable from this repo)
 
 - **Create the three new pages** (`/access-and-care`, `/journal`, `/collections`)
