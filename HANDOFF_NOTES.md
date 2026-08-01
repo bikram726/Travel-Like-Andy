@@ -158,7 +158,15 @@ A live audit found **no element anywhere had a visible keyboard-focus outline** 
 
 Also confirmed: the footer-black fix logged above was committed to the repo but **never actually got pasted into the live Custom CSS field** — the same audit re-discovered the identical bug. Re-pasting the current `pages/global-custom-css.css` fixes both the footer color and corrects the focus-outline color in one paste.
 
-**Still stale, needs a content paste (not a bug):** the Groups page (`/corporate`) is the only live page still on the pre-rebrand design system ("Executive & Group Travel," old ✺ markers). `pages/groups.html`'s content was already handed over earlier in this project for manual pasting — it just hasn't happened yet. Every other page (Home, Bespoke, Collections, About, Contact, Journal, Access & Care) is confirmed live and correct.
+**Resolved 2026-08-01:** Groups (`/corporate`) content was pasted — confirmed live and correct via fresh audit. All 7 live pages are now on the new system.
+
+## 2026-08-01: two more live-only additions synced back into the repo, one still not synced
+
+A live audit found and fixed a real regression: pasting the tracked `global-custom-css.css` had dropped an earlier filename-keyed rule (added directly to live Custom CSS in an even earlier session, never captured here) that hid the retired icon-collage logo in the footer — so the old clip-art badge came back. It also found the Contact/Collections forms' own `input:focus { outline:none }` was overriding the new sitewide Voyage focus-visible rule with a gold-border-only cue. Both fixes are now synced into `pages/global-custom-css.css` (re-hide rule keyed to filename `logo-main-transparent-preview-dark`; `!important`-forced Voyage outline on both forms' fields) so a future re-paste of this file won't regress either one again.
+
+**Still not synced — same risk pattern:** the same audit added a `TravelAgency` JSON-LD block via Settings → Advanced → Code Injection → **HEADER** (to work around Squarespace's native JSON-LD `WebSite.description` being empty and uneditable in this template). That's the *same* Code Injection field `pages/header-injection.html` maps to — if that tracked file is ever re-pasted without this block included, the JSON-LD addition will vanish the same way the footer logo hide rule did. **Need the exact live JSON-LD text to sync it into `pages/header-injection.html`** — not yet requested/added as of this note. Real facts confirmed used in it: name, URL, founder (Andy Eisenmann), and this description (also now live in the page meta description): "Curated journeys by Andy Eisenmann, Certified Fora Travel Partner — bespoke private trips, group & corporate travel, and hosted small-group departures." The `TravelAgency` approach (rather than fighting the native empty `WebSite.description`) is a reasonable, real-facts-only judgment call — no objection to it, just needs syncing.
+
+Also confirmed clean via full sweep 2026-08-01: no retired vocabulary, old markers, old palette, or old-brand strings anywhere on any live page or in Squarespace's own settings (Site Title, sitemap, robots.txt, 404 page all correct/clean).
 
 ## Needs doing in Squarespace admin (not fixable from this repo)
 

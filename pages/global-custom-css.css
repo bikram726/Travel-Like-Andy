@@ -34,6 +34,22 @@
   outline-offset: 3px;
 }
 
+/* FORM-FIELD FOCUS CONSISTENCY (added 2026-07-31 by a live audit,
+   synced back here 2026-08-01). The Contact (.tlact-form) and
+   Collections (.tlco-form) code blocks each set
+   input:focus/textarea:focus { outline:none } and rely on a gold
+   border alone for focus, which is a color-only cue and inconsistent
+   with the rest of the site's Voyage focus affordance. !important
+   forces this to win regardless of the page code block's own
+   <style> position in the DOM. */
+.tla-contact .tlact-form input:focus-visible,
+.tla-contact .tlact-form textarea:focus-visible,
+.tla-collections .tlco-form input:focus-visible,
+.tla-collections .tlco-form textarea:focus-visible {
+  outline: 3px solid var(--tla-voyage) !important;
+  outline-offset: 3px !important;
+}
+
 /* SMOOTH IN-PAGE SCROLLING — supports anchor links like Home's hero
    "Explore" scroll-cue. Respects reduced-motion preference. */
 html { scroll-behavior: smooth; }
@@ -73,12 +89,9 @@ html { scroll-behavior: smooth; }
 .footer-sections a, footer a { color:var(--tla-gold) !important; }
 
 /* FOOTER LOGO — STILL THE OLD RETIRED ICON-BADGE IMAGE as of 2026-07-29.
-   This rule just sizes whatever image block sits there; it can't replace
-   the image with the new text wordmark by itself. That needs a manual
-   Squarespace admin swap: delete the footer's Image Block, add a Text
-   Block reading "travellikeandy" (or a Code Block for more control),
-   styled via the .tla-footer-wordmark rule below once that block exists.
-   Sizing rule kept as a harmless no-op fallback until that swap happens. */
+   This sizing rule can't replace the image with the new text wordmark
+   by itself -- kept as a harmless no-op fallback for whenever the block
+   is swapped to a real wordmark image instead of hidden entirely. */
 .footer-sections .sqs-block-image img,
 footer .sqs-block-image img,
 .sqs-footer .sqs-block-image img {
@@ -87,6 +100,21 @@ footer .sqs-block-image img,
   height:auto !important;
   margin:0 auto 0.75rem !important;
   display:block !important;
+}
+/* RE-HIDE THE RETIRED ICON-COLLAGE (added 2026-07-31 by a live audit,
+   synced back here 2026-08-01). A prior Custom CSS replacement dropped
+   an earlier version of this rule, and the old 700x700 clip-art badge
+   reappeared in the footer at 100x100 -- illegible and off-brand. The
+   real footer identity is the .tla-footer-wordmark text below. Keyed to
+   the literal image filename so it self-expires once the block points
+   at a real wordmark asset instead. Image + asset left untouched. */
+footer .sqs-block-image:has(img[src*="logo-main-transparent-preview-dark"]),
+#footer-sections .sqs-block-image:has(img[src*="logo-main-transparent-preview-dark"]) {
+  display: none !important;
+}
+footer img[src*="logo-main-transparent-preview-dark"],
+#footer-sections img[src*="logo-main-transparent-preview-dark"] {
+  display: none !important;
 }
 .tla-footer-wordmark {
   display:block;
