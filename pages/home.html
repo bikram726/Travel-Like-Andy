@@ -16,11 +16,22 @@
 .tla-home p { font-size:1.08rem; line-height:1.65; }
 .tla-home .tlah-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; }
 
-/* the Cue -- thin baton line + three stars, per Brand Bible Section 04 */
-.tla-home .tla-cue { display:flex; align-items:center; justify-content:center; gap:0.9rem; margin:2rem auto; }
-.tla-home .tla-cue-line { display:inline-block; width:110px; height:1px; background:linear-gradient(90deg, transparent, var(--gold) 75%, var(--gold)); position:relative; }
-.tla-home .tla-cue-line::after { content:''; position:absolute; right:-3px; top:-6px; width:1px; height:13px; background:var(--gold); transform:rotate(22deg); }
-.tla-home .tla-cue-stars { color:var(--gold); font-size:0.75rem; letter-spacing:0.5em; }
+/* the Cue -- thin baton line + three stars, per Brand Bible Section 04.
+   Single inline SVG, currentColor-driven, animates once on scroll into
+   view (stroke-draw then star fade-in), static under reduced-motion. */
+.tla-home .tla-cue-mark { display:flex; align-items:center; justify-content:center; margin:2rem auto; }
+.tla-home .tla-cue-mark-svg { width:150px; height:34px; overflow:visible; color:var(--gold); }
+.tla-home .tla-cue-mark-line { fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-dasharray:140; stroke-dashoffset:140; transition:stroke-dashoffset 0.6s cubic-bezier(.22,.61,.36,1); }
+.tla-home .tla-cue-mark-star { fill:currentColor; opacity:0; transition:opacity 0.3s ease-out; }
+.tla-home .tla-cue-mark-star.s1 { transition-delay:0.55s; }
+.tla-home .tla-cue-mark-star.s2 { transition-delay:0.68s; }
+.tla-home .tla-cue-mark-star.s3 { transition-delay:0.81s; }
+.tla-home .tla-cue-mark.tla-cue-play .tla-cue-mark-line { stroke-dashoffset:0; }
+.tla-home .tla-cue-mark.tla-cue-play .tla-cue-mark-star { opacity:1; }
+@media (prefers-reduced-motion: reduce) {
+  .tla-home .tla-cue-mark-line { stroke-dashoffset:0 !important; transition:none !important; }
+  .tla-home .tla-cue-mark-star { opacity:1 !important; transition:none !important; }
+}
 
 /* 01 HERO */
 .tla-home .tlah-hero {
@@ -122,7 +133,14 @@
 
   <section class="tlah-signature tlah-reveal">
     <h2>Curated Personally.</h2>
-    <div class="tla-cue" aria-hidden="true"><span class="tla-cue-line"></span><span class="tla-cue-stars">&#10022; &#10022; &#10022;</span></div>
+    <div class="tla-cue-mark" aria-hidden="true">
+      <svg class="tla-cue-mark-svg" viewBox="0 0 150 34" focusable="false">
+        <path class="tla-cue-mark-line" d="M2 26 L108 10"/>
+        <path class="tla-cue-mark-star s1" d="M124 6 C125 10 125 10 129 11 C125 12 125 12 124 16 C123 12 123 12 119 11 C123 10 123 10 124 6 Z"/>
+        <path class="tla-cue-mark-star s2" d="M136 14 C136.7 16.5 136.7 16.5 139 17.2 C136.7 17.9 136.7 17.9 136 20.4 C135.3 17.9 135.3 17.9 133 17.2 C135.3 16.5 135.3 16.5 136 14 Z"/>
+        <path class="tla-cue-mark-star s3" d="M118 18 C118.6 20 118.6 20 120.6 20.6 C118.6 21.2 118.6 21.2 118 23.2 C117.4 21.2 117.4 21.2 115.4 20.6 C117.4 20 117.4 20 118 18 Z"/>
+      </svg>
+    </div>
   </section>
 
   <section class="tlah-story tlah-reveal">
@@ -191,7 +209,14 @@
   <section class="tlah-invite tlah-reveal">
     <h2>Let's begin with what matters most to you.</h2>
     <a href="/contact" class="tlah-btn tlah-btn-primary">Begin a Journey</a>
-    <div class="tla-cue" aria-hidden="true"><span class="tla-cue-line"></span><span class="tla-cue-stars">&#10022; &#10022; &#10022;</span></div>
+    <div class="tla-cue-mark" aria-hidden="true">
+      <svg class="tla-cue-mark-svg" viewBox="0 0 150 34" focusable="false">
+        <path class="tla-cue-mark-line" d="M2 26 L108 10"/>
+        <path class="tla-cue-mark-star s1" d="M124 6 C125 10 125 10 129 11 C125 12 125 12 124 16 C123 12 123 12 119 11 C123 10 123 10 124 6 Z"/>
+        <path class="tla-cue-mark-star s2" d="M136 14 C136.7 16.5 136.7 16.5 139 17.2 C136.7 17.9 136.7 17.9 136 20.4 C135.3 17.9 135.3 17.9 133 17.2 C135.3 16.5 135.3 16.5 136 14 Z"/>
+        <path class="tla-cue-mark-star s3" d="M118 18 C118.6 20 118.6 20 120.6 20.6 C118.6 21.2 118.6 21.2 118 23.2 C117.4 21.2 117.4 21.2 115.4 20.6 C117.4 20 117.4 20 118 18 Z"/>
+      </svg>
+    </div>
     <p class="tlah-signature-line">Curated Personally.</p>
   </section>
 
@@ -206,5 +231,21 @@
     entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlah-in'); io.unobserve(entry.target); } });
   }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
   els.forEach(function(e){ io.observe(e); });
+})();
+</script>
+<script>
+(function(){
+  var cues = document.querySelectorAll('.tla-cue-mark');
+  if (!cues.length) { return; }
+  if (!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    cues.forEach(function(c){ c.classList.add('tla-cue-play'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) { entry.target.classList.add('tla-cue-play'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.4 });
+  cues.forEach(function(c){ io.observe(c); });
 })();
 </script>

@@ -54,7 +54,19 @@
 .tla-groups .tlgr-close { background:var(--sandstone); color:var(--midnight); text-align:center; padding:clamp(4rem,9vh,6rem) 1.5rem; }
 .tla-groups .tlgr-close h2 { margin-bottom:1.8rem; }
 .tla-groups .tlgr-close .tlgr-btn-primary-solo { display:inline-block; }
-.tla-groups .tlgr-cue { display:block; text-align:center; color:var(--gold); font-size:1.1rem; letter-spacing:0.3em; margin:2.2rem 0 0.6rem; opacity:0.8; }
+.tla-groups .tla-cue-mark { display:flex; align-items:center; justify-content:center; margin:2.2rem 0 0.6rem; }
+.tla-groups .tla-cue-mark-svg { width:150px; height:34px; overflow:visible; color:var(--gold); }
+.tla-groups .tla-cue-mark-line { fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-dasharray:140; stroke-dashoffset:140; transition:stroke-dashoffset 0.6s cubic-bezier(.22,.61,.36,1); }
+.tla-groups .tla-cue-mark-star { fill:currentColor; opacity:0; transition:opacity 0.3s ease-out; }
+.tla-groups .tla-cue-mark-star.s1 { transition-delay:0.55s; }
+.tla-groups .tla-cue-mark-star.s2 { transition-delay:0.68s; }
+.tla-groups .tla-cue-mark-star.s3 { transition-delay:0.81s; }
+.tla-groups .tla-cue-mark.tla-cue-play .tla-cue-mark-line { stroke-dashoffset:0; }
+.tla-groups .tla-cue-mark.tla-cue-play .tla-cue-mark-star { opacity:1; }
+@media (prefers-reduced-motion: reduce) {
+  .tla-groups .tla-cue-mark-line { stroke-dashoffset:0 !important; transition:none !important; }
+  .tla-groups .tla-cue-mark-star { opacity:1 !important; transition:none !important; }
+}
 
 .tla-groups .tlgr-reveal { opacity:1; transform:none; }
 .tla-groups .js-reveal .tlgr-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
@@ -112,7 +124,14 @@
   <section class="tlgr-close">
     <h2>Tell me where your team needs to be.</h2>
     <a href="/contact" class="tlgr-btn tlgr-btn-primary tlgr-btn-primary-solo">Begin a Journey</a>
-    <span class="tlgr-cue">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;/ &#10022; &#10022; &#10022;</span>
+    <div class="tla-cue-mark" aria-hidden="true">
+      <svg class="tla-cue-mark-svg" viewBox="0 0 150 34" focusable="false">
+        <path class="tla-cue-mark-line" d="M2 26 L108 10"/>
+        <path class="tla-cue-mark-star s1" d="M124 6 C125 10 125 10 129 11 C125 12 125 12 124 16 C123 12 123 12 119 11 C123 10 123 10 124 6 Z"/>
+        <path class="tla-cue-mark-star s2" d="M136 14 C136.7 16.5 136.7 16.5 139 17.2 C136.7 17.9 136.7 17.9 136 20.4 C135.3 17.9 135.3 17.9 133 17.2 C135.3 16.5 135.3 16.5 136 14 Z"/>
+        <path class="tla-cue-mark-star s3" d="M118 18 C118.6 20 118.6 20 120.6 20.6 C118.6 21.2 118.6 21.2 118 23.2 C117.4 21.2 117.4 21.2 115.4 20.6 C117.4 20 117.4 20 118 18 Z"/>
+      </svg>
+    </div>
     <p style="font-family:'Cormorant Garamond',serif; font-style:italic; margin:0;">Curated Personally.</p>
   </section>
 </div></div>
@@ -129,4 +148,20 @@ function tlgrInitReveal(){
 }
 if (document.readyState !== "loading") { tlgrInitReveal(); }
 else { document.addEventListener("DOMContentLoaded", tlgrInitReveal); }
+</script>
+<script>
+(function(){
+  var cues = document.querySelectorAll('.tla-cue-mark');
+  if (!cues.length) { return; }
+  if (!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    cues.forEach(function(c){ c.classList.add('tla-cue-play'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) { entry.target.classList.add('tla-cue-play'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.4 });
+  cues.forEach(function(c){ io.observe(c); });
+})();
 </script>

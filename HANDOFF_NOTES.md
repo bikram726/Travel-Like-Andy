@@ -86,6 +86,37 @@ What it confirms and changes:
   ones) should get a real title + description written once the final page set is
   confirmed live.
 
+## Media & Motion Addendum (2026-07-31)
+
+A follow-up brief (`MEDIA_MOTION_ADDENDUM.md`) asked for a proper animated Cue component, a defined motion/media system, and a shot list for real photography/video. Status:
+
+**Built:** The Cue (baton line + three clustered stars) is now a single reusable inline SVG on every page that has one (Home ×2, About, Bespoke, Contact, Groups, Access & Care, Journal) — previously it was an em-dash-and-unicode-star text approximation. It draws once via `stroke-dashoffset` on scroll into view (IntersectionObserver, 40% threshold), stars fade in with a short stagger after, `aria-hidden="true"`, fires once and never loops, and renders fully complete with no animation under `prefers-reduced-motion`.
+
+**Already compliant, no changes needed:** scroll-reveal pattern (fade + translate, fires once, disabled under reduced-motion, one reveal per section not per child); Bespoke's lightbox (Escape closes, arrows navigate, focus-trapped, focus returns to trigger on close, no autoplay); no carousels/sliders/rotators, no marquee logo scroller, no cursor-follow/WebGL effects, no text-baked-into-images, no travel pictograms in motion anywhere in the codebase.
+
+**Deliberately not built — hero video / Ken Burns stills:** the addendum's premise is "no real photography or footage exists," which doesn't match this project's actual state — real Andy photography already exists and is in use (the Taj Mahal hero, the orchestra-conducting photo, the Cabo/Palmilla shots, the 9 merged Leisure gallery photos). Building placeholder video-hero scaffolding to replace a working real-photo hero would be a downgrade, not progress, and speculative given no footage will ever fill it without Andy providing V1/V2 below. The Brand Bible itself permits a static image as a full alternative to video (§11 section 01), which the current hero already satisfies. If real hero footage arrives, building the video-hero component (muted/looped/poster/reduced-motion-safe per the addendum's A1 spec) is a contained, well-defined follow-up.
+
+**Not attempted — full editorial image-rhythm rebuild (A4):** the addendum wants an asymmetric "one dominant image + smaller counterpoint" rhythm alternating orientation down the page, versus this site's current masonry/column-based photo galleries. The galleries already avoid true equal-weight collages (column-count masonry naturally varies tile height), so this is a refinement opportunity, not a violation — not undertaken this pass to control scope.
+
+### Shot list for Andy (blocking — nothing below exists yet)
+
+**Video**
+| # | Shot | Spec |
+|---|---|---|
+| V1 | Hero loop — a single unhurried moment (a table being set, a train window, a hand on a balcony rail at dawn, an empty concert hall). Not a montage, not a destination reel | 8-15s, 1920×1080, no audio, minimal camera movement, warm-neutral grade |
+| V2 | Andy speaking to camera, 30-60s, on judgment and being present when plans change | 1080p, clean audio, captions required |
+
+**Photography**
+| # | Shot | Ratio | Use |
+|---|---|---|---|
+| P1 | Andy — horizontal environmental (in place, working, mid-journey) | 3:2 | Homepage "Why Andy" |
+| P2 | Andy — vertical editorial | 4:5 | About page |
+| P3 | Andy — simple headshot, neutral | 1:1 | Proof section, social, favicon fallback |
+| P4-P6 | Bespoke / Groups / Collections path images — a real moment, not stock/boardroom imagery | 16:9 | Homepage "Three paths" (currently reusing existing real photos as a placeholder) |
+| P7 | Detail set, 6-10 images: architectural detail, a table, textiles, a performance, a train, a boat, dawn light | mixed 4:5/3:2 | General editorial rhythm |
+
+Image test to apply: would this make a discerning traveler want to be *in* the moment, or merely recognize the place? Reject: generic beach sunsets, landmark checklists, stock handshakes, HDR/lens flare/heavy filters, airport/airplane imagery.
+
 ## Accessibility audit (2026-07-30, computed via WCAG relative-luminance formula)
 
 - **Fixed:** gold (#C9A96E) as text/accent color only passes AA contrast on
