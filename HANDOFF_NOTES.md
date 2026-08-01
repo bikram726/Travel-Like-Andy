@@ -152,6 +152,14 @@ Image test to apply: would this make a discerning traveler want to be *in* the m
 - **Known, accepted tradeoff, not a bug:** `/bespoke` still returns 401 to logged-out visitors (client's deliberate "stay gated" decision from earlier this project). This means the `/leisure` redirect currently lands anonymous visitors on the lock screen rather than live content — this is the exact consequence flagged when the redirect was set up, not a new issue.
 - **Fixed this pass:** the footer was rendering pure black instead of Midnight (`#12355B`) — Squarespace's inner `.section-background` div has a hardcoded `#000` that was painting over the existing footer background rule. Extended the CSS to target `.section-background` directly inside the footer.
 
+## 2026-08-01: focus-visible added, footer fix still not live yet
+
+A live audit found **no element anywhere had a visible keyboard-focus outline** (computed `outline: none`, no fallback) — a real WCAG 2.4.7 failure. The browser session added a gold-outline version directly to live Custom CSS as a fix. Brought this into the tracked file instead using **Voyage blue** per the Brand Bible's own already-documented token spec (`:focus-visible { outline: 3px solid var(--tla-voyage); outline-offset: 3px; }`) rather than gold — gold is reserved for punctuation/accents, Voyage is the spec'd color for interactive-state affordances like links and focus rings. **The live Custom CSS field currently has the gold version; `pages/global-custom-css.css` has the corrected Voyage version — they've diverged. Re-paste the full file to reconcile.**
+
+Also confirmed: the footer-black fix logged above was committed to the repo but **never actually got pasted into the live Custom CSS field** — the same audit re-discovered the identical bug. Re-pasting the current `pages/global-custom-css.css` fixes both the footer color and corrects the focus-outline color in one paste.
+
+**Still stale, needs a content paste (not a bug):** the Groups page (`/corporate`) is the only live page still on the pre-rebrand design system ("Executive & Group Travel," old ✺ markers). `pages/groups.html`'s content was already handed over earlier in this project for manual pasting — it just hasn't happened yet. Every other page (Home, Bespoke, Collections, About, Contact, Journal, Access & Care) is confirmed live and correct.
+
 ## Needs doing in Squarespace admin (not fixable from this repo)
 
 - **Create the three new pages** (`/access-and-care`, `/journal`, `/collections`)

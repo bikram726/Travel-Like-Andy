@@ -21,6 +21,19 @@
   --tla-body: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
 }
 
+/* KEYBOARD FOCUS — found missing entirely via a live audit 2026-08-01
+   (no element anywhere computed a focus outline, a WCAG 2.4.7 failure).
+   Voyage blue per the Brand Bible's own token spec (Section 3) --
+   deliberately not gold, since gold is reserved for punctuation/accent
+   use, not interactive-state affordances. :focus-visible only shows for
+   keyboard/assistive-tech focus, never on a plain mouse click. This one
+   site-wide rule covers both Squarespace's native header/footer chrome
+   and every page's own code-block content. */
+:focus-visible {
+  outline: 3px solid var(--tla-voyage);
+  outline-offset: 3px;
+}
+
 /* SMOOTH IN-PAGE SCROLLING — supports anchor links like Home's hero
    "Explore" scroll-cue. Respects reduced-motion preference. */
 html { scroll-behavior: smooth; }
