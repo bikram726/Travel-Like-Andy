@@ -24,6 +24,17 @@ the live pages say so honestly instead.
    separately, for unrelated reasons — see `README.md`'s superseded checklist
    section. Not part of this Brand Bible pass.
 
+## Real brand artwork received from Andy (2026-07-31)
+
+Andy sent official business card artwork (`FRONT ARTWORK.pdf` / `BACK ARTWORK.pdf`) via the user. Important: this arrived as rendered content in chat, not as a file this session can write to disk — the actual PDF files are not saved anywhere in this repo. **If they should be version-controlled, someone with local file access needs to save them into the repo** (e.g. `assets/brand/`) — this session can't do that itself.
+
+What it confirms and changes:
+- **Design system validated exactly as built.** Front artwork shows the lowercase `travellikeandy` wordmark in Cormorant Garamond (white on Midnight), "Curated Personally." in gold, and the Cue motif (thin line + three clustered stars) — matches this rebuild's implementation precisely. No changes needed from this; strong confirmation the interpretation of the Brand Bible was correct.
+- **Phone number corrected.** The business card lists `+1 4422348624` as the USA number — different from the `+1 (760) 509-0169` that was live on the Contact page (the Mexico/WhatsApp number, `+52 5579495570`, already matched exactly). Updated Contact page's phone card to `+1 (442) 234-8624` / `tel:+14422348624`. **Worth Andy double-checking this is correct** — a phone number is high-stakes to get wrong, and this came from a business card image rather than a direct written confirmation.
+- **Full legal name confirmed**: "Andrew 'Andy' Eisenmann." Site copy uses "Andy Eisenmann" throughout, which reads as intentional (matches the informal, first-name-forward brand voice) — left as-is, not changed to the formal version. Worth using the full name if a legal/disclosure line is ever added to the footer.
+- **"VTW 2026 · The First Downbeat"** appears on the back artwork as a small tagline/watermark. Purpose unclear (possibly an event name, e.g. Virtuoso Travel Week 2026, or a campaign name) — not added anywhere on the site since its meaning and intended use aren't known. Ask Andy if this needs to appear anywhere (e.g. a Journal post, an About mention, or if it's business-card-only).
+- **FORA Travel Partner** spelling/casing on the card ("FORA" all-caps) vs. site's "Fora Travel Partner" (title case) — minor, cosmetic, not changed without knowing which is the brand-approved casing.
+
 ## Still needs the client
 
 - **FORA / Virtuoso disclosure language.** The Brand Bible calls for exact
