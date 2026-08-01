@@ -43,6 +43,20 @@
   background-color:var(--midnight);
 }
 .tla-home .tlah-hero-inner { max-width:900px; display:flex; flex-direction:column; align-items:center; }
+/* One-time staggered entrance on page load (not scroll) -- headline,
+   deck, CTA, and scroll-cue settle in in sequence instead of all at
+   once. Base state is fully visible so no-JS/reduced-motion visitors
+   see the hero exactly as before; JS opts into the pre-enter state. */
+.tla-home .tlah-hero-item { opacity:1; transform:none; }
+.tla-home .js-hero-enter .tlah-hero-item { opacity:0; transform:translateY(16px); transition:opacity 0.5s cubic-bezier(.22,.61,.36,1), transform 0.5s cubic-bezier(.22,.61,.36,1); }
+.tla-home .js-hero-enter .tlah-hero-item.hi-1 { transition-delay:0.05s; }
+.tla-home .js-hero-enter .tlah-hero-item.hi-2 { transition-delay:0.18s; }
+.tla-home .js-hero-enter .tlah-hero-item.hi-3 { transition-delay:0.31s; }
+.tla-home .js-hero-enter .tlah-hero-item.hi-4 { transition-delay:0.44s; }
+.tla-home .js-hero-enter.tlah-hero-in .tlah-hero-item { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) {
+  .tla-home .js-hero-enter .tlah-hero-item { opacity:1 !important; transform:none !important; transition:none !important; }
+}
 .tla-home .tlah-hero h1 { color:var(--white); text-shadow:0 2px 10px rgba(0,0,0,0.6), 0 6px 32px rgba(0,0,0,0.5); margin-bottom:1.5rem; }
 .tla-home .tlah-deck { color:var(--muted-on-dark); text-shadow:0 1px 8px rgba(0,0,0,0.5); margin:0 0 2.4rem; max-width:560px; }
 .tla-home .tlah-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; transition:all 0.3s ease-out; }
@@ -122,10 +136,10 @@
 <div class="tla-home-wrap"><div class="tla-home">
 
   <section class="tlah-hero"><div class="tlah-hero-inner">
-    <h1>Travel, conducted <em>around you.</em></h1>
-    <p class="tlah-deck">Curated journeys by Andy Eisenmann &middot; Fora Travel Partner</p>
-    <a href="/contact" class="tlah-btn tlah-btn-primary">Begin a Journey</a>
-    <a href="#tlah-explore" class="tlah-scroll-cue" aria-label="Scroll to explore the three paths">
+    <h1 class="tlah-hero-item hi-1">Travel, conducted <em>around you.</em></h1>
+    <p class="tlah-deck tlah-hero-item hi-2">Curated journeys by Andy Eisenmann &middot; Fora Travel Partner</p>
+    <a href="/contact" class="tlah-btn tlah-btn-primary tlah-hero-item hi-3">Begin a Journey</a>
+    <a href="#tlah-explore" class="tlah-scroll-cue tlah-hero-item hi-4" aria-label="Scroll to explore the three paths">
       <span>Explore</span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 4v15M6 13l6 6 6-6"/></svg>
     </a>
@@ -223,6 +237,13 @@
 </div></div>
 <script>
 (function(){
+  var hero = document.querySelector('.tlah-hero-inner');
+  if (hero && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    hero.classList.add('js-hero-enter');
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ hero.classList.add('tlah-hero-in'); });
+    });
+  }
   var wrap = document.querySelector('.tla-home');
   if (wrap) { wrap.classList.add('js-reveal'); }
   var els = document.querySelectorAll('.tlah-reveal');
