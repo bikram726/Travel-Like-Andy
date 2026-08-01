@@ -115,6 +115,10 @@ tested against a live render this pass.
   files: zero live hits for old hex, Montserrat, unsplash, banned/retired
   vocabulary, invitation/referral language, or `border-radius:0`.
 
+## Media & Motion Addendum (2026-07-31)
+
+Rebuilt the Cue motif as a real single-source animated inline SVG (baton-line stroke-draw + staggered star fade-in, fires once on scroll into view, static under reduced-motion) across all 7 pages that use it, replacing the previous em-dash/unicode-star text version. Audited the addendum's full spec against actual site state — scroll-reveal, lightbox accessibility, and the "do not build" list (carousels, marquee scrollers, cursor effects, etc.) were already compliant. Deliberately did not build hero-video/Ken-Burns placeholder scaffolding, since real Andy photography already fills those roles — see `HANDOFF_NOTES.md` for the reasoning and the full video/photography shot list logged for Andy.
+
 ## Not attempted this pass, by design
 
 Full nav rebuild, redirects, page creation in admin, meta tags, favicon, and
