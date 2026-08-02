@@ -39,8 +39,15 @@
 .tla-about .tlaa-gallery-head { text-align:center; max-width:640px; margin:0 auto clamp(2.5rem,6vh,4rem); }
 .tla-about .tlaa-gallery-head .tlaa-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
 .tla-about .tlaa-gallery-head h2 { color:var(--midnight); font-style:italic; }
-.tla-about .tlaa-gallery { max-width:1140px; margin:0 auto; column-count:3; column-gap:0.6rem; }
-.tla-about .tlaa-shot { break-inside:avoid; margin-bottom:0.6rem; border-radius:12px; overflow:hidden; }
+/* Grid, not column-count masonry -- fixed 2026-08-02, found via live audit.
+   With exactly 3 photos, CSS multi-column layout unevenly splits them
+   (e.g. 2-over-1) at in-between viewport widths instead of one clean
+   row, and an earlier live-only fix for this same issue was wiped by a
+   later re-paste of this file -- so the fix now lives here, in the
+   tracked source, for good. */
+.tla-about .tlaa-gallery { max-width:1140px; margin:0 auto; display:grid; grid-template-columns:1fr; gap:0.6rem; }
+@media (min-width:769px) { .tla-about .tlaa-gallery { grid-template-columns:repeat(3,1fr); } }
+.tla-about .tlaa-shot { border-radius:12px; overflow:hidden; }
 .tla-about .tlaa-shot-photo { position:relative; overflow:hidden; }
 .tla-about .tlaa-shot img { width:100%; height:auto; display:block; transition:transform 0.8s ease; }
 .tla-about .tlaa-shot-photo:hover img { transform:scale(1.05); }
@@ -84,13 +91,11 @@
 .tla-about .js-reveal .tlaa-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
 .tla-about .js-reveal .tlaa-reveal.tlaa-in { opacity:1; transform:translateY(0); }
 @media (prefers-reduced-motion: reduce) { .tla-about .js-reveal .tlaa-reveal { opacity:1; transform:none; transition:none; } }
-@media (max-width:900px) { .tla-about .tlaa-gallery { column-count:2; } }
 @media (max-width:767px) {
   .tla-about .tlaa-hero { min-height:70vh; }
   .tla-about .tlaa-story, .tla-about .tlaa-story-cell { display:block; width:100%; }
   .tla-about .tlaa-story-cell.tlaa-img { min-height:300px; }
   .tla-about .tlaa-story-cell { padding:3rem 1.4rem; }
-  .tla-about .tlaa-gallery { column-count:1; }
 }
 </style>
 <div class="tla-about-wrap"><div class="tla-about">
