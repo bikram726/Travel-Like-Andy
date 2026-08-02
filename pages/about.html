@@ -71,6 +71,14 @@
   .tla-about .tla-cue-mark-star { opacity:1 !important; transition:none !important; }
 }
 .tla-about .tlaa-sig { font-family:'Cormorant Garamond',serif; font-style:italic; margin:0; color:var(--muted-on-dark); }
+/* Fora disclosure -- required wording from Andy 2026-08-01. "Visible but
+   discreet" per his instruction: small, muted, below the signature,
+   not competing with it. Seller-of-Travel registration numbers are
+   required disclosure in CA/FL/WA, not decorative -- verbatim, not
+   paraphrased. */
+.tla-about .tlaa-disclosure { max-width:640px; margin:2rem auto 0; padding-top:1.6rem; border-top:1px solid rgba(244,239,230,0.15); font-family:'Source Sans 3',sans-serif; font-size:0.72rem; line-height:1.6; color:rgba(244,239,230,0.55); }
+.tla-about .tlaa-disclosure a { color:rgba(244,239,230,0.75); text-decoration:underline; text-underline-offset:2px; }
+.tla-about .tlaa-disclosure a:hover { color:var(--gold); }
 
 .tla-about .tlaa-reveal { opacity:1; transform:none; }
 .tla-about .js-reveal .tlaa-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
@@ -156,6 +164,7 @@
       </svg>
     </div>
     <p class="tlaa-sig">Curated Personally.<br>Andy Eisenmann &middot; Fora Travel Partner</p>
+    <p class="tlaa-disclosure">An Independent Affiliate of <a href="https://fora.travel" target="_blank" rel="noopener">Fora</a>. Fora Travel, Inc. is registered as a Seller of Travel in the following states: California Registration No: 2151995-50 &middot; Florida Registration No: ST43973 &middot; Washington Registration No (UBI): 605329242</p>
   </section>
 </div></div>
 <script>
