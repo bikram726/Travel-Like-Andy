@@ -23,6 +23,7 @@
 .tla-groups .tlgr-hero-inner { max-width:820px; margin:0 auto; }
 .tla-groups .tlgr-hero .tlgr-eyebrow { color:var(--gold); margin:0 0 1.2rem; }
 .tla-groups .tlgr-hero p.tlgr-deck { color:var(--muted-on-dark); max-width:620px; margin:1.4rem auto 2.4rem; }
+.tla-groups .tlgr-slogan { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold); font-size:1.05rem; letter-spacing:0.02em; margin:0 0 2rem; }
 
 .tla-groups .tlgr-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; line-height:1.1; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; transition:all 0.3s ease-out; margin:0 0.4rem; }
 .tla-groups .tlgr-btn-primary { background:var(--sunrise); color:var(--white); border:1px solid var(--sunrise); }
@@ -51,6 +52,32 @@
 .tla-groups .tlgr-feature h2 { font-style:italic; margin-bottom:1.2rem; }
 .tla-groups .tlgr-feature p { color:var(--muted-on-dark); margin:0 0 1.8rem; }
 
+/* FEATURED DEPARTURE — a real, bookable group tour (per Andy 2026-08-01).
+   This is a deliberate, client-confirmed exception to the site's usual
+   "no prices" rule: this is one specific, real, dated departure with a
+   published price and refund policy, not a generic package/deal. */
+.tla-groups .tlgr-departure { background:var(--white); padding:clamp(4rem,10vh,7.5rem) 1.5rem; }
+.tla-groups .tlgr-departure-head { text-align:center; max-width:700px; margin:0 auto clamp(2.5rem,6vh,3.5rem); }
+.tla-groups .tlgr-departure-head .tlgr-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
+.tla-groups .tlgr-departure-head h2 { color:var(--midnight); }
+.tla-groups .tlgr-departure-head p { color:var(--muted-on-light); margin-top:1rem; }
+.tla-groups .tlgr-facts { max-width:760px; margin:2rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; text-align:center; }
+.tla-groups .tlgr-fact { background:var(--sandstone); border-radius:12px; padding:1.4rem 1rem; }
+.tla-groups .tlgr-fact-label { display:block; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.4rem; }
+.tla-groups .tlgr-fact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; color:var(--midnight); font-size:1.3rem; }
+.tla-groups .tlgr-stops { max-width:1140px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
+.tla-groups .tlgr-stop { background:var(--sandstone); border-radius:12px; padding:1.8rem 1.4rem; text-align:left; }
+.tla-groups .tlgr-stop-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold-deep); font-size:0.95rem; display:block; margin-bottom:0.4rem; }
+.tla-groups .tlgr-stop h3 { color:var(--midnight); font-size:1.15rem; margin-bottom:0.3rem; }
+.tla-groups .tlgr-stop-nights { display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.7rem; }
+.tla-groups .tlgr-stop p { color:var(--muted-on-light); font-size:0.88rem; margin:0; }
+.tla-groups .tlgr-logistics { max-width:900px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+.tla-groups .tlgr-logistics h4 { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--midnight); margin:0 0 0.8rem; }
+.tla-groups .tlgr-logistics ul { list-style:none; margin:0; padding:0; color:var(--muted-on-light); font-size:0.92rem; line-height:1.8; }
+.tla-groups .tlgr-logistics li:before { content:'\2014\0020'; color:var(--gold-deep); }
+.tla-groups .tlgr-policy { max-width:760px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; padding-top:1.6rem; border-top:1px solid rgba(18,53,91,0.12); font-size:0.82rem; line-height:1.7; color:var(--muted-on-light); text-align:center; }
+.tla-groups .tlgr-departure-cta { text-align:center; margin-top:clamp(2.5rem,6vh,3.5rem); }
+
 .tla-groups .tlgr-close { background:var(--sandstone); color:var(--midnight); text-align:center; padding:clamp(4rem,9vh,6rem) 1.5rem; }
 .tla-groups .tlgr-close h2 { margin-bottom:1.8rem; }
 .tla-groups .tlgr-close .tlgr-btn-primary-solo { display:inline-block; }
@@ -75,11 +102,17 @@
   .tla-groups .js-reveal .tlgr-reveal { opacity:1; transform:none; transition:none; }
   .tla-groups .tlgr-card { transition:none; }
 }
+@media (max-width:900px) {
+  .tla-groups .tlgr-stops { grid-template-columns:repeat(2,1fr); }
+}
 @media (max-width:767px) {
   .tla-groups .tlgr-grid { grid-template-columns:1fr; }
   .tla-groups .tlgr-feature, .tla-groups .tlgr-feature-cell { display:block; width:100%; }
   .tla-groups .tlgr-feature-cell.tlgr-img { min-height:260px; }
   .tla-groups .tlgr-btn { margin:0.35rem; }
+  .tla-groups .tlgr-facts { grid-template-columns:1fr; }
+  .tla-groups .tlgr-stops { grid-template-columns:1fr; }
+  .tla-groups .tlgr-logistics { grid-template-columns:1fr; gap:1.5rem; }
 }
 </style>
 <div class="tla-groups-wrap"><div class="tla-groups">
@@ -91,6 +124,7 @@
     <p class="tlgr-eyebrow">Corporate &middot; Meetings &middot; Incentives</p>
     <h1>Travel that respects <em>your time.</em></h1>
     <p class="tlgr-deck">Executive, association, and incentive travel conducted with the same personal judgment and advocacy behind every journey I plan.</p>
+    <p class="tlgr-slogan">Travel Together. Go Deeper.</p>
     <a href="/contact" class="tlgr-btn tlgr-btn-primary">Begin a Journey</a>
     <a href="/contact" class="tlgr-btn tlgr-btn-secondary">Start the Conversation</a>
   </div></section>
@@ -103,12 +137,80 @@
       <h2>Conducted, not just <em>coordinated.</em></h2>
     </div>
     <div class="tlgr-grid">
+      <div class="tlgr-card"><h3>Weddings</h3><p>Destination weddings and the whole party's travel, planned as one itinerary, not a scramble of separate bookings.</p></div>
+      <div class="tlgr-card"><h3>Friend Groups</h3><p>The group your friends or family actually are — not a corporate incentive trip, not a stranger's tour bus.</p></div>
+      <div class="tlgr-card"><h3>Curated Events</h3><p>A milestone, a reunion, a reason to gather — built around the occasion, not a template.</p></div>
       <div class="tlgr-card"><h3>Executive Travel</h3><p>Itineraries built for people whose schedules cannot absorb a wasted hour.</p></div>
       <div class="tlgr-card"><h3>Conferences</h3><p>Room blocks, transfers, and timing coordinated so the event runs and nothing else does.</p></div>
       <div class="tlgr-card"><h3>Incentive Trips</h3><p>Reward travel designed to feel earned, not generic.</p></div>
       <div class="tlgr-card"><h3>Team Retreats</h3><p>Offsites that move people out of the building and into a different register entirely.</p></div>
       <div class="tlgr-card"><h3>Small Group Tours</h3><p>Intimate, curated journeys for small groups, planned end to end so everyone simply arrives.</p></div>
       <div class="tlgr-card"><h3>Special Events</h3><p>Milestone celebrations, offsites, and private moments, arranged around the occasion.</p></div>
+    </div>
+  </section>
+
+  <section class="tlgr-departure tlgr-reveal">
+    <div class="tlgr-departure-head">
+      <span class="tlgr-eyebrow">First Group Departure</span>
+      <h2>From Wisconsin to <em>Thailand.</em></h2>
+      <p>Temples, history, mountains, and islands — fourteen days across four destinations, organized for a Wisconsin travel circle and built to feel like a shared journey, not a tour group.</p>
+    </div>
+    <div class="tlgr-facts">
+      <div class="tlgr-fact"><span class="tlgr-fact-label">Dates</span><span class="tlgr-fact-value">Oct 25 &ndash; Nov 7, 2027</span></div>
+      <div class="tlgr-fact"><span class="tlgr-fact-label">Group Size</span><span class="tlgr-fact-value">8&ndash;14 Travelers</span></div>
+      <div class="tlgr-fact"><span class="tlgr-fact-label">Investment</span><span class="tlgr-fact-value">$3,999 / Person</span></div>
+    </div>
+    <div class="tlgr-stops">
+      <div class="tlgr-stop">
+        <span class="tlgr-stop-num">I</span>
+        <h3>Bangkok</h3>
+        <span class="tlgr-stop-nights">3 Nights</span>
+        <p>The Grand Palace and Wat Pho, a Chao Phraya river cruise, floating markets, and rooftop views.</p>
+      </div>
+      <div class="tlgr-stop">
+        <span class="tlgr-stop-num">II</span>
+        <h3>Kanchanaburi</h3>
+        <span class="tlgr-stop-nights">2 Nights</span>
+        <p>The Bridge on the River Kwai, the Death Railway, Erawan Falls, and a scenic train through the valley.</p>
+      </div>
+      <div class="tlgr-stop">
+        <span class="tlgr-stop-num">III</span>
+        <h3>Chiang Mai</h3>
+        <span class="tlgr-stop-nights">4 Nights</span>
+        <p>The old city's temples, a Thai cooking class, an ethical elephant sanctuary, and Doi Inthanon National Park.</p>
+      </div>
+      <div class="tlgr-stop">
+        <span class="tlgr-stop-num">IV</span>
+        <h3>Koh Lanta</h3>
+        <span class="tlgr-stop-nights">4 Nights</span>
+        <p>A four-islands tour, the Emerald Cave, sunset sailing, and rest on some of the quietest beaches in Thailand.</p>
+      </div>
+    </div>
+    <div class="tlgr-logistics">
+      <div>
+        <h4>Included</h4>
+        <ul>
+          <li>English-speaking guides throughout</li>
+          <li>All hotel accommodations</li>
+          <li>Daily breakfast &amp; three group dinners</li>
+          <li>Ground transportation and domestic flights in Thailand</li>
+          <li>Airport transfers &amp; travellikeandy LLC concierge support</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Not Included</h4>
+        <ul>
+          <li>International airfare</li>
+          <li>Travel insurance (strongly suggested)</li>
+          <li>Daily lunches &amp; hotel incidentals</li>
+          <li>Personal expenses</li>
+          <li>Passport &amp; visa fees, if applicable</li>
+        </ul>
+      </div>
+    </div>
+    <p class="tlgr-policy">A $500-per-person deposit is due September 1, 2026, and becomes non-refundable after October 1, 2026. Beyond that, refundability follows each hotel and experience's own policy — travel insurance is strongly suggested.</p>
+    <div class="tlgr-departure-cta">
+      <a href="/contact" class="tlgr-btn tlgr-btn-primary">Ask About This Departure</a>
     </div>
   </section>
 
