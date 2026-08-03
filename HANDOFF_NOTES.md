@@ -168,6 +168,12 @@ Image test to apply: would this make a discerning traveler want to be *in* the m
   behavior, and mobile viewport rendering — all would need a real browser
   session, not available in this environment.
 
+## Real gap found 2026-08-03 — needs Andy/the user's decision, not a code fix
+
+A full site sweep found the site has **no Privacy Policy or Terms page at all** — every candidate URL (`/privacy`, `/privacy-policy`, `/terms`, `/terms-of-service`, `/legal`, etc.) 404s, and there's no link to one anywhere in nav or footer. This became a real gap the moment Groups' Wisconsin-to-Thailand departure went live, since that section publishes a genuine binding deposit amount and a specific non-refundable-after date — real payment/cancellation terms with no policy page behind them. **Deliberately not building one** — this needs actual legal/business judgment (what it should say, whether it needs Andy's host-agency's own boilerplate, state-specific requirements similar to the Fora Seller-of-Travel disclosure) rather than invented policy text. Flag to Andy directly.
+
+Also noted, lower priority: the sitewide `:focus-visible` Voyage-blue outline couldn't be independently re-verified in the most recent audit (the checking session's admin/preview context blocked a genuine anonymous keyboard-Tab test and cross-origin Custom CSS reading). The CSS itself is confirmed correct in the tracked file and was visually confirmed working in an earlier audit — this is a residual verification gap, not a known-broken item.
+
 ## Confirmed live 2026-07-31 (verified by the browser session, not just the editor)
 
 - `/leisure` is fully retired: page disabled (not deleted, fully reversible), and a real server-side 301 redirect `/leisure` → `/bespoke` is confirmed firing on anonymous requests (verified against a control 404 path, no redirect loop). Bespoke's nav position and homepage prominence are untouched.
