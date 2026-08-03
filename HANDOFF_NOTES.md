@@ -183,6 +183,12 @@ Also confirmed: the footer-black fix logged above was committed to the repo but 
 
 **Resolved 2026-08-01:** Groups (`/corporate`) content was pasted — confirmed live and correct via fresh audit. All 7 live pages are now on the new system.
 
+## 2026-08-02: About gallery + /leisure both confirmed resolved
+
+The live audit's gallery fix (a redundant `column-count:unset` override appended to the live Code Block, since it was patching against the *old*, not-yet-re-pasted live content) is now superseded — the tracked `pages/about.html` already had the correct `display:grid` fix from the previous commit, so the redundant override was removed from the tracked file rather than kept. Once this file is next pasted live in full, the live Code Block ends up with just the one clean rule either way.
+
+`/leisure` needed no changes at all: both the page-disabled toggle and the `/leisure` → `/bespoke` 301 redirect were already correctly in place — the audit had been checking as logged-in admin, which bypasses the disabled-page state (same as it bypasses Bespoke's password), making it look live when it wasn't. Confirmed anonymously: `/leisure` returns a real 301 to `/bespoke`, which returns its normal password lock (401) with no loop.
+
 ## 2026-08-01: two more live-only additions synced back into the repo, one still not synced
 
 A live audit found and fixed a real regression: pasting the tracked `global-custom-css.css` had dropped an earlier filename-keyed rule (added directly to live Custom CSS in an even earlier session, never captured here) that hid the retired icon-collage logo in the footer — so the old clip-art badge came back. It also found the Contact/Collections forms' own `input:focus { outline:none }` was overriding the new sitewide Voyage focus-visible rule with a gold-border-only cue. Both fixes are now synced into `pages/global-custom-css.css` (re-hide rule keyed to filename `logo-main-transparent-preview-dark`; `!important`-forced Voyage outline on both forms' fields) so a future re-paste of this file won't regress either one again.
