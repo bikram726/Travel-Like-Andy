@@ -70,6 +70,16 @@
 .tla-bespoke .tlab-place:focus-visible { outline:2px solid var(--voyage); outline-offset:2px; }
 .tla-bespoke .tlab-place-hint { position:absolute; inset:auto 0 0 0; padding:0.6rem 0.8rem; background:linear-gradient(0deg, rgba(18,53,91,0.75), transparent); color:#fff; font-size:0.66rem; letter-spacing:0.14em; text-transform:uppercase; opacity:0; transition:opacity 0.35s ease; pointer-events:none; }
 .tla-bespoke .tlab-place:hover .tlab-place-hint, .tla-bespoke .tlab-place:focus-visible .tlab-place-hint { opacity:1; }
+/* "Reflections at Palmilla" (bespoke-onlyandonly-palmilla-reflection.jpg)
+   is stored upside-down -- found via a live audit 2026-08-02. A clean
+   180deg point-reflection corrects it with zero distortion/cropping
+   (its natural aspect ratio matches the grid cell exactly). Scoped to
+   this one file only; the entrance photo uses a different filename.
+   The hover-scale rule above also sets `transform`, which would replace
+   (not add to) this rotation on hover without the second rule below --
+   this keeps the correction in place through the hover zoom too. */
+.tla-bespoke img[src*="palmilla-reflection"] { transform:rotate(180deg); }
+.tla-bespoke .tlab-place:hover img[src*="palmilla-reflection"] { transform:rotate(180deg) scale(1.05); }
 @media (max-width:900px){ .tla-bespoke .tlab-places-grid { column-count:2; } }
 @media (max-width:560px){ .tla-bespoke .tlab-places-grid { column-count:1; } }
 
