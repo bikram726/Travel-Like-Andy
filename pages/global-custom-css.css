@@ -12,6 +12,7 @@
 :root {
   --tla-midnight: #12355B;
   --tla-gold: #C9A96E;
+  --tla-gold-deep: #7a5a2e;
   --tla-sandstone: #F4EFE6;
   --tla-white: #FFFFFF;
   --tla-voyage: #0EA5D9;
@@ -168,3 +169,105 @@ footer img[src*="logo-main-transparent-preview-dark"],
 /* BESPOKE LOCK SCREEN — moved out. Squarespace's password lock screen is not
    styled by this file at all; it has its own separate injection point at
    Settings > Advanced > Code Injection > Lock Page. See pages/lock-screen.html. */
+
+/* ============================================================
+   JOURNAL — NATIVE BLOG STYLING (added 2026-08-04)
+   Styles Squarespace's native Blog collection template -- real
+   platform markup (article.blog-item, .entry-title, etc.), not a Code
+   Block, so Custom CSS is the correct home for it, same as the header/
+   footer. Class names confirmed via live inspection of the draft blog
+   collection 2026-08-04 -- re-verify against the live DOM if
+   Squarespace ever changes its blog template markup. Still pending:
+   confirming this actually renders correctly on the draft page before
+   the collection's slug is swapped to /journal and linked from nav. */
+
+/* Blog list / archive grid (masonry layout) */
+.blog-list .blog-item,
+article.blog-item {
+  background: var(--tla-sandstone);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 320ms cubic-bezier(.22,.61,.36,1), box-shadow 320ms cubic-bezier(.22,.61,.36,1);
+}
+.blog-list .blog-item:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(18,53,91,0.12); }
+.blog-item .blog-item-summary { padding: 1.8rem 1.6rem 2rem; }
+.blog-item .blog-meta-section,
+.blog-item .blog-meta-primary,
+.blog-item .blog-meta-secondary {
+  font-family: var(--tla-body);
+  font-weight: 600;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--tla-gold-deep);
+}
+.blog-item .blog-meta-delimiter { color: rgba(18,53,91,0.3); margin: 0 0.4em; }
+.blog-item .blog-title {
+  font-family: var(--tla-display);
+  font-weight: 600;
+  color: var(--tla-midnight);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  line-height: 1.15;
+  margin: 0.8rem 0 0.6rem;
+}
+.blog-item .blog-title a { color: inherit; text-decoration: none; }
+.blog-item .blog-excerpt,
+.blog-item .blog-excerpt p {
+  font-family: var(--tla-body);
+  color: rgba(18,53,91,0.72);
+  font-size: 0.96rem;
+  line-height: 1.6;
+}
+.blog-item .blog-more-link {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-family: var(--tla-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tla-voyage);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.blog-item .blog-more-link:hover { color: #0b84ac; }
+
+/* Single post page */
+h1.entry-title {
+  font-family: var(--tla-display);
+  font-weight: 600;
+  color: var(--tla-midnight);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.blog-item-meta-wrapper,
+.blog-item-author-date-wrapper,
+.blog-meta-item {
+  font-family: var(--tla-body);
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tla-gold-deep);
+}
+.blog-author-name { color: inherit; text-decoration: none; }
+.blog-item-content.e-content {
+  font-family: var(--tla-body);
+  color: var(--tla-midnight);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  max-width: 68ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.blog-item-content.e-content h1,
+.blog-item-content.e-content h2,
+.blog-item-content.e-content h3 {
+  font-family: var(--tla-display);
+  font-weight: 600;
+  color: var(--tla-midnight);
+  margin: 2rem 0 1rem;
+}
+.blog-item-content.e-content a { color: var(--tla-voyage); text-decoration: underline; text-underline-offset: 3px; }
+.blog-item-content.e-content a:hover { color: #0b84ac; }
