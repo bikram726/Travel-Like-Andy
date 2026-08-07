@@ -283,15 +283,21 @@ footer img[src*="logo-main-transparent-preview-dark"],
   color: #0b84ac;
 }
 
-/* Single post page */
+/* Single post page. The title rule needs !important: a live audit
+   2026-08-07 found it wasn't applying even though the selector
+   correctly targets the real element (h1.entry-title.entry-title--
+   large.p-name) -- that native element carries 3 classes, giving
+   Squarespace's own template rule higher specificity than this one
+   had without !important. Same fix pattern as the meta/time color. */
 [class*="collection-type-blog"] .entry-title,
-[class*="collection-type-blog"] .entry-title.p-name {
-  font-family: var(--tla-display);
-  font-weight: 600;
-  color: var(--tla-midnight);
-  font-size: clamp(2.2rem, 4.2vw, 3.3rem);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
+[class*="collection-type-blog"] .entry-title.p-name,
+[class*="collection-type-blog"] h1.entry-title {
+  font-family: var(--tla-display) !important;
+  font-weight: 600 !important;
+  color: var(--tla-midnight) !important;
+  font-size: clamp(2.2rem, 4.2vw, 3.3rem) !important;
+  line-height: 1.05 !important;
+  letter-spacing: -0.015em !important;
   margin-bottom: 1rem;
 }
 [class*="collection-type-blog"] .blog-item-meta-wrapper,
