@@ -179,17 +179,26 @@ footer img[src*="logo-main-transparent-preview-dark"],
    collection 2026-08-04 -- re-verify against the live DOM if
    Squarespace ever changes its blog template markup. Still pending:
    confirming this actually renders correctly on the draft page before
-   the collection's slug is swapped to /journal and linked from nav. */
+   the collection's slug is swapped to /journal and linked from nav.
+
+   Fixed 2026-08-06: originally scoped to plain .collection-type-blog,
+   which doesn't match -- a live audit found this collection's real
+   body class is collection-type-blog-masonry (Squarespace appends the
+   layout variant to the base class), so the bare class selector never
+   matched anything and none of this rendered. Switched every selector
+   to the [class*="collection-type-blog"] substring-attribute form so
+   it matches regardless of which layout variant (masonry or otherwise)
+   is in use. */
 
 /* Blog list / archive grid (masonry layout) */
-.collection-type-blog .blog-list {
+[class*="collection-type-blog"] .blog-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
   align-items: start;
 }
-.collection-type-blog .blog-list .blog-item,
-.collection-type-blog article.blog-item {
+[class*="collection-type-blog"] .blog-list .blog-item,
+[class*="collection-type-blog"] article.blog-item {
   background: var(--tla-sandstone);
   border: 1px solid rgba(18,53,91,0.08);
   border-radius: 18px;
@@ -197,23 +206,23 @@ footer img[src*="logo-main-transparent-preview-dark"],
   box-shadow: 0 10px 30px rgba(18,53,91,0.06);
   transition: transform 320ms cubic-bezier(.22,.61,.36,1), box-shadow 320ms cubic-bezier(.22,.61,.36,1);
 }
-.collection-type-blog .blog-list .blog-item:hover,
-.collection-type-blog article.blog-item:hover {
+[class*="collection-type-blog"] .blog-list .blog-item:hover,
+[class*="collection-type-blog"] article.blog-item:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(18,53,91,0.12);
 }
-.collection-type-blog .blog-item .blog-image-wrapper img {
+[class*="collection-type-blog"] .blog-item .blog-image-wrapper img {
   display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
-.collection-type-blog .blog-item .blog-item-summary {
+[class*="collection-type-blog"] .blog-item .blog-item-summary {
   padding: 1.8rem 1.6rem 2rem;
 }
-.collection-type-blog .blog-item .blog-meta-section,
-.collection-type-blog .blog-item .blog-meta-primary,
-.collection-type-blog .blog-item .blog-meta-secondary {
+[class*="collection-type-blog"] .blog-item .blog-meta-section,
+[class*="collection-type-blog"] .blog-item .blog-meta-primary,
+[class*="collection-type-blog"] .blog-item .blog-meta-secondary {
   font-family: var(--tla-body);
   font-weight: 600;
   font-size: 0.7rem;
@@ -221,11 +230,11 @@ footer img[src*="logo-main-transparent-preview-dark"],
   text-transform: uppercase;
   color: var(--tla-gold-deep);
 }
-.collection-type-blog .blog-item .blog-meta-delimiter {
+[class*="collection-type-blog"] .blog-item .blog-meta-delimiter {
   color: rgba(18,53,91,0.3);
   margin: 0 0.4em;
 }
-.collection-type-blog .blog-item .blog-title {
+[class*="collection-type-blog"] .blog-item .blog-title {
   font-family: var(--tla-display);
   font-weight: 600;
   color: var(--tla-midnight);
@@ -233,18 +242,18 @@ footer img[src*="logo-main-transparent-preview-dark"],
   line-height: 1.15;
   margin: 0.8rem 0 0.6rem;
 }
-.collection-type-blog .blog-item .blog-title a {
+[class*="collection-type-blog"] .blog-item .blog-title a {
   color: inherit;
   text-decoration: none;
 }
-.collection-type-blog .blog-item .blog-excerpt,
-.collection-type-blog .blog-item .blog-excerpt p {
+[class*="collection-type-blog"] .blog-item .blog-excerpt,
+[class*="collection-type-blog"] .blog-item .blog-excerpt p {
   font-family: var(--tla-body);
   color: rgba(18,53,91,0.72);
   font-size: 0.96rem;
   line-height: 1.6;
 }
-.collection-type-blog .blog-item .blog-more-link {
+[class*="collection-type-blog"] .blog-item .blog-more-link {
   display: inline-block;
   margin-top: 0.8rem;
   font-family: var(--tla-body);
@@ -256,13 +265,13 @@ footer img[src*="logo-main-transparent-preview-dark"],
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.collection-type-blog .blog-item .blog-more-link:hover {
+[class*="collection-type-blog"] .blog-item .blog-more-link:hover {
   color: #0b84ac;
 }
 
 /* Single post page */
-.collection-type-blog .entry-title,
-.collection-type-blog .entry-title.p-name {
+[class*="collection-type-blog"] .entry-title,
+[class*="collection-type-blog"] .entry-title.p-name {
   font-family: var(--tla-display);
   font-weight: 600;
   color: var(--tla-midnight);
@@ -271,9 +280,9 @@ footer img[src*="logo-main-transparent-preview-dark"],
   letter-spacing: -0.015em;
   margin-bottom: 1rem;
 }
-.collection-type-blog .blog-item-meta-wrapper,
-.collection-type-blog .blog-item-author-date-wrapper,
-.collection-type-blog .blog-meta-item {
+[class*="collection-type-blog"] .blog-item-meta-wrapper,
+[class*="collection-type-blog"] .blog-item-author-date-wrapper,
+[class*="collection-type-blog"] .blog-meta-item {
   font-family: var(--tla-body);
   font-weight: 600;
   font-size: 0.75rem;
@@ -281,11 +290,11 @@ footer img[src*="logo-main-transparent-preview-dark"],
   text-transform: uppercase;
   color: var(--tla-gold-deep);
 }
-.collection-type-blog .blog-author-name {
+[class*="collection-type-blog"] .blog-author-name {
   color: inherit;
   text-decoration: none;
 }
-.collection-type-blog .blog-item-content.e-content {
+[class*="collection-type-blog"] .blog-item-content.e-content {
   font-family: var(--tla-body);
   color: var(--tla-midnight);
   font-size: 1.08rem;
@@ -294,32 +303,32 @@ footer img[src*="logo-main-transparent-preview-dark"],
   margin-left: auto;
   margin-right: auto;
 }
-.collection-type-blog .blog-item-content.e-content h1,
-.collection-type-blog .blog-item-content.e-content h2,
-.collection-type-blog .blog-item-content.e-content h3 {
+[class*="collection-type-blog"] .blog-item-content.e-content h1,
+[class*="collection-type-blog"] .blog-item-content.e-content h2,
+[class*="collection-type-blog"] .blog-item-content.e-content h3 {
   font-family: var(--tla-display);
   font-weight: 600;
   color: var(--tla-midnight);
   margin: 2rem 0 1rem;
 }
-.collection-type-blog .blog-item-content.e-content a {
+[class*="collection-type-blog"] .blog-item-content.e-content a {
   color: var(--tla-voyage);
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.collection-type-blog .blog-item-content.e-content a:hover {
+[class*="collection-type-blog"] .blog-item-content.e-content a:hover {
   color: #0b84ac;
 }
-.collection-type-blog .blog-item-content.e-content img {
+[class*="collection-type-blog"] .blog-item-content.e-content img {
   border-radius: 12px;
   margin: 1.2rem 0;
 }
 
 @media (max-width: 767px) {
-  .collection-type-blog .blog-list {
+  [class*="collection-type-blog"] .blog-list {
     grid-template-columns: 1fr;
   }
-  .collection-type-blog .blog-item .blog-item-summary {
+  [class*="collection-type-blog"] .blog-item .blog-item-summary {
     padding: 1.4rem 1.2rem 1.6rem;
   }
 }
