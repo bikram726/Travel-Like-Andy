@@ -188,15 +188,26 @@ footer img[src*="logo-main-transparent-preview-dark"],
    matched anything and none of this rendered. Switched every selector
    to the [class*="collection-type-blog"] substring-attribute form so
    it matches regardless of which layout variant (masonry or otherwise)
-   is in use. */
+   is in use.
 
-/* Blog list / archive grid (masonry layout) */
-[class*="collection-type-blog"] .blog-list {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-  align-items: start;
-}
+   Revised 2026-08-07: dropped the 2-column CSS grid attempt on the
+   list wrapper. This collection's Masonry layout positions each post
+   with Squarespace's own JS (absolute positioning per item, computed
+   at runtime), which a CSS grid on the wrapper can't reliably override
+   -- children removed from flow by absolute positioning ignore a
+   grid-template-columns rule on their parent. Switching the collection
+   to a different native layout to get a real CSS grid was considered
+   and set aside: that's a broader settings change with side effects on
+   how images/excerpts render, for a single draft page, versus a
+   contained CSS change here. Embraced the single-column "large image +
+   text" presentation instead and styled it properly, rather than
+   fighting the platform's own layout script. Also broadened the meta/
+   date color rule to a bare `time` element selector with !important,
+   since the specific .blog-meta-primary/secondary wrapper spans this
+   was written against don't exist in Masonry's actual markup -- a
+   generic time selector matches regardless of the wrapping structure. */
+
+/* Blog list / archive (single-column presentation under Masonry) */
 [class*="collection-type-blog"] .blog-list .blog-item,
 [class*="collection-type-blog"] article.blog-item {
   background: var(--tla-sandstone);
@@ -204,6 +215,8 @@ footer img[src*="logo-main-transparent-preview-dark"],
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(18,53,91,0.06);
+  margin: 0 auto 1.5rem;
+  max-width: 760px;
   transition: transform 320ms cubic-bezier(.22,.61,.36,1), box-shadow 320ms cubic-bezier(.22,.61,.36,1);
 }
 [class*="collection-type-blog"] .blog-list .blog-item:hover,
@@ -214,7 +227,7 @@ footer img[src*="logo-main-transparent-preview-dark"],
 [class*="collection-type-blog"] .blog-item .blog-image-wrapper img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 [class*="collection-type-blog"] .blog-item .blog-item-summary {
@@ -222,13 +235,14 @@ footer img[src*="logo-main-transparent-preview-dark"],
 }
 [class*="collection-type-blog"] .blog-item .blog-meta-section,
 [class*="collection-type-blog"] .blog-item .blog-meta-primary,
-[class*="collection-type-blog"] .blog-item .blog-meta-secondary {
-  font-family: var(--tla-body);
-  font-weight: 600;
-  font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--tla-gold-deep);
+[class*="collection-type-blog"] .blog-item .blog-meta-secondary,
+[class*="collection-type-blog"] time {
+  font-family: var(--tla-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  color: var(--tla-gold-deep) !important;
 }
 [class*="collection-type-blog"] .blog-item .blog-meta-delimiter {
   color: rgba(18,53,91,0.3);
@@ -325,9 +339,6 @@ footer img[src*="logo-main-transparent-preview-dark"],
 }
 
 @media (max-width: 767px) {
-  [class*="collection-type-blog"] .blog-list {
-    grid-template-columns: 1fr;
-  }
   [class*="collection-type-blog"] .blog-item .blog-item-summary {
     padding: 1.4rem 1.2rem 1.6rem;
   }
