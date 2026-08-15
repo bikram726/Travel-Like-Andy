@@ -195,33 +195,58 @@ footer img[src*="logo-main-transparent-preview-dark"],
    with Squarespace's own JS (absolute positioning per item, computed
    at runtime), which a CSS grid on the wrapper can't reliably override
    -- children removed from flow by absolute positioning ignore a
-   grid-template-columns rule on their parent. Switching the collection
-   to a different native layout to get a real CSS grid was considered
-   and set aside: that's a broader settings change with side effects on
-   how images/excerpts render, for a single draft page, versus a
-   contained CSS change here. Embraced the single-column "large image +
-   text" presentation instead and styled it properly, rather than
-   fighting the platform's own layout script. Also broadened the meta/
+   grid-template-columns rule on their parent. Also broadened the meta/
    date color rule to a bare `time` element selector with !important,
    since the specific .blog-meta-primary/secondary wrapper spans this
    was written against don't exist in Masonry's actual markup -- a
-   generic time selector matches regardless of the wrapping structure. */
+   generic time selector matches regardless of the wrapping structure.
 
-/* Blog list / archive (single-column presentation under Masonry) */
+   Fixed for real 2026-08-10: the 2026-08-07 pass styled the cards but
+   still didn't force single column, because it only added !important
+   to cosmetic properties (color/font), not layout ones. Masonry's JS
+   sets inline width + transform:translate3d(x,y,0) on every item to
+   place it in a column -- those are non-!important inline styles, so
+   an !important rule in this stylesheet reliably beats them every time
+   the JS re-applies them (confirmed: !important external rules always
+   win over plain inline styles, important or not). Forced every layout
+   -critical property (position, transform, width, inset) to !important
+   below so the JS's positioning is fully neutralized rather than fought
+   piecemeal. Converting children to position:static also lets the
+   wrapper's height resolve normally from its in-flow content, instead
+   of the near-zero height an absolutely-positioned masonry produces. */
+
+/* Blog list / archive -- forced single-column, overriding Masonry's JS */
+[class*="collection-type-blog"] .blog-list,
+[class*="collection-type-blog"] .blog-masonry-wrapper {
+  position: static !important;
+  display: block !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
 [class*="collection-type-blog"] .blog-list .blog-item,
 [class*="collection-type-blog"] article.blog-item {
+  position: static !important;
+  transform: none !important;
+  inset: auto !important;
+  width: 100% !important;
   background: var(--tla-sandstone);
   border: 1px solid rgba(18,53,91,0.08);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(18,53,91,0.06);
-  margin: 0 auto 1.5rem;
-  max-width: 760px;
+  margin: 0 0 2.5rem;
   transition: transform 320ms cubic-bezier(.22,.61,.36,1), box-shadow 320ms cubic-bezier(.22,.61,.36,1);
+}
+[class*="collection-type-blog"] .blog-list .blog-item:last-child,
+[class*="collection-type-blog"] article.blog-item:last-child {
+  margin-bottom: 0;
 }
 [class*="collection-type-blog"] .blog-list .blog-item:hover,
 [class*="collection-type-blog"] article.blog-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) !important;
   box-shadow: 0 20px 40px rgba(18,53,91,0.12);
 }
 [class*="collection-type-blog"] .blog-item .blog-image-wrapper img {
@@ -231,7 +256,7 @@ footer img[src*="logo-main-transparent-preview-dark"],
   object-fit: cover;
 }
 [class*="collection-type-blog"] .blog-item .blog-item-summary {
-  padding: 1.8rem 1.6rem 2rem;
+  padding: 2rem 2rem 2.2rem;
 }
 [class*="collection-type-blog"] .blog-item .blog-meta-section,
 [class*="collection-type-blog"] .blog-item .blog-meta-primary,
@@ -252,9 +277,14 @@ footer img[src*="logo-main-transparent-preview-dark"],
   font-family: var(--tla-display);
   font-weight: 600;
   color: var(--tla-midnight);
-  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
-  line-height: 1.15;
-  margin: 0.8rem 0 0.6rem;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 1rem 0 0.7rem;
+  transition: color 0.25s ease;
+}
+[class*="collection-type-blog"] .blog-item:hover .blog-title {
+  color: var(--tla-gold-deep);
 }
 [class*="collection-type-blog"] .blog-item .blog-title a {
   color: inherit;
@@ -264,12 +294,13 @@ footer img[src*="logo-main-transparent-preview-dark"],
 [class*="collection-type-blog"] .blog-item .blog-excerpt p {
   font-family: var(--tla-body);
   color: rgba(18,53,91,0.72);
-  font-size: 0.96rem;
-  line-height: 1.6;
+  font-size: 1.02rem;
+  line-height: 1.65;
+  max-width: 60ch;
 }
 [class*="collection-type-blog"] .blog-item .blog-more-link {
   display: inline-block;
-  margin-top: 0.8rem;
+  margin-top: 1.1rem;
   font-family: var(--tla-body);
   font-weight: 600;
   font-size: 0.75rem;
@@ -288,7 +319,20 @@ footer img[src*="logo-main-transparent-preview-dark"],
    correctly targets the real element (h1.entry-title.entry-title--
    large.p-name) -- that native element carries 3 classes, giving
    Squarespace's own template rule higher specificity than this one
-   had without !important. Same fix pattern as the meta/time color. */
+   had without !important. Same fix pattern as the meta/time color.
+
+   2026-08-10: constrained the whole post (title + meta + body) to one
+   consistent reading column instead of just the body text, so the
+   title/meta don't run full-bleed wide on large screens while the
+   body sits narrow and centered underneath -- both now align. */
+[class*="collection-type-blog"] .blog-item-inner-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(2.5rem, 6vh, 4rem) 1.5rem clamp(3rem, 8vh, 5rem);
+}
+[class*="collection-type-blog"] .blog-item-top-wrapper {
+  margin-bottom: 1.6rem;
+}
 [class*="collection-type-blog"] .entry-title,
 [class*="collection-type-blog"] .entry-title.p-name,
 [class*="collection-type-blog"] h1.entry-title {
@@ -345,7 +389,19 @@ footer img[src*="logo-main-transparent-preview-dark"],
 }
 
 @media (max-width: 767px) {
+  [class*="collection-type-blog"] .blog-list,
+  [class*="collection-type-blog"] .blog-masonry-wrapper {
+    padding: 0 1.1rem;
+  }
   [class*="collection-type-blog"] .blog-item .blog-item-summary {
     padding: 1.4rem 1.2rem 1.6rem;
+  }
+  [class*="collection-type-blog"] .blog-list .blog-item,
+  [class*="collection-type-blog"] article.blog-item {
+    margin-bottom: 1.75rem;
+    border-radius: 14px;
+  }
+  [class*="collection-type-blog"] .blog-item-inner-wrapper {
+    padding: 2rem 1.1rem 3rem;
   }
 }
