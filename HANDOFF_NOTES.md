@@ -203,6 +203,10 @@ A live audit found and fixed a real regression: pasting the tracked `global-cust
 
 Also confirmed clean via full sweep 2026-08-01: no retired vocabulary, old markers, old palette, or old-brand strings anywhere on any live page or in Squarespace's own settings (Site Title, sitemap, robots.txt, 404 page all correct/clean).
 
+## 2026-08-10: Journal native-blog Masonry layout fixed
+
+The Journal blog collection's list view was overlapping because Squarespace's Masonry JS sets inline `position:absolute` + `transform:translate3d()` + `width` on every card at runtime, and earlier CSS passes only made cosmetic properties (`color`/`font`) `!important`, not layout ones. Forced every layout-critical property (`position`, `transform`, `inset`, `width`) to `!important` on both the list wrapper and each card, which reliably beats non-`!important` inline JS styles on every re-application. Also aligned the single-post page so title/meta/body all share one reading-column width (`.blog-item-inner-wrapper`) instead of only the body text being constrained. Committed to `pages/global-custom-css.css` and handed to the browser session to paste into Design > Custom CSS — **pending visual confirmation** that the list now renders single-column with no overlap and the single-post page looks aligned, on both desktop and mobile.
+
 ## Needs doing in Squarespace admin (not fixable from this repo)
 
 - **Create the three new pages** (`/access-and-care`, `/journal`, `/collections`)
