@@ -244,14 +244,29 @@ footer img[src*="logo-main-transparent-preview-dark"],
    live -- 0 elements each). Real markup is a.image-wrapper > img.image
    (intrinsic ratio was rendering ~3:2 instead of the intended 16:9)
    and div.blog-basic-grid--text (computed padding was 0, so text sat
-   flush against the card's rounded edge). */
-[class*="collection-type-blog"] .blog-item .image-wrapper img.image {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+   flush against the card's rounded edge).
+
+   Verified live 2026-08-17, round two: the first version of this fix
+   had two more problems, also caught by live measurement rather than
+   guessed. (1) Squarespace gives .blog-basic-grid--text an explicit
+   content-box width, so adding padding without box-sizing:border-box
+   pushed the box 64px past the card's right edge -- invisible only
+   because overflow:hidden on the card clips it and the current
+   excerpt is short enough not to reach it, but a longer post would
+   get its text cut off. (2) the image rule was a complete no-op: the
+   img itself carries Squarespace's own inline
+   width/height/object-fit/position styles (which beat this rule
+   outright), and the real 3:2 ratio is set on the *wrapper*
+   a.image-wrapper via an old padding-bottom-percentage hack, not on
+   the img at all. Fixed by overriding the wrapper directly instead of
+   the img. */
+[class*="collection-type-blog"] .blog-item .image-wrapper {
+  height: auto !important;
+  padding-bottom: 0 !important;
+  aspect-ratio: 16 / 9 !important;
 }
 [class*="collection-type-blog"] .blog-item .blog-basic-grid--text {
+  box-sizing: border-box;
   padding: 2rem 2rem 2.2rem;
 }
 [class*="collection-type-blog"] .blog-item .blog-meta-section,
