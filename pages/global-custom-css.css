@@ -44,6 +44,7 @@
    forces this to win regardless of the page code block's own
    <style> position in the DOM. */
 .tla-contact .tlact-form input:focus-visible,
+.tla-contact .tlact-form select:focus-visible,
 .tla-contact .tlact-form textarea:focus-visible,
 .tla-collections .tlco-form input:focus-visible,
 .tla-collections .tlco-form textarea:focus-visible {
@@ -173,65 +174,48 @@ footer img[src*="logo-main-transparent-preview-dark"],
 /* ============================================================
    JOURNAL — NATIVE BLOG STYLING (added 2026-08-04)
    Styles Squarespace's native Blog collection template -- real
-   platform markup (article.blog-item, .entry-title, etc.), not a Code
-   Block, so Custom CSS is the correct home for it, same as the header/
-   footer. Class names confirmed via live inspection of the draft blog
-   collection 2026-08-04 -- re-verify against the live DOM if
-   Squarespace ever changes its blog template markup. Still pending:
-   confirming this actually renders correctly on the draft page before
-   the collection's slug is swapped to /journal and linked from nav.
+   platform markup, not a Code Block, so Custom CSS is the correct
+   home for it, same as the header/footer.
 
-   Fixed 2026-08-06: originally scoped to plain .collection-type-blog,
-   which doesn't match -- a live audit found this collection's real
-   body class is collection-type-blog-masonry (Squarespace appends the
-   layout variant to the base class), so the bare class selector never
-   matched anything and none of this rendered. Switched every selector
-   to the [class*="collection-type-blog"] substring-attribute form so
-   it matches regardless of which layout variant (masonry or otherwise)
-   is in use.
+   Fixed 2026-08-06: switched every selector to the
+   [class*="collection-type-blog"] substring-attribute form, since the
+   real body class appends a layout-variant suffix
+   (collection-type-blog-masonry at the time) that a bare class never
+   matched.
 
-   Revised 2026-08-07: dropped the 2-column CSS grid attempt on the
-   list wrapper. This collection's Masonry layout positions each post
-   with Squarespace's own JS (absolute positioning per item, computed
-   at runtime), which a CSS grid on the wrapper can't reliably override
-   -- children removed from flow by absolute positioning ignore a
-   grid-template-columns rule on their parent. Also broadened the meta/
-   date color rule to a bare `time` element selector with !important,
-   since the specific .blog-meta-primary/secondary wrapper spans this
-   was written against don't exist in Masonry's actual markup -- a
-   generic time selector matches regardless of the wrapping structure.
+   2026-08-07 through 2026-08-10: several passes assumed this
+   collection used Squarespace's Masonry layout (JS-driven absolute
+   positioning per item) and tried to force single-column by beating
+   that JS with !important on position/transform/width/inset. That
+   theory was wrong.
 
-   Fixed for real 2026-08-10: the 2026-08-07 pass styled the cards but
-   still didn't force single column, because it only added !important
-   to cosmetic properties (color/font), not layout ones. Masonry's JS
-   sets inline width + transform:translate3d(x,y,0) on every item to
-   place it in a column -- those are non-!important inline styles, so
-   an !important rule in this stylesheet reliably beats them every time
-   the JS re-applies them (confirmed: !important external rules always
-   win over plain inline styles, important or not). Forced every layout
-   -critical property (position, transform, width, inset) to !important
-   below so the JS's positioning is fully neutralized rather than fought
-   piecemeal. Converting children to position:static also lets the
-   wrapper's height resolve normally from its in-flow content, instead
-   of the near-zero height an absolutely-positioned masonry produces. */
+   Corrected for real 2026-08-17, against actual confirmed DOM
+   (resolved live via the draft collection at /journal-native-draft,
+   not guessed): this collection's layout is Squarespace's native
+   "blog-basic-grid" template -- a plain CSS Grid, not JS-positioned
+   Masonry. The real list container is
+   .blog-basic-grid.collection-content-wrapper (display:grid,
+   Squarespace sets its own fixed-pixel grid-template-columns for a
+   2-up desktop layout); the real card is
+   article.blog-basic-grid--container.blog-item. Neither .blog-list
+   nor .blog-masonry-wrapper (the earlier guesses) exist on this
+   template, which is why the position/transform overrides had
+   nothing to act on -- the card's own cosmetic rules (background/
+   radius/shadow) still applied fine because article.blog-item was
+   already a correct, real selector; only the wrapper-level column
+   control was targeting the wrong element. Fixed by overriding
+   grid-template-columns directly on the real grid container instead
+   of fighting nonexistent JS positioning. */
 
-/* Blog list / archive -- forced single-column, overriding Masonry's JS */
-[class*="collection-type-blog"] .blog-list,
-[class*="collection-type-blog"] .blog-masonry-wrapper {
-  position: static !important;
-  display: block !important;
-  height: auto !important;
-  min-height: 0 !important;
+/* Blog list / archive -- single-column grid, overriding Squarespace's
+   own 2-up grid-template-columns on the real .blog-basic-grid wrapper */
+[class*="collection-type-blog"] .blog-basic-grid.collection-content-wrapper {
+  grid-template-columns: 1fr !important;
   max-width: 760px;
   margin: 0 auto;
   padding: 0 1.5rem;
 }
-[class*="collection-type-blog"] .blog-list .blog-item,
 [class*="collection-type-blog"] article.blog-item {
-  position: static !important;
-  transform: none !important;
-  inset: auto !important;
-  width: 100% !important;
   background: var(--tla-sandstone);
   border: 1px solid rgba(18,53,91,0.08);
   border-radius: 18px;
@@ -240,11 +224,9 @@ footer img[src*="logo-main-transparent-preview-dark"],
   margin: 0 0 2.5rem;
   transition: transform 320ms cubic-bezier(.22,.61,.36,1), box-shadow 320ms cubic-bezier(.22,.61,.36,1);
 }
-[class*="collection-type-blog"] .blog-list .blog-item:last-child,
 [class*="collection-type-blog"] article.blog-item:last-child {
   margin-bottom: 0;
 }
-[class*="collection-type-blog"] .blog-list .blog-item:hover,
 [class*="collection-type-blog"] article.blog-item:hover {
   transform: translateY(-4px) !important;
   box-shadow: 0 20px 40px rgba(18,53,91,0.12);
@@ -321,10 +303,22 @@ footer img[src*="logo-main-transparent-preview-dark"],
    Squarespace's own template rule higher specificity than this one
    had without !important. Same fix pattern as the meta/time color.
 
-   2026-08-10: constrained the whole post (title + meta + body) to one
-   consistent reading column instead of just the body text, so the
-   title/meta don't run full-bleed wide on large screens while the
-   body sits narrow and centered underneath -- both now align. */
+   Corrected 2026-08-17 against confirmed real DOM/computed values
+   (resolved live, not guessed): .blog-item-inner-wrapper,
+   .blog-item-top-wrapper, .blog-item-title, .blog-meta-item and
+   .blog-item-content.e-content were already the right selectors --
+   the bug wasn't a wrong selector, it was wrong values. The 2026-08-10
+   pass centered .blog-item-content with margin:auto, which put the
+   body's left edge ~64px to the right of the title's left edge
+   (measured: title left 276 vs. content left 340, both inside the
+   same 276-988 content column) -- reads as a misaligned "step," not a
+   deliberate narrower column. Left-aligning content to the title's
+   edge (while still capping its width for a readable measure) fixes
+   the visual stagger. The meta line's centering (measured ~604,
+   floating in the middle of the 276-988 column) isn't yet traced to
+   a specific wrapper class, so it's corrected defensively across the
+   plausible mechanisms (flex justify-content, block text-align, and
+   auto margins) rather than a single confirmed rule. */
 [class*="collection-type-blog"] .blog-item-inner-wrapper {
   max-width: 760px;
   margin: 0 auto;
@@ -332,6 +326,9 @@ footer img[src*="logo-main-transparent-preview-dark"],
 }
 [class*="collection-type-blog"] .blog-item-top-wrapper {
   margin-bottom: 1.6rem;
+  text-align: left !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
 }
 [class*="collection-type-blog"] .entry-title,
 [class*="collection-type-blog"] .entry-title.p-name,
@@ -353,6 +350,9 @@ footer img[src*="logo-main-transparent-preview-dark"],
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--tla-gold-deep);
+  text-align: left !important;
+  justify-content: flex-start !important;
+  margin-left: 0 !important;
 }
 [class*="collection-type-blog"] .blog-author-name {
   color: inherit;
@@ -364,8 +364,8 @@ footer img[src*="logo-main-transparent-preview-dark"],
   font-size: 1.08rem;
   line-height: 1.7;
   max-width: 68ch;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 0;
+  margin-right: 0;
 }
 [class*="collection-type-blog"] .blog-item-content.e-content h1,
 [class*="collection-type-blog"] .blog-item-content.e-content h2,
@@ -389,14 +389,12 @@ footer img[src*="logo-main-transparent-preview-dark"],
 }
 
 @media (max-width: 767px) {
-  [class*="collection-type-blog"] .blog-list,
-  [class*="collection-type-blog"] .blog-masonry-wrapper {
+  [class*="collection-type-blog"] .blog-basic-grid.collection-content-wrapper {
     padding: 0 1.1rem;
   }
   [class*="collection-type-blog"] .blog-item .blog-item-summary {
     padding: 1.4rem 1.2rem 1.6rem;
   }
-  [class*="collection-type-blog"] .blog-list .blog-item,
   [class*="collection-type-blog"] article.blog-item {
     margin-bottom: 1.75rem;
     border-radius: 14px;
