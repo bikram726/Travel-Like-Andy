@@ -205,7 +205,15 @@ footer img[src*="logo-main-transparent-preview-dark"],
    already a correct, real selector; only the wrapper-level column
    control was targeting the wrong element. Fixed by overriding
    grid-template-columns directly on the real grid container instead
-   of fighting nonexistent JS positioning. */
+   of fighting nonexistent JS positioning.
+
+   Verified live 2026-08-17 with real before/after computed values:
+   single column confirmed (card lefts went from 38/662 to a uniform
+   276), no overlap, real-cursor hover lift confirmed
+   (transform: matrix(1,0,0,1,0,-4), deeper shadow, title turns
+   gold-deep). Two more dead selectors found and fixed in the same
+   pass below (.blog-image-wrapper and .blog-item-summary never
+   matched anything real on this template either). */
 
 /* Blog list / archive -- single-column grid, overriding Squarespace's
    own 2-up grid-template-columns on the real .blog-basic-grid wrapper */
@@ -231,13 +239,19 @@ footer img[src*="logo-main-transparent-preview-dark"],
   transform: translateY(-4px) !important;
   box-shadow: 0 20px 40px rgba(18,53,91,0.12);
 }
-[class*="collection-type-blog"] .blog-item .blog-image-wrapper img {
+/* 2026-08-17: .blog-image-wrapper and .blog-item-summary were both
+   guesses that never matched anything on blog-basic-grid (confirmed
+   live -- 0 elements each). Real markup is a.image-wrapper > img.image
+   (intrinsic ratio was rendering ~3:2 instead of the intended 16:9)
+   and div.blog-basic-grid--text (computed padding was 0, so text sat
+   flush against the card's rounded edge). */
+[class*="collection-type-blog"] .blog-item .image-wrapper img.image {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
 }
-[class*="collection-type-blog"] .blog-item .blog-item-summary {
+[class*="collection-type-blog"] .blog-item .blog-basic-grid--text {
   padding: 2rem 2rem 2.2rem;
 }
 [class*="collection-type-blog"] .blog-item .blog-meta-section,
@@ -318,7 +332,14 @@ footer img[src*="logo-main-transparent-preview-dark"],
    floating in the middle of the 276-988 column) isn't yet traced to
    a specific wrapper class, so it's corrected defensively across the
    plausible mechanisms (flex justify-content, block text-align, and
-   auto margins) rather than a single confirmed rule. */
+   auto margins) rather than a single confirmed rule.
+
+   Verified live 2026-08-17: title/meta/content all confirmed sharing
+   left edge 276 (was 276/604/340). The defensive .blog-item-meta-
+   wrapper fix was in fact the real mechanism -- it measured
+   justify-content: center -> flex-start, text-align: center -> left,
+   width 891 -> 57 (shrink-wrapped to the date), so no further
+   parent-chain digging was needed. */
 [class*="collection-type-blog"] .blog-item-inner-wrapper {
   max-width: 760px;
   margin: 0 auto;
@@ -392,7 +413,7 @@ footer img[src*="logo-main-transparent-preview-dark"],
   [class*="collection-type-blog"] .blog-basic-grid.collection-content-wrapper {
     padding: 0 1.1rem;
   }
-  [class*="collection-type-blog"] .blog-item .blog-item-summary {
+  [class*="collection-type-blog"] .blog-item .blog-basic-grid--text {
     padding: 1.4rem 1.2rem 1.6rem;
   }
   [class*="collection-type-blog"] article.blog-item {
