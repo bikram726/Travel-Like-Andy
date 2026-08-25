@@ -5,25 +5,23 @@
    Code Block's page-section reserves a fixed 243 Fluid Engine grid rows
    regardless of actual content height. Each row has a real minimum
    height that scales with viewport width and never caps, so the dead
-   space below the content grows with the screen -- ~2800px on a 768px
-   viewport, ~6200px at 1440px, ~8500px at 1920px, worse on larger
-   monitors. A manual drag-resize of the block in the Squarespace editor
-   was tried first but doesn't reliably commit through the editor's own
-   drag-start threshold; this CSS override is more robust anyway, since
-   it holds at every viewport width with no upper limit, rather than
-   being tuned to one specific screen size. Making every row track
+   space below the content grows with the screen. Making every row track
    `minmax(0px, auto)` instead of a fixed minimum lets empty rows
    collapse to zero and the occupied ones size to the content's real
    height. Scoped to `.fluid-engine` unqualified is safe here because
    this Code Block is the only thing on the /bespoke page, and Custom
    CSS embedded in a Code Block only ever executes on the page that
-   block is placed on. 243 is this section's current row count
-   (grid-area 1/12/244/16, confirmed live) -- if the block's own stored
-   row-span ever changes for an unrelated reason, this number would
-   need rechecking, though the fix's *mechanism* (collapse to content)
-   doesn't depend on getting that count exactly right the same way a
-   fixed pixel height would. */
-.fluid-engine { grid-template-rows: repeat(243, minmax(0px, auto)) !important; }
+   block is placed on.
+   `row-gap: 0` added same day -- minmax(0px, auto) zeroes each empty
+   track's height but not the ~11px gap between tracks, so leftover
+   empty rows below the content each still added a gap: (243 minus the
+   block's real occupied rows) x 11px, which is ~308px at desktop widths
+   and, on the first live check, a much larger ~1375px on mobile (there
+   the native row count was smaller, so forcing 243 handed it far more
+   empty rows than it naturally had). With a single block filling the
+   section, zeroing row-gap is free -- there's no second block for a
+   gap to visually separate. */
+.fluid-engine { grid-template-rows: repeat(243, minmax(0px, auto)) !important; row-gap: 0 !important; }
 
 .tla-bespoke-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
 .tla-bespoke {
