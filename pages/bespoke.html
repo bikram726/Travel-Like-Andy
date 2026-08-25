@@ -7,27 +7,35 @@
   --muted-on-light:rgba(18,53,91,0.72); --muted-on-dark:rgba(244,239,230,0.75);
   font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
 }
-.tla-bespoke * { box-sizing:border-box; }
+.tla-bespoke * { box-sizing:border-box; margin:0; padding:0; }
 .tla-bespoke h1,.tla-bespoke h2,.tla-bespoke h3 { font-family:'Cormorant Garamond',serif; font-weight:600; margin:0; }
 .tla-bespoke h1 { font-size:clamp(2.6rem,6vw,4.6rem); line-height:1.0; letter-spacing:-0.02em; }
 .tla-bespoke h2 { font-size:clamp(2.2rem,4.5vw,3.4rem); line-height:1.05; letter-spacing:-0.015em; }
 .tla-bespoke h3 { font-size:1.3rem; }
 .tla-bespoke em { font-style:normal; color:var(--gold); }
 .tla-bespoke p { font-size:1.05rem; line-height:1.65; }
-.tla-bespoke .tlab-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; line-height:1.3; letter-spacing:0.16em; text-transform:uppercase; }
+.tla-bespoke .tlab-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; line-height:1.3; letter-spacing:0.16em; text-transform:uppercase; margin-bottom:0.6rem; }
 .tla-bespoke .tlab-lockup { display:flex; flex-direction:column; align-items:center; gap:0.35rem; margin-bottom:2rem; }
 .tla-bespoke .tlab-lockup-word { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:1.6rem; color:var(--white); letter-spacing:0.01em; }
 .tla-bespoke .tlab-lockup-division { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold); }
 
-.tla-bespoke .tlab-hero { background:var(--midnight); color:var(--white); min-height:60vh; display:flex; align-items:center; justify-content:center; padding:clamp(4rem,10vh,7rem) 1.5rem; text-align:center; }
+/* 2026-08-25: .tlab-hero and .tlab-intro share the exact same sandstone
+   background with no visual break between them, so their two full
+   section paddings were stacking into one oversized blank gap between
+   the manifesto line and the intro paragraph -- read as broken/empty
+   space rather than intentional spacing. Split hero's padding so its
+   bottom is smaller, and reduced .tlab-process's top to match it, so
+   the gap above the intro paragraph (hero-bottom + intro-top) and the
+   gap below it (intro-bottom + process-top) come out equal. */
+.tla-bespoke .tlab-hero { background:var(--sandstone); color:#000000; min-height:60vh; display:flex; align-items:center; justify-content:center; padding:clamp(4rem,10vh,7rem) 1.5rem clamp(2.5rem,6vh,4rem); text-align:center; }
 .tla-bespoke .tlab-hero-inner { max-width:760px; }
 .tla-bespoke .tlab-hero .tlab-eyebrow { color:var(--gold); margin:0 0 1.4rem; }
-.tla-bespoke .tlab-manifesto { max-width:640px; margin:1.8rem auto 0; color:var(--muted-on-dark); }
+.tla-bespoke .tlab-manifesto { max-width:640px; margin:0.8rem auto 0; color:var(--midnight); }
 
-.tla-bespoke .tlab-intro { background:var(--sandstone); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
+.tla-bespoke .tlab-intro { background:var(--sandstone); padding:clamp(3rem,7vh,4.5rem) 1.5rem; text-align:center; }
 .tla-bespoke .tlab-intro p { max-width:700px; margin:0 auto; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; color:var(--midnight); font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.7; }
 
-.tla-bespoke .tlab-process { background:var(--white); padding:clamp(4rem,10vh,7rem) 1.5rem; text-align:center; }
+.tla-bespoke .tlab-process { background:var(--white); padding:clamp(2.5rem,6vh,4rem) 1.5rem clamp(4rem,10vh,7rem); text-align:center; }
 .tla-bespoke .tlab-process-head { max-width:640px; margin:0 auto clamp(2.5rem,6vh,3.5rem); }
 .tla-bespoke .tlab-process-head .tlab-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
 .tla-bespoke .tlab-process-head h2 { color:var(--midnight); font-style:italic; }
@@ -133,7 +141,7 @@
       <span class="tlab-lockup-division">Bespoke</span>
     </div>
     <p class="tlab-eyebrow">Private Journeys</p>
-    <h1>Every journey, <em>considered from the ground up.</em></h1>
+    <h1>Every journey, <em>curated personally</em>, from the ground up.</h1>
     <p class="tlab-manifesto">I do not build packages. I build access &mdash; to people, places, and rooms that are not listed. Every itinerary starts with a conversation about how you want to feel, not a form to fill out.</p>
   </div></section>
 
