@@ -1,5 +1,22 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+/* FLUID ENGINE ROW-HEIGHT FIX -- same bug and same fix as Bespoke
+   (pages/bespoke.html): the page-section's Code Block reserves a fixed
+   Fluid Engine grid row count regardless of actual content height, and
+   each row's minimum height scales with viewport width with no cap, so
+   unused rows below the content show up as dead white space that grows
+   with the screen. Using a generously large repeat count here (500,
+   rather than Bespoke's live-measured 243) so this doesn't need a
+   separate live row-count check for this page -- extra unused explicit
+   rows just collapse to 0px each via minmax(0px, auto) and cost
+   nothing, so overshooting the real count is harmless, only
+   undershooting it would be. row-gap: 0 kills the per-row gap that
+   would otherwise still add up across all those collapsed empty rows
+   (this was the fix-on-top-of-the-fix needed on Bespoke after the
+   first pass). */
+.fluid-engine { grid-template-rows: repeat(500, minmax(0px, auto)) !important; row-gap: 0 !important; }
+
 .tla-groups-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
 .tla-groups {
   --midnight:#12355B; --gold:#C9A96E; --gold-deep:#7a5a2e; --sandstone:#F4EFE6; --white:#FFFFFF;
