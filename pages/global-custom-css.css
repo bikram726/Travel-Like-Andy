@@ -144,9 +144,34 @@ footer img[src*="logo-main-transparent-preview-dark"],
 #sections > .page-section:first-child .content-wrapper,
 #sections > .page-section:first-child .fluid-engine,
 #sections > .page-section:first-child .sqs-block-content { padding-top:0 !important; margin-top:0 !important; }
-/* fluid-engine sections enforce a min/fixed row-height that shows as empty
-   cream space below the code block — force them to collapse to content */
-.page-section .fluid-engine { min-height:0 !important; height:auto !important; }
+/* FLUID ENGINE ROW-HEIGHT FIX, corrected 2026-08-25 (found via a full-site
+   code review, same day as the Bespoke/Groups per-page fixes below). This
+   rule already existed here and was meant to do exactly what those two
+   page-level fixes do, but it targeted the wrong properties: Squarespace's
+   dead space comes from a *fixed number of explicit grid rows*
+   (grid-template-rows), each with its own real minimum height that scales
+   with viewport width -- not from the .fluid-engine element's own
+   height/min-height, which was always already "auto" in practice (a grid
+   container's rendered height equals the sum of its row tracks unless
+   something else constrains it). So min-height:0/height:auto here was a
+   harmless no-op against the real mechanism, and every page using this
+   architecture (a single Fluid Engine Code Block per page-section) was
+   left with the same latent dead-space-below-content bug, confirmed live
+   on Bespoke and Groups this same day.
+   Fix: force every grid row to minmax(0px, auto) so empty rows collapse
+   to zero and occupied ones size to real content, plus row-gap:0 so
+   leftover empty rows don't each still add a gap between tracks (the
+   second, smaller bug found on top of the first on Bespoke). Repeat
+   count (999) is deliberately far larger than any single page's real row
+   count needs to be -- extra unused explicit rows just collapse to 0px
+   each and cost nothing, so overshooting is harmless; undershooting
+   would leave a residual gap the way the first pass at this on Bespoke
+   did. This global version is scoped by .page-section like everything
+   else here, which is MORE specific than the bare `.fluid-engine` rule
+   pasted directly into pages/bespoke.html and pages/groups.html -- so it
+   wins over those without conflicting, since 999 rows is a superset of
+   what either of those pages already forces (243 and 500). */
+.page-section .fluid-engine { min-height:0 !important; height:auto !important; grid-template-rows: repeat(999, minmax(0px, auto)) !important; row-gap: 0 !important; }
 .page-section { min-height:0 !important; }
 
 /* MOBILE HEADER OVERLAP FIX — found via a live audit 2026-07-30: the site
