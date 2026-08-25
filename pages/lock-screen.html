@@ -102,52 +102,12 @@ html, body { background: #12355B !important; }
   margin-bottom:1.4rem;
 }
 
-/* Wordmark + division lockup above the password field, matching the lockup pattern
-   used on every other rebuilt page. Text-based by construction so it never renders
-   "in black" like the old icon-collage logo image did against a dark background.
-
-   2026-08-24: neither element had an explicit line-height, so both inherited
-   Squarespace's lock-screen line-height (a fixed 20.8px that doesn't scale
-   with font-size). The wordmark's font resolves to 28.8-38.4px depending on
-   viewport, so its glyph ink overflowed the 20.8px line box by ~7px top and
-   bottom -- measured live, this collided with the paragraph text above it
-   (up to 11px overlap on desktop) and touched the division line below it.
-   Confirmed width-independent (same overlap from 375px to 1280px).
-
-   Also added top margin so the lockup settles with clear breathing room
-   below the paragraph instead of sitting flush against it -- this moves
-   in the same direction as the overlap fix above (more space, not less),
-   so it doesn't reintroduce the collision. */
-.tlab-lock-logo {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:0.4rem;
-  margin:2rem auto 2.5rem;
-}
-.tlab-lock-wordmark {
-  font-family:'Cormorant Garamond',serif;
-  font-weight:400;
-  font-size:clamp(1.8rem,5vw,2.4rem);
-  line-height:1.05;
-  color:#C9A96E;
-  letter-spacing:0.01em;
-}
-.tlab-lock-division {
-  line-height:1.3;
-  font-family:'Source Sans 3',sans-serif;
-  font-weight:600;
-  font-size:0.76rem;
-  letter-spacing:0.26em;
-  text-transform:uppercase;
-  color:#C9A96E;
-}
-
 /* Partner-logo strip below the password field.
 
    2026-08-24: rebuilt as a continuous auto-scrolling marquee, and
-   logos sized up (24px -> 34px desktop, 19px -> 28px mobile). This is
-   a deliberate, scoped exception to this site's general "no carousels/
+   logos sized up (24px -> 34px -> 44px desktop, 19px -> 28px -> 36px
+   mobile, across two passes). This is a deliberate, scoped exception
+   to this site's general "no carousels/
    sliders/rotators" motion policy (see MEDIA_MOTION_ADDENDUM.md /
    HANDOFF_NOTES.md) -- explicitly requested by the client for this one
    partner-logo strip specifically, not a reversal of that policy
@@ -197,8 +157,8 @@ html, body { background: #12355B !important; }
 }
 .tlab-lock-partner {
   background:#F4EFE6;
-  border-radius:6px;
-  padding:0.7rem 1.1rem;
+  border-radius:8px;
+  padding:0.9rem 1.4rem;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -211,15 +171,15 @@ html, body { background: #12355B !important; }
   box-shadow:inset 0 0 0 1px rgba(201,169,110,0.7), 0 6px 16px rgba(0,0,0,0.25);
 }
 .tlab-lock-partner img {
-  height:34px;
+  height:44px;
   width:auto;
-  max-width:130px;
+  max-width:170px;
   object-fit:contain;
   display:block;
 }
 @media (max-width:600px) {
-  .tlab-lock-partner img { height:28px; max-width:104px; }
-  .tlab-lock-partner { padding:0.55rem 0.9rem; }
+  .tlab-lock-partner img { height:36px; max-width:132px; }
+  .tlab-lock-partner { padding:0.7rem 1.1rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tlab-lock-partner { transition:none; }
@@ -324,12 +284,6 @@ input[type="password"]:focus { outline:none !important; border-bottom-color:#C9A
   <a href="/about">About</a>
   <a href="/journal">Journal</a>
 </nav>
-<div class="tla-bespoke-lock">
-  <div class="tlab-lock-logo">
-    <span class="tlab-lock-wordmark">travellikeandy</span>
-    <span class="tlab-lock-division">Bespoke</span>
-  </div>
-</div>
 
 <p class="tlab-lock-partners-eyebrow">In Partnership With</p>
 <div class="tlab-lock-partners">
