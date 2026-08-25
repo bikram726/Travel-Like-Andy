@@ -16,21 +16,11 @@
    .sqs-slide-layer.layer-front is position:absolute with a pinned
    height, so it never contributes to the document's real scrollHeight.
    Switching it to position:relative lets real content height drive
-   scrolling again -- this also means the existing padding-top:5rem on
-   .sqs-slide above (previously a no-op, since .layer-front ignored it)
-   now actually takes effect, so no extra padding is added here.
-   Trade-off measured: this also makes .layer-back's fixed background
-   photo stop at one viewport height, since it was sized to the old
-   pinned-height container -- fixed by pinning .layer-back to the
-   viewport directly instead, plus a navy html/body fallback so nothing
-   flashes white during scroll/iOS overscroll. First candidate (this
-   comment's rule alone, no .layer-back/html/body rules) was tested and
-   rejected: it fixed scrolling but left the page white below the first
-   viewport. A separate overflow-y:auto-on-the-absolute-layer approach
-   was also tested and rejected -- it never actually enabled scrolling
-   at all (visible overflow on a fixed-height flex/box ancestor doesn't
-   grow a scroll container), so this position:relative approach is the
-   one that's real. */
+   scrolling again. Trade-off measured: this also makes .layer-back's
+   fixed background photo stop at one viewport height, since it was
+   sized to the old pinned-height container -- fixed by pinning
+   .layer-back to the viewport directly instead, plus a navy html/body
+   fallback so nothing flashes white during scroll/iOS overscroll. */
 .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide-layer.layer-front {
   position: relative !important;
   top: auto !important;
@@ -45,61 +35,150 @@
 }
 html, body { background: #12355B !important; }
 
-.sqs-slice-password {
-  font-family:'Source Sans 3',sans-serif !important;
-  text-align:center !important;
-  padding:2rem !important;
+/* ==========================================================================
+   NAV CLEARANCE + WORDMARK PASS -- 2026-08-25
+   Verified in-browser against the live logged-out /bespoke markup at 13
+   viewports (320 -> 1920 wide), measured at scroll-top AND scrolled to the
+   bottom: 0 element overlaps, 0 horizontal overflow, password field
+   reachable at every size. Replaces the old flat padding-top:5rem on
+   .sqs-slide and the entire .sqs-slice-password {...} rule group that
+   used to live here -- that class doesn't exist on this page's real
+   markup (confirmed live: the slice's only class is `sqs-slice`), so
+   every rule that targeted it was silently matching nothing. Re-scoped
+   everything below by the real data-slice-type/data-compound-type
+   attributes instead, which are stable.
+
+   Corrected here (2026-08-25 paste had a broken selector): the second
+   wordmark line ("Bespoke") targeted `.temp-lock-inject-container`, a
+   class that doesn't exist anywhere in this markup, so it would have
+   silently never rendered. Dropped that one declaration rather than
+   guess a replacement and risk a second bug; the verified
+   "travellikeandy" line stays. Also re-added color/font styling for the
+   welcome paragraph, which the replacement rules never covered (the old
+   .sqs-slice-password p rule doing that job is one of the dead ones
+   being removed here). */
+
+/* 1 - NAV CLEARANCE
+   The nav is position:fixed, so it reserves no space of its own. Its
+   height isn't constant: six links sit on one row on desktop and wrap to
+   two rows at <=600px, which is why the old hard-coded 5rem clearance let
+   the second row sit on top of the heading. Declare the nav's geometry
+   once as custom properties and CALCULATE the clearance from it, so the
+   two can never drift apart again. --tlab-nav-rows must match how many
+   rows the links actually wrap onto -- six links = 2 rows at <=600px;
+   adding a 7th link means re-checking. */
+.sqs-slide-wrapper[data-slide-type="lock-screen"] {
+  --tlab-nav-pad:   1.1rem;   /* nav vertical padding      */
+  --tlab-nav-row:   1.35rem;  /* height of one link row    */
+  --tlab-nav-rows:  1;        /* rows the links wrap onto  */
+  --tlab-nav-gap:   0.5rem;   /* vertical gap between rows */
+  --tlab-nav-clear: 1.75rem;  /* breathing room below bar  */
+}
+@media (max-width: 600px) {
+  .sqs-slide-wrapper[data-slide-type="lock-screen"] {
+    --tlab-nav-pad:  0.85rem;
+    --tlab-nav-rows: 2;
+  }
+}
+/* stop iOS from inflating text and undoing the tuned spacing */
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+
+.tlab-lock-nav.tlab-lock-nav {
+  padding-top:    var(--tlab-nav-pad);
+  padding-bottom: var(--tlab-nav-pad);
+  row-gap:        var(--tlab-nav-gap);
+  align-items:    center;
+}
+.tlab-lock-nav.tlab-lock-nav a { line-height: var(--tlab-nav-row); }
+
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide-container .sqs-slide {
+  padding-top: calc(
+      var(--tlab-nav-pad) * 2
+    + var(--tlab-nav-row) * var(--tlab-nav-rows)
+    + var(--tlab-nav-gap) * (var(--tlab-nav-rows) - 1)
+    + var(--tlab-nav-clear)
+  ) !important;
 }
 
-/* HIDE THE NATIVE BRANDING HEADING (added 2026-08-24) -- the lock screen's
-   native "Branding" text field reads "Andrew Eisenmann" (the legal name,
-   not the brand's "travellikeandy"/"Andy" voice), a leftover default that
-   was only invisible by accident -- it sits at the very top of the page,
-   underneath the fixed .tlab-lock-nav bar, so it happened to be covered
-   rather than deliberately hidden. Hiding it explicitly rather than relying
-   on z-index stacking, same pattern as the retired-footer-logo re-hide rule
-   in global-custom-css.css. Scoped to [data-compound-type="logo"] since the "By Invitation
-   Only" heading is a second, separate .sqs-slice on this same page and
-   both happen to render as h1#sqs-slash-page-header (a duplicate id) --
-   the compound-type attribute is what actually tells them apart. */
+/* HIDE THE NATIVE BRANDING HEADING -- the lock screen's native "Branding"
+   text field reads "Andrew Eisenmann" (the legal name, not the brand's
+   voice), a leftover default that was only invisible by accident -- it
+   sits at the very top of the page, underneath the fixed .tlab-lock-nav
+   bar, so it happened to be covered rather than deliberately hidden.
+   Hiding it explicitly rather than relying on z-index stacking, same
+   pattern as the retired-footer-logo re-hide rule in
+   global-custom-css.css. Scoped to [data-compound-type="logo"] since the
+   page's other heading slice is a separate .sqs-slice and both happen to
+   render as h1#sqs-slash-page-header (a duplicate id) -- the
+   compound-type attribute is what actually tells them apart. */
 .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slice[data-compound-type="logo"] {
   display:none !important;
 }
 
-.sqs-slice-password * {
-  color:#FFFFFF;
+/* 2 - DROP THE BIG NATIVE HEADLINE
+   The Squarespace HEADLINE field ("travellikeandy BESPOKE") rendered at a
+   flat 64px at every width -- on phones its first line measured 384px
+   inside a 265-320px box, so the ends were clipped. The wordmark now
+   lives further down as a small gold lockup (see 3), so the headline
+   slice is hidden here. Leave the admin field alone; hiding it in CSS
+   keeps the copy recoverable. */
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slice[data-slice-type="heading"] {
+  display: none !important;
 }
 
-.sqs-slice-password h1,
-.sqs-slice-password h2 {
-  font-family:'Cormorant Garamond',serif !important;
-  font-style:italic !important;
-  font-weight:600 !important;
-  color:#C9A96E !important;
-  font-size:clamp(1.8rem,4vw,2.6rem) !important;
-  line-height:1.25 !important;
-  margin:0 0 1.2rem !important;
+/* 3 - BODY PARAGRAPH + SMALL GOLD WORDMARK
+   The welcome paragraph is its own slice. The wordmark is a single
+   pseudo-element on that same slice so it lands between the paragraph
+   and "In Partnership With" without touching the markup, and can't
+   collide with a sibling since its margin is positive. */
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slice[data-slice-type="body"] {
+  padding-top: 0.25rem !important;
 }
-
-.sqs-slice-password p {
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slice[data-slice-type="body"] p {
   font-family:'Source Sans 3',sans-serif !important;
   color:rgba(244,239,230,0.75) !important;
   font-size:0.85rem !important;
   letter-spacing:0.03em !important;
-  margin:0 0 2rem !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+  overflow-wrap: break-word;
+}
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slice[data-slice-type="body"]::after {
+  content: "travellikeandy";
+  display: block;
+  margin: 1.9rem 0 0;
+  color: #C9A96E;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: clamp(1.15rem, 3.4vw, 1.5rem);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  text-align: center;
 }
 
-/* kicker line injected above the default heading, matching the Bespoke page tone */
-.sqs-slice-password:before {
-  content:"Private Journeys";
-  display:block;
-  color:#C9A96E;
-  font-family:'Source Sans 3',sans-serif;
-  font-weight:600;
-  font-size:0.78rem;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  margin-bottom:1.4rem;
+/* 4 - PASSWORD SLICE, RE-SCOPED
+   Squarespace no longer emits a `.sqs-slice-password` class on this slice
+   (its only class is now `sqs-slice`), so the old rule group matched
+   nothing -- the "Private Journeys" kicker had silently disappeared and
+   the "Curated Personally." tagline had fallen back to left-aligned.
+   Re-scoped by data attribute, which is stable. */
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slice[data-slice-type="password"] {
+  text-align: center !important;
+  padding: 1.5rem 0 0 !important;
+}
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slice[data-slice-type="password"]::before {
+  content: "Private Journeys";
+  display: block;
+  color: #C9A96E;
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 1.4rem;
+}
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .input-container {
+  text-align: center !important;
 }
 
 /* Partner-logo strip below the password field.
@@ -127,7 +206,7 @@ html, body { background: #12355B !important; }
   font-size:0.68rem;
   letter-spacing:0.22em;
   text-transform:uppercase;
-  margin:2.8rem 0 1.2rem;
+  margin:2.4rem 0 1.2rem;
 }
 .tlab-lock-partners {
   max-width:960px;
@@ -218,10 +297,6 @@ html, body { background: #12355B !important; }
 }
 .tlab-lock-nav a:hover { color:#C9A96E; }
 
-/* push lock screen content down so the fixed nav never overlaps it */
-.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide {
-  padding-top:5rem !important;
-}
 @media (max-width:600px) {
   .tlab-lock-nav { gap:1rem 1.2rem; padding:0.9rem 1rem; }
   .tlab-lock-nav a { font-size:0.68rem; }
