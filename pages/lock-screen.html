@@ -9,6 +9,42 @@
   min-height:100vh !important;
 }
 
+/* SCROLL FIX (added 2026-08-24, verified live before shipping): the lock
+   screen could not scroll at all on shorter viewports, leaving the
+   password field clipped off-screen and unreachable (confirmed
+   unreachable at 375x667). Root cause: Squarespace's own
+   .sqs-slide-layer.layer-front is position:absolute with a pinned
+   height, so it never contributes to the document's real scrollHeight.
+   Switching it to position:relative lets real content height drive
+   scrolling again -- this also means the existing padding-top:5rem on
+   .sqs-slide above (previously a no-op, since .layer-front ignored it)
+   now actually takes effect, so no extra padding is added here.
+   Trade-off measured: this also makes .layer-back's fixed background
+   photo stop at one viewport height, since it was sized to the old
+   pinned-height container -- fixed by pinning .layer-back to the
+   viewport directly instead, plus a navy html/body fallback so nothing
+   flashes white during scroll/iOS overscroll. First candidate (this
+   comment's rule alone, no .layer-back/html/body rules) was tested and
+   rejected: it fixed scrolling but left the page white below the first
+   viewport. A separate overflow-y:auto-on-the-absolute-layer approach
+   was also tested and rejected -- it never actually enabled scrolling
+   at all (visible overflow on a fixed-height flex/box ancestor doesn't
+   grow a scroll container), so this position:relative approach is the
+   one that's real. */
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide-layer.layer-front {
+  position: relative !important;
+  top: auto !important;
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow-y: visible !important;
+}
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide-layer.layer-back {
+  position: fixed !important;
+  inset: 0 !important;
+  height: auto !important;
+}
+html, body { background: #12355B !important; }
+
 .sqs-slice-password {
   font-family:'Source Sans 3',sans-serif !important;
   text-align:center !important;
@@ -39,7 +75,7 @@
   font-family:'Cormorant Garamond',serif !important;
   font-style:italic !important;
   font-weight:600 !important;
-  color:#FFFFFF !important;
+  color:#C9A96E !important;
   font-size:clamp(1.8rem,4vw,2.6rem) !important;
   line-height:1.25 !important;
   margin:0 0 1.2rem !important;
@@ -89,7 +125,7 @@
   font-weight:400;
   font-size:clamp(1.8rem,5vw,2.4rem);
   line-height:1.05;
-  color:#FFFFFF;
+  color:#C9A96E;
   letter-spacing:0.01em;
 }
 .tlab-lock-division {
