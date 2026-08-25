@@ -7,7 +7,7 @@
   --muted-on-light:rgba(18,53,91,0.72); --muted-on-dark:rgba(244,239,230,0.75);
   font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
 }
-.tla-groups * { box-sizing:border-box; }
+.tla-groups * { box-sizing:border-box; margin:0; padding:0; }
 .tla-groups h1,.tla-groups h2,.tla-groups h3 { font-family:'Cormorant Garamond',serif; font-weight:600; margin:0; }
 .tla-groups h1 { font-size:clamp(3rem,7vw,6.5rem); line-height:0.95; letter-spacing:-0.02em; }
 .tla-groups h2 { font-size:clamp(2.2rem,4.5vw,4rem); line-height:1.0; letter-spacing:-0.015em; }
@@ -96,10 +96,16 @@
 }
 
 .tla-groups .tlgr-reveal { opacity:1; transform:none; }
-.tla-groups .js-reveal .tlgr-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
-.tla-groups .js-reveal .tlgr-reveal.tlgr-in { opacity:1; transform:translateY(0); }
+/* 2026-08-25: selector bug found via live audit -- the JS adds
+   "js-reveal" to .tla-groups itself, not a wrapper around it, but this
+   rule required it as a separate descendant (with a space). It never
+   matched, so the fade-in animation was dead (same bug found and fixed
+   the same way on every other page). Fails open, not closed -- content
+   was always visible, just without the intended animation. */
+.tla-groups.js-reveal .tlgr-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
+.tla-groups.js-reveal .tlgr-reveal.tlgr-in { opacity:1; transform:translateY(0); }
 @media (prefers-reduced-motion: reduce) {
-  .tla-groups .js-reveal .tlgr-reveal { opacity:1; transform:none; transition:none; }
+  .tla-groups.js-reveal .tlgr-reveal { opacity:1; transform:none; transition:none; }
   .tla-groups .tlgr-card { transition:none; }
 }
 @media (max-width:900px) {

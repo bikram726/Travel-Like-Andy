@@ -124,9 +124,19 @@
 .tla-bespoke .tlab-sig { font-family:'Cormorant Garamond',serif; font-style:italic; margin:0; color:var(--muted-on-dark); }
 
 .tla-bespoke .tlab-reveal { opacity:1; transform:none; }
-.tla-bespoke .js-reveal .tlab-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
-.tla-bespoke .js-reveal .tlab-reveal.tlab-in { opacity:1; transform:translateY(0); }
-@media (prefers-reduced-motion: reduce) { .tla-bespoke .js-reveal .tlab-reveal { opacity:1; transform:none; transition:none; } }
+/* 2026-08-25: selector bug found via live audit -- the JS adds
+   "js-reveal" to .tla-bespoke itself, not a wrapper around it, but this
+   rule required it as a separate descendant (".tla-bespoke .js-reveal
+   ...", with a space). It never matched, so the fade-in animation was
+   dead on every page that shares this pattern (same bug confirmed and
+   fixed the same way on about/contact/groups/home/access-and-care).
+   Fails open, not closed -- content was always visible, just without
+   the intended animation, so this wasn't user-facing broken, just
+   inert. Removed the space so "js-reveal" is read as a second class on
+   .tla-bespoke rather than a descendant selector. */
+.tla-bespoke.js-reveal .tlab-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
+.tla-bespoke.js-reveal .tlab-reveal.tlab-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-bespoke.js-reveal .tlab-reveal { opacity:1; transform:none; transition:none; } }
 @media (max-width:900px) { .tla-bespoke .tlab-partners-grid { grid-template-columns:repeat(3,1fr); } }
 @media (max-width:767px) {
   .tla-bespoke .tlab-process-grid { grid-template-columns:1fr; gap:2.2rem; }

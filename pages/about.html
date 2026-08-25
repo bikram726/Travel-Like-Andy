@@ -7,7 +7,7 @@
   --muted-on-light:rgba(18,53,91,0.72); --muted-on-dark:rgba(244,239,230,0.75);
   font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
 }
-.tla-about * { box-sizing:border-box; }
+.tla-about * { box-sizing:border-box; margin:0; padding:0; }
 .tla-about h1,.tla-about h2,.tla-about h3 { font-family:'Cormorant Garamond',serif; font-weight:600; margin:0; }
 .tla-about h1 { font-size:clamp(3rem,7vw,6.5rem); line-height:0.95; letter-spacing:-0.02em; }
 .tla-about h2 { font-size:clamp(2.2rem,4.5vw,4rem); line-height:1.0; letter-spacing:-0.015em; }
@@ -126,9 +126,15 @@
 .tla-about .tlaa-disclosure a:hover { color:var(--gold); }
 
 .tla-about .tlaa-reveal { opacity:1; transform:none; }
-.tla-about .js-reveal .tlaa-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
-.tla-about .js-reveal .tlaa-reveal.tlaa-in { opacity:1; transform:translateY(0); }
-@media (prefers-reduced-motion: reduce) { .tla-about .js-reveal .tlaa-reveal { opacity:1; transform:none; transition:none; } }
+/* 2026-08-25: selector bug found via live audit -- the JS adds
+   "js-reveal" to .tla-about itself, not a wrapper around it, but this
+   rule required it as a separate descendant (with a space). It never
+   matched, so the fade-in animation was dead (same bug found and fixed
+   the same way on every other page). Fails open, not closed -- content
+   was always visible, just without the intended animation. */
+.tla-about.js-reveal .tlaa-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
+.tla-about.js-reveal .tlaa-reveal.tlaa-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-about.js-reveal .tlaa-reveal { opacity:1; transform:none; transition:none; } }
 @media (max-width:767px) {
   .tla-about .tlaa-hero { min-height:70vh; }
   .tla-about .tlaa-story, .tla-about .tlaa-story-cell { display:block; width:100%; }
@@ -205,7 +211,7 @@
       </svg>
     </div>
     <p class="tlaa-sig">Curated Personally.<br>Andy Eisenmann &middot; Fora Travel Partner</p>
-    <p class="tlaa-disclosure">An Independent Affiliate of <a href="https://fora.travel" target="_blank" rel="noopener">Fora</a>. Fora Travel, Inc. is registered as a Seller of Travel in the following states: California Registration No: 2151995-50 &middot; Florida Registration No: ST43973 &middot; Washington Registration No (UBI): 605329242</p>
+    <p class="tlaa-disclosure">An Independent Affiliate of <a href="https://fora.travel" target="_blank" rel="noopener noreferrer">Fora</a>. Fora Travel, Inc. is registered as a Seller of Travel in the following states: California Registration No: 2151995-50 &middot; Florida Registration No: ST43973 &middot; Washington Registration No (UBI): 605329242</p>
   </section>
 </div></div>
 <script>
