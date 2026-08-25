@@ -2,14 +2,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
 
 .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide {
-  background:linear-gradient(180deg, rgba(18,53,91,0.90) 0%, rgba(18,53,91,0.55) 22%, rgba(18,53,91,0.28) 48%, rgba(18,53,91,0.45) 75%, rgba(18,53,91,0.88) 100%), url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5d1e2052-9307-49f9-8bd9-cfa992ee8b17/bespoke-onlyandonly-palmilla-entrance-UPRIGHT.jpg') center/contain no-repeat !important;
+  /* `contain` exposed the navy fallback around the portrait image on wide screens.
+     Cover keeps the photograph continuous behind the complete lock screen. */
+  background:linear-gradient(180deg, rgba(18,53,91,0.90) 0%, rgba(18,53,91,0.55) 22%, rgba(18,53,91,0.28) 48%, rgba(18,53,91,0.45) 75%, rgba(18,53,91,0.88) 100%), url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5d1e2052-9307-49f9-8bd9-cfa992ee8b17/bespoke-onlyandonly-palmilla-entrance-UPRIGHT.jpg') center center/cover no-repeat !important;
   background-color:#12355B !important;
+  min-height:100vh !important;
 }
 
 .sqs-slice-password {
   font-family:'Source Sans 3',sans-serif !important;
   text-align:center !important;
   padding:2rem !important;
+}
+
+/* HIDE THE NATIVE BRANDING HEADING (added 2026-08-24) -- the lock screen's
+   native "Branding" text field reads "Andrew Eisenmann" (the legal name,
+   not the brand's "travellikeandy"/"Andy" voice), a leftover default that
+   was only invisible by accident -- it sits at the very top of the page,
+   underneath the fixed .tlab-lock-nav bar, so it happened to be covered
+   rather than deliberately hidden. Hiding it explicitly rather than relying
+   on z-index stacking, same pattern as the retired-footer-logo re-hide rule
+   in global-custom-css.css. Scoped to [data-compound-type="logo"] since the "By Invitation
+   Only" heading is a second, separate .sqs-slice on this same page and
+   both happen to render as h1#sqs-slash-page-header (a duplicate id) --
+   the compound-type attribute is what actually tells them apart. */
+.sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slice[data-compound-type="logo"] {
+  display:none !important;
 }
 
 .sqs-slice-password * {
@@ -50,7 +68,15 @@
 
 /* Wordmark + division lockup above the password field, matching the lockup pattern
    used on every other rebuilt page. Text-based by construction so it never renders
-   "in black" like the old icon-collage logo image did against a dark background. */
+   "in black" like the old icon-collage logo image did against a dark background.
+
+   2026-08-24: neither element had an explicit line-height, so both inherited
+   Squarespace's lock-screen line-height (a fixed 20.8px that doesn't scale
+   with font-size). The wordmark's font resolves to 28.8-38.4px depending on
+   viewport, so its glyph ink overflowed the 20.8px line box by ~7px top and
+   bottom -- measured live, this collided with the paragraph text above it
+   (up to 11px overlap on desktop) and touched the division line below it.
+   Confirmed width-independent (same overlap from 375px to 1280px). */
 .tlab-lock-logo {
   display:flex;
   flex-direction:column;
@@ -62,10 +88,12 @@
   font-family:'Cormorant Garamond',serif;
   font-weight:400;
   font-size:clamp(1.8rem,5vw,2.4rem);
+  line-height:1.05;
   color:#FFFFFF;
   letter-spacing:0.01em;
 }
 .tlab-lock-division {
+  line-height:1.3;
   font-family:'Source Sans 3',sans-serif;
   font-weight:600;
   font-size:0.76rem;
