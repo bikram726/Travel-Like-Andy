@@ -29,7 +29,15 @@
    headline itself sits near the top, not vertically centered, so it
    still needs real clearance rather than relying on the section's
    overall height. "A Certified Fora Travel Partner" stays in its own
-   plain section below the photo. */
+   plain section below the photo.
+
+   Reported off-center on a Mac after a later pass forced the headline
+   to one line above 1300px: on wide screens the sentence at that font
+   size was likely too wide for the viewport, and browsers don't all
+   handle a centered-but-overflowing flex child the same way -- rather
+   than chase another breakpoint, the forced single-line rule is
+   removed here entirely. Wraps to two lines wherever it needs to; that
+   always centers correctly. */
 .tla-about .tlaa-hero {
   min-height:80vh;
   display:flex;
@@ -42,16 +50,13 @@
     url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5c4c2909-7be2-4a73-9326-fd644a207322/01-andy-conducting-orchestra.jpg') center/cover no-repeat;
   background-color:var(--midnight);
 }
-.tla-about .tlaa-hero-inner { max-width:820px; }
+.tla-about .tlaa-hero-inner { max-width:820px; margin:0 auto; }
 .tla-about .tlaa-hero h1 {
   color:var(--gold);
   font-size:clamp(1.8rem,3.8vw,3.2rem);
   line-height:1.2;
   letter-spacing:-0.01em;
   text-shadow:0 2px 10px rgba(0,0,0,0.55), 0 6px 24px rgba(0,0,0,0.4);
-}
-@media (min-width:1300px) {
-  .tla-about .tlaa-hero h1 { white-space:nowrap; }
 }
 .tla-about .tlaa-hero-text { background:var(--midnight); color:var(--white); text-align:center; padding:clamp(3.5rem,8vh,5.5rem) 1.5rem; }
 .tla-about .tlaa-hero-text-inner { max-width:820px; margin:0 auto; }
