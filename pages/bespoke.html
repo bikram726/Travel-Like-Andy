@@ -45,18 +45,20 @@
 /* 2026-08-25: .tlab-hero and .tlab-intro share the exact same sandstone
    background with no visual break between them, so their two full
    section paddings were stacking into one oversized blank gap between
-   the manifesto line and the intro paragraph -- read as broken/empty
+   the headline and the intro copy below it -- read as broken/empty
    space rather than intentional spacing. Split hero's padding so its
    bottom is smaller, and reduced .tlab-process's top to match it, so
-   the gap above the intro paragraph (hero-bottom + intro-top) and the
-   gap below it (intro-bottom + process-top) come out equal. */
+   the gap above the intro copy (hero-bottom + intro-top) and the gap
+   below it (intro-bottom + process-top) come out equal. Still holds
+   after the hero's manifesto line moved into the intro section as
+   copy (2026-08-25) -- this is about section padding, not content. */
 .tla-bespoke .tlab-hero { background:var(--sandstone); color:#000000; min-height:60vh; display:flex; align-items:center; justify-content:center; padding:clamp(4rem,10vh,7rem) 1.5rem clamp(2.5rem,6vh,4rem); text-align:center; }
 .tla-bespoke .tlab-hero-inner { max-width:760px; }
 .tla-bespoke .tlab-hero .tlab-eyebrow { color:var(--gold); margin:0 0 1.4rem; }
-.tla-bespoke .tlab-manifesto { max-width:640px; margin:0.8rem auto 0; color:var(--midnight); }
 
 .tla-bespoke .tlab-intro { background:var(--sandstone); padding:clamp(3rem,7vh,4.5rem) 1.5rem; text-align:center; }
-.tla-bespoke .tlab-intro p { max-width:700px; margin:0 auto; font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; color:var(--midnight); font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.7; }
+.tla-bespoke .tlab-intro p { max-width:700px; margin:0 auto 1.3rem; font-family:'Cormorant Garamond',serif; font-style:normal; font-weight:400; color:#000000; font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.7; }
+.tla-bespoke .tlab-intro p:last-child { margin-bottom:0; }
 
 .tla-bespoke .tlab-process { background:var(--white); padding:clamp(2.5rem,6vh,4rem) 1.5rem clamp(4rem,10vh,7rem); text-align:center; }
 .tla-bespoke .tlab-process-head { max-width:640px; margin:0 auto clamp(2.5rem,6vh,3.5rem); }
@@ -175,11 +177,14 @@
     </div>
     <p class="tlab-eyebrow">Private Journeys</p>
     <h1>Every journey, <em>curated personally</em>, from the ground up.</h1>
-    <p class="tlab-manifesto">I do not build packages. I build access &mdash; to people, places, and rooms that are not listed. Every itinerary starts with a conversation about how you want to feel, not a form to fill out.</p>
   </div></section>
 
   <section class="tlab-intro tlab-reveal">
-    <p>This is for travelers who want more than a booking &mdash; a trip shaped entirely around them, planned by someone who has actually stood where he is sending you.</p>
+    <p>Clients don’t come to me for packaged holidays. They come for personal, discreetly arranged experiences—for themselves and the people they love most.</p>
+    <p>I know my Bespoke clients. I understand what it means to step away from a demanding life and truly reset. For those seeking the best of the best, I offer access, authenticity, and experiences that stay with you long after you return home.</p>
+    <p>The photographs you bring back aren’t simply vacation photos. They are moments from your life. I don’t take that trust lightly.</p>
+    <p>But you already know that. You were referred. You have the password.</p>
+    <p>Welcome to our intimate community of global travelers.</p>
   </section>
 
   <section class="tlab-process tlab-reveal">
