@@ -18,6 +18,7 @@ body.password-protected,
 .sqs-password-page {
   background: linear-gradient(180deg, #0e2c4c 0%, #12355B 55%, #0e2c4c 100%) !important;
   min-height: 100vh !important;
+  min-height: 100dvh !important; /* iOS Safari address-bar fallback, see pages/lock-screen.html */
 }
 .sqs-password-page input[type="password"],
 .password-page input[type="password"] {

@@ -7,6 +7,15 @@
   background:linear-gradient(180deg, rgba(18,53,91,0.90) 0%, rgba(18,53,91,0.55) 22%, rgba(18,53,91,0.28) 48%, rgba(18,53,91,0.45) 75%, rgba(18,53,91,0.88) 100%), url('https://images.squarespace-cdn.com/content/6a32bf267be05025358cf396/5d1e2052-9307-49f9-8bd9-cfa992ee8b17/bespoke-onlyandonly-palmilla-entrance-UPRIGHT.jpg') center center/cover no-repeat !important;
   background-color:#12355B !important;
   min-height:100vh !important;
+  /* iOS-Safari fallback pattern (added 2026-08-25, cross-device pass): 100vh
+     includes the space the collapsing address bar normally covers, so as it
+     shows/hides during scroll the real visible area no longer matches 100vh
+     -- can leave a sliver of extra space or a small jump on iPhone that never
+     happens on Windows (no collapsing toolbar there). 100dvh tracks the true
+     visible viewport instead. Browsers without dvh support treat the line
+     below as an invalid value and simply ignore it, keeping the 100vh above
+     -- so this is additive, not a replacement. */
+  min-height:100dvh !important;
 }
 
 /* SCROLL FIX (added 2026-08-24, verified live before shipping): the lock
@@ -26,6 +35,7 @@
   top: auto !important;
   height: auto !important;
   min-height: 100vh !important;
+  min-height: 100dvh !important; /* see the dvh fallback note on .sqs-slide above */
   overflow-y: visible !important;
 }
 .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide-layer.layer-back {
