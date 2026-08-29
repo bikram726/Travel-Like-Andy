@@ -96,6 +96,23 @@
 .tla-home .tlah-card-content h3 { color:var(--white); margin-bottom:0.6rem; }
 .tla-home .tlah-card-content p { color:var(--muted-on-dark); font-size:0.95rem; margin:0; }
 
+/* 04b PROMO BANNER -- advertises the live Collections interest list */
+.tla-home .tlah-promo {
+  min-height:46vh; display:flex; align-items:center; justify-content:center;
+  padding:4rem 1.5rem; text-align:center; position:relative;
+  background:
+    linear-gradient(180deg, rgba(18,53,91,0.55) 0%, rgba(18,53,91,0.72) 100%),
+    url('https://images.squarespace-cdn.com/content/v1/6a32bf267be05025358cf396/6c2f6a84-f653-49b7-aad8-bb770c030429/infinity_pool.png') center/cover no-repeat;
+  background-color:var(--midnight);
+}
+.tla-home .tlah-promo-inner { max-width:640px; }
+.tla-home .tlah-promo .tlah-eyebrow { color:var(--gold); display:block; margin:0 0 1rem; }
+.tla-home .tlah-promo h2 { color:var(--white); text-shadow:0 2px 10px rgba(0,0,0,0.5); margin-bottom:1.1rem; }
+.tla-home .tlah-promo h2 em { color:var(--gold); }
+.tla-home .tlah-promo p { color:var(--muted-on-dark); text-shadow:0 1px 6px rgba(0,0,0,0.4); max-width:480px; margin:0 auto 2rem; }
+.tla-home .tlah-btn-outline { background:transparent; color:var(--white); border:1px solid var(--white); }
+.tla-home .tlah-btn-outline:hover { background:var(--white); color:var(--midnight); transform:translateY(-2px); }
+
 /* 05 PROOF */
 .tla-home .tlah-proof { background:var(--midnight); color:var(--white); text-align:center; padding:clamp(4rem,9vh,6rem) 1.5rem; }
 .tla-home .tlah-quote { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:400; font-size:clamp(1.3rem,2.6vw,1.9rem); line-height:1.6; max-width:760px; margin:0 auto 1.6rem; }
@@ -207,6 +224,13 @@
       </a>
     </div>
   </section>
+
+  <section class="tlah-promo tlah-reveal"><div class="tlah-promo-inner">
+    <span class="tlah-eyebrow">Hosted Departures</span>
+    <h2>The first journeys are being <em>curated personally.</em></h2>
+    <p>Small-group departures, personally led or endorsed by Andy. Join the interest list to hear about them first.</p>
+    <a href="/collections" class="tlah-btn tlah-btn-outline">Join the Interest List</a>
+  </div></section>
 
   <section class="tlah-proof tlah-reveal">
     <p class="tlah-quote">&ldquo;I do not send you somewhere I would not go myself.&rdquo;<span>Andy Eisenmann</span></p>
