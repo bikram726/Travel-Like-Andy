@@ -9,6 +9,92 @@ indexes Squarespace's demo blog posts under Andy's brand.
 
 ---
 
+---
+
+## Copy-paste prompt for the browser extension
+
+Self-contained on purpose — it works even if the extension cannot read this
+file. The STOP RULES come first deliberately: the agent reads top-down, and the
+irreversible step is in Task 1.
+
+````markdown
+You have access to my browser where I'm logged into Squarespace (site:
+travellikeandy.com) and Google. Do the following in order. Work carefully —
+one step of this is irreversible.
+
+## STOP RULES — read before touching anything
+
+1. The ONLY irreversible action here is deleting blog posts. Squarespace has no
+   undo and no trash for this. Everything else reverts in seconds.
+
+2. TWO PAGES HAVE CONFUSINGLY SIMILAR NAMES:
+      /journal-native-draft  = Squarespace DEMO content -> delete its sample posts
+      /journal               = Andy's REAL Journal page -> DO NOT TOUCH, EVER
+
+3. Before deleting ANY post, confirm ALL THREE:
+      (a) its URL starts with /journal-native-draft/  — NOT /journal/
+      (b) its title is exactly one of: "Blog Post Title One", "Blog Post Title
+          Two", "Blog Post Title Three", "Blog Post Title Four"
+      (c) its body is Squarespace lorem-ipsum filler, not real writing
+   If any one fails -> STOP and ask me. Leaving demo posts up another week is far
+   better than deleting real content.
+
+4. Change NOTHING I don't name below. No theme edits, no navigation or page
+   reordering, no content rewrites, no design changes.
+
+5. If anything is ambiguous or the UI doesn't match these steps, STOP and report
+   back rather than guessing.
+
+## TASK 1 — delete the demo blog posts
+
+Squarespace -> Pages -> open the `journal-native-draft` page (a blog collection).
+Delete the four sample posts named in rule 3(b), applying all three checks each
+time.
+
+Then handle the page itself: delete `journal-native-draft` entirely if Andy's
+real Journal is the separate `/journal` page (it is). If you're unsure, instead
+move it to "Not Linked" AND turn ON Page Settings -> SEO -> "Hide this page from
+search engines".
+
+IMPORTANT: unlisting a page does NOT remove it from sitemap.xml. Only the SEO
+hide toggle does. Do not skip the toggle if you choose that route.
+
+## TASK 2 — fix the duplicate homepage
+
+Right now `/` and `/home` both return HTTP 200 with no redirect, so Google sees
+two competing homepages.
+
+Squarespace -> Settings -> Advanced -> URL Mappings -> add this line:
+
+    /home -> / 301
+
+If URL Mappings isn't available, instead open the `/home` page -> Page Settings
+-> SEO -> turn ON "Hide this page from search engines". Tell me which you did.
+
+## TASK 3 — Google Search Console
+
+1. Go to search.google.com/search-console
+2. Add property -> choose "URL prefix" -> enter: https://www.travellikeandy.com
+3. Choose "HTML tag" verification. Google shows a meta tag like:
+       <meta name="google-site-verification" content="SOME_TOKEN" />
+4. Copy it. In Squarespace: Settings -> Advanced -> Code Injection -> HEADER.
+   Paste it on its own line at the VERY TOP, above the existing <style> blocks.
+   Do not modify or delete anything already in that field. Save.
+5. Back in Google, click Verify.
+6. Once verified: Sitemaps -> enter `sitemap.xml` -> Submit
+7. Then: URL Inspection -> paste https://www.travellikeandy.com -> Request Indexing
+
+## REPORT BACK
+
+- Which posts you deleted (exact titles), and which you skipped and why
+- What you did with `journal-native-draft` (deleted / hidden)
+- Which method you used for `/home` (301 mapping or SEO hide)
+- The full google-site-verification meta tag, verbatim — I need to commit it to
+  the repo
+- Whether verification succeeded and whether the sitemap submitted cleanly
+- Anything that looked different from these instructions
+````
+
 ## READ FIRST if an agent is executing this
 
 Fix 1 is the **only irreversible step in this document**. Squarespace blog-post
