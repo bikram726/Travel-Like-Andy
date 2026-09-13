@@ -9,6 +9,40 @@ indexes Squarespace's demo blog posts under Andy's brand.
 
 ---
 
+## READ FIRST if an agent is executing this
+
+Fix 1 is the **only irreversible step in this document**. Squarespace blog-post
+deletion has no undo and no trash. Everything else — URL Mappings, SEO toggles,
+the verification tag — is reversible in seconds.
+
+**Two pages have similar names. Only one is demo content:**
+
+| Page | What it is | Action |
+|---|---|---|
+| `/journal-native-draft` | Squarespace template demo | **Delete its 4 sample posts** |
+| `/journal` | **Andy's real Journal page** | **DO NOT TOUCH** |
+
+**Before deleting any post, confirm all three:**
+
+1. Its URL begins `/journal-native-draft/` — *not* `/journal/`
+2. Its title is literally one of: *Blog Post Title One*, *Blog Post Title Two*,
+   *Blog Post Title Three*, *Blog Post Title Four*
+3. Its body is Squarespace lorem-ipsum filler, not Andy's writing
+
+**If a post does not match all three, stop and ask.** A post with a real title,
+or any post under `/journal/`, is Andy's content — losing it is a worse
+outcome than leaving demo posts indexed for another week.
+
+**Change nothing this document does not name.** No theme edits, no navigation
+reordering, no page reordering, no content rewrites. The scope is: delete 4 named
+demo posts, handle one draft page, add one URL mapping, paste one meta tag.
+
+**If unsure at any point, report back rather than guessing.** Nothing here is
+urgent enough to justify a wrong irreversible action.
+
+
+---
+
 ## Verified state (no action needed on these)
 
 | Check | Result |
