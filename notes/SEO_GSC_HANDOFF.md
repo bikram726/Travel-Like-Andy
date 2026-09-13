@@ -9,6 +9,96 @@ indexes Squarespace's demo blog posts under Andy's brand.
 
 ---
 
+# CORRECTION — 2026-09-13, after a live execution attempt
+
+**Two findings in this document were wrong. Both are corrected here. The
+sections below are left unedited as the record of what was originally claimed.**
+
+The browser extension attempted the fixes, refused Task 1, and was right to.
+
+## Wrong finding 1: the "demo posts" are not demo posts
+
+I read the **slugs** in `sitemap.xml` (`blog-post-title-two-t5my5-…`) and concluded
+the posts were Squarespace sample content. **I never fetched a single title or
+body.** The URLs were in the sitemap and one `curl` would have settled it.
+
+The four posts are actually titled:
+
+| Slug (still the demo slug) | Actual title |
+|---|---|
+| `blog-post-title-…-3zaa9` | Redefine Success |
+| `blog-post-title-two-t5my5-…` | Small Steps Create Big Shifts |
+| `blog-post-title-three-y3peb-…` | Turn Intention Into Action |
+| `blog-post-title-four-lr658-…` | Make Room for Growth |
+
+Titles and bodies were rewritten; the URLs never were. That mismatch is what
+made the sitemap read as demo content.
+
+**The premise was also inverted.** `/journal` is the placeholder — it has section
+headers, no posts, and says *"The first dispatches are being prepared for the new
+native blog collection."* `/journal-native-draft` is where the real prose lives.
+So "delete the draft, keep /journal" was backwards.
+
+### Is the prose Andy's? Evidence says probably not, but confirm
+
+Pointing to Squarespace **template seed copy from a coaching/wellness template**:
+
+- Titles are self-improvement, not travel: *Redefine Success*, *Make Room for Growth*
+- `og:description` is **identical on every post**: "It All Begins Here" — a
+  template default, not per-post writing
+- Zero travel vocabulary in the post bodies on a luxury-travel site
+- All dated **May 28 2019**, a classic Squarespace seed date, long before this
+  site's brand work
+- Slugs were never updated, consistent with seed posts lightly edited
+
+**Not conclusive. Ask Andy whether he wrote those four.**
+
+## Wrong finding 2: the duplicate homepage was mostly a non-problem
+
+I checked `rel="canonical"` on `/` and asserted a duplicate-content problem
+**without checking `/home`**. It carries:
+
+```html
+<link rel="canonical" href="https://www.travellikeandy.com"/>
+```
+
+Google already consolidates the two. There was little to fix.
+
+**The 301 does not work either.** `/home -> / 301` was added to URL Mappings and
+saved, but `/home` still returns HTTP 200 with 0 redirects — verified live.
+Squarespace applies mappings only when **no real page** matches, and `/home` is a
+real page. The rule is inert. Harmless, but remove it to avoid confusing a
+future reader.
+
+**Do NOT use the fallback this document originally suggested.** `/home` is the
+homepage's own slug — the same page serves `/` and `/home`. Turning on "Hide this
+page from search engines" there would **de-index the actual homepage**.
+
+## What to do instead
+
+1. **Delete nothing.** The extension's refusal was correct. Deletion is
+   irreversible and the content may be real.
+2. **Ask Andy** whether he wrote those four posts, and which of `/journal` or
+   `/journal-native-draft` is meant to be the live Journal.
+3. **The blog question does not block Search Console.** Verification and sitemap
+   submission are independent of it, and a sitemap can be resubmitted any time.
+   Do Task 3 now; settle the Journal separately.
+4. If the posts turn out to be seed copy, the reversible fix is
+   **Page Settings → SEO → Hide from search engines** on
+   `journal-native-draft` — not deletion.
+
+## Also flagged during execution
+
+The signed-in Google account was **gojosaturo42886@gmail.com**, which is not the
+address associated with this project. **Confirm the intended owner before
+verifying** — moving a Search Console property between accounts afterwards is
+avoidable friction.
+
+---
+
+
+---
+
 ---
 
 ## Copy-paste prompt for the browser extension
