@@ -9,6 +9,58 @@ indexes Squarespace's demo blog posts under Andy's brand.
 
 ---
 
+# CORRECTION 2 — 2026-09-14. ANSWERED: the four posts are REAL.
+
+**The question "are those four posts Andy's writing?" is settled, and my first
+correction below was still wrong about it.** I hypothesised "probably template
+seed copy". The repo's own records say otherwise, and they are authoritative.
+
+`HANDOFF_NOTES.md` line 78 (dated 2026-08-17):
+
+> *the separate native blog collection at `/journal-native-draft` — now fully
+> styled and layout-fixed — **already has 4 real published posts** (Redefine
+> Success, Small Steps Create Big Shifts, Turn Intention Into Action, Make Room
+> for Growth). The remaining step isn't writing content, it's swapping
+> `/journal` from the teaser stub to the real collection.*
+
+And line 212 (confirmed 2026-08-10):
+
+> *the native collection's real slug is `/journal-native-draft` (published, 4 real
+> posts already on it) — `pages/journal.html`'s "Read the Journal" button already
+> links there correctly, not a guess.*
+
+**Prior sessions did substantial styling and layout work on that collection.**
+Deleting those posts would have destroyed real, worked-on content.
+
+## Why my "seed copy" evidence was weak
+
+- `og:description` identical across posts ("It All Begins Here") — this is a
+  **site-wide social default** Squarespace applies when a post sets no custom
+  description. Not evidence of seed content.
+- May 28 2019 date and unfixed demo slugs — consistent with posts **created from
+  seed entries and then rewritten**, which is exactly what the repo describes.
+- "No travel vocabulary" — a reasonable observation about fit, but a judgement
+  about editorial direction, not authorship.
+
+Whether Andy personally typed the prose is still unconfirmed and is now a
+**content-direction question for him**, not a blocker and not a cleanup task.
+
+## The actual outstanding work (from HANDOFF_NOTES, not from this document)
+
+Swap `/journal` from the teaser stub to the real collection, and update the
+"Read the Journal" button and nav accordingly. That is a **decision point for
+Andy**, not a defect.
+
+## Standing instruction
+
+**Delete nothing in `/journal-native-draft`. Do not apply the SEO hide toggle to
+it either** — it is the real blog, and hiding it would de-index actual content.
+
+Everything in CORRECTION 1 below about `/home`, the inert 301, and the harmful
+fallback still stands. Only the authorship question is revised here.
+
+---
+
 # CORRECTION — 2026-09-13, after a live execution attempt
 
 **Two findings in this document were wrong. Both are corrected here. The
