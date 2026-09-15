@@ -96,25 +96,70 @@ the questions, then buy an hour of professional time — do not self-diagnose.**
 Mexican residents is a marketing act in a second jurisdiction. Build the page
 first and ask later, and the answer can force it down.
 
-## 4. The language question — and why Spanish is not a translation job
+## 4. The language question — Spanish is viable, and it is not a translation job
 
-Do **not** translate the English site. Research proper Spanish keyword work:
+**RESOLVED 2026-09-15: Andy speaks Spanish.** The blocking question — whether a
+Spanish site would generate leads he cannot serve — is answered. It would not.
+Combined with living in Mexico City, this makes the Spanish build worth doing
+rather than merely worth considering.
 
-- **Spanish keyword research is a separate exercise.** *Asesor de viajes*,
-  *agencia de viajes de lujo*, *viajes personalizados* — these have their own
-  volumes, competitors and intent. Direct translations of English keywords are
-  routinely the wrong terms.
-- **Which Spanish?** `es-MX` differs from `es-ES` and `es-419` in vocabulary and
-  register. Mexico City Spanish is the target, not generic Spanish.
-- **Competitive reality check:** search those terms and see who ranks. If
-  Mexican luxury agencies dominate with real authority, that changes the plan.
-- **Who writes it?** Machine-translated marketing copy reads as machine
-  translation to native speakers, and destroys the premium positioning the
-  English site works hard to establish. Budget for a human, or do not do it.
+**One distinction remains, and it is not a quibble.** Speaking Spanish with a
+client and *writing premium marketing copy* in Spanish are different skills.
+Luxury positioning lives or dies on register, and a fluent speaker can still
+produce copy that reads as slightly-off to a native ear — which is worse on a
+premium site than on an ordinary one. Andy should either write it himself with a
+native editor reviewing, or brief a native writer. **Machine translation is out
+of the question at this price point.**
 
-**The honest test:** is Andy's Spanish good enough to hold a client relationship
-in it? If not, a Spanish site generates leads he cannot serve — worse than no
-Spanish site.
+### Do not translate the English site
+
+This is the part that gets done wrong most often. Spanish keyword research is a
+**separate exercise**, not a conversion of the English list. The clearest proof:
+
+| English target | Literal translation | **What Mexicans actually search** |
+|---|---|---|
+| bespoke travel | *viaje a medida* (awkward) | **`viajes a la medida`** |
+| luxury travel advisor | *consejero de viajes de lujo* (wrong register) | **`asesor de viajes de lujo`** |
+| accessible travel | *viaje accesible* | **`turismo accesible`** |
+| custom itinerary | *itinerario personalizado* | **`viajes personalizados`** |
+
+*Asesor* not *consejero*. *A la medida* not *a medida*. *Turismo accesible* is
+the established term in Spanish and a literal translation misses it entirely.
+Translate the English list and you target phrases nobody types.
+
+### Starting es-MX list — validate volumes before committing
+
+Offered as a research starting point, not as verified demand. **Volumes still
+need a real tool** (Google Keyword Planner set to Mexico, Spanish).
+
+**Core service:**
+- `asesor de viajes de lujo`
+- `viajes a la medida`
+- `viajes personalizados`
+- `agencia de viajes de lujo`
+- `asesor de viajes CDMX`
+
+**Corporate — strong in Mexico:**
+- `viajes de incentivo` (incentive travel is a large, established category)
+- `viajes corporativos`
+- `viajes de grupo empresariales`
+
+**The accessibility moat, in Spanish:**
+- `turismo accesible`
+- `viajes para personas con discapacidad`
+- `viajes accesibles México`
+
+**High-intent occasion:**
+- `luna de miel de lujo`
+- `viajes de aniversario`
+
+### Which Spanish
+
+Target **`es-MX`**, not `es-ES` or generic `es`. Vocabulary and register differ
+materially, and Mexico City Spanish is the market. Research the competitive
+field on these terms before building — if established Mexican luxury agencies
+dominate with real authority, the plan narrows to the accessibility and corridor
+angles rather than the head terms.
 
 ## 5. Google Business Profile across two countries
 
