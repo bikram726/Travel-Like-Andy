@@ -16,6 +16,145 @@ to ask, not what the answer is.
 
 ---
 
+# RESEARCH RESULTS — 2026-09-15
+
+**The questions below were researched and answered. This section supersedes the
+open questions in §1–§6; those sections are left intact as the record of what
+was asked.** One of my own claims was wrong and is corrected here.
+
+## ✗ I was wrong about Search Console country targeting
+
+**My §6 said: "do NOT set a country target on a `.com` — it can suppress the site
+in every other country."**
+
+**That advice was based on a tool that no longer exists.** Google **retired the
+International Targeting report and the country-targeting toggle in September
+2022**. There is no manual override to set, so there is nothing to avoid setting.
+
+Geographic relevance is now inferred entirely from signals the site already
+emits: domain structure (`.com` is neutral; ccTLDs are the strongest signal),
+`hreflang`, hosting location, and on-page cues — address, currency, phone format,
+language.
+
+**Consequence:** the `hreflang` work in §1 is not one lever among several. It is
+**the** lever. Get it wrong and there is no dashboard setting to compensate.
+
+## ⚠ Google Business Profile — this is now a decision, not a research item
+
+**A single Service Area Business profile cannot span two countries.** Google's
+guidelines explicitly prohibit adding countries as service areas; areas are
+limited to cities or postal codes, and should not exceed roughly **two hours'
+driving time** from the base.
+
+Two profiles are possible but carry **duplicate-listing enforcement risk** —
+consequences range from suspension of one or both to permanent removal.
+
+**There is no clean compliant way to cover both countries with one profile.**
+
+**Recommendation: one profile, California.** Reasons: the business is registered
+there, Fora's Seller of Travel registrations are US-state registrations, and a
+suspension risk on a primary listing is not worth a secondary market. **Mexico
+gets served through the website, Spanish content and Instagram — not through
+GBP.** Revisit only if Mexico becomes the larger revenue source.
+
+## ⚠ Permanent establishment — the most serious finding in this document
+
+Confirmed, and more concrete than §3 anticipated. Under the US–Mexico tax
+treaty, a PE is created where a non-resident entity operates through an
+individual **with authority to conclude contracts**. If Mexico's SAT finds a PE,
+the US LLC becomes liable for Mexican corporate tax — **roughly 30%** — on
+profits attributed to the Mexican operation, on top of US obligations.
+
+Risk factors, and Andy matches the third outright:
+
+- hiring Mexican employees or contractors
+- renting commercial space in Mexico
+- **living in Mexico full-time as the sole operating manager**
+
+**This outranks everything else here in importance.** It is not an SEO question
+and it will not be solved by reading. Buy an hour of a cross-border accountant's
+time before any structural decision — and note that building Spanish-language
+marketing aimed at Mexican residents is itself a fact pattern that makes the
+Mexican operation look more substantive, not less.
+
+## ✓ Weglot is viable — with a named failure mode
+
+Squarespace still has **no native multilingual support**; a third-party tool is
+required. Weglot works, but is **not automatically SEO-safe**:
+
+- **Use subdomains or subdirectories.** Both give translated pages crawlable
+  URLs. Squarespace's own guide recommends subdomains.
+- **Known issue:** on Squarespace **subdomain** integrations, Weglot may fail to
+  insert the complete translated path into the original page's `hreflang` tags.
+- **Weglot does not create canonicals**, it only updates existing ones. The
+  source page must already carry a self-referencing canonical.
+
+**Verification requirement:** inspect the rendered source of **inner pages**, not
+just the homepage, and confirm `hreflang` references are **reciprocal and
+complete** in both directions. The homepage passing proves nothing about the
+rest.
+
+## ✓ Fora — commercial terms confirmed, one question still open
+
+- Commission split **70/30** in the advisor's favour, rising to **80/20** after
+  **$300,000** annual sales.
+- Advisors in **150 countries**, though the model is built primarily for the US
+  market.
+- Registrations confirmed: California **2151995-50**, Florida **ST43973**,
+  Washington.
+- **Florida advisors are explicitly required to disclose Fora's SOT number in
+  all advertising, including websites.**
+
+**Still unanswered, and only Fora can answer it:** whether the Seller of Travel
+text may appear in Spanish or must remain verbatim English.
+
+**A relevant parallel surfaced during research:** under US trade-regulation
+rules, where an offer is *promoted in Spanish*, required disclosures must be
+provided **in the language the offer was conducted in**. That is a different
+statute and not authority here — but it points toward Spanish marketing
+requiring Spanish disclosure rather than exempting it. **Ask Fora; do not reason
+from the parallel.**
+
+## ✓ Spanish capability — already resolved, noted for completeness
+
+The research restates the capacity gate as open. It was **closed on 2026-09-15**:
+Andy speaks Spanish. See §4. The remaining distinction there — speaking Spanish
+versus writing premium marketing copy in it — stands unchanged.
+
+## The compliance gap is confirmed, not merely suspected
+
+Florida's explicit "all advertising, including websites" requirement establishes
+the pattern, and California's is consistent with it. The disclosure appearing
+**only on `/about`** is a genuine gap.
+
+`footer-content.html` holding a deliberate placeholder remains the correct state.
+**Get the exact wording from Fora. Do not draft it.**
+
+---
+
+## What changed in the plan
+
+| Item | Before | After research |
+|---|---|---|
+| Search Console country target | "don't set one" | **No such setting exists** — `hreflang` is the only lever |
+| Google Business Profile | "research the rules" | **Decide: one profile, California** |
+| Permanent establishment | "research it" | **Confirmed risk, ~30% — see an accountant first** |
+| Weglot | "does it emit hreflang?" | **Yes, but verify inner pages reciprocally** |
+| Fora Spanish disclosure | open | **Still open — one email, ask alongside the footer wording** |
+
+## Revised order
+
+1. **Cross-border accountant** — outranks all SEO work; may reshape the structure
+2. **One email to Fora** — Spanish disclosure permissibility **and** exact footer wording
+3. **Homepage title tag** — 5 minutes, unaffected by any of the above
+4. **Sitewide Fora disclosure** — once Fora supplies the wording
+5. **Google Business Profile, California only**
+6. **Spanish build** — only after 1 and 2 come back clean
+
+Items 3 and 5 are safe to do today. Item 6 is gated on the two items above it.
+
+---
+
 ## 0. First, a strategic warning
 
 **"Global" is the "travel" mistake at a larger scale.**
