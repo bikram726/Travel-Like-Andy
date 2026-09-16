@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1920, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #08080a;
+      }
+
+      :root {
+        --brand: #c9a96e;
+        --paper: #f4f2ee;
+      }
+
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
+        overflow: hidden;
+      }
+
+      /* Vignette: a radial pool of light behind the lockup so the wordmark
+         sits in something rather than floating on flat black. */
+      #vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 70% 55% at 50% 48%,
+          rgba(201, 169, 110, 0.1) 0%,
+          rgba(201, 169, 110, 0.03) 38%,
+          transparent 72%
+        );
+        opacity: 0;
+      }
+
+      /* Grain keeps large flat areas from banding on a dark gradient. */
+      #grain {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+        mix-blend-mode: overlay;
+      }
+
+      #lockup {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 2;
+      }
+
+      #wordmark {
+        font-size: 132px;
+        font-weight: 200;
+        /* Deliberately below full paper: the gleam sweep lifts the glyphs to
+           pure white, and a sweep is only visible if there is headroom to
+           sweep into. At full --paper the highlight was white-on-white. */
+        color: rgba(244, 242, 238, 0.66);
+        white-space: nowrap;
+        line-height: 1;
+      }
+
+      /* The rule scales from the centre, so transform-origin matters.
+         No `transform` here on purpose: GSAP owns it via fromTo, otherwise the
+         tween would overwrite whatever CSS set. */
+      #rule {
+        width: 520px;
+        height: 1px;
+        margin: 42px 0 0;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          var(--brand) 18%,
+          var(--brand) 82%,
+          transparent 100%
+        );
+        transform-origin: 50% 50%;
+      }
+
+      #subtitle {
+        margin-top: 38px;
+        font-size: 21px;
+        font-weight: 400;
+        letter-spacing: 0.42em;
+        text-indent: 0.42em; /* offsets the trailing space tracking adds */
+        text-transform: uppercase;
+        color: rgba(244, 242, 238, 0.62);
+        opacity: 0;
+      }
+    </style>
+
+    <!-- ============================================================
+         Registry component: tracking-in
+         compositions/components/tracking-in.html
+         ============================================================ -->
+    <style data-composition-variables="[
+        { &quot;id&quot;: &quot;tracking&quot;, &quot;type&quot;: &quot;enum&quot;, &quot;role&quot;: &quot;style&quot;, &quot;label&quot;: &quot;Tracking&quot;, &quot;description&quot;: &quot;Multiplies the letter-spacing the timeline drives, so the reveal starts and settles proportionally wider or tighter.&quot;, &quot;default&quot;: &quot;wide&quot;, &quot;options&quot;: [{ &quot;value&quot;: &quot;tight&quot;, &quot;label&quot;: &quot;Tight&quot; }, { &quot;value&quot;: &quot;standard&quot;, &quot;label&quot;: &quot;Standard&quot; }, { &quot;value&quot;: &quot;wide&quot;, &quot;label&quot;: &quot;Wide&quot; }] },
+        { &quot;id&quot;: &quot;rise&quot;, &quot;type&quot;: &quot;enum&quot;, &quot;role&quot;: &quot;motion&quot;, &quot;label&quot;: &quot;Rise&quot;, &quot;description&quot;: &quot;Vertical offset the text starts from, which the timeline reads as the start of its travel and eases to zero.&quot;, &quot;default&quot;: &quot;standard&quot;, &quot;options&quot;: [{ &quot;value&quot;: &quot;subtle&quot;, &quot;label&quot;: &quot;Subtle&quot; }, { &quot;value&quot;: &quot;standard&quot;, &quot;label&quot;: &quot;Standard&quot; }, { &quot;value&quot;: &quot;bold&quot;, &quot;label&quot;: &quot;Bold&quot; }] },
+        { &quot;id&quot;: &quot;tone&quot;, &quot;type&quot;: &quot;enum&quot;, &quot;role&quot;: &quot;style&quot;, &quot;label&quot;: &quot;Tone&quot;, &quot;description&quot;: &quot;Text colour: inherit keeps the surrounding page colour, ink suits light frames, paper dark ones, accent rides --brand.&quot;, &quot;default&quot;: &quot;inherit&quot;, &quot;options&quot;: [{ &quot;value&quot;: &quot;inherit&quot;, &quot;label&quot;: &quot;Inherit&quot; }, { &quot;value&quot;: &quot;ink&quot;, &quot;label&quot;: &quot;Ink&quot; }, { &quot;value&quot;: &quot;paper&quot;, &quot;label&quot;: &quot;Paper&quot; }, { &quot;value&quot;: &quot;accent&quot;, &quot;label&quot;: &quot;Accent&quot; }] }
+      ]">
+      .hf-tracking-in {
+        opacity: 0;
+        color: var(--hf-tracking-color, inherit);
+        letter-spacing: calc(var(--hf-tracking-value, 0.28em) * var(--hf-tracking-reach, 1));
+        transform: translateY(var(--hf-tracking-y, 8px));
+        will-change: opacity, letter-spacing, transform;
+      }
+    </style>
+
+    <!-- ============================================================
+         Registry component: shimmer-sweep
+         compositions/components/shimmer-sweep.html
+         ============================================================ -->
+    <style>
+      .shimmer-sweep-target {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* REPLACED the shipped block's blend-mode approach.
+
+         Why it could not work here: `.hf-tracking-in` sets `will-change`,
+         which creates an isolated stacking context. `mix-blend-mode` then has
+         no page backdrop to blend against, so the mask painted its own grey
+         rectangle over the glyphs no matter which blend mode was used —
+         `overlay` and `screen` both showed the box.
+
+         This instead clips the gradient to the LETTERFORMS via
+         background-clip: text. There is no box to reveal, so the class of bug
+         is gone rather than worked around. The gleam is a second copy of the
+         word sitting exactly over the first, painted only where glyphs are. */
+      .shimmer-sweep-target {
+        position: relative;
+        display: inline-block;
+      }
+
+      #gleam {
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        user-select: none;
+        white-space: nowrap;
+        /* inherits font-size, weight and the animated letter-spacing from
+           #wordmark, so the copy stays registered to the original as the
+           tracking collapses. */
+        background: linear-gradient(
+          105deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0) calc(var(--shimmer-pos, -20%) - 19%),
+          rgba(255, 255, 255, 1) var(--shimmer-pos, -20%),
+          rgba(255, 255, 255, 0) calc(var(--shimmer-pos, -20%) + 19%),
+          rgba(255, 255, 255, 0) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div data-hf-id="hf-41ld" id="root" data-composition-id="main" data-start="0" data-duration="7" data-width="1920" data-height="1080">
+      <div data-hf-id="hf-p5g1" id="vignette" class="clip" data-start="0" data-duration="7" data-track-index="0">make a video ting bana </div>
+
+      <div data-hf-id="hf-5qjo" id="lockup" class="clip" data-start="0" data-duration="7" data-track-index="1">
+        <div data-hf-id="hf-dlkf" id="wordmark" class="hf-tracking-in shimmer-sweep-target">
+          HYPERFRAMES
+          <span data-hf-id="hf-y5bn" id="gleam" aria-hidden="true">HYPERFRAMES</span>
+        </div>
+        <div data-hf-id="hf-8e4z" id="rule"></div>
+        <div data-hf-id="hf-ehyl" id="subtitle">Rendered from HTML</div>
+      </div>
+
+      <div data-hf-id="hf-g7ri" id="grain" class="clip" data-start="0" data-duration="7" data-track-index="2"></div>
+    </div>
+
+    <!-- tracking-in resolver (from the registry component) -->
+    <script>
+      (function () {
+        "use strict";
+
+        var vars =
+          window.__hyperframes && window.__hyperframes.getVariables
+            ? window.__hyperframes.getVariables()
+            : {};
+
+        var reaches = { tight: 0.6, standard: 1, wide: 1.8 };
+        var rises = { subtle: "4px", standard: "8px", bold: "18px" };
+        var tones = {
+          inherit: "inherit",
+          ink: "#18181b",
+          paper: "#fafafa",
+          accent: "var(--brand, #34d399)",
+        };
+
+        function pick(table, value, fallback) {
+          return Object.prototype.hasOwnProperty.call(table, value) ? value : fallback;
+        }
+
+        var reach = reaches[pick(reaches, vars.tracking, "wide")];
+        var rise = rises[pick(rises, vars.rise, "standard")];
+        var tone = tones[pick(tones, vars.tone, "inherit")];
+
+        var host = document.documentElement;
+        host.style.setProperty("--hf-tracking-reach", String(reach));
+        host.style.setProperty("--hf-tracking-y", rise);
+        host.style.setProperty("--hf-tracking-color", tone);
+      })();
+    </script>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+
+      const tl = gsap.timeline({ paused: true });
+
+      // 0.0-1.2  the pool of light arrives first, so the wordmark has
+      //          somewhere to land rather than appearing on flat black.
+      tl.fromTo("#vignette", { opacity: 0 }, { opacity: 1, duration: 1.2, ease: "power2.out" }, 0);
+      tl.fromTo("#grain", { opacity: 0 }, { opacity: 0.045, duration: 1.2, ease: "power2.out" }, 0);
+
+      // 0.35-1.55  the signature move: letter-spacing collapses from wide to
+      //            near-final while opacity and lift resolve together.
+      tl.to(
+        "#wordmark",
+        {
+          opacity: 1,
+          "--hf-tracking-value": "0.055em",
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        0.35
+      );
+
+      // 1.15-1.85  rule draws out from the centre, overlapping the tail of the
+      //            tracking so the two read as one gesture. fromTo so GSAP owns
+      //            the whole transform rather than clobbering a CSS one.
+      tl.fromTo("#rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power2.inOut" }, 1.15);
+
+      // 1.45-2.15  subtitle settles last.
+      tl.fromTo(
+        "#subtitle",
+        { opacity: 0, y: 10 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" },
+        1.45
+      );
+
+      // 1.9-3.3  light passes across the wordmark once it is fully formed.
+      //          Drives the gradient stop on the text-clipped copy, so the
+      //          gleam only ever paints inside the glyphs.
+      tl.fromTo(
+        "#gleam",
+        { "--shimmer-pos": "-25%" },
+        { "--shimmer-pos": "125%", duration: 1.4, ease: "power2.inOut" },
+        1.9
+      );
+
+      // 3.3-6.2  hold, with a very slow drift so the frame is never fully
+      //          static — a dead-still hold reads as a freeze on playback.
+      tl.to("#lockup", { y: -6, duration: 2.9, ease: "none" }, 3.3);
+
+      // 6.2-7.0  settle out.
+      tl.to("#lockup", { opacity: 0, duration: 0.8, ease: "power2.in" }, 6.2);
+      tl.to("#vignette", { opacity: 0, duration: 0.8, ease: "power2.in" }, 6.2);
+      tl.to("#grain", { opacity: 0, duration: 0.8, ease: "power2.in" }, 6.2);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

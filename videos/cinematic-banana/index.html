@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+      }
+
+      #scene,
+      #grain,
+      #frame {
+        position: absolute;
+        inset: 0;
+      }
+
+      #scene svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Authored here rather than as tl.set(..., 0): a zero-duration set at
+         position 0 is not guaranteed to have rendered on frame 0 itself, which
+         would flash the fully-lit scene for one frame before the fade begins. */
+      #camera {
+        opacity: 0;
+      }
+
+      /* Film grain. Lives OUTSIDE the transformed #camera group on purpose:
+         a blended layer nested inside an element that establishes its own
+         stacking context has no page backdrop to blend against, and paints an
+         opaque rectangle instead. Here its parent is #root, which is not
+         isolated, so overlay resolves against the scene beneath it. */
+      #grain {
+        opacity: 0;
+        pointer-events: none;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+      }
+
+      #frame {
+        pointer-events: none;
+      }
+
+      /* 2.39:1 anamorphic bars. 1920/2.39 = 803px of picture, so 138px a side.
+         They animate in from taller than final, which reads as the frame
+         settling rather than as two rectangles appearing. */
+      .bar {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 138px;
+        background: #000;
+      }
+      #barTop {
+        top: 0;
+      }
+      #barBottom {
+        bottom: 0;
+      }
+
+      #vignette {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 62% 58% at 48% 46%,
+          transparent 0%,
+          rgba(0, 0, 0, 0.28) 58%,
+          rgba(0, 0, 0, 0.74) 100%
+        );
+      }
+    </style>
+  </head>
+
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="8"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="scene" class="clip" data-start="0" data-duration="8" data-track-index="0">
+        <svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <!-- Background: cold night air, so the warm key reads as warm. -->
+            <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#101f26" />
+              <stop offset="55%" stop-color="#0a1318" />
+              <stop offset="100%" stop-color="#040709" />
+            </linearGradient>
+
+            <radialGradient id="rimGrad" cx="0.70" cy="0.40" r="0.30">
+              <stop offset="0%" stop-color="#5fd8e8" stop-opacity="0.16" />
+              <stop offset="55%" stop-color="#2f8fa8" stop-opacity="0.05" />
+              <stop offset="100%" stop-color="#2f8fa8" stop-opacity="0" />
+            </radialGradient>
+
+            <radialGradient id="keyGrad" cx="0.24" cy="0.28" r="0.72">
+              <stop offset="0%" stop-color="#ffab5e" stop-opacity="0.22" />
+              <stop offset="45%" stop-color="#ff8a3c" stop-opacity="0.07" />
+              <stop offset="100%" stop-color="#ff8a3c" stop-opacity="0" />
+            </radialGradient>
+
+            <!-- Rim light. The key is off frame-left, so the front edge of the
+                 face is hot and everything behind it falls away fast. The tight
+                 stop spacing at the start is what makes it read as a rim rather
+                 than as a soft gradient. -->
+            <linearGradient id="skinGrad" gradientUnits="userSpaceOnUse" x1="880" y1="430" x2="1290" y2="640">
+              <stop offset="0%" stop-color="#ffe0b8" />
+              <stop offset="7%" stop-color="#ffb877" />
+              <stop offset="17%" stop-color="#d08a50" />
+              <stop offset="30%" stop-color="#7e5a41" />
+              <stop offset="46%" stop-color="#3d4c55" />
+              <stop offset="72%" stop-color="#1e2b33" />
+              <stop offset="100%" stop-color="#111b21" />
+            </linearGradient>
+
+            <linearGradient id="hairGrad" gradientUnits="userSpaceOnUse" x1="940" y1="300" x2="1300" y2="520">
+              <stop offset="0%" stop-color="#6b4a30" />
+              <stop offset="14%" stop-color="#2e2117" />
+              <stop offset="100%" stop-color="#0b0d10" />
+            </linearGradient>
+
+            <linearGradient id="bodyGrad" gradientUnits="userSpaceOnUse" x1="900" y1="800" x2="1520" y2="1080">
+              <stop offset="0%" stop-color="#2a3b44" />
+              <stop offset="18%" stop-color="#16232a" />
+              <stop offset="100%" stop-color="#080d11" />
+            </linearGradient>
+
+            <linearGradient id="bananaFlesh" gradientUnits="userSpaceOnUse" x1="826" y1="690" x2="970" y2="540">
+              <stop offset="0%" stop-color="#cbb887" />
+              <stop offset="40%" stop-color="#f2e4bd" />
+              <stop offset="100%" stop-color="#fff6dd" />
+            </linearGradient>
+
+            <linearGradient id="peelGrad" gradientUnits="userSpaceOnUse" x1="760" y1="790" x2="890" y2="640">
+              <stop offset="0%" stop-color="#8d6c1c" />
+              <stop offset="45%" stop-color="#d9ac35" />
+              <stop offset="100%" stop-color="#f6d564" />
+            </linearGradient>
+
+            <!-- The bite. A rect perpendicular to the banana's long axis,
+                 anchored at the tip and extending back past the base, so it
+                 covers the whole fruit. Sliding its leading edge backward along
+                 that axis removes the tip — which is what a bite looks like.
+                 An axis-aligned rect could not do this: the banana is at -45. -->
+            <clipPath id="biteClip">
+              <!-- Transform sits on the shape: a <g> here would be ignored, since
+                   clipPath accepts shapes, <text> and <use> and nothing else.
+                   The leading edge is scalloped so a bite reads as teeth rather
+                   than a guillotine cut. -->
+              <path id="biteMask" transform="translate(974 534) rotate(-52.1)" d="M -430 -150 L -6 -150 C -25 -110, 9 -82, -4 -48 C -17 -14, 17 15, 4 48 C -9 81, 13 110, -6 150 L -430 150 Z" />
+            </clipPath>
+          </defs>
+
+          <rect width="1920" height="1080" fill="url(#bgGrad)" />
+          <rect width="1920" height="1080" fill="url(#rimGrad)" />
+          <rect width="1920" height="1080" fill="url(#keyGrad)" />
+
+          <!-- The push-in scales the torso past the bottom edge by design:
+               that is what a push-in does, and the torso already runs to y=1080. -->
+          <g id="camera" data-layout-allow-overflow>
+            <!-- torso and neck first: everything else sits in front of them -->
+            <path
+              id="torso"
+              d="M880 1080 C 902 898, 1000 816, 1136 798 L 1334 798 C 1448 830, 1508 926, 1530 1080 Z"
+              fill="url(#bodyGrad)"
+            />
+            <path
+              id="neck"
+              d="M1148 618 L 1298 516 C 1322 620, 1338 722, 1350 800 L 1118 800 C 1126 740, 1140 676, 1148 618 Z"
+              fill="url(#bodyGrad)"
+            />
+
+            <g id="head">
+              <!-- mouth interior, painted before skull and jaw so it is only
+                   visible through the gap the jaw opens -->
+              <path
+                d="M930 546 C 1050 556, 1180 556, 1258 546 L 1260 634 C 1180 650, 1040 650, 932 630 Z"
+                fill="#05080a"
+              />
+
+              <!-- the jaw is a separate piece hinged at the ear, which is the
+                   only way a chew cycle can exist at all -->
+              <path
+                id="jaw"
+                d="M1252 556 C 1200 570, 1080 580, 998 572 L 942 566 C 926 576, 922 592, 932 604
+                   C 940 618, 952 632, 968 644 C 1002 674, 1072 688, 1132 678
+                   C 1192 668, 1238 628, 1256 574 Z"
+                fill="url(#skinGrad)"
+              />
+
+              <!-- skull: forehead, nose, upper lip. Its lower edge is the top
+                   of the mouth opening. -->
+              <path
+                id="skull"
+                d="M1120 300
+                   C 1244 302, 1302 382, 1296 466
+                   C 1292 512, 1276 544, 1250 558
+                   L 1206 562
+                   C 1150 570, 1050 574, 990 568
+                   L 940 560
+                   C 926 552, 936 540, 933 530
+                   C 920 528, 898 522, 888 512
+                   C 884 504, 902 492, 912 486
+                   C 924 476, 934 462, 941 444
+                   C 948 400, 1010 300, 1120 300 Z"
+                fill="url(#skinGrad)"
+              />
+
+              <ellipse cx="1216" cy="504" rx="25" ry="33" fill="#16232a" />
+              <ellipse cx="1216" cy="504" rx="13" ry="18" fill="#0b1216" />
+
+              <path
+                d="M1120 294 C 1250 298, 1310 384, 1302 472 C 1298 502, 1290 522, 1280 536
+                   C 1286 468, 1274 414, 1246 378 C 1208 332, 1142 314, 1076 330
+                   C 1020 344, 974 386, 950 440 C 946 414, 952 386, 962 364
+                   C 992 318, 1050 294, 1120 294 Z"
+                fill="url(#hairGrad)"
+              />
+
+              <path
+                d="M964 430 C 982 419, 1014 419, 1030 428"
+                stroke="#0d1418"
+                stroke-width="11"
+                fill="none"
+                stroke-linecap="round"
+              />
+              <path
+                d="M976 459 C 986 448, 1011 448, 1019 459 C 1011 470, 986 470, 976 459 Z"
+                fill="#080e12"
+              />
+              <circle cx="991" cy="456" r="4.5" fill="#ffd9a8" opacity="0.7" />
+            </g>
+
+            <!-- Arm. Authored in its RAISED pose so the banana tip lands exactly
+                 on the lips by construction; the timeline rotates it DOWN to the
+                 rest pose at t=0 and back up. Solving it the other way round
+                 means guessing angles until the tip happens to hit the mouth. -->
+            <g id="upperarm">
+              <path
+                d="M1120 850 L 950 830"
+                stroke="url(#bodyGrad)"
+                stroke-width="76"
+                stroke-linecap="round"
+                fill="none"
+              />
+              <g id="forearm">
+                <path
+                  d="M950 830 L 862 682"
+                  stroke="url(#bodyGrad)"
+                  stroke-width="64"
+                  stroke-linecap="round"
+                  fill="none"
+                />
+                <g id="hand">
+                  <!-- Peel tabs fold outward from the peel line and pass behind
+                       the fruit, so the hand grips the yellow base and the peel
+                       drapes over it. Drawn first = furthest back. -->
+                  <g id="peel">
+                    <path
+                      d="M868 630 C 840 652, 822 684, 822 714 C 822 728, 840 728, 840 714
+                         C 840 690, 852 664, 876 644 Z"
+                      fill="url(#peelGrad)"
+                    />
+                    <path
+                      d="M886 646 C 868 682, 864 720, 874 750 C 878 764, 896 760, 892 746
+                         C 884 720, 888 686, 900 658 Z"
+                      fill="url(#peelGrad)"
+                    />
+                    <path
+                      d="M904 662 C 900 694, 906 726, 920 748 C 928 760, 944 750, 936 738
+                         C 924 718, 920 692, 922 668 Z"
+                      fill="url(#peelGrad)"
+                    />
+                  </g>
+
+                  <!-- The unpeeled body: a crescent, not a taper. The bow is
+                       what makes it legible at this scale. -->
+                  <path
+                    id="bananaPeel"
+                    d="M819 676
+                       C 826 660, 840 640, 856 624
+                       C 866 640, 888 668, 902 660
+                       C 890 676, 874 692, 861 708
+                       C 848 726, 810 700, 819 676 Z"
+                    fill="url(#peelGrad)"
+                  />
+
+                  <!-- Only the exposed flesh is clipped: you bite the fruit,
+                       not the skin, so the yellow base must survive both bites. -->
+                  <g clip-path="url(#biteClip)">
+                    <path
+                      id="bananaBody"
+                      d="M856 624
+                         C 884 580, 914 550, 940 539
+                         C 952 528, 978 546, 964 557
+                         C 946 592, 924 628, 902 660
+                         C 888 668, 866 640, 856 624 Z"
+                      fill="url(#bananaFlesh)"
+                    />
+                  </g>
+
+                  <g id="fist">
+                    <ellipse
+                      cx="856"
+                      cy="706"
+                      rx="53"
+                      ry="44"
+                      transform="rotate(-25 856 706)"
+                      fill="url(#skinGrad)"
+                    />
+                    <ellipse
+                      cx="824"
+                      cy="674"
+                      rx="17"
+                      ry="26"
+                      transform="rotate(-40 824 674)"
+                      fill="url(#skinGrad)"
+                    />
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <div id="grain" class="clip" data-start="0" data-duration="8" data-track-index="1"></div>
+
+      <div id="frame" class="clip" data-start="0" data-duration="8" data-track-index="2">
+        <div id="vignette"></div>
+        <div class="bar" id="barTop"></div>
+        <div class="bar" id="barBottom"></div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+
+      // Mask geometry after each bite. Same shape as the authored mask, with its
+      // scalloped edge slid back along the fruit's axis.
+      const D_BITE1 =
+        "M -430 -150 L -40 -150 C -59 -110, -25 -82, -38 -48 C -51 -14, -17 15, -30 48 C -43 81, -21 110, -40 150 L -430 150 Z";
+      const D_BITE2 =
+        "M -430 -150 L -76 -150 C -95 -110, -61 -82, -74 -48 C -87 -14, -53 15, -66 48 C -79 81, -57 110, -76 150 L -430 150 Z";
+
+      const tl = gsap.timeline({ paused: true });
+
+      // --- t=0 poses -------------------------------------------------------
+      // tl.set rather than gsap.set: these must live ON the timeline or a seek
+      // backwards past them would leave the arm wherever it last was.
+      tl.set("#upperarm", { rotation: 64, svgOrigin: "1120 850" }, 0);
+      tl.set("#forearm", { rotation: 54, svgOrigin: "950 830" }, 0);
+      tl.set("#hand", { rotation: -32, svgOrigin: "862 682" }, 0);
+      tl.set("#jaw", { rotation: 0, svgOrigin: "1232 498" }, 0);
+      tl.set("#head", { rotation: 0, svgOrigin: "1210 700" }, 0);
+
+      // --- camera ----------------------------------------------------------
+      // One continuous push across the whole 8s at linear speed. An eased push
+      // announces itself; a linear one is only felt, which is the point.
+      tl.set("#camera", { scale: 1.18, svgOrigin: "1075 545" }, 0);
+      tl.to("#camera", { opacity: 1, duration: 1.0, ease: "power2.out" }, 0);
+      tl.to("#camera", { scale: 1.3, duration: 8, ease: "none" }, 0);
+      tl.fromTo("#grain", { opacity: 0 }, { opacity: 0.07, duration: 1.2, ease: "power2.out" }, 0);
+      tl.fromTo(".bar", { height: 196 }, { height: 138, duration: 1.1, ease: "power3.out" }, 0);
+
+      // --- 0.7-1.9  raise to the mouth ------------------------------------
+      // Each joint starts a beat after the one above it, so the limb arcs
+      // instead of swinging rigidly.
+      tl.to("#upperarm", { rotation: 0, duration: 1.2, ease: "power2.inOut" }, 0.7);
+      tl.to("#forearm", { rotation: 0, duration: 1.2, ease: "power2.inOut" }, 0.74);
+      tl.to("#hand", { rotation: 0, duration: 1.2, ease: "power2.inOut" }, 0.78);
+
+      // --- 1.85-2.2  first bite -------------------------------------------
+      tl.to("#jaw", { rotation: 9, duration: 0.2, ease: "power2.out" }, 1.85);
+      tl.to("#jaw", { rotation: 0, duration: 0.14, ease: "power3.in" }, 2.06);
+      tl.set("#biteMask", { attr: { d: D_BITE1 } }, 2.15);
+
+      // --- 2.2-3.95  withdraw and chew ------------------------------------
+      tl.to("#upperarm", { rotation: 16, duration: 0.5, ease: "power2.inOut" }, 2.2);
+      tl.to("#forearm", { rotation: 18, duration: 0.5, ease: "power2.inOut" }, 2.2);
+      // even iteration count so the jaw lands closed, not mid-chew
+      tl.to(
+        "#jaw",
+        { rotation: 5.5, duration: 0.19, ease: "sine.inOut", yoyo: true, repeat: 7 },
+        2.4
+      );
+      tl.to(
+        "#head",
+        { rotation: -1.3, duration: 0.38, ease: "sine.inOut", yoyo: true, repeat: 3 },
+        2.4
+      );
+
+      // --- 4.0-4.9  second bite -------------------------------------------
+      tl.to("#upperarm", { rotation: 0, duration: 0.7, ease: "power2.inOut" }, 4.0);
+      tl.to("#forearm", { rotation: 0, duration: 0.7, ease: "power2.inOut" }, 4.0);
+      tl.to("#jaw", { rotation: 10, duration: 0.18, ease: "power2.out" }, 4.62);
+      tl.to("#jaw", { rotation: 0, duration: 0.13, ease: "power3.in" }, 4.81);
+      tl.set("#biteMask", { attr: { d: D_BITE2 } }, 4.9);
+
+      // --- 4.95-6.65  lower the arm and chew it out ------------------------
+      tl.to("#upperarm", { rotation: 44, duration: 0.95, ease: "power2.inOut" }, 4.95);
+      tl.to("#forearm", { rotation: 38, duration: 0.95, ease: "power2.inOut" }, 4.95);
+      tl.to("#hand", { rotation: -22, duration: 0.95, ease: "power2.inOut" }, 4.95);
+      tl.to(
+        "#jaw",
+        { rotation: 5, duration: 0.2, ease: "sine.inOut", yoyo: true, repeat: 7 },
+        5.05
+      );
+
+      // --- 6.6-8.0  settle back, then out ---------------------------------
+      tl.to("#head", { rotation: 1.6, duration: 0.6, ease: "power2.out" }, 6.6);
+      tl.to("#camera", { opacity: 0, duration: 0.9, ease: "power2.in" }, 7.1);
+      tl.to("#grain", { opacity: 0, duration: 0.9, ease: "power2.in" }, 7.1);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
