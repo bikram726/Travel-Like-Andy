@@ -5,11 +5,23 @@
 .tla-footer-cue { display:block; text-align:center; color:var(--tla-gold); font-size:1rem; letter-spacing:0.3em; margin:0.6rem 0 0.5rem; opacity:0.8; }
 .tla-footer-sig { display:block; text-align:center; font-family:var(--tla-display); font-style:italic; color:var(--tla-white); opacity:0.85; font-size:0.9rem; margin:0 0 0.4rem; }
 .tla-footer-disclosure { display:block; text-align:center; font-family:var(--tla-body); color:var(--tla-sandstone); opacity:0.55; font-size:0.7rem; letter-spacing:0.03em; margin-top:0.6rem; }
+/* Registration notice. Deliberately NOT faint: this is a legal disclosure, not
+   fine print, and it is the one block on the page that must be read. Higher
+   opacity and a rule above it to separate it from the brand sign-off. */
+.tla-footer-legal { display:block; max-width:760px; margin:1.6rem auto 0; padding-top:1.2rem; border-top:1px solid rgba(244,239,230,0.18); font-family:var(--tla-body); color:var(--tla-sandstone); opacity:0.88; font-size:0.78rem; line-height:1.65; text-align:left; }
+.tla-footer-legal-head { display:block; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; font-size:0.72rem; margin:0 0 0.6rem; opacity:0.95; }
+.tla-footer-legal p { margin:0 0 0.7rem; }
+.tla-footer-legal p:last-child { margin-bottom:0; }
 </style>
 <div class="tla-footer">
   <span class="tla-footer-wordmark">travellikeandy</span>
   <span class="tla-footer-cue" aria-hidden="true">&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;/ &#10022; &#10022; &#10022;</span>
   <span class="tla-footer-sig">Curated Personally.</span>
+  <div class="tla-footer-legal">
+    <span class="tla-footer-legal-head">REGISTRATION PENDING</span>
+    <p>travellikeandy LLC is not currently offering or selling travel, accepting reservations, deposits or payments, or entering into travel contracts. The services described on this website are previews of planned future offerings. Direct bookings will open only after all required California registrations are issued.</p>
+    <p>Any travel-advisor services currently provided through Fora Travel are conducted solely in Andy Eisenmann&rsquo;s capacity as a Fora independent contractor and are subject to Fora&rsquo;s terms, registration and required disclosures.</p>
+  </div>
   <!--
     FORA_DISCLOSURE: the Brand Bible requires exact required FORA/Virtuoso
     disclosure language here (Section 12, footer component spec). That exact
