@@ -26,8 +26,44 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 
 1. Open the page in Squarespace, click the existing Code Block → **Edit**.
 2. Select all, delete, paste the full contents of the corresponding file.
-3. Save. Scroll the full page afterward to confirm no leftover/duplicate Beacon sections exist below the block (recurring issue noted in the handoff doc).
-4. Scripts show "embedded scripts disabled" in the editor — that's expected; they run on the published site.
+3. **Check the block spans the full Fluid Engine grid — columns 1 → 27.** See the warning below; this is not optional and the failure is not obvious.
+4. Save. Scroll the full page afterward to confirm no leftover/duplicate Beacon sections exist below the block (recurring issue noted in the handoff doc).
+5. Scripts show "embedded scripts disabled" in the editor — that's expected; they run on the published site.
+6. Verify on the **live page in a private window**, never in the editor. See the second warning.
+
+### ⚠ The Code Block must span the full grid width
+
+Every file in `pages/` opens with a full-bleed breakout:
+
+```css
+.tla-*-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+```
+
+`left:calc(-50vw + 50%)` is measured **against the block**, not the viewport. In a
+block that spans the whole grid the two cancel and the section sits flush. In a
+partial-width block the 50% resolves to half of a narrower box, so the whole page
+is dragged sideways — with completely correct code inside it.
+
+Drag the block to span **columns 1 → 27**. Confirmed on `/about`, 2026-09-18.
+Applies to all 8 page files, every one of which uses this breakout.
+
+### ⚠ The editor lies about Code Blocks — never "fix" a blank-looking one
+
+Squarespace's editor does not execute JavaScript, so a Code Block shows a grey
+"embedded scripts are disabled" placeholder instead of the page. These pages also
+start at `opacity:0` and are revealed by their own `IntersectionObserver` script,
+so a **perfectly correct paste renders as an empty block in the editor**.
+
+On 2026-09-18 `/about` was emptied during an attempt to fix a block that looked
+broken but was not. Squarespace discards a block left empty when the panel closes,
+so a "let me just clear it and re-paste" reflex silently destroys the page. The
+page then served header → blank → footer to real visitors, and because `/about`
+was the only page carrying the Fora Seller of Travel registration numbers, the
+whole site lost its seller-of-travel disclosure in that one edit. The disclosure
+now also lives in `pages/footer-content.html` so no single page is that fragile
+again.
+
+**Judge a paste only by the saved, live page loaded in a private window.**
 
 ## How to publish the lock screen
 
