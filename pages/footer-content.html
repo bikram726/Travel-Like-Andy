@@ -4,6 +4,7 @@
 }
 .tla-footer-cue { display:block; text-align:center; color:var(--tla-gold); font-size:1rem; letter-spacing:0.3em; margin:0.6rem 0 0.5rem; opacity:0.8; }
 .tla-footer-sig { display:block; text-align:center; font-family:var(--tla-display); font-style:italic; color:var(--tla-white); opacity:0.85; font-size:0.9rem; margin:0 0 0.4rem; }
+.tla-footer-disclosure a { color:var(--tla-gold); text-decoration:underline; text-underline-offset:2px; }
 .tla-footer-disclosure { display:block; text-align:center; font-family:var(--tla-body); color:var(--tla-sandstone); opacity:0.55; font-size:0.7rem; letter-spacing:0.03em; margin-top:0.6rem; }
 /* Registration notice. Deliberately NOT faint: this is a legal disclosure, not
    fine print, and it is the one block on the page that must be read. Higher
@@ -22,12 +23,15 @@
     <p>travellikeandy LLC is not currently offering or selling travel, accepting reservations, deposits or payments, or entering into travel contracts. The services described on this website are previews of planned future offerings. Direct bookings will open only after all required California registrations are issued.</p>
     <p>Any travel-advisor services currently provided through Fora Travel are conducted solely in Andy Eisenmann&rsquo;s capacity as a Fora independent contractor and are subject to Fora&rsquo;s terms, registration and required disclosures.</p>
   </div>
+  <p class="tla-footer-disclosure">An Independent Affiliate of <a href="https://fora.travel" target="_blank" rel="noopener noreferrer">Fora</a>. Fora Travel, Inc. is registered as a Seller of Travel in the following states: California Registration No: 2151995-50 &middot; Florida Registration No: ST43973 &middot; Washington Registration No (UBI): 605329242</p>
   <!--
-    FORA_DISCLOSURE: the Brand Bible requires exact required FORA/Virtuoso
-    disclosure language here (Section 12, footer component spec). That exact
-    wording has not been provided yet -- do NOT invent legal/affiliation
-    disclosure text. Once Andy supplies it, replace this comment with:
-    <span class="tla-footer-disclosure">[exact FORA/Virtuoso disclosure text]</span>
-    Logged as a blocking handoff item in HANDOFF_NOTES.md.
+    FORA_DISCLOSURE: the Fora Seller of Travel registration above is Andy's own
+    approved wording, lifted verbatim from pages/about.html on 2026-09-18 after
+    a Squarespace edit emptied that page and took the site's ONLY copy of the
+    disclosure with it. Florida requires the registration in all advertising
+    including websites, so it belongs on every page, not one.
+
+    Still outstanding: the Brand Bible (Section 12) also calls for Virtuoso
+    disclosure language, which has never been supplied. Do NOT invent it.
   -->
 </div>
