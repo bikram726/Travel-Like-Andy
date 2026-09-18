@@ -69,31 +69,11 @@
 .tla-groups .tlgr-feature h2 { font-style:italic; margin-bottom:1.2rem; }
 .tla-groups .tlgr-feature p { color:var(--muted-on-dark); margin:0 0 1.8rem; }
 
-/* FEATURED DEPARTURE — a real, bookable group tour (per Andy 2026-08-01).
-   This is a deliberate, client-confirmed exception to the site's usual
-   "no prices" rule: this is one specific, real, dated departure with a
-   published price and refund policy, not a generic package/deal. */
 .tla-groups .tlgr-departure { background:var(--white); padding:clamp(4rem,10vh,7.5rem) 1.5rem; }
 .tla-groups .tlgr-departure-head { text-align:center; max-width:700px; margin:0 auto clamp(2.5rem,6vh,3.5rem); }
 .tla-groups .tlgr-departure-head .tlgr-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
 .tla-groups .tlgr-departure-head h2 { color:var(--midnight); }
 .tla-groups .tlgr-departure-head p { color:var(--muted-on-light); margin-top:1rem; }
-.tla-groups .tlgr-facts { max-width:760px; margin:2rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; text-align:center; }
-.tla-groups .tlgr-fact { background:var(--sandstone); border-radius:12px; padding:1.4rem 1rem; }
-.tla-groups .tlgr-fact-label { display:block; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.4rem; }
-.tla-groups .tlgr-fact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; color:var(--midnight); font-size:1.3rem; }
-.tla-groups .tlgr-stops { max-width:1140px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
-.tla-groups .tlgr-stop { background:var(--sandstone); border-radius:12px; padding:1.8rem 1.4rem; text-align:left; }
-.tla-groups .tlgr-stop-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold-deep); font-size:0.95rem; display:block; margin-bottom:0.4rem; }
-.tla-groups .tlgr-stop h3 { color:var(--midnight); font-size:1.15rem; margin-bottom:0.3rem; }
-.tla-groups .tlgr-stop-nights { display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.7rem; }
-.tla-groups .tlgr-stop p { color:var(--muted-on-light); font-size:0.88rem; margin:0; }
-.tla-groups .tlgr-logistics { max-width:900px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
-.tla-groups .tlgr-logistics h4 { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--midnight); margin:0 0 0.8rem; }
-.tla-groups .tlgr-logistics ul { list-style:none; margin:0; padding:0; color:var(--muted-on-light); font-size:0.92rem; line-height:1.8; }
-.tla-groups .tlgr-logistics li:before { content:'\2014\0020'; color:var(--gold-deep); }
-.tla-groups .tlgr-policy { max-width:760px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; padding-top:1.6rem; border-top:1px solid rgba(18,53,91,0.12); font-size:0.82rem; line-height:1.7; color:var(--muted-on-light); text-align:center; }
-.tla-groups .tlgr-departure-cta { text-align:center; margin-top:clamp(2.5rem,6vh,3.5rem); }
 
 .tla-groups .tlgr-close { background:var(--sandstone); color:var(--midnight); text-align:center; padding:clamp(4rem,9vh,6rem) 1.5rem; }
 .tla-groups .tlgr-close h2 { margin-bottom:1.8rem; }
@@ -125,17 +105,11 @@
   .tla-groups.js-reveal .tlgr-reveal { opacity:1; transform:none; transition:none; }
   .tla-groups .tlgr-card { transition:none; }
 }
-@media (max-width:900px) {
-  .tla-groups .tlgr-stops { grid-template-columns:repeat(2,1fr); }
-}
 @media (max-width:767px) {
   .tla-groups .tlgr-grid { grid-template-columns:1fr; }
   .tla-groups .tlgr-feature, .tla-groups .tlgr-feature-cell { display:block; width:100%; }
   .tla-groups .tlgr-feature-cell.tlgr-img { min-height:260px; }
   .tla-groups .tlgr-btn { margin:0.35rem; }
-  .tla-groups .tlgr-facts { grid-template-columns:1fr; }
-  .tla-groups .tlgr-stops { grid-template-columns:1fr; }
-  .tla-groups .tlgr-logistics { grid-template-columns:1fr; gap:1.5rem; }
 }
 </style>
 <div class="tla-groups-wrap"><div class="tla-groups">
@@ -174,7 +148,7 @@
 
   <section class="tlgr-departure tlgr-reveal">
     <div class="tlgr-departure-head">
-      <p class="tlgr-policy" style="max-width:720px; margin:0 auto; text-align:center; font-size:1.05rem; line-height:1.7;">TRAVELLIKEANDY LLC will be advertising and selling small group tours when the pending California authorizations are finalized - we are still booking through FORA - please check back daily for updates!</p>
+      <p style="max-width:760px; margin:0 auto; text-align:center; font-size:1.12rem; line-height:1.75; color:#12355B;">TRAVELLIKEANDY LLC will be advertising and selling small group tours when the pending California authorizations are finalized - we are still booking through FORA - please check back daily for updates!</p>
     </div>
   </section>
 
