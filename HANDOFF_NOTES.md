@@ -9,7 +9,7 @@ the live pages say so honestly instead.
 
 1. **Bespoke stays password-protected.** The Brand Bible gap audit recommended
    un-gating it into a public flagship page; the client explicitly chose to keep
-   the existing password wall (`LuxeAccess`) instead. The page content itself was
+   the existing password wall instead. The page content itself was
    still rebuilt in the new brand voice (no more "by invitation," no more tiers),
    so if the gate is ever removed later, the content underneath is already ready.
 2. **The Wanderer / Curator / Circle 3-tier system is gone**, along with its
@@ -30,7 +30,7 @@ the live pages say so honestly instead.
 - **Also fixed while in there:** Contact's email card was still a `mail.google.com` compose link instead of a plain `mailto:` — an earlier live fix apparently never got captured back into this file (same regression pattern as the CSS syncs). Now a real `mailto:` link.
 - **"Fora" (not "FORA")** — confirmed, matches what's already used sitewide, no change needed.
 - **"VTW-The First Downbeat"** — confirmed event-specific (an upcoming introduction to the global travel-advisor community), not meant for the site. Question closed, nothing to add.
-- **Bespoke's LuxeAccess gate** — Andy explicitly reconfirmed he loves it. Decision closed, no further reconsideration needed.
+- **Bespoke's password gate** — Andy explicitly reconfirmed he loves it. Decision closed, no further reconsideration needed.
 - **Fora legal disclosure — real text received and now live** on About's close section: "An Independent Affiliate of Fora." (linked to fora.travel) plus the required Seller-of-Travel registration numbers for California/Florida/Washington, verbatim. Andy also asked for a small linked Fora Travel logo next to it — that's a real image asset that doesn't exist in this repo yet, so only the text link went in; logo still needed.
 - **Real bug reported, not yet fixed:** Andy says one of Bespoke's merged gallery photos is upside down — "the pool and palm trees at the bottom near the monkeys" (likely the Infinity Pool photo, based on grid position near the Macaque & Baby photo, but not confirmed — needs visual identification on the live page before guessing which file/CSS rule to touch, since a wrong rotate() would break a currently-correct photo).
 

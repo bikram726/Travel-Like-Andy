@@ -4,13 +4,24 @@ Each `.html` file in `pages/` is the **entire content for one page**, meant to b
 
 **2026-07-30: the site is mid-rebuild onto the Brand Bible v1.0 system** (Midnight/gold/Sandstone palette, Cormorant Garamond + Source Sans 3, the "Curated Personally." signature). See `REBUILD_PROGRESS.md` for what's shipped vs. outstanding and `HANDOFF_NOTES.md` for every open decision/placeholder that needs the client's input. The `travel-like-andy-brand-bible` memory has the full source document and decision history.
 
+## ⚠ Never commit credentials to this repo
+
+This repository is **public**. The Bespoke page password was committed here and
+sat in `README.md`, `HANDOFF_NOTES.md` and three note files, publicly readable
+and searchable, alongside the URL it unlocks. It has been scrubbed from the
+working tree, but **it remains in git history and cannot be removed by editing
+files** — the only real remedy is changing the password in Squarespace.
+
+Passwords, API keys and access tokens live in Squarespace or a password manager.
+Never in this repo, not even in a note, not even temporarily.
+
 ## Files
 
 | File | Page | Slug |
 |---|---|---|
 | `pages/home.html` | Home | `/` (Not Linked, reached via logo) |
 | `pages/groups.html` | Groups (replaces the old Corporate/Executive page 2026-07-29 per the Brand Bible) | Likely still `/corporate` unless the Squarespace page slug is changed — reuse the existing page's Code Block and just retitle the nav label to "Groups", rather than creating a new page, to avoid breaking the existing URL |
-| `pages/bespoke.html` | Bespoke — flagship private-journeys page, folds in what used to be the separate Leisure page (password: `LuxeAccess`, stays gated per client decision 2026-07-30) | `/bespoke` |
+| `pages/bespoke.html` | Bespoke — flagship private-journeys page, folds in what used to be the separate Leisure page (password-gated, stays gated per client decision 2026-07-30 — the password is NOT recorded in this repo; get it from Squarespace → Pages → Bespoke → Settings → Password) | `/bespoke` |
 | `pages/collections.html` | Collections (Hosted Departures) — launches in "interest list" mode with a real inquiry form; no actual departures listed yet | `/collections` (page does not exist yet, needs creating) |
 | `pages/about.html` | About | `/about` |
 | `pages/access-and-care.html` | Access & Care — new page added 2026-07-30 per the Brand Bible. General, non-fabricated framing only; real advocacy specifics/certifications still needed from Andy | `/access-and-care` (page does not exist yet, needs creating) |

@@ -141,7 +141,7 @@ page from search engines" there would **de-index the actual homepage**.
 
 ## Also flagged during execution
 
-The signed-in Google account was **gojosaturo42886@gmail.com**, which is not the
+The signed-in Google account was **a personal Google account (address withheld)**, which is not the
 address associated with this project. **Confirm the intended owner before
 verifying** — moving a Search Console property between accounts afterwards is
 avoidable friction.
