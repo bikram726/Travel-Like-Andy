@@ -31,6 +31,9 @@
 # Editor and agent scratch
 /.kilo/
 /my-project/
+/.claude/
+/.agents/
+/plugins/
 .DS_Store
 Thumbs.db
 
