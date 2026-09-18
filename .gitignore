@@ -1,0 +1,42 @@
+# This repo is ONE thing: the source for travellikeandy.com.
+#
+# Each .html file in pages/ is the whole content of a single Squarespace Code
+# Block, pasted in by hand. There is no build step, no bundler and no runtime,
+# so nothing here needs node_modules, a package.json, or a toolchain.
+#
+# Cloned tools and unrelated projects kept landing in this folder and were
+# moved out to ..\_moved-from-Travel-Like-Andy\ on 2026-09-18. These rules stop
+# them coming back.
+
+# Cloned tools and unrelated projects
+/hyperframes/
+/strix/
+/upscayl/
+/upscayl-ncnn/
+/public-apis/
+/ui-ux-pro-max-skill/
+/CloddsBot/
+/OmniVoice-Studio/
+/videos/
+
+# Node tooling -- this site has no build step
+/node_modules/
+/package.json
+/package-lock.json
+/main.js
+/harpa_scrape.js
+/test_payload.json
+/upscale-video.ps1
+
+# Editor and agent scratch
+/.kilo/
+/my-project/
+.DS_Store
+Thumbs.db
+
+# Secrets. Never commit these.
+.env
+.env.*
+config.json
+*.key
+*.pem
