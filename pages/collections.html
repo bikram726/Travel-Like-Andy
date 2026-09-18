@@ -41,93 +41,19 @@
 </style>
 <div class="tla-collections-wrap"><div class="tla-collections">
   <section class="tlco-hero"><div class="tlco-hero-inner">
-    <p class="tlco-eyebrow">Hosted Departures</p>
-    <h1>Journeys are being <em>curated personally.</em></h1>
-    <p class="tlco-deck">Small-group departures, personally led or endorsed by Andy. The first hosted departures are being finalized &mdash; join the interest list to hear about them first.</p>
+    <p class="tlco-eyebrow">Curated Personally</p>
+    <h1>Places Andy has <em>actually stood.</em></h1>
+    <p class="tlco-deck">Every itinerary Andy builds starts from somewhere he has been himself &mdash; the hotel he would put you in, the room that faces the right way, the person worth knowing when you arrive.</p>
   </div></section>
 
   <section class="tlco-intro">
-    <p>Every departure carries the same standard as a private itinerary &mdash; Andy has been to the places, and travels the route himself before anyone else does.</p>
+    <p>The same standard applies to every trip he plans &mdash; Andy has been to the places, and walks the route himself before anyone else does.</p>
   </section>
 
   <section class="tlco-interest">
     <div class="tlco-interest-inner">
-      <span class="tlco-eyebrow">Interest List</span>
-      <h2>Be the first to know.</h2>
-      <p>Leave your details and Andy will reach out personally once the first departures are set.</p>
-      <form id="tlco-form" class="tlco-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-        <!-- SECURITY: This access_key is for the Collections interest list form.
-             Create a SEPARATE access key in Web3Forms dashboard for this form
-             (Settings > Allowed Domains > travellikeandy.com).
-             Using the same key as the Contact form makes analytics/tracking harder
-             and increases blast radius if a key is compromised. -->
-        <input type="hidden" name="access_key" value="ed14fb9c-32df-4969-85c0-f05217c9724c">
-        <input type="hidden" name="subject" value="Collections — Interest List">
-        <input type="hidden" name="from_name" value="travellikeandy — Collections">
-        <input type="checkbox" name="botcheck" class="tlco-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div>
-          <label for="tlco-name">Name</label>
-          <input id="tlco-name" name="name" type="text" placeholder="Your name" autocomplete="name" required>
-        </div>
-        <div>
-          <label for="tlco-email">Email</label>
-          <input id="tlco-email" name="email" type="email" inputmode="email" placeholder="your@email.com" autocomplete="email" required>
-        </div>
-        <div>
-          <label for="tlco-interest">What kind of departure interests you?</label>
-          <textarea id="tlco-interest" name="message" rows="3" placeholder="A region, a season, a type of trip — whatever comes to mind"></textarea>
-        </div>
-        <button type="submit" class="tlco-btn">Join the Interest List</button>
-        <div id="tlco-result" class="tlco-form-result" role="status" aria-live="polite"></div>
-      </form>
+      <p style="max-width:760px; text-align:left; font-size:1.12rem; line-height:1.75; color:#12355B; margin:0 0 1.6rem;">TRAVELLIKEANDY LLC will be advertising and selling small group tours when the pending California authorizations are finalized - we are still booking through FORA - please check back daily for updates!</p>
+      <a href="/contact" class="tlco-btn" style="text-decoration:none;">Start the Conversation</a>
     </div>
   </section>
 </div></div>
-<script>
-(function(){
-  var form = document.getElementById('tlco-form');
-  var result = document.getElementById('tlco-result');
-  var btn = form ? form.querySelector('.tlco-btn') : null;
-  if (!form) { return; }
-
-  function showResult(msg, isError) {
-    result.classList.toggle('tlco-form-error', !!isError);
-    result.style.display = 'block';
-    result.textContent = msg;
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    if (form.botcheck && form.botcheck.checked) { return; }
-
-    var name = (form.name.value || '').trim();
-    var email = (form.email.value || '').trim();
-    if (!name || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      showResult('Please enter your name and a valid email address.', true);
-      return;
-    }
-
-    if (btn) { btn.disabled = true; }
-    showResult('Adding you to the list…', false);
-
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify(Object.fromEntries(new FormData(form)))
-    })
-    .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
-    .then(function(r){
-      if (r.ok && r.json && r.json.success) {
-        form.reset();
-        showResult('Thank you — Andy will be in touch when the first departures are set.', false);
-      } else {
-        showResult((r.json && r.json.message) ? r.json.message : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
-      }
-    })
-    .catch(function(){
-      showResult('Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
-    })
-    .then(function(){ if (btn) { btn.disabled = false; } });
-  });
-})();
-</script>
