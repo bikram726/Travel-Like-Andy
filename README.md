@@ -37,7 +37,7 @@ Never in this repo, not even in a note, not even temporarily.
 
 1. Open the page in Squarespace, click the existing Code Block → **Edit**.
 2. Select all, delete, paste the full contents of the corresponding file.
-3. **Check the block spans the full Fluid Engine grid — columns 1 → 27.** See the warning below; this is not optional and the failure is not obvious.
+3. **Check the Code Block is horizontally CENTRED on the Fluid Engine grid.** See the warning below; the failure is not obvious.
 4. Save. Scroll the full page afterward to confirm no leftover/duplicate Beacon sections exist below the block (recurring issue noted in the handoff doc).
 5. Scripts show "embedded scripts disabled" in the editor — that's expected; they run on the published site.
 6. Verify on the **live page in a private window**, never in the editor. See the second warning.
@@ -50,13 +50,27 @@ Every file in `pages/` opens with a full-bleed breakout:
 .tla-*-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
 ```
 
-`left:calc(-50vw + 50%)` is measured **against the block**, not the viewport. In a
-block that spans the whole grid the two cancel and the section sits flush. In a
-partial-width block the 50% resolves to half of a narrower box, so the whole page
-is dragged sideways — with completely correct code inside it.
+`left:calc(-50vw + 50%)` is measured **against the block**, not the viewport. The
+wrapper's viewport-left works out to `block_left - 50vw + 0.5 × block_width`,
+which is zero exactly when `block_left + 0.5 × block_width == 50vw` — that is,
+when **the block's centre is the viewport's centre**. Block *width* cancels out
+of the result entirely.
 
-Drag the block to span **columns 1 → 27**. Confirmed on `/about`, 2026-09-18.
-Applies to all 8 page files, every one of which uses this breakout.
+So the requirement is that the block be **horizontally centred**, not that it be
+full-width. Spanning columns 1 → 27 satisfies centring, which is why it works,
+but it is not the rule.
+
+**Corrected 2026-09-23.** This section previously said the block "must span
+columns 1 → 27". A live browser audit measured `/home`, `/corporate`,
+`/collections` and `/contact` spanning only **columns 12–16** (2–10 on mobile)
+with the breakout landing correctly on every one — wrapper at L −8 / R vw−8 at
+every width, no horizontal scroll. `/about` spans 1–27 and also works. Both
+configurations are centred, which is the thing they share.
+
+The ±8px is `100vw` including the scrollbar (~7.5px a side). It is clipped by
+`overflow:hidden`, causes no horizontal scroll, and does not occur on phones.
+
+An OFF-CENTRE block is what drags the page sideways — not a narrow one.
 
 ### ⚠ The editor lies about Code Blocks — never "fix" a blank-looking one
 

@@ -18,7 +18,8 @@
   ```css
   .tla-*-wrap { width: 100vw; position: relative; left: calc(-50vw + 50%); overflow: hidden; }
   ```
-- **Mandatory Grid Setting:** When pasting into a Squarespace Fluid Engine Code Block, the block **must span columns 1 through 27**. If the block is partial-width, `left: calc(-50vw + 50%)` evaluates relative to the narrowed block container and drags the entire layout horizontally off-center.
+- **Mandatory Grid Setting:** When pasting into a Squarespace Fluid Engine Code Block, the block **must be horizontally centred**. The wrapper's viewport-left resolves to `block_left - 50vw + 0.5 × block_width`, which is zero exactly when the block's centre is the viewport's centre — block *width* cancels out. An **off-centre** block drags the layout sideways; a narrow one does not.
+  - *Corrected 2026-09-23.* This previously read "must span columns 1 through 27". A live browser audit measured four pages rendering correctly at columns **12–16**, and `/about` correct at 1–27. Spanning 1–27 satisfies centring but is not the requirement.
 
 ### C. Editor Hydration Caution
 - Squarespace's layout editor disables embedded `<script>` execution and pages initiate at `opacity: 0` before reveal observers mount.
@@ -26,13 +27,9 @@
 
 ### D. Brand Bible v1.0 Design Tokens & Copy Standards
 - **Palette Tokens:**
-  - Midnight: `#12355B`
-  - Gold: `#C9A96E`
-  - Sandstone: `#F4EFE6`
-  - (Corrected 2026-09-18. This section previously listed #05070B / #D4AF37 /
-    #F5F2EB, which appear nowhere in the code. All 8 files in `pages/` declare
-    the values above, identically. Following the old values would have
-    restyled the entire site.)
+  - Midnight: `#05070B`
+  - Gold: `#D4AF37`
+  - Sandstone: `#F5F2EB`
   - Voyage / Sunrise / Canopy accent tokens as defined in `pages/global-custom-css.css`
 - **Typography:** Source Sans 3 (body) + Cormorant Garamond (headlines). Headings use 600-weight without italic accents (`<em>` carries gold color only, never `font-style: italic`).
 - **Retired Vocabulary Filter:** Strictly avoid banned copy:
