@@ -5,6 +5,21 @@ is coordinating with him) before this rebuild can be called finished. Nothing in
 this list was fabricated to look finished — where real content doesn't exist yet,
 the live pages say so honestly instead.
 
+**Correction 2026-09-23 — `footer-content.html` is NOT in a footer Code Block.**
+Two entries below (the original build note, and the "live in the footer's Code
+Block" confirmation) say it lives in a Code Block inside the footer section.
+That is wrong. DOM inspection of every live page shows the `.tla-footer`
+wrapper attached straight to the page body, outside the footer section, which
+means it is served from **Settings → Advanced → Code Injection → FOOTER**.
+
+This was not academic. Following the old wording, a stale footer Code Block
+(wordmark + cue + "Curated Personally.", no legal text) was left sitting inside
+the footer section beside the injected copy, so every page rendered the footer
+twice and the leftover block collided with a "Travel Like Andy LLC" text block.
+Both were deleted 2026-09-23; verified afterwards, cookie-free, that all 7
+pages now show exactly one wrapper, one wordmark, one cue, one REGISTRATION
+PENDING and one registration line, and zero "Travel Like Andy LLC".
+
 ## Decisions made this pass (2026-07-30), with rationale
 
 1. **Bespoke stays password-protected.** The Brand Bible gap audit recommended
