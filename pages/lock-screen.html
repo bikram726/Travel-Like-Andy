@@ -219,7 +219,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   margin:2.4rem 0 1.2rem;
 }
 .tlab-lock-partners {
-  max-width:960px;
+  max-width:1100px;
   margin:0 auto;
   padding-top:1.8rem;
   border-top:1px solid rgba(201,169,110,0.2);
@@ -230,7 +230,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 .tlab-lock-partners-track {
   display:flex;
   align-items:center;
-  gap:0.9rem;
+  gap:1.1rem;
   width:max-content;
   animation:tlab-lock-marquee 36s linear infinite;
 }
@@ -246,8 +246,8 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 }
 .tlab-lock-partner {
   background:#F4EFE6;
-  border-radius:8px;
-  padding:0.9rem 1.4rem;
+  border-radius:10px;
+  padding:1.1rem 1.8rem;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -260,15 +260,19 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   box-shadow:inset 0 0 0 1px rgba(201,169,110,0.7), 0 6px 16px rgba(0,0,0,0.25);
 }
 .tlab-lock-partner img {
-  height:44px;
+  /* 64px, not 44. These are wordmarks (Mandarin Oriental, Four Seasons,
+     Aman, Auberge), and a wordmark's actual lettering is roughly a quarter
+     of its box height -- 44px put the type at ~12px and the strip read as
+     grey smudges. Icon marks survive small; wordmarks do not. */
+  height:64px;
   width:auto;
-  max-width:170px;
+  max-width:240px;
   object-fit:contain;
   display:block;
 }
 @media (max-width:600px) {
-  .tlab-lock-partner img { height:36px; max-width:132px; }
-  .tlab-lock-partner { padding:0.7rem 1.1rem; }
+  .tlab-lock-partner img { height:48px; max-width:180px; }
+  .tlab-lock-partner { padding:0.85rem 1.3rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .tlab-lock-partner { transition:none; }
