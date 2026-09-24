@@ -1,67 +1,26 @@
-<style>
-/* BESPOKE LOCK SCREEN — paste into Settings -> Advanced -> Code Injection -> HEADER */
-/* LEGACY, pre-dates pages/lock-screen.html. Uses generic Squarespace password-page
-   selectors (.sqs-password-page, .password-page, body.password-protected) instead
-   of the more specific .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide
-   selector pages/lock-screen.html uses. Very likely superseded by that file (which
-   is confirmed live and rendering correctly as of 2026-07-23/24), but left in place
-   rather than removed -- its selectors' current match/no-match status against
-   Squarespace's actual DOM hasn't been verified live. Brought onto the Brand Bible
-   token system 2026-07-30 (was still shipping the pre-rebrand dark palette, Montserrat,
-   a stock photo, and "invitation-only circle" copy) so that IF it is still live, it no
-   longer contradicts the rest of the site. Bespoke stays password-protected per the
-   client's 2026-07-30 decision -- this only restyles the lock screen, it doesn't change
-   the gate itself. */
-.sqs-password-page-wrapper,
-.password-page,
-body.password-protected,
-.sqs-password-page {
-  background: linear-gradient(180deg, #0e2c4c 0%, #12355B 55%, #0e2c4c 100%) !important;
-  min-height: 100vh !important;
-  min-height: 100dvh !important; /* iOS Safari address-bar fallback, see pages/lock-screen.html */
-}
-.sqs-password-page input[type="password"],
-.password-page input[type="password"] {
-  background: rgba(255,255,255,0.06) !important;
-  border: none !important;
-  border-bottom: 1px solid rgba(201,169,110,0.55) !important;
-  color: #FFFFFF !important;
-  font-family: 'Source Sans 3', sans-serif !important;
-}
-.sqs-password-page input[type="submit"],
-.password-page .sqs-system-button,
-.password-page button {
-  background: #F26A21 !important;
-  color: #FFFFFF !important;
-  border: none !important;
-  border-radius: 8px !important;
-}
-#tla-lock-msg {
-  max-width: 640px;
-  margin: 0 auto 2rem;
-  text-align: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1.3rem;
-  line-height: 1.75;
-  color: #C9A96E;
-  padding: 0 1.5rem;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-}
-</style>
-<script>
-document.addEventListener('DOMContentLoaded', function(){
-  var page = document.querySelector('.sqs-password-page, .password-page, .sqs-password-page-wrapper');
-  if (page && !document.getElementById('tla-lock-msg')) {
-    var msg = document.createElement('div');
-    msg.id = 'tla-lock-msg';
-    msg.innerHTML = "This is where your next journey is conducted. Bespoke is Andy&rsquo;s private-journey practice &mdash; every trip personally designed, every detail quietly handled.<br><br>Enter your password below to step inside.";
-    var form = page.querySelector('form');
-    if (form) { form.parentNode.insertBefore(msg, form); }
-    else { page.insertBefore(msg, page.firstChild); }
-  }
-});
-</script>
+<!-- 2026-09-23: the legacy Bespoke lock-screen CSS and its #tla-lock-msg
+     injector were REMOVED from this file.
+
+     The block carried its own condition for removal: "left in place rather
+     than removed -- its selectors' current match/no-match status against
+     Squarespace's actual DOM hasn't been verified live." That verification
+     has now happened, twice and independently.
+
+     Measured on the live lock page at /bespoke:
+       .sqs-password-page      0 matches
+       .password-page          0 matches
+       .password-protected     0 matches
+       #tla-lock-msg           0 matches
+     while the selectors pages/lock-screen.html actually uses match 1,759
+     times. The legacy block styled nothing, and its script could never find
+     an element to inject into.
+
+     It was not free. The dead rules shipped on EVERY page -- 6 occurrences on
+     the homepage alone -- as render-blocking CSS in <head>, on a page type
+     that has no password form. pages/lock-screen.html, in Code Injection >
+     Lock Page, is the live and working lock screen.
+
+     Only the JSON-LD below remains in this file. -->
 
 <!-- JSON-LD business description (added by a live audit 2026-08-01). Supplies a described entity because Squarespace's auto WebSite node renders description empty on this template. -->
 <script type="application/ld+json">
