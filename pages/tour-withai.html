@@ -1,0 +1,316 @@
+<!-- ============================================================================
+     DRAFT — NOT FOR PUBLICATION BEFORE 2026-10-01.
+
+     Every [SQUARE BRACKET] below is a placeholder. None of the trip facts are
+     real and none were invented: dates, prices, deposits and inclusions must
+     come from Andy. Publishing this as-is would advertise a tour with made-up
+     terms, which is exactly what the Seller of Travel registration exists to
+     prevent.
+
+     Before publishing:
+       1. Replace every [PLACEHOLDER].
+       2. Delete the visible DRAFT banner block (id="tour-draft-banner").
+       3. Confirm registration CST 2174880-50 is effective — it is not until
+          2026-10-01.
+       4. Fill the bond and TCRF disclosures. See notes/OCT1_LAUNCH_COMPLIANCE.md
+          §3 — two are Mandatory Disclosure Language where the statute dictates
+          the exact words, and the TCRF wording INVERTS depending on Andy's
+          participation status.
+     ============================================================================ -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+
+.fluid-engine { grid-template-rows: repeat(500, minmax(0px, auto)) !important; row-gap: 0 !important; }
+
+.tla-tour-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-tour {
+  --midnight:#12355B; --gold:#C9A96E; --gold-deep:#7a5a2e; --sandstone:#F4EFE6;
+  --white:#FFFFFF; --sunrise:#F26A21;
+  --muted:rgba(18,53,91,0.72);
+  font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
+}
+.tla-tour * { box-sizing:border-box; margin:0; padding:0; }
+.tla-tour h1,.tla-tour h2,.tla-tour h3 { font-family:'Cormorant Garamond',serif; font-weight:600; margin:0; }
+.tla-tour h1 { font-size:clamp(2.8rem,6vw,5.2rem); line-height:0.98; letter-spacing:-0.02em; }
+.tla-tour h2 { font-size:clamp(2rem,4vw,3.2rem); line-height:1.05; letter-spacing:-0.015em; }
+.tla-tour em { font-style:normal; color:var(--gold); }
+.tla-tour p { font-size:1.06rem; line-height:1.68; }
+.tla-tour .tlt-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.76rem; letter-spacing:0.16em; text-transform:uppercase; }
+
+/* DRAFT banner. Deliberately loud and deliberately not subtle — it exists to
+   make an accidental publish obvious at a glance. */
+#tour-draft-banner {
+  background:#7a1f1f; color:#fff; padding:1.1rem 1.5rem; text-align:center;
+  font-family:'Source Sans 3',sans-serif; font-weight:700; font-size:0.9rem;
+  letter-spacing:0.08em; text-transform:uppercase;
+}
+
+.tla-tour .tlt-hero { background:var(--midnight); color:var(--white); padding:clamp(4rem,9vh,7rem) 1.5rem; text-align:center; }
+.tla-tour .tlt-hero-inner { max-width:820px; margin:0 auto; }
+.tla-tour .tlt-hero .tlt-eyebrow { color:var(--gold); display:block; margin:0 0 1.2rem; }
+.tla-tour .tlt-hero p { color:rgba(244,239,230,0.78); max-width:620px; margin:1.4rem auto 0; }
+
+.tla-tour .tlt-facts { max-width:900px; margin:0 auto; padding:clamp(2.5rem,6vh,3.5rem) 1.5rem 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; text-align:center; }
+.tla-tour .tlt-fact { background:var(--sandstone); border-radius:12px; padding:1.4rem 1rem; }
+.tla-tour .tlt-fact-label { display:block; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted); margin-bottom:0.4rem; }
+.tla-tour .tlt-fact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; color:var(--midnight); font-size:1.3rem; }
+
+.tla-tour .tlt-section { background:var(--white); padding:clamp(3.5rem,8vh,6rem) 1.5rem; }
+.tla-tour .tlt-inner { max-width:820px; margin:0 auto; }
+.tla-tour .tlt-section-head { text-align:center; margin:0 auto clamp(2rem,5vh,3rem); }
+.tla-tour .tlt-section-head .tlt-eyebrow { color:var(--gold-deep); display:block; margin:0 0 0.9rem; }
+.tla-tour .tlt-section-head h2 { color:var(--midnight); }
+
+/* ---------------------------------------------------------------------------
+   ACCORDION — built on <details>/<summary>, not on JavaScript.
+
+   This is the whole reason for the choice. <details> is open/closed without a
+   line of script, so it cannot land in the failure mode the reveal system had:
+   JS hides something, the event never fires, and the content is stranded
+   invisible. It is also natively keyboard- and screen-reader-accessible with no
+   ARIA plumbing, browsers expand it for Ctrl+F and for printing, and it
+   degrades to plain readable content in Squarespace's editor, which does not
+   run JavaScript at all.
+
+   Tabs were the alternative and are wrong here: a fourteen-day itinerary means
+   fourteen tabs, which overflow horizontally, shrink touch targets, and let a
+   reader see only one day at a time. Accordions scale vertically without limit.
+
+   The JS at the bottom only adds animation and an expand-all control. Remove
+   it entirely and this section still works.
+   --------------------------------------------------------------------------- */
+.tla-tour .tlt-acc { border-top:1px solid rgba(18,53,91,0.14); }
+.tla-tour .tlt-day { border-bottom:1px solid rgba(18,53,91,0.14); }
+.tla-tour .tlt-day > summary {
+  list-style:none; cursor:pointer; padding:1.35rem 3rem 1.35rem 0; position:relative;
+  display:flex; align-items:baseline; gap:1rem;
+}
+.tla-tour .tlt-day > summary::-webkit-details-marker { display:none; }
+.tla-tour .tlt-day > summary:focus-visible { outline:3px solid var(--midnight); outline-offset:3px; }
+.tla-tour .tlt-day-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold-deep); font-size:0.95rem; flex:none; min-width:4.5rem; }
+.tla-tour .tlt-day-title { font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.3rem; color:var(--midnight); line-height:1.25; }
+/* Chevron drawn in CSS so the control needs no icon font and no image. */
+.tla-tour .tlt-day > summary::after {
+  content:""; position:absolute; right:0.4rem; top:1.75rem;
+  width:9px; height:9px; border-right:2px solid var(--gold-deep); border-bottom:2px solid var(--gold-deep);
+  transform:rotate(45deg); transition:transform 0.3s cubic-bezier(.22,.61,.36,1);
+}
+.tla-tour .tlt-day[open] > summary::after { transform:rotate(-135deg); }
+.tla-tour .tlt-day-body { padding:0 3rem 1.6rem 5.5rem; color:var(--muted); }
+.tla-tour .tlt-day-body p + p { margin-top:0.8rem; }
+.tla-tour .tlt-acc-controls { display:flex; justify-content:flex-end; margin:0 0 0.6rem; }
+.tla-tour .tlt-acc-toggle {
+  background:none; border:0; cursor:pointer; font-family:'Source Sans 3',sans-serif;
+  font-weight:600; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase;
+  color:var(--gold-deep); padding:0.5rem 0.2rem;
+}
+.tla-tour .tlt-acc-toggle:focus-visible { outline:3px solid var(--midnight); outline-offset:2px; }
+
+/* Included / not included: two columns, NOT tabs. With exactly two lists that a
+   reader wants to compare, tabs would hide half the answer behind a click. */
+.tla-tour .tlt-cols { display:grid; grid-template-columns:1fr 1fr; gap:2.4rem; }
+.tla-tour .tlt-cols h3 { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--midnight); margin:0 0 0.9rem; }
+.tla-tour .tlt-cols ul { list-style:none; color:var(--muted); font-size:0.95rem; line-height:1.85; }
+.tla-tour .tlt-cols li::before { content:'\2014\0020'; color:var(--gold-deep); }
+
+/* Terms sit OPEN by default and are not collapsible. California requires
+   cancellation terms to be clear and conspicuous, and a collapsed panel is
+   arguably neither. Do not convert this to an accordion. */
+.tla-tour .tlt-terms { background:var(--sandstone); }
+.tla-tour .tlt-terms .tlt-inner { max-width:760px; }
+.tla-tour .tlt-terms h3 { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--midnight); margin:1.6rem 0 0.7rem; }
+.tla-tour .tlt-terms p { font-size:0.95rem; line-height:1.72; color:var(--muted); }
+.tla-tour .tlt-legal { margin-top:2rem; padding-top:1.4rem; border-top:1px solid rgba(18,53,91,0.16); font-size:0.86rem; line-height:1.7; color:var(--midnight); }
+
+.tla-tour .tlt-cta { background:var(--midnight); color:var(--white); text-align:center; padding:clamp(3.5rem,8vh,5.5rem) 1.5rem; }
+.tla-tour .tlt-btn {
+  display:inline-block; font-weight:600; font-size:0.82rem; letter-spacing:0.12em;
+  text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px;
+  background:var(--sunrise); color:var(--white); border:1px solid var(--sunrise);
+  transition:background 0.3s ease-out, border-color 0.3s ease-out;
+}
+.tla-tour .tlt-btn:hover { background:#d85a15; border-color:#d85a15; }
+
+@media (max-width:767px) {
+  .tla-tour .tlt-facts { grid-template-columns:1fr; }
+  .tla-tour .tlt-cols { grid-template-columns:1fr; gap:1.6rem; }
+  .tla-tour .tlt-day-body { padding-left:0; padding-right:0; }
+  .tla-tour .tlt-day > summary { padding-right:2.4rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tla-tour .tlt-day > summary::after { transition:none; }
+  .tla-tour .tlt-btn { transition:none; }
+}
+/* Print: every day open, controls and chevrons gone. A traveller printing the
+   itinerary should get all of it, not whatever happened to be expanded. */
+@media print {
+  .tla-tour .tlt-day-body { display:block !important; }
+  .tla-tour .tlt-acc-controls,
+  .tla-tour .tlt-day > summary::after { display:none !important; }
+  #tour-draft-banner { background:#000 !important; }
+}
+</style>
+<div class="tla-tour-wrap"><div class="tla-tour">
+
+  <div id="tour-draft-banner">
+    Draft — not for publication before 1 October 2026. Delete this banner before publishing.
+  </div>
+
+  <section class="tlt-hero">
+    <div class="tlt-hero-inner">
+      <span class="tlt-eyebrow">[TOUR EYEBROW — e.g. First Group Departure]</span>
+      <h1>[TOUR TITLE] <em>[accent word]</em></h1>
+      <p>[One paragraph. What the trip is, who it suits, and what makes it Andy's rather than a tour operator's. Andy's words, not invented.]</p>
+    </div>
+  </section>
+
+  <div class="tlt-facts">
+    <div class="tlt-fact"><span class="tlt-fact-label">Dates</span><span class="tlt-fact-value">[DATES]</span></div>
+    <div class="tlt-fact"><span class="tlt-fact-label">Group Size</span><span class="tlt-fact-value">[MIN&ndash;MAX]</span></div>
+    <div class="tlt-fact"><span class="tlt-fact-label">Investment</span><span class="tlt-fact-value">[PRICE / PERSON]</span></div>
+  </div>
+
+  <section class="tlt-section">
+    <div class="tlt-inner">
+      <div class="tlt-section-head">
+        <span class="tlt-eyebrow">Itinerary</span>
+        <h2>Day by <em>day.</em></h2>
+      </div>
+
+      <div class="tlt-acc-controls">
+        <button type="button" class="tlt-acc-toggle" id="tlt-expand" aria-expanded="false">Expand all</button>
+      </div>
+
+      <div class="tlt-acc" id="tlt-itinerary">
+        <details class="tlt-day" id="day-1">
+          <summary>
+            <span class="tlt-day-num">Day 1</span>
+            <span class="tlt-day-title">[DAY TITLE]</span>
+          </summary>
+          <div class="tlt-day-body">
+            <p>[What happens. Where they sleep. What is included that day.]</p>
+          </div>
+        </details>
+
+        <details class="tlt-day" id="day-2">
+          <summary>
+            <span class="tlt-day-num">Day 2</span>
+            <span class="tlt-day-title">[DAY TITLE]</span>
+          </summary>
+          <div class="tlt-day-body">
+            <p>[Duplicate this &lt;details&gt; block per day. Keep ids sequential &mdash; day-3, day-4 &mdash; so a link like /tour#day-7 opens that day directly.]</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="tlt-section" style="background:#fbfaf8;">
+    <div class="tlt-inner">
+      <div class="tlt-cols">
+        <div>
+          <h3>Included</h3>
+          <ul>
+            <li>[Inclusion]</li>
+            <li>[Inclusion]</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Not Included</h3>
+          <ul>
+            <li>[Exclusion]</li>
+            <li>[Travel insurance &mdash; state whether required or recommended]</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tlt-section tlt-terms">
+    <div class="tlt-inner">
+      <div class="tlt-section-head">
+        <span class="tlt-eyebrow">Terms</span>
+        <h2>Before you <em>reserve.</em></h2>
+      </div>
+
+      <h3>Deposit and payment schedule</h3>
+      <p>[Deposit amount, when due, what it secures, and the balance due date.]</p>
+
+      <h3>Cancellation</h3>
+      <p>[Exact cancellation terms and any penalties, per date. California's guidance is explicit that cancellation penalties NOT disclosed in writing are unenforceable, so this paragraph is load-bearing, not boilerplate.]</p>
+
+      <h3>Refunds</h3>
+      <p>[The prompt-refund statement. The Attorney General publishes sample wording for this &mdash; see notes/OCT1_LAUNCH_COMPLIANCE.md. Use theirs, do not write your own.]</p>
+
+      <!-- ====================================================================
+           MANDATORY DISCLOSURE LANGUAGE. The statute dictates these words.
+           Both blanks below are still unknown as of 2026-09-24 and must come
+           from Andy's bond certificate. Do NOT estimate either one.
+           The TCRF sentence INVERTS depending on whether he participates —
+           three mutually exclusive versions exist. See OCT1_LAUNCH_COMPLIANCE §3.
+           ==================================================================== -->
+      <div class="tlt-legal">
+        <p>California law requires certain sellers of travel to have a trust account or bond. This business has a bond issued by [BOND COMPANY NAME] in the amount of $[BOND AMOUNT].</p>
+        <p>[TCRF SENTENCE — pick the correct one of the three. Do not guess.]</p>
+        <p>travellikeandy LLC &middot; CST 2174880-50. Registration as a seller of travel does not constitute approval by the State of California.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="tlt-cta">
+    <h2>[CLOSING LINE]</h2>
+    <p style="color:rgba(244,239,230,0.78); max-width:520px; margin:1rem auto 2rem;">[One line on how to reserve, and what happens next.]</p>
+    <a href="/contact" class="tlt-btn">Send an Inquiry</a>
+  </section>
+
+</div></div>
+<script>
+(function(){
+  "use strict";
+
+  var acc = document.getElementById('tlt-itinerary');
+  var btn = document.getElementById('tlt-expand');
+  if (!acc) { return; }
+
+  var days = Array.prototype.slice.call(acc.querySelectorAll('.tlt-day'));
+
+  // Expand/collapse all. Purely additive — every <details> already works on
+  // its own, so if this button is removed the accordion is unaffected.
+  function syncButton(){
+    if (!btn) { return; }
+    var allOpen = days.length > 0 && days.every(function(d){ return d.open; });
+    btn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+    btn.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+  }
+
+  if (btn) {
+    btn.addEventListener('click', function(){
+      var allOpen = days.every(function(d){ return d.open; });
+      days.forEach(function(d){ d.open = !allOpen; });
+      syncButton();
+    });
+  }
+
+  days.forEach(function(d){
+    d.addEventListener('toggle', syncButton);
+  });
+
+  // Deep link: /tour#day-7 opens that day and scrolls to it. Browsers will
+  // scroll to the id on their own but will not open a closed <details>, so
+  // that part is ours.
+  function openFromHash(){
+    var id = (window.location.hash || '').replace('#', '');
+    if (!id) { return; }
+    var target = document.getElementById(id);
+    if (target && target.classList.contains('tlt-day')) {
+      target.open = true;
+      syncButton();
+      target.scrollIntoView({ block: 'start' });
+    }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+
+  syncButton();
+})();
+</script>
