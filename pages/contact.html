@@ -227,10 +227,22 @@
   if (!('IntersectionObserver' in window)) {
     els.forEach(function(e){ e.classList.add('tlact-in'); });
   } else {
+    var revealed = false;
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){ if (entry.isIntersecting) { entry.target.classList.add('tlact-in'); io.unobserve(entry.target); } });
+      entries.forEach(function(entry){ if (entry.isIntersecting) { revealed = true; entry.target.classList.add('tlact-in'); io.unobserve(entry.target); } });
     }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
     els.forEach(function(e){ io.observe(e); });
+    // FAILSAFE. Adding js-reveal above set every .tlact-reveal to opacity:0,
+    // so from that point only this observer can make content visible again.
+    // If it never fires -- background tab, throttling in-app browser, an
+    // error after this line -- the page stays blank while looking finished.
+    // Reveal everything after 2s, but ONLY if the observer has not fired
+    // once, which tells a dead observer apart from a user who has not
+    // scrolled yet. Where the observer works, this does nothing.
+    window.setTimeout(function(){
+      if (revealed) { return; }
+      els.forEach(function(e){ e.classList.add('tlact-in'); });
+    }, 2000);
   }
 
   var form = document.getElementById('tlact-form');
