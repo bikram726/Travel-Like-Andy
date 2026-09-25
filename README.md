@@ -1,5 +1,9 @@
 # Travel Like Andy — Squarespace Code Blocks
 
+> **New here? Read [START_HERE.md](START_HERE.md) first.** It covers the October 1
+> launch deadline, why pushing to GitHub does not change the live site, and the
+> rules whose breach has already wiped a page. This file is the file index.
+
 Each `.html` file in `pages/` is the **entire content for one page**, meant to be pasted into a single Squarespace **Code Block** (mode: HTML) inside a blank section, per `TRAVELLIKEANDY_HANDOFF.md`.
 
 **2026-07-30: the site is mid-rebuild onto the Brand Bible v1.0 system** (Midnight/gold/Sandstone palette, Cormorant Garamond + Source Sans 3, the "Curated Personally." signature). See `REBUILD_PROGRESS.md` for what's shipped vs. outstanding and `HANDOFF_NOTES.md` for every open decision/placeholder that needs the client's input. The `travel-like-andy-brand-bible` memory has the full source document and decision history.
