@@ -58,6 +58,11 @@
 .tla-groups .tlgr-section-head h2 { color:var(--midnight); }
 .tla-groups .tlgr-section-head h2 em { color:var(--gold-deep); }
 .tla-groups .tlgr-section-head p { color:var(--muted-on-light); margin-top:1.25rem; }
+.tla-groups .tlgr-photo-grid { max-width:1140px; margin:2.5rem auto 0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.75rem; }
+.tla-groups .tlgr-photo { overflow:hidden; border-radius:12px; background:var(--sandstone); }
+.tla-groups .tlgr-photo img { display:block; width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; }
+.tla-groups .tlgr-photo figcaption { padding:1rem 1.25rem; color:var(--midnight); font-size:0.95rem; line-height:1.5; }
+@media (max-width:640px) { .tla-groups .tlgr-photo-grid { grid-template-columns:1fr; } }
 .tla-groups .tlgr-grid { max-width:1140px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.75rem; }
 .tla-groups .tlgr-card { background:var(--sandstone); border-radius:12px; padding:2.4rem 1.8rem; text-align:left; transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1); }
 .tla-groups .tlgr-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(18,53,91,0.12); }
@@ -177,6 +182,10 @@
       <div class="tlgr-card"><h3>3. Build it with Andy</h3><p>Share what your group loves, when you want to go, and what you hope to experience. Andy curates the journey around you.</p></div>
     </div>
     <div style="text-align:center; margin-top:2rem;"><a href="/contact" class="tlgr-btn tlgr-btn-primary">Contact Andy to Start Building Your Adventure</a></div>
+    <div class="tlgr-photo-grid" aria-label="Destination inspiration from Andy&rsquo;s travels">
+      <figure class="tlgr-photo"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/c81d03c/assets/photos/leisure-koh-yao-noi-longtail-boat.jpg" alt="A longtail boat on the sea near Koh Yao Noi, Thailand" loading="lazy" width="1431" height="1073"><figcaption>Thailand &middot; Koh Yao Noi</figcaption></figure>
+      <figure class="tlgr-photo"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/c81d03c/assets/photos/leisure-pokhara-phewa-lake-boats.png" alt="Colorful boats on Phewa Lake in Pokhara, Nepal" loading="lazy" width="1430" height="393"><figcaption>Nepal &middot; Phewa Lake, Pokhara</figcaption></figure>
+    </div>
   </section>
 
   <section class="tlgr-departure tlgr-reveal">
