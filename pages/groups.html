@@ -57,6 +57,7 @@
 .tla-groups .tlgr-section-head .tlgr-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
 .tla-groups .tlgr-section-head h2 { color:var(--midnight); }
 .tla-groups .tlgr-section-head h2 em { color:var(--gold-deep); }
+.tla-groups .tlgr-section-head p { color:var(--muted-on-light); margin-top:1.25rem; }
 .tla-groups .tlgr-grid { max-width:1140px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:1.75rem; }
 .tla-groups .tlgr-card { background:var(--sandstone); border-radius:12px; padding:2.4rem 1.8rem; text-align:left; transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1); }
 .tla-groups .tlgr-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(18,53,91,0.12); }
@@ -74,6 +75,22 @@
 .tla-groups .tlgr-departure-head .tlgr-eyebrow { color:var(--gold-deep); display:block; margin:0 0 1rem; }
 .tla-groups .tlgr-departure-head h2 { color:var(--midnight); }
 .tla-groups .tlgr-departure-head p { color:var(--muted-on-light); margin-top:1rem; }
+.tla-groups .tlgr-facts { max-width:760px; margin:2rem auto 0; display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; text-align:center; }
+.tla-groups .tlgr-fact { background:var(--sandstone); border-radius:12px; padding:1.4rem 1rem; }
+.tla-groups .tlgr-fact-label { display:block; font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.4rem; }
+.tla-groups .tlgr-fact-value { font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; color:var(--midnight); font-size:1.3rem; }
+.tla-groups .tlgr-stops { max-width:1140px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; display:grid; grid-template-columns:repeat(4,1fr); gap:1.25rem; }
+.tla-groups .tlgr-stop { background:var(--sandstone); border-radius:12px; padding:1.8rem 1.4rem; text-align:left; }
+.tla-groups .tlgr-stop-num { font-family:'Cormorant Garamond',serif; font-style:italic; color:var(--gold-deep); font-size:0.95rem; display:block; margin-bottom:0.4rem; }
+.tla-groups .tlgr-stop h3 { color:var(--midnight); font-size:1.15rem; margin-bottom:0.3rem; }
+.tla-groups .tlgr-stop-nights { display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.7rem; }
+.tla-groups .tlgr-stop p { color:var(--muted-on-light); font-size:0.88rem; margin:0; }
+.tla-groups .tlgr-logistics { max-width:900px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
+.tla-groups .tlgr-logistics h4 { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--midnight); margin:0 0 0.8rem; }
+.tla-groups .tlgr-logistics ul { list-style:none; margin:0; padding:0; color:var(--muted-on-light); font-size:0.92rem; line-height:1.8; }
+.tla-groups .tlgr-logistics li:before { content:'\2014\0020'; color:var(--gold-deep); }
+.tla-groups .tlgr-policy { max-width:760px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; padding-top:1.6rem; border-top:1px solid rgba(18,53,91,0.12); font-size:0.82rem; line-height:1.7; color:var(--muted-on-light); text-align:center; }
+.tla-groups .tlgr-departure-cta { text-align:center; margin-top:clamp(2.5rem,6vh,3.5rem); }
 
 .tla-groups .tlgr-close { background:var(--sandstone); color:var(--midnight); text-align:center; padding:clamp(4rem,9vh,6rem) 1.5rem; }
 .tla-groups .tlgr-close h2 { margin-bottom:1.8rem; }
@@ -105,7 +122,9 @@
   .tla-groups.js-reveal .tlgr-reveal { opacity:1; transform:none; transition:none; }
   .tla-groups .tlgr-card { transition:none; }
 }
+@media (max-width:900px) { .tla-groups .tlgr-stops { grid-template-columns:repeat(2,1fr); } }
 @media (max-width:767px) {
+  .tla-groups .tlgr-facts, .tla-groups .tlgr-stops, .tla-groups .tlgr-logistics { grid-template-columns:1fr; }
   .tla-groups .tlgr-grid { grid-template-columns:1fr; }
   .tla-groups .tlgr-feature, .tla-groups .tlgr-feature-cell { display:block; width:100%; }
   .tla-groups .tlgr-feature-cell.tlgr-img { min-height:260px; }
@@ -118,15 +137,15 @@
       <span class="tlgr-lockup-word">travellikeandy</span>
       <span class="tlgr-lockup-division">Groups</span>
     </div>
-    <p class="tlgr-eyebrow">Corporate &middot; Meetings &middot; Incentives</p>
-    <h1>Travel that respects <em>your time.</em></h1>
-    <p class="tlgr-deck">Executive, association, and incentive travel conducted with the same personal judgment and advocacy behind every journey I plan.</p>
+    <p class="tlgr-eyebrow">Corporate &middot; Meetings &middot; Incentives &middot; Weddings &middot; Friend Groups &middot; Curated Events</p>
+    <h1>Travel Together. <em>Go Deeper.</em></h1>
+    <p class="tlgr-deck">From a team retreat to a wedding, a gathering of friends to a curated event — every group journey is planned personally, around the people traveling together.</p>
     <p class="tlgr-slogan">Travel Together. Go Deeper.</p>
     <a href="/contact" class="tlgr-btn tlgr-btn-primary">Send an Inquiry</a>
     <a href="/contact" class="tlgr-btn tlgr-btn-secondary">Start the Conversation</a>
   </div></section>
 
-  <section class="tlgr-quote"><p>Your team's time is the most expensive thing on the trip. I plan around that, not around the brochure.</p></section>
+  <section class="tlgr-quote"><p>A journey designed for curious minds and kindred spirits. Learn. Explore. Connect. Relax.</p></section>
 
   <section class="tlgr-section tlgr-reveal">
     <div class="tlgr-section-head">
@@ -134,6 +153,7 @@
       <h2>Conducted, not just <em>coordinated.</em></h2>
     </div>
     <div class="tlgr-grid">
+      <div class="tlgr-card"><h3>Small Group Tours</h3><p>Intimate, curated journeys for small groups, planned end to end so everyone simply arrives.</p></div>
       <div class="tlgr-card"><h3>Weddings</h3><p>Destination weddings and the whole party's travel, planned as one itinerary, not a scramble of separate bookings.</p></div>
       <div class="tlgr-card"><h3>Friend Groups</h3><p>The group your friends or family actually are — not a corporate incentive trip, not a stranger's tour bus.</p></div>
       <div class="tlgr-card"><h3>Curated Events</h3><p>A milestone, a reunion, a reason to gather — built around the occasion, not a template.</p></div>
@@ -145,14 +165,83 @@
     </div>
   </section>
 
+  <section class="tlgr-section tlgr-reveal">
+    <div class="tlgr-section-head">
+      <span class="tlgr-eyebrow">How It Works</span>
+      <h2>Your people. <em>Your adventure.</em></h2>
+      <p>It&rsquo;s simple: get a group of your friends or family together — a minimum of 8 and a maximum of 14 — and we curate an adventure that will exceed your expectations.</p>
+    </div>
+    <div class="tlgr-grid">
+      <div class="tlgr-card"><h3>1. Gather your group</h3><p>Bring together 8–14 friends or family members who want to travel together.</p></div>
+      <div class="tlgr-card"><h3>2. Choose your adventure</h3><p>Explore destinations Andy loves: Thailand, Nepal, Tahiti, Hidden Mexico, Greece Mainland Coasts, and Istanbul for Beginners.</p></div>
+      <div class="tlgr-card"><h3>3. Build it with Andy</h3><p>Share what your group loves, when you want to go, and what you hope to experience. Andy curates the journey around you.</p></div>
+    </div>
+    <div style="text-align:center; margin-top:2rem;"><a href="/contact" class="tlgr-btn tlgr-btn-primary">Contact Andy to Start Building Your Adventure</a></div>
+  </section>
+
   <section class="tlgr-departure tlgr-reveal">
     <div class="tlgr-departure-head">
-      <h2 style="color:#12355B; text-align:center; margin:0 0 0.4rem;">We will soon be taking group reservations.</h2>
-      <div style="max-width:760px; margin:2rem auto 0; padding:1.4rem 1.6rem; border:1px solid rgba(18,53,91,0.18); border-left:3px solid #C9A96E; background:rgba(18,53,91,0.03); text-align:left;">
-        <span style="display:block; font-family:'Source Sans 3',sans-serif; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; font-size:0.74rem; color:#12355B; margin:0 0 0.8rem;">REGISTRATION PENDING</span>
-        <p style="margin:0 0 0.8rem; font-size:0.92rem; line-height:1.7; color:#12355B; opacity:0.9;">travellikeandy LLC is not currently offering or selling travel, accepting reservations, deposits or payments, or entering into travel contracts. The services described on this website are previews of planned future offerings. Direct bookings will open only after all required California registrations are issued.</p>
-        <p style="margin:0; font-size:0.92rem; line-height:1.7; color:#12355B; opacity:0.9;">Any travel-advisor services currently provided through Fora Travel are conducted solely in Andy Eisenmann&rsquo;s capacity as a Fora independent contractor and are subject to Fora&rsquo;s terms, registration and required disclosures.</p>
+      <span class="tlgr-eyebrow">First Group Departure</span>
+      <h2>From Wisconsin to <em>Thailand.</em></h2>
+      <p>Temples, history, mountains, and islands — fourteen days across four destinations, organized for a Wisconsin travel circle and built to feel like a shared journey, not a tour group.</p>
+    </div>
+    <div class="tlgr-facts">
+      <div class="tlgr-fact"><span class="tlgr-fact-label">Dates</span><span class="tlgr-fact-value">Oct 25 &ndash; Nov 7, 2027</span></div>
+      <div class="tlgr-fact"><span class="tlgr-fact-label">Group Size</span><span class="tlgr-fact-value">8&ndash;14 Travelers</span></div>
+      <div class="tlgr-fact"><span class="tlgr-fact-label">Status</span><span class="tlgr-fact-value">Sold Out</span></div>
+    </div>
+    <div class="tlgr-stops">
+      <div class="tlgr-stop">
+        <span class="tlgr-stop-num">I</span>
+        <h3>Bangkok</h3>
+        <span class="tlgr-stop-nights">3 Nights</span>
+        <p>The Grand Palace and Wat Pho, a Chao Phraya river cruise, floating markets, and rooftop views.</p>
       </div>
+      <div class="tlgr-stop">
+        <span class="tlgr-stop-num">II</span>
+        <h3>Kanchanaburi</h3>
+        <span class="tlgr-stop-nights">2 Nights</span>
+        <p>The Bridge on the River Kwai, the Death Railway, Erawan Falls, and a scenic train through the valley.</p>
+      </div>
+      <div class="tlgr-stop">
+        <span class="tlgr-stop-num">III</span>
+        <h3>Chiang Mai</h3>
+        <span class="tlgr-stop-nights">4 Nights</span>
+        <p>The old city's temples, a Thai cooking class, an ethical elephant sanctuary, and Doi Inthanon National Park.</p>
+      </div>
+      <div class="tlgr-stop">
+        <span class="tlgr-stop-num">IV</span>
+        <h3>Koh Lanta</h3>
+        <span class="tlgr-stop-nights">4 Nights</span>
+        <p>A four-islands tour, the Emerald Cave, sunset sailing, and rest on some of the quietest beaches in Thailand.</p>
+      </div>
+    </div>
+    <div class="tlgr-logistics">
+      <div>
+        <h4>Included</h4>
+        <ul>
+          <li>English-speaking guides throughout</li>
+          <li>All hotel accommodations</li>
+          <li>Daily breakfast &amp; three group dinners</li>
+          <li>Ground transportation and domestic flights in Thailand</li>
+          <li>Airport transfers &amp; travellikeandy LLC concierge support</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Not Included</h4>
+        <ul>
+          <li>International airfare</li>
+          <li>Travel insurance (strongly suggested)</li>
+          <li>Daily lunches &amp; hotel incidentals</li>
+          <li>Personal expenses</li>
+          <li>Passport &amp; visa fees, if applicable</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tlgr-departure-cta">
+      <p style="margin:0 0 0.5rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#B0793C;">Sold Out</p>
+      <p style="margin:0 0 1rem; font-size:0.95rem; line-height:1.6; color:rgba(18,53,91,0.88); max-width:560px;">This Thailand journey is currently full. Join the wait list now to be the first invited if a spot opens or a second departure is announced.</p>
+      <a href="/contact" class="tlgr-btn tlgr-btn-primary">Join the Wait List</a>
     </div>
   </section>
 
@@ -166,7 +255,7 @@
   </section>
 
   <section class="tlgr-close">
-    <h2>Tell me where your team needs to be.</h2>
+    <h2>Tell me where your group wants to go.</h2>
     <a href="/contact" class="tlgr-btn tlgr-btn-primary tlgr-btn-primary-solo">Send an Inquiry</a>
     <div class="tla-cue-mark" aria-hidden="true">
       <svg class="tla-cue-mark-svg" viewBox="0 0 150 34" focusable="false">
