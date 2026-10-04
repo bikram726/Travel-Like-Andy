@@ -1,5 +1,7 @@
 # Travel Like Andy — Squarespace Code Blocks
 
+**Current status (October 4, 2026):** see [the published site audit](notes/OCT4_SITE_AUDIT.md). All seven public pages exist. Footer registration, hosted-departure copy, Groups updates/photos, form reliability, and responsive/accessibility corrections are live. The footer injection now also owns shared responsive styles and viewport/header measurement; keep those when updating the footer. Historical inventories below may describe earlier publication states.
+
 > **New here? Read [START_HERE.md](START_HERE.md) first.** It covers the October 1
 > launch deadline, why pushing to GitHub does not change the live site, and the
 > rules whose breach has already wiped a page. This file is the file index.
@@ -47,7 +49,7 @@ Never in this repo, not even in a note, not even temporarily.
 5. Scripts show "embedded scripts disabled" in the editor — that's expected; they run on the published site.
 6. Verify on the **live page in a private window**, never in the editor. See the second warning.
 
-### ⚠ The Code Block must span the full grid width
+### ⚠ Keep the Code Block horizontally centred
 
 Every file in `pages/` opens with a full-bleed breakout:
 

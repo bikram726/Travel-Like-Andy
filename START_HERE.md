@@ -2,7 +2,9 @@
 
 Orientation for anyone — human or agent — picking up travellikeandy.com cold.
 
-**Accurate as of 2026-09-24.** `README.md` is the file index. `HANDOFF_NOTES.md`
+**Publication update — 2026-10-04:** [The current audit report](notes/OCT4_SITE_AUDIT.md) supersedes the September inventory below. The CST footer, Groups itinerary/photos, Collections interest form, and matching Home/Contact/Header content are published. Shared responsive/accessibility fixes and lock-screen improvements are live. Password rotation remains unconfirmed. Treat the registration-pending instructions below as historical, since October 1 has passed.
+
+**Original orientation as of 2026-09-24.** `README.md` is the file index. `HANDOFF_NOTES.md`
 is the chronological log. This is the map.
 
 ---

@@ -93,7 +93,7 @@
   </section>
 
   <section class="tlact-wrap-inner tlact-reveal">
-    <p class="tlact-form-note" style="max-width:640px; margin:0 0 1.6rem; padding:1rem 1.2rem; border-left:3px solid #C9A96E; background:rgba(18,53,91,0.04); font-size:0.95rem; line-height:1.65; color:#12355B;">Submitting this form does not create a reservation, booking or travel contract. No payments are currently accepted by travellikeandy LLC.</p>
+    <p class="tlact-form-note" style="max-width:640px; margin:0 0 1.6rem; padding:1rem 1.2rem; border-left:3px solid #C9A96E; background:rgba(18,53,91,0.04); font-size:0.95rem; line-height:1.65; color:#12355B;">Submitting this form does not create a reservation, booking or travel contract.</p>
     <form id="tlact-form" class="tlact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
       <!-- SECURITY: this access_key is meant to be public -- Web3Forms forms submit
            client-side, so the key is always visible in page source, by design.
@@ -125,17 +125,17 @@
 
       <div>
         <label for="cname">Name</label>
-        <input id="cname" name="name" type="text" placeholder="Your name" autocomplete="name" required aria-describedby="cname-error">
+        <input id="cname" name="name" type="text" placeholder="Your name" autocomplete="name" required aria-describedby="cname-error" maxlength="120">
         <span id="cname-error" class="tlact-field-error" aria-live="polite"></span>
       </div>
       <div>
         <label for="cemail">Email</label>
-        <input id="cemail" name="email" type="email" inputmode="email" placeholder="your@email.com" autocomplete="email" required aria-describedby="cemail-error">
+        <input id="cemail" name="email" type="email" inputmode="email" placeholder="your@email.com" autocomplete="email" required aria-describedby="cemail-error" maxlength="254">
         <span id="cemail-error" class="tlact-field-error" aria-live="polite"></span>
       </div>
       <div>
         <label for="cdream">Where this journey begins</label>
-        <input id="cdream" name="destination" type="text" placeholder="A place, a feeling, a country" required aria-describedby="cdream-error">
+        <input id="cdream" maxlength="300" name="destination" type="text" placeholder="A place, a feeling, a country" required aria-describedby="cdream-error">
         <span id="cdream-error" class="tlact-field-error" aria-live="polite"></span>
       </div>
       <div>
@@ -148,11 +148,12 @@
           <option value="Group travel">Group travel</option>
           <option value="Corporate or incentive travel">Corporate or incentive travel</option>
           <option value="Something else">Something else</option>
+          <option value="Hosted departure">Hosted departure</option>
         </select>
       </div>
       <div>
         <label for="ctiming">When would you like to travel? (optional)</label>
-        <input id="ctiming" name="travel_timing" type="text" placeholder="A date, month, or season">
+        <input id="ctiming" name="travel_timing" type="text" placeholder="A date, month, or season" maxlength="120">
       </div>
       <div>
         <label for="ctravelers">How many travelers? (optional)</label>
@@ -160,10 +161,10 @@
       </div>
       <div>
         <label for="cphone">Phone or WhatsApp (optional)</label>
-        <input id="cphone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Only if you would prefer a call or message">
+        <input id="cphone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Only if you would prefer a call or message" maxlength="40">
       </div>
-      <div><label for="cref">Referred by (optional)</label><input id="cref" name="referred_by" type="text" placeholder="Who sent you here" autocomplete="off"></div>
-      <div><label for="cmsg">Message</label><textarea id="cmsg" name="message" rows="4" placeholder="Tell Andy more"></textarea></div>
+      <div><label for="cref">Referred by (optional)</label><input id="cref" name="referred_by" type="text" placeholder="Who sent you here" autocomplete="off" maxlength="120"></div>
+      <div><label for="cmsg">Message</label><textarea id="cmsg" name="message" rows="4" placeholder="Tell Andy more" maxlength="5000"></textarea></div>
 
       <!-- OPTIONAL SPAM CHALLENGE (disabled by default, nothing active here right
            now). The submit handler in the script block below already knows how to
@@ -178,7 +179,7 @@
            spam "Script Disabled" across this whole block. -->
 
       <button type="submit" class="tlact-btn">Send an Inquiry</button>
-      <p class="tlact-form-hint">Share only what feels useful. Andy will use these details to respond personally to your inquiry.</p>
+      <p class="tlact-form-hint">Andy will use these details to respond personally to your inquiry. Please leave out passport numbers, payment card details, and medical information.</p>
       <div id="tlact-result" class="tlact-result" role="status" aria-live="polite"></div>
     </form>
   </section>
@@ -250,6 +251,9 @@
   var btn = form ? form.querySelector('.tlact-btn') : null;
   if (!form) { return; }
 
+  var sending = false;
+  function field(name) { return form.elements.namedItem(name); }
+
   function trimVal(v) { return (v || '').trim(); }
   function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
@@ -263,17 +267,17 @@
   function validateForm() {
     var valid = true;
 
-    var nameVal = trimVal(form.name.value);
-    if (!nameVal) { setFieldError(form.name, 'Please enter your name.'); valid = false; }
-    else { setFieldError(form.name, ''); }
+    var nameVal = trimVal(field('name').value);
+    if (!nameVal) { setFieldError(field('name'), 'Please enter your name.'); valid = false; }
+    else { setFieldError(field('name'), ''); }
 
-    var emailVal = trimVal(form.email.value);
-    if (!emailVal || !isValidEmail(emailVal)) { setFieldError(form.email, 'Please enter a valid email address.'); valid = false; }
-    else { setFieldError(form.email, ''); }
+    var emailVal = trimVal(field('email').value);
+    if (!emailVal || !isValidEmail(emailVal)) { setFieldError(field('email'), 'Please enter a valid email address.'); valid = false; }
+    else { setFieldError(field('email'), ''); }
 
-    var destVal = trimVal(form.destination.value);
-    if (!destVal) { setFieldError(form.destination, 'Please tell Andy where this journey begins.'); valid = false; }
-    else { setFieldError(form.destination, ''); }
+    var destVal = trimVal(field('destination').value);
+    if (!destVal) { setFieldError(field('destination'), 'Please tell Andy where this journey begins.'); valid = false; }
+    else { setFieldError(field('destination'), ''); }
 
     return valid;
   }
@@ -301,13 +305,17 @@
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
-
-    if (form.botcheck && form.botcheck.checked) { return; }
+    if (sending) { return; }
+    if (field('botcheck') && field('botcheck').checked) { return; }
 
     if (!validateForm()) {
       showResult('Please fix the highlighted fields above.', true);
+      var firstInvalid = form.querySelector('[aria-invalid="true"]');
+      if (firstInvalid) { firstInvalid.focus(); }
       return;
     }
+
+    if (!form.reportValidity()) { return; }
 
     var captchaResponse = getCaptchaResponse();
     if (captchaResponse !== null && !captchaResponse) {
@@ -315,14 +323,20 @@
       return;
     }
 
+    sending = true;
+    form.setAttribute('aria-busy', 'true');
     if (btn) { btn.disabled = true; }
     showResult('Sending your note to Andy…', false);
+
+    var controller = new AbortController();
+    var timeout = window.setTimeout(function(){ controller.abort(); }, 20000);
 
     var payload = JSON.stringify(Object.fromEntries(new FormData(form)));
     fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: payload
+      body: payload,
+      signal: controller.signal
     })
     .then(function(res){ return res.json().then(function(json){ return { ok: res.ok, json: json }; }); })
     .then(function(r){
@@ -334,10 +348,14 @@
       }
     })
     .catch(function(err){
-      console.error('Contact form submission failed:', err);
-      showResult('Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
+      showResult(err.name === 'AbortError' ? 'We could not confirm delivery in time. Please contact Andy at andy@travellikeandy.com before sending again.' : 'Something went wrong. Please email Andy directly at andy@travellikeandy.com.', true);
     })
-    .then(function(){ if (btn) { btn.disabled = false; } });
+    .then(function(){
+      window.clearTimeout(timeout);
+      sending = false;
+      form.removeAttribute('aria-busy');
+      if (btn) { btn.disabled = false; }
+    });
   });
 })();
 </script>

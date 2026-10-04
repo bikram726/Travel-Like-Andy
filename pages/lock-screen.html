@@ -43,7 +43,7 @@
   inset: 0 !important;
   height: auto !important;
 }
-html, body { background: #12355B !important; }
+html, body { background: #12355B !important; overflow-x:clip !important; }
 
 /* ==========================================================================
    NAV CLEARANCE + WORDMARK PASS -- 2026-08-25
@@ -79,7 +79,7 @@ html, body { background: #12355B !important; }
    adding a 7th link means re-checking. */
 .sqs-slide-wrapper[data-slide-type="lock-screen"] {
   --tlab-nav-pad:   1.1rem;   /* nav vertical padding      */
-  --tlab-nav-row:   1.35rem;  /* height of one link row    */
+  --tlab-nav-row:   44px;     /* link row and touch target height */
   --tlab-nav-rows:  1;        /* rows the links wrap onto  */
   --tlab-nav-gap:   0.5rem;   /* vertical gap between rows */
   --tlab-nav-clear: 1.75rem;  /* breathing room below bar  */
@@ -99,7 +99,7 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   row-gap:        var(--tlab-nav-gap);
   align-items:    center;
 }
-.tlab-lock-nav.tlab-lock-nav a { line-height: var(--tlab-nav-row); }
+.tlab-lock-nav.tlab-lock-nav a { line-height: var(--tlab-nav-row); min-height:44px; display:inline-flex; align-items:center; }
 
 .sqs-slide-wrapper[data-slide-type="lock-screen"] .sqs-slide-container .sqs-slide {
   padding-top: calc(
@@ -310,10 +310,11 @@ html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   white-space:nowrap;
 }
 .tlab-lock-nav a:hover { color:#C9A96E; }
+.tlab-lock-nav a:focus-visible { outline:3px solid #C9A96E; outline-offset:3px; }
 
 @media (max-width:600px) {
   .tlab-lock-nav { gap:1rem 1.2rem; padding:0.9rem 1rem; }
-  .tlab-lock-nav a { font-size:0.68rem; }
+  .tlab-lock-nav a { font-size:0.75rem; }
 }
 
 .input-container {
@@ -327,7 +328,8 @@ input[type="password"] {
   border-bottom:1px solid rgba(201,169,110,0.5) !important;
   color:#FFFFFF !important;
   font-family:'Source Sans 3',sans-serif !important;
-  font-size:0.95rem !important;
+  font-size:16px !important;
+  min-height:48px !important;
   letter-spacing:0.05em !important;
   text-align:center !important;
   padding:0.8rem 0.2rem !important;
@@ -365,7 +367,7 @@ input[type="password"]:focus { outline:none !important; border-bottom-color:#C9A
   border-radius:8px !important;
 }
 </style>
-<nav class="tlab-lock-nav">
+<nav class="tlab-lock-nav" aria-label="Main navigation">
   <a href="/">Home</a>
   <a href="/about">About</a>
   <a href="/bespoke">Bespoke</a>
