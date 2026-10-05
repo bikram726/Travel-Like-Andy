@@ -54,7 +54,10 @@
    copy (2026-08-25) -- this is about section padding, not content. */
 .tla-bespoke .tlab-hero { background:var(--sandstone); color:#000000; min-height:60vh; display:flex; align-items:center; justify-content:center; padding:clamp(4rem,10vh,7rem) 1.5rem clamp(2.5rem,6vh,4rem); text-align:center; }
 .tla-bespoke .tlab-hero-inner { max-width:760px; }
-.tla-bespoke .tlab-hero .tlab-eyebrow { color:var(--gold); margin:0 0 1.4rem; }
+.tla-bespoke .tlab-hero .tlab-eyebrow { color:var(--gold-deep); margin:0 0 1.4rem; }
+.tla-bespoke .tlab-hero .tlab-lockup-word { color:var(--midnight); }
+.tla-bespoke .tlab-hero .tlab-lockup-division,
+.tla-bespoke .tlab-hero h1 em { color:var(--gold-deep); }
 
 .tla-bespoke .tlab-intro { background:var(--sandstone); padding:clamp(3rem,7vh,4.5rem) 1.5rem; text-align:center; }
 .tla-bespoke .tlab-intro p { max-width:700px; margin:0 auto 1.3rem; font-family:'Cormorant Garamond',serif; font-style:normal; font-weight:400; color:#000000; font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.7; }
@@ -78,14 +81,14 @@
 .tla-bespoke .tlab-service-card h3 { color:var(--midnight); margin-bottom:0.6rem; }
 .tla-bespoke .tlab-service-card p { color:var(--muted-on-light); font-size:0.92rem; margin:0; }
 
-.tla-bespoke .tlab-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; transition:all 0.3s ease-out; border:1px solid var(--sunrise); background:var(--sunrise); color:var(--white); }
-.tla-bespoke .tlab-btn:hover { background:#d85a15; border-color:#d85a15; }
+.tla-bespoke .tlab-btn { display:inline-block; font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.82rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; padding:1em 2.4em; border-radius:8px; transition:all 0.3s ease-out; border:1px solid #b6430d; background:#b6430d; color:var(--white); }
+.tla-bespoke .tlab-btn:hover { background:#963608; border-color:#963608; }
 .tla-bespoke .tlab-btn-secondary { background:transparent; color:var(--midnight); border:1px solid var(--midnight); }
 .tla-bespoke .tlab-btn-secondary:hover { background:rgba(18,53,91,0.08); }
 
 .tla-bespoke .tlab-partners { background:var(--midnight); color:var(--white); padding:clamp(4rem,9vh,6rem) 1.5rem; text-align:center; }
 .tla-bespoke .tlab-partners .tlab-eyebrow { color:var(--gold); margin:0 0 1rem; }
-.tla-bespoke .tlab-partners h2 { margin:0 0 3rem; font-style:italic; }
+.tla-bespoke .tlab-partners h2 { color:var(--white); margin:0 0 3rem; font-style:italic; }
 .tla-bespoke .tlab-partners-grid { max-width:1080px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:0.7rem; }
 .tla-bespoke .tlab-partner { aspect-ratio:3/2; border-radius:8px; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(201,169,110,0.35); transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1); }
 .tla-bespoke .tlab-partner-in { width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--sandstone); padding:1.2rem; }
@@ -132,7 +135,7 @@
 @media (prefers-reduced-motion: reduce) { .tla-bespoke .tlab-lightbox, .tla-bespoke .tlab-lb-close, .tla-bespoke .tlab-lb-prev, .tla-bespoke .tlab-lb-next, .tla-bespoke .tlab-place-hint { transition:none; } }
 
 .tla-bespoke .tlab-close { background:var(--midnight); color:var(--white); text-align:center; padding:clamp(4.5rem,10vh,7rem) 1.5rem; }
-.tla-bespoke .tlab-close h2 { font-style:italic; margin-bottom:2rem; }
+.tla-bespoke .tlab-close h2 { color:var(--white); font-style:italic; margin-bottom:2rem; }
 .tla-bespoke .tla-cue-mark { display:flex; align-items:center; justify-content:center; margin:2.2rem 0 0.6rem; }
 .tla-bespoke .tla-cue-mark-svg { width:150px; height:34px; overflow:visible; color:var(--gold); }
 .tla-bespoke .tla-cue-mark-line { fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-dasharray:140; stroke-dashoffset:140; transition:stroke-dashoffset 0.6s cubic-bezier(.22,.61,.36,1); }
@@ -183,14 +186,13 @@
     <p>Clients don’t come to me for packaged holidays. They come for personal, discreetly arranged experiences—for themselves and the people they love most.</p>
     <p>I know my Bespoke clients. I understand what it means to step away from a demanding life and truly reset. For those seeking the best of the best, I offer access, authenticity, and experiences that stay with you long after you return home.</p>
     <p>The photographs you bring back aren’t simply vacation photos. They are moments from your life. I don’t take that trust lightly.</p>
-    <p>But you already know that. You were referred. You have the password.</p>
     <p>Welcome to our intimate community of global travelers.</p>
   </section>
 
   <section class="tlab-process tlab-reveal">
     <div class="tlab-process-head">
       <span class="tlab-eyebrow">How It Works</span>
-      <h2>Three steps. <em>No forms.</em></h2>
+      <h2>Three steps. <em>Curated personally.</em></h2>
     </div>
     <div class="tlab-process-grid">
       <div>

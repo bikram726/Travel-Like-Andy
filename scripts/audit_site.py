@@ -10,7 +10,7 @@ from pathlib import Path
 from urllib.request import Request, urlopen
 from bs4 import BeautifulSoup
 
-PAGES = {'home': '', 'about': 'about', 'groups': 'corporate',
+PAGES = {'home': '', 'about': 'about', 'bespoke': 'bespoke', 'groups': 'corporate',
          'collections': 'collections', 'contact': 'contact',
          'journal': 'journal', 'access-and-care': 'access-and-care'}
 ROOT = Path(__file__).resolve().parents[1]
