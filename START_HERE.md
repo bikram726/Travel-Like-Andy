@@ -1,5 +1,7 @@
 # START HERE
 
+**Homepage update — 2026-10-05:** [Interactive photographic hero](notes/OCT5_HOME_VISUAL.md) is published, with real destination photos, subtle depth, and mobile/reduced-motion support.
+
 **Publication update — 2026-10-05:** [Bespoke is public](notes/OCT5_BESPOKE_PUBLIC.md) at Andy's request; password/referral copy removed and contrast corrected. Demo Journal collection disabled. This supersedes historical instructions to keep Bespoke gated or rotate its page password. Final welcome wording remains pending.
 
 Orientation for anyone — human or agent — picking up travellikeandy.com cold.
