@@ -16,3 +16,11 @@ CodeRabbit completed successfully, reviewed 35 text files, excluded 66 binary im
 | Minor | `notes/SEO_GSC_HANDOFF.md:169` | Treat journal-native-draft as four real posts and preserve it. | Conflicts with October 5 publication record: collection was identified as demo content and disabled. Do not restore or delete based on this finding without verifying the actual posts. |
 
 Priorities: make the audit resilient; correct unsafe/stale handoff guidance; validate draft print behavior. Form key isolation requires dashboard configuration. CodeRabbit did not report a defect in the latest homepage photo controls or mobile-number field.
+
+## Follow-up fixes
+
+Implemented HTTP/network error handling and missing-code-block continuation in the audit; replaced unsafe homepage instructions with verification guidance; corrected current Bespoke/footer documentation and the exclusive-hreflang claim; added print expansion/restoration plus a CSS details-content fallback to the unpublished tour template.
+
+Validation passed: simulated 404 followed by a healthy page writes both inventory records and only the valid preview; itinerary print events expand every day and restore the original mixed open/closed state (including repeated events); live inventory completed across all eight configured pages; `git diff --check` passed. Print event logic was tested in Node, not a native browser print preview. No production page required republishing: the only page-code edit is an unpublished draft.
+
+Collections key isolation remains external setup: create a dedicated Web3Forms key with Andy's intended recipient and domain restrictions before replacing the current working key. Groups `/corporate` and the disabled demo Journal collection were retained because the conflicting suggestions are not supported by the recorded live state.

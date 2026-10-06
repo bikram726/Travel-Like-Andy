@@ -144,6 +144,7 @@
 /* Print: every day open, controls and chevrons gone. A traveller printing the
    itinerary should get all of it, not whatever happened to be expanded. */
 @media print {
+  .tla-tour .tlt-day::details-content { content-visibility:visible !important; }
   .tla-tour .tlt-day-body { display:block !important; }
   .tla-tour .tlt-acc-controls,
   .tla-tour .tlt-day > summary::after { display:none !important; }
@@ -273,6 +274,18 @@
   if (!acc) { return; }
 
   var days = Array.prototype.slice.call(acc.querySelectorAll('.tlt-day'));
+  var printOpenState = null;
+  window.addEventListener('beforeprint', function(){
+    if (printOpenState !== null) { return; }
+    printOpenState = days.map(function(d){ return d.open; });
+    days.forEach(function(d){ d.open = true; });
+  });
+  window.addEventListener('afterprint', function(){
+    if (printOpenState === null) { return; }
+    days.forEach(function(d, i){ d.open = printOpenState[i]; });
+    printOpenState = null;
+    syncButton();
+  });
 
   // Expand/collapse all. Purely additive — every <details> already works on
   // its own, so if this button is removed the accordion is unaffected.

@@ -188,11 +188,7 @@ not fired once.
 
 ## 7. Open risks
 
-**Bespoke password not rotated,** or not confirmed. It was published in this
-public repo and remains in git history — scrubbing files does not remove it,
-and the scrub actually *increased* history occurrences, because the deletion
-diff records the old text. `/bespoke` is still gated by it. Only changing the
-password in Squarespace fixes this.
+**Bespoke is public as of October 5.** The page password was cleared at Andy’s request. Historical password-rotation warnings no longer describe the current page. Never reuse previously exposed credentials.
 
 **Web3Forms domain restriction unverified.** The contact form posts to
 `api.web3forms.com` with a key that is public by design. Without domain

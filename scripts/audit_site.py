@@ -8,6 +8,7 @@ import json
 import re
 from pathlib import Path
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError, URLError
 from bs4 import BeautifulSoup
 
 PAGES = {'home': '', 'about': 'about', 'bespoke': 'bespoke', 'groups': 'corporate',
@@ -26,10 +27,20 @@ def main():
     footer = (ROOT / 'pages/footer-content.html').read_text(encoding='utf-8')
     for name, slug in PAGES.items():
         url = 'https://www.travellikeandy.com/' + slug
-        with urlopen(Request(url, headers={'User-Agent': 'TravelLikeAndy-SiteAudit/1.0'}), timeout=30) as response:
-            raw = response.read().decode('utf-8')
-            headers = {k.lower(): v for k, v in response.headers.items()}
-            status = response.status
+        try:
+            with urlopen(Request(url, headers={'User-Agent': 'TravelLikeAndy-SiteAudit/1.0'}), timeout=30) as response:
+                raw = response.read().decode('utf-8')
+                headers = {k.lower(): v for k, v in response.headers.items()}
+                status = response.status
+        except HTTPError as error:
+            report.append({'page': name, 'url': url, 'status': error.code,
+                           'error': str(error), 'preview': 'skipped'})
+            error.close()
+            continue
+        except (URLError, TimeoutError) as error:
+            report.append({'page': name, 'url': url, 'status': None,
+                           'error': str(error), 'preview': 'skipped'})
+            continue
         (args.output / (name + '-production.html')).write_text(raw, encoding='utf-8')
         soup = BeautifulSoup(raw, 'html.parser')
         forms = soup.find_all('form')
@@ -43,7 +54,8 @@ def main():
                        'headers': {k: headers.get(k) for k in ['strict-transport-security', 'content-security-policy', 'x-content-type-options', 'x-frame-options', 'referrer-policy']}})
         block = soup.select_one('.sqs-block-code .sqs-block-content')
         if block is None:
-            raise RuntimeError('Cannot identify code block for ' + name)
+            report[-1]['preview'] = 'skipped: no code block found'
+            continue
         block.clear()
         page = (ROOT / 'pages' / (name + '.html')).read_text(encoding='utf-8')
         # The mock contains no access key and no outbound form endpoint.

@@ -36,8 +36,9 @@ emits: domain structure (`.com` is neutral; ccTLDs are the strongest signal),
 `hreflang`, hosting location, and on-page cues — address, currency, phone format,
 language.
 
-**Consequence:** the `hreflang` work in §1 is not one lever among several. It is
-**the** lever. Get it wrong and there is no dashboard setting to compensate.
+**Consequence:** `hreflang` is one signal alongside locale-specific URLs,
+ccTLDs, hosting location, and local content. There is no geographic-targeting
+dashboard setting to compensate for inconsistent locale signals.
 
 ## ⚠ Google Business Profile — this is now a decision, not a research item
 

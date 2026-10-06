@@ -201,17 +201,12 @@ search engines".
 IMPORTANT: unlisting a page does NOT remove it from sitemap.xml. Only the SEO
 hide toggle does. Do not skip the toggle if you choose that route.
 
-## TASK 2 — fix the duplicate homepage
+## TASK 2 — verify homepage routes before changing indexing
 
-Right now `/` and `/home` both return HTTP 200 with no redirect, so Google sees
-two competing homepages.
-
-Squarespace -> Settings -> Advanced -> URL Mappings -> add this line:
-
-    /home -> / 301
-
-If URL Mappings isn't available, instead open the `/home` page -> Page Settings
--> SEO -> turn ON "Hide this page from search engines". Tell me which you did.
+Do not hide the homepage from search engines or add a `/home` mapping based
+on this historical handoff. First identify whether `/` and `/home` resolve to
+the same Squarespace page, inspect their canonical URLs, and verify redirect
+behavior. No route or indexing change is authorized by this task alone.
 
 ## TASK 3 — Google Search Console
 

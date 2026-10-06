@@ -27,7 +27,7 @@ Never in this repo, not even in a note, not even temporarily.
 |---|---|---|
 | `pages/home.html` | Home | `/` (Not Linked, reached via logo) |
 | `pages/groups.html` | Groups (replaces the old Corporate/Executive page 2026-07-29 per the Brand Bible) | Likely still `/corporate` unless the Squarespace page slug is changed — reuse the existing page's Code Block and just retitle the nav label to "Groups", rather than creating a new page, to avoid breaking the existing URL |
-| `pages/bespoke.html` | Bespoke — flagship private-journeys page, folds in what used to be the separate Leisure page (password-gated, stays gated per client decision 2026-07-30 — the password is NOT recorded in this repo; get it from Squarespace → Pages → Bespoke → Settings → Password) | `/bespoke` |
+| `pages/bespoke.html` | Bespoke — flagship private-journeys page, folds in what used to be the separate Leisure page (public since 2026-10-05 at Andy’s request; password access removed) | `/bespoke` |
 | `pages/collections.html` | Collections (Hosted Departures) — launches in "interest list" mode with a real inquiry form; no actual departures listed yet | `/collections` (page does not exist yet, needs creating) |
 | `pages/about.html` | About | `/about` |
 | `pages/access-and-care.html` | Access & Care — new page added 2026-07-30 per the Brand Bible. General, non-fabricated framing only; real advocacy specifics/certifications still needed from Andy | `/access-and-care` (page does not exist yet, needs creating) |
@@ -35,7 +35,7 @@ Never in this repo, not even in a note, not even temporarily.
 | `pages/contact.html` | Contact | `/contact` |
 | `pages/global-custom-css.css` | Site-wide header/footer styling | Design → Custom CSS |
 | `pages/lock-screen.html` | Bespoke password lock screen + fixed nav bar | Settings → Advanced → Code Injection → **Lock Page** (not Design → Custom CSS — the lock screen has its own separate styling system) |
-| `pages/footer-content.html` | Site-wide footer: brand sign-off, the REGISTRATION PENDING notice, and the Fora Seller of Travel registration numbers | Settings → Advanced → Code Injection → **FOOTER**. **Not** a Code Block inside the footer section — confirmed 2026-09-23 by DOM inspection: the `.tla-footer` wrapper attaches to the page body, outside the footer. Adding a Code Block in the footer section instead gives you two footers |
+| `pages/footer-content.html` | Site-wide footer: brand sign-off, CST 2174880-50, and the Fora Seller of Travel registration numbers | Settings → Advanced → Code Injection → **FOOTER**. **Not** a Code Block inside the footer section — confirmed 2026-09-23 by DOM inspection: the `.tla-footer` wrapper attaches to the page body, outside the footer. Adding a Code Block in the footer section instead gives you two footers |
 | `pages/header-injection.html` | Site-wide `<head>` injection (contains legacy content — see below) | Settings → Advanced → Code Injection → **HEADER** (a 5th, separate injection location — different from Lock Page, Design → Custom CSS, and any page's Code Block) |
 
 **Retired 2026-07-30:** `pages/leisure.html` (content folded into Bespoke as a service block — see `HANDOFF_NOTES.md` for the required `/leisure` → `/bespoke` redirect). `pages/group.html` and `pages/gallery.html` were retired 2026-07-30 for unrelated reasons (see the superseded checklist below).
