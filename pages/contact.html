@@ -134,6 +134,11 @@
         <span id="cemail-error" class="tlact-field-error" aria-live="polite"></span>
       </div>
       <div>
+        <label for="cphone">Mobile number for a text reply (optional)</label>
+        <input id="cphone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Include your country code, e.g. +1 312 555 0123" maxlength="40" aria-describedby="cphone-hint">
+        <p id="cphone-hint" class="tlact-form-hint">Leave your mobile number if you would like Andy to text you about this inquiry.</p>
+      </div>
+      <div>
         <label for="cdream">Where this journey begins</label>
         <input id="cdream" maxlength="300" name="destination" type="text" placeholder="A place, a feeling, a country" required aria-describedby="cdream-error">
         <span id="cdream-error" class="tlact-field-error" aria-live="polite"></span>
@@ -158,10 +163,6 @@
       <div>
         <label for="ctravelers">How many travelers? (optional)</label>
         <input id="ctravelers" name="traveler_count" type="number" min="1" inputmode="numeric" placeholder="For example, 2">
-      </div>
-      <div>
-        <label for="cphone">Phone or WhatsApp (optional)</label>
-        <input id="cphone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Only if you would prefer a call or message" maxlength="40">
       </div>
       <div><label for="cref">Referred by (optional)</label><input id="cref" name="referred_by" type="text" placeholder="Who sent you here" autocomplete="off" maxlength="120"></div>
       <div><label for="cmsg">Message</label><textarea id="cmsg" name="message" rows="4" placeholder="Tell Andy more" maxlength="5000"></textarea></div>
