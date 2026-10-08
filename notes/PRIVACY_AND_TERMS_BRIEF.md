@@ -1,6 +1,6 @@
 # Privacy and Terms — what the site actually does, and what has to be decided
 
-**Status: the site has no privacy policy, no terms, and no refund policy.**
+**Status (October 7, 2026): a privacy policy is published at https://www.travellikeandy.com/privacy-policy. Terms and refund policy still need review.**
 Verified 2026-09-24: `/privacy`, `/privacy-policy`, `/terms`,
 `/terms-of-service`, `/legal`, `/cookie-policy` and `/refund-policy` all return
 404, and nothing in the footer or navigation links to one.

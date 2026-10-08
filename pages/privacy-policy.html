@@ -1,0 +1,135 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap');
+.tla-privacy-wrap { width:100vw; position:relative; left:calc(-50vw + 50%); overflow:hidden; }
+.tla-privacy {
+  --midnight:#12355B; --gold:#C9A96E; --gold-deep:#7a5a2e; --sandstone:#F4EFE6; --white:#FFFFFF;
+  --voyage:#0EA5D9; --sunrise:#F26A21; --canopy:#3C9565;
+  --muted-on-light:rgba(18,53,91,0.72); --muted-on-dark:rgba(244,239,230,0.75);
+  background:var(--white); color:var(--midnight);
+  font-family:'Source Sans 3',sans-serif; font-weight:400; width:100%;
+}
+.tla-privacy * { box-sizing:border-box; margin:0; padding:0; }
+.tla-privacy h1,.tla-privacy h2 { font-family:'Cormorant Garamond',serif; font-weight:600; color:var(--midnight); margin:0; }
+.tla-privacy h1 { font-size:clamp(2.6rem,6vw,4.6rem); line-height:1.0; letter-spacing:-0.02em; }
+.tla-privacy h2 { font-size:clamp(1.8rem,3.6vw,2.6rem); line-height:1.1; margin-top:2.5rem; }
+.tla-privacy h3 { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:1.1rem; margin-top:1.5rem; color:var(--midnight); }
+.tla-privacy em { font-style:normal; color:var(--gold); }
+.tla-privacy p { font-size:1.05rem; line-height:1.7; margin-top:1rem; color:var(--muted-on-light); }
+.tla-privacy a { color:var(--voyage); text-decoration:underline; text-underline-offset:3px; }
+.tla-privacy a:hover { color:var(--gold); }
+.tla-privacy .tlpr-eyebrow { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold); margin-bottom:1rem; display:block; }
+.tla-privacy .tlpr-lockup { display:flex; flex-direction:column; align-items:center; gap:0.35rem; margin-bottom:2rem; }
+.tla-privacy .tlpr-lockup-word { font-family:'Cormorant Garamond',serif; font-weight:400; font-size:1.6rem; color:var(--midnight); letter-spacing:0.01em; }
+.tla-privacy .tlpr-lockup-division { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.72rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--gold-deep); }
+.tla-privacy .tlpr-hero { background:var(--sandstone); min-height:50vh; display:flex; align-items:center; justify-content:center; padding:clamp(4rem,10vh,7rem) 1.5rem; text-align:center; }
+.tla-privacy .tlpr-content { max-width:820px; margin:0 auto; padding:clamp(3rem,8vh,5rem) 1.5rem; }
+.tla-privacy .tlpr-meta { text-align:center; color:var(--muted-on-light); font-size:0.9rem; margin-top:0.5rem; }
+.tla-privacy .tlpr-close { background:var(--midnight); color:var(--white); text-align:center; padding:clamp(4rem,8vh,5.5rem) 1.5rem; }
+.tla-privacy .tla-cue-mark { display:flex; align-items:center; justify-content:center; margin:0 0 0.6rem; }
+.tla-privacy .tla-cue-mark-svg { width:150px; height:34px; overflow:visible; color:var(--gold); }
+.tla-privacy .tla-cue-mark-line { fill:none; stroke:currentColor; stroke-width:1.2; stroke-linecap:round; stroke-dasharray:140; stroke-dashoffset:140; transition:stroke-dashoffset 0.6s cubic-bezier(.22,.61,.36,1); }
+.tla-privacy .tla-cue-mark-star { fill:currentColor; opacity:0; transition:opacity 0.3s ease-out; }
+.tla-privacy .tla-cue-mark-star.s1 { transition-delay:0.55s; }
+.tla-privacy .tla-cue-mark-star.s2 { transition-delay:0.68s; }
+.tla-privacy .tla-cue-mark-star.s3 { transition-delay:0.81s; }
+.tla-privacy .tla-cue-mark.tla-cue-play .tla-cue-mark-line { stroke-dashoffset:0; }
+.tla-privacy .tla-cue-mark.tla-cue-play .tla-cue-mark-star { opacity:1; }
+@media (prefers-reduced-motion: reduce) {
+  .tla-privacy .tla-cue-mark-line { stroke-dashoffset:0 !important; transition:none !important; }
+  .tla-privacy .tla-cue-mark-star { opacity:1 !important; transition:none !important; }
+}
+.tla-privacy .tlpr-sig { font-family:'Cormorant Garamond',serif; font-style:italic; margin:0; color:var(--muted-on-dark); }
+.tla-privacy .tlpr-reveal { opacity:1; transform:none; }
+.tla-privacy.js-reveal .tlpr-reveal { opacity:0; transform:translateY(24px); transition:opacity 0.45s cubic-bezier(.22,.61,.36,1), transform 0.45s cubic-bezier(.22,.61,.36,1); }
+.tla-privacy.js-reveal .tlpr-reveal.tlpr-in { opacity:1; transform:translateY(0); }
+@media (prefers-reduced-motion: reduce) { .tla-privacy.js-reveal .tlpr-reveal { opacity:1; transform:none; transition:none; } }
+@media (max-width:767px) {
+  .tla-privacy .tlpr-hero { padding:3.5rem 1.2rem 2.5rem; }
+}
+</style>
+<div class="tla-privacy-wrap"><div class="tla-privacy">
+  <section class="tlpr-hero">
+    <div class="tlpr-lockup">
+      <span class="tlpr-lockup-word">travellikeandy</span>
+      <span class="tlpr-lockup-division">Privacy Policy</span>
+    </div>
+    <p class="tlpr-eyebrow">Legal</p>
+    <h1>Privacy Policy</h1>
+    <p class="tlpr-meta">Effective date: October 7, 2026</p>
+  </section>
+
+  <section class="tlpr-content tlpr-reveal">
+    <p>travellikeandy LLC operates travellikeandy.com. This policy explains how we handle information you provide through this website and how the website collects usage information. For privacy questions or requests, email <a href="mailto:webmaster@travellikeandy.com">webmaster@travellikeandy.com</a>.</p>
+
+    <h2>Information we collect</h2>
+    <p>When you send an inquiry, we collect the information you enter, which may include your name, email address, phone number, destination, travel dates or season, number of travelers, trip type, referral source, and message. The Collections interest form collects your name, email address, and the travel interests you describe. Please do not include passport numbers, payment card details, or medical information in either form.</p>
+    <p>The website also receives technical and usage information through Squarespace, such as device and browser details, pages viewed, approximate location derived from an IP address, and cookie choices. Squarespace's visitor activity log is disabled. We use the remaining information to operate, secure, and understand use of the website.</p>
+
+    <h2>How we use information</h2>
+    <p>We use inquiry details only to respond, discuss travel plans, and provide services you request. We do not add form submissions to a marketing list or use them to send promotional messages.</p>
+
+    <h2>Service providers and travel arrangements</h2>
+    <p>Our website is hosted by <a href="https://www.squarespace.com/privacy" target="_blank" rel="noopener noreferrer">Squarespace</a>. Inquiry forms are sent through <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Web3Forms</a> and delivered to our Google Workspace email. These providers process information to provide their services. If you decide to proceed with travel planning or a booking, information needed for that service may also be handled through Fora Travel and relevant travel suppliers. Their own privacy notices may apply to the information they collect for a booking.</p>
+    <p>We do not use the website forms to collect payment card information. Submitting a form does not create a booking or travel contract.</p>
+
+    <h2>Cookies and similar technologies</h2>
+    <p>Squarespace uses essential cookies to operate the website and optional cookies for analytics and site features. Our cookie banner lets you accept, decline, or manage optional cookies. Nonessential Squarespace cookies are restricted until you accept them. You can revisit your choice using <strong>Cookie Preferences</strong> on the site. Squarespace and connected third-party services may collect information about your visits; some third-party cookies may not be controlled by Squarespace's banner. Your browser may also let you block or delete cookies. The site does not change its behavior in response to a browser Do Not Track signal; use Cookie Preferences to control optional cookies.</p>
+
+    <h2>Retention and security</h2>
+    <p>Web3Forms stores form submissions for up to three years under the current form setting. Copies delivered to our email may remain longer unless deleted. We retain inquiry and service correspondence as needed to respond, provide services, maintain business records, and meet legal obligations. We review deletion requests individually. We use the security features provided by our service providers, but no online transmission or storage system can be guaranteed completely secure.</p>
+
+    <h2>Your choices and requests</h2>
+    <p>You may ask to see, correct, or delete information you sent us by emailing <a href="mailto:webmaster@travellikeandy.com">webmaster@travellikeandy.com</a>. We will respond in accordance with applicable law and may need to verify your identity. Some records may need to be retained for legal or business reasons. You can change cookie choices using <strong>Cookie Preferences</strong>.</p>
+
+    <h2>Children</h2>
+    <p>This website is not directed to children under 13. Please do not submit a child's personal information through the website forms.</p>
+
+    <h2>Changes</h2>
+    <p>We may update this policy as our services or data practices change. We will post the updated version here with a new effective date. For a material change, we will also place a prominent notice on the website before it takes effect.</p>
+  </section>
+
+  <section class="tlpr-close tlpr-reveal">
+    <div class="tla-cue-mark" aria-hidden="true">
+      <svg class="tla-cue-mark-svg" viewBox="0 0 150 34" focusable="false">
+        <path class="tla-cue-mark-line" d="M2 26 L108 10"/>
+        <path class="tla-cue-mark-star s1" d="M124 6 C125 10 125 10 129 11 C125 12 125 12 124 16 C123 12 123 12 119 11 C123 10 123 10 124 6 Z"/>
+        <path class="tla-cue-mark-star s2" d="M136 14 C136.7 16.5 136.7 16.5 139 17.2 C136.7 17.9 136.7 17.9 136 20.4 C135.3 17.9 135.3 17.9 133 17.2 C135.3 16.5 135.3 16.5 136 14 Z"/>
+        <path class="tla-cue-mark-star s3" d="M118 18 C118.6 20 118.6 20 120.6 20.6 C118.6 21.2 118.6 21.2 118 23.2 C117.4 21.2 117.4 21.2 115.4 20.6 C117.4 20 117.4 20 118 18 Z"/>
+      </svg>
+    </div>
+    <p class="tlpr-sig">Curated Personally.</p>
+  </section>
+</div></div>
+<script>
+(function(){
+  var wrap = document.querySelector('.tla-privacy');
+  if (wrap) { wrap.classList.add('js-reveal'); }
+  var els = document.querySelectorAll('.tlpr-reveal');
+  if (!('IntersectionObserver' in window)) { els.forEach(function(e){ e.classList.add('tlpr-in'); }); return; }
+  var revealed = false;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){ if (entry.isIntersecting) { revealed = true; entry.target.classList.add('tlpr-in'); io.unobserve(entry.target); } });
+  }, { threshold: 0, rootMargin: "0px 0px -10% 0px" });
+  els.forEach(function(e){ io.observe(e); });
+  window.setTimeout(function(){
+    if (revealed) { return; }
+    els.forEach(function(e){ e.classList.add('tlpr-in'); });
+  }, 2000);
+})();
+</script>
+<script>
+(function(){
+  var cues = document.querySelectorAll('.tla-cue-mark');
+  if (!cues.length) { return; }
+  if (!('IntersectionObserver' in window) || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    cues.forEach(function(c){ c.classList.add('tla-cue-play'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) { entry.target.classList.add('tla-cue-play'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.4 });
+  cues.forEach(function(c){ io.observe(c); });
+})();
+</script>
