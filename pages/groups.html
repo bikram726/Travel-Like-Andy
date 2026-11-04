@@ -90,6 +90,34 @@
 .tla-groups .tlgr-stop h3 { color:var(--midnight); font-size:1.15rem; margin-bottom:0.3rem; }
 .tla-groups .tlgr-stop-nights { display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted-on-light); margin-bottom:0.7rem; }
 .tla-groups .tlgr-stop p { color:var(--muted-on-light); font-size:0.88rem; margin:0; }
+.tla-groups .tlgr-thailand-gallery { max-width:1140px; margin:clamp(3rem,7vh,4.5rem) auto 0; padding:clamp(2.2rem,5vh,3.2rem) clamp(1.2rem,3vw,2.4rem); background:var(--sandstone); border-radius:16px; }
+.tla-groups .tlgr-thailand-gallery-head { text-align:center; max-width:680px; margin:0 auto clamp(1.8rem,4vh,2.6rem); }
+.tla-groups .tlgr-thailand-gallery-head .tlgr-eyebrow { color:var(--gold-deep); display:block; margin:0 0 0.7rem; }
+.tla-groups .tlgr-thailand-gallery-head h3 { color:var(--midnight); font-size:clamp(1.75rem,3.2vw,2.5rem); margin:0 0 0.65rem; }
+.tla-groups .tlgr-thailand-gallery-head h3 em { color:var(--gold-deep); font-style:italic; }
+.tla-groups .tlgr-thailand-gallery-head p { color:var(--muted-on-light); font-size:0.98rem; margin:0; }
+.tla-groups .tlgr-thailand-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.15rem; }
+.tla-groups .tlgr-thailand-grid .tlab-place { position:relative; overflow:hidden; display:flex; flex-direction:column; width:100%; margin:0; padding:0; border-radius:12px; border:1px solid rgba(18,53,91,0.1); background:var(--white); font:inherit; text-align:left; cursor:zoom-in; appearance:none; -webkit-appearance:none; transition:transform 0.32s cubic-bezier(.22,.61,.36,1), box-shadow 0.32s cubic-bezier(.22,.61,.36,1); }
+.tla-groups .tlgr-thailand-grid .tlab-place:hover { transform:translateY(-4px); box-shadow:0 18px 36px rgba(18,53,91,0.14); }
+.tla-groups .tlgr-thailand-grid .tlab-place:focus-visible { outline:2px solid var(--voyage); outline-offset:2px; }
+.tla-groups .tlgr-thailand-grid .tlab-place img { width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; display:block; transition:transform 0.7s ease; }
+.tla-groups .tlgr-thailand-grid .tlab-place:hover img { transform:scale(1.04); }
+.tla-groups .tlgr-thailand-cap { display:block; padding:0.85rem 1rem 0.95rem; background:var(--white); }
+.tla-groups .tlgr-thailand-loc { display:block; font-size:0.66rem; font-weight:600; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-deep); margin-bottom:0.2rem; }
+.tla-groups .tlgr-thailand-title { display:block; font-family:'Cormorant Garamond',serif; font-weight:600; font-size:1.12rem; color:var(--midnight); line-height:1.25; }
+.tla-groups .tlab-lightbox { position:fixed; inset:0; z-index:1000; display:none; align-items:center; justify-content:center; padding:5vh 1.5rem; background:rgba(18,53,91,0.94); }
+.tla-groups .tlab-lightbox.tlab-lb-open { display:flex; }
+.tla-groups .tlab-lb-dialog { position:relative; max-width:min(1100px,92vw); max-height:90vh; }
+.tla-groups .tlab-lb-dialog img { max-width:100%; max-height:72vh; width:auto; height:auto; margin:0 auto; display:block; object-fit:contain; border-radius:12px; }
+.tla-groups .tlab-lb-cap { text-align:center; padding:1.2rem 1rem 0; color:var(--white); }
+.tla-groups .tlab-lb-cap-title { font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.3rem; margin:0 0 0.3rem; }
+.tla-groups .tlab-lb-cap-loc { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin:0; }
+.tla-groups .tlab-lb-close, .tla-groups .tlab-lb-prev, .tla-groups .tlab-lb-next { position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:2.8rem; height:2.8rem; border-radius:50%; background:rgba(18,53,91,0.6); border:1px solid rgba(255,255,255,0.35); color:var(--white); cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:1.3rem; line-height:1; transition:background 0.3s ease, border-color 0.3s ease; }
+.tla-groups .tlab-lb-close:hover, .tla-groups .tlab-lb-prev:hover, .tla-groups .tlab-lb-next:hover { background:rgba(201,169,110,0.4); border-color:var(--gold); }
+.tla-groups .tlab-lb-close:focus-visible, .tla-groups .tlab-lb-prev:focus-visible, .tla-groups .tlab-lb-next:focus-visible { outline:2px solid var(--gold); outline-offset:2px; }
+.tla-groups .tlab-lb-close { top:0.6rem; right:0.6rem; transform:none; width:2.4rem; height:2.4rem; font-size:1.1rem; }
+.tla-groups .tlab-lb-prev { left:0.6rem; }
+.tla-groups .tlab-lb-next { right:0.6rem; }
 .tla-groups .tlgr-logistics { max-width:900px; margin:clamp(2.5rem,6vh,3.5rem) auto 0; display:grid; grid-template-columns:1fr 1fr; gap:2rem; }
 .tla-groups .tlgr-logistics h4 { font-family:'Source Sans 3',sans-serif; font-weight:600; font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--midnight); margin:0 0 0.8rem; }
 .tla-groups .tlgr-logistics ul { list-style:none; margin:0; padding:0; color:var(--muted-on-light); font-size:0.92rem; line-height:1.8; }
@@ -127,9 +155,9 @@
   .tla-groups.js-reveal .tlgr-reveal { opacity:1; transform:none; transition:none; }
   .tla-groups .tlgr-card { transition:none; }
 }
-@media (max-width:900px) { .tla-groups .tlgr-stops { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:900px) { .tla-groups .tlgr-stops, .tla-groups .tlgr-thailand-grid { grid-template-columns:repeat(2,1fr); } }
 @media (max-width:767px) {
-  .tla-groups .tlgr-facts, .tla-groups .tlgr-stops, .tla-groups .tlgr-logistics { grid-template-columns:1fr; }
+  .tla-groups .tlgr-facts, .tla-groups .tlgr-stops, .tla-groups .tlgr-logistics, .tla-groups .tlgr-thailand-grid { grid-template-columns:1fr; }
   .tla-groups .tlgr-grid { grid-template-columns:1fr; }
   .tla-groups .tlgr-feature, .tla-groups .tlgr-feature-cell { display:block; width:100%; }
   .tla-groups .tlgr-feature-cell.tlgr-img { min-height:260px; }
@@ -224,6 +252,27 @@
         <p>A four-islands tour, the Emerald Cave, sunset sailing, and rest on some of the quietest beaches in Thailand.</p>
       </div>
     </div>
+    <div class="tlgr-thailand-gallery" aria-label="Thailand tour hotel and destination gallery">
+      <div class="tlgr-thailand-gallery-head">
+        <span class="tlgr-eyebrow">Thailand, First-Hand</span>
+        <h3>Scenes &amp; sanctuaries from <em>Andy&rsquo;s route.</em></h3>
+        <p>From the Chao Phraya in Bangkok and the mist-wrapped River Kwai to Lanna temples in Chiang Mai and the limestone islands of the Andaman Sea.</p>
+      </div>
+      <div class="tlgr-thailand-grid">
+        <button type="button" class="tlab-place" data-cap-title="Bangkok Before Sunrise" data-cap-location="Bangkok &middot; Stop I" aria-label="View photo — Bangkok Before Sunrise"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-bangkok-skyline-dawn.jpg" alt="Bangkok high-rise skyline silhouetted against an amber morning sky" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Bangkok &middot; Stop I</span><span class="tlgr-thailand-title">Bangkok Before Sunrise</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Dawn on the River Kwai" data-cap-location="Kanchanaburi &middot; Stop II" aria-label="View photo — Dawn on the River Kwai"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-kanchanaburi-river-kwai-dawn.jpg" alt="Still morning reflection of mist-covered limestone hills along the River Kwai" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Kanchanaburi &middot; Stop II</span><span class="tlgr-thailand-title">Dawn on the River Kwai</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Riverfront Sanctuary" data-cap-location="Kanchanaburi &middot; Stop II" aria-label="View photo — Riverfront Sanctuary"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-kanchanaburi-riverfront-pool.jpg" alt="Infinity pool and contemporary riverfront architecture beside the River Kwai" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Kanchanaburi &middot; Stop II</span><span class="tlgr-thailand-title">Riverfront Sanctuary</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Golden Chedi of Wat Phra Singh" data-cap-location="Chiang Mai &middot; Stop III" aria-label="View photo — Golden Chedi of Wat Phra Singh"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-chiang-mai-wat-phra-singh.jpg" alt="Gilded Lanna chedi and carved temple gables in the old walled city" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Chiang Mai &middot; Stop III</span><span class="tlgr-thailand-title">Golden Chedi of Wat Phra Singh</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Lanna Festival Lanterns" data-cap-location="Chiang Mai &middot; Stop III" aria-label="View photo — Lanna Festival Lanterns"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-chiang-mai-lanna-lanterns.jpg" alt="Colorful hanging Lanna lanterns outside a historic teakwood temple" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Chiang Mai &middot; Stop III</span><span class="tlgr-thailand-title">Lanna Festival Lanterns</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Morning at 137 Pillars House" data-cap-location="Chiang Mai &middot; Stop III" aria-label="View photo — Morning at 137 Pillars House"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-chiang-mai-137-pillars-pavilion.jpg" alt="Open-air teakwood garden pavilion surrounded by tropical greenery" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Chiang Mai &middot; Stop III</span><span class="tlgr-thailand-title">Morning at 137 Pillars House</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Anantara Koh Yao Yai" data-cap-location="Andaman Islands &middot; Thailand" aria-label="View photo — Anantara Koh Yao Yai"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-koh-yao-yai-infinity-pool.jpg" alt="Infinity pool and open-air oculus framed by palms on Koh Yao Yai" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Andaman Islands &middot; Thailand</span><span class="tlgr-thailand-title">Anantara Koh Yao Yai</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Phang Nga Bay Crossing" data-cap-location="Phang Nga Bay &middot; Thailand" aria-label="View photo — Phang Nga Bay Crossing"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-phang-nga-longtail-boat.jpg" alt="Traditional wooden longtail boat crossing Phang Nga Bay beneath limestone karsts" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Phang Nga Bay &middot; Thailand</span><span class="tlgr-thailand-title">Phang Nga Bay Crossing</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="First Light on the Island" data-cap-location="Koh Yao Yai &middot; Thailand" aria-label="View photo — First Light on the Island"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-koh-yao-yai-sunrise-palms.jpg" alt="Beachfront palms and loungers looking toward a limestone island at sunrise" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Koh Yao Yai &middot; Thailand</span><span class="tlgr-thailand-title">First Light on the Island</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Palm Lawns &amp; Limestone Horizons" data-cap-location="Koh Yao Yai &middot; Thailand" aria-label="View photo — Palm Lawns and Limestone Horizons"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-phang-nga-karsts-panorama.jpg" alt="Sweeping view across palm-lined coastal lawns toward Phang Nga Bay" loading="lazy" width="1600" height="606"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Koh Yao Yai &middot; Thailand</span><span class="tlgr-thailand-title">Palm Lawns &amp; Limestone Horizons</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Suite by the Sea" data-cap-location="Koh Yao Yai &middot; Thailand" aria-label="View photo — Suite by the Sea"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-koh-yao-yai-sea-suite.jpg" alt="Coastal suite opening onto palm gardens and the Andaman Sea" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Koh Yao Yai &middot; Thailand</span><span class="tlgr-thailand-title">Suite by the Sea</span></span></button>
+        <button type="button" class="tlab-place" data-cap-title="Andaman Dusk" data-cap-location="Andaman Coast &middot; Thailand" aria-label="View photo — Andaman Dusk"><img src="https://raw.githubusercontent.com/bikram726/Travel-Like-Andy/4b59435/assets/photos/thailand/thailand-andaman-sunset-horizon.jpg" alt="Crimson and amber sunset reflecting across the Andaman Sea" loading="lazy" width="1600" height="1200"><span class="tlgr-thailand-cap"><span class="tlgr-thailand-loc">Andaman Coast &middot; Thailand</span><span class="tlgr-thailand-title">Andaman Dusk</span></span></button>
+      </div>
+    </div>
     <div class="tlgr-logistics">
       <div>
         <h4>Included</h4>
@@ -275,6 +324,19 @@
     </div>
     <p style="font-family:'Cormorant Garamond',serif; font-style:italic; margin:0;">Curated Personally.</p>
   </section>
+
+  <div class="tlab-lightbox" id="tlab-lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+    <div class="tlab-lb-dialog">
+      <button type="button" class="tlab-lb-close" aria-label="Close">&times;</button>
+      <button type="button" class="tlab-lb-prev" aria-label="Previous photo">&#8249;</button>
+      <button type="button" class="tlab-lb-next" aria-label="Next photo">&#8250;</button>
+      <img id="tlab-lb-img" src="" alt="">
+      <div class="tlab-lb-cap">
+        <p class="tlab-lb-cap-title" id="tlab-lb-title"></p>
+        <p class="tlab-lb-cap-loc" id="tlab-lb-loc"></p>
+      </div>
+    </div>
+  </div>
 </div></div>
 <script>
 function tlgrInitReveal(){
@@ -316,5 +378,70 @@ else { document.addEventListener("DOMContentLoaded", tlgrInitReveal); }
     });
   }, { threshold: 0.4 });
   cues.forEach(function(c){ io.observe(c); });
+})();
+</script>
+<script>
+(function(){
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.tla-groups .tlab-place'));
+  var lb = document.getElementById('tlab-lightbox');
+  if (!shots.length || !lb) { return; }
+  var imgEl = document.getElementById('tlab-lb-img');
+  var titleEl = document.getElementById('tlab-lb-title');
+  var locEl = document.getElementById('tlab-lb-loc');
+  var closeBtn = lb.querySelector('.tlab-lb-close');
+  var prevBtn = lb.querySelector('.tlab-lb-prev');
+  var nextBtn = lb.querySelector('.tlab-lb-next');
+  var focusables = [prevBtn, nextBtn, closeBtn];
+  var current = -1;
+  var lastTrigger = null;
+  function render(i){
+    var shot = shots[i];
+    var img = shot.querySelector('img');
+    imgEl.src = img.src;
+    imgEl.alt = img.alt || '';
+    titleEl.textContent = shot.getAttribute('data-cap-title') || img.alt || '';
+    var loc = shot.getAttribute('data-cap-location') || '';
+    locEl.textContent = loc;
+    locEl.style.display = loc ? '' : 'none';
+  }
+  function open(i, trigger){
+    current = i;
+    lastTrigger = trigger || null;
+    render(current);
+    lb.classList.add('tlab-lb-open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+  function close(){
+    lb.classList.remove('tlab-lb-open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKeydown);
+    if (lastTrigger) { lastTrigger.focus(); }
+  }
+  function step(delta){
+    current = (current + delta + shots.length) % shots.length;
+    render(current);
+  }
+  function onKeydown(e){
+    if (e.key === 'Escape') { close(); return; }
+    if (e.key === 'ArrowLeft') { step(-1); return; }
+    if (e.key === 'ArrowRight') { step(1); return; }
+    if (e.key === 'Tab') {
+      var idx = focusables.indexOf(document.activeElement);
+      e.preventDefault();
+      var next = e.shiftKey ? (idx <= 0 ? focusables.length - 1 : idx - 1) : (idx === focusables.length - 1 ? 0 : idx + 1);
+      focusables[next].focus();
+    }
+  }
+  shots.forEach(function(shot, i){
+    shot.addEventListener('click', function(){ open(i, shot); });
+  });
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', function(){ step(-1); });
+  nextBtn.addEventListener('click', function(){ step(1); });
+  lb.addEventListener('click', function(e){ if (e.target === lb) { close(); } });
 })();
 </script>
