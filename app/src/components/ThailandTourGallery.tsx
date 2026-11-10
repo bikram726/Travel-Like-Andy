@@ -72,7 +72,10 @@ export function ThailandTourGallery() {
         <Text style={{ color: c.muted, fontSize: 13, flex: 1, minWidth: 220 }}>
           Inspired by Andy’s Thailand photography? Start a self-paced Thailand plan with your own dates and budget.
         </Text>
-        <Button label="Plan a Thailand Trip →" onPress={() => router.push({ pathname: '/create-trip', params: { destination: 'Thailand' } })} />
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+          <Button label="Plan a Thailand Trip →" onPress={() => router.push({ pathname: '/create-trip', params: { destination: 'Thailand' } })} />
+          <Button label="Ask AI & Book Call" secondary onPress={() => router.push('/concierge')} />
+        </View>
       </View>
     </View>
   );

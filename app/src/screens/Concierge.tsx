@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Linking, Platform, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSQLiteContext } from 'expo-sqlite';
 import { AppHeader } from '../components/AppHeader';
 import { TravelPhoto } from '../components/TravelPhoto';
@@ -38,6 +38,7 @@ function downloadIcsOnWeb(filename: string, content: string): boolean {
 export default function Concierge() {
   const { colors: c } = useTheme();
   const router = useRouter();
+  const params = useLocalSearchParams<{ trip?: string }>();
   const db = useSQLiteContext();
   const { width } = useWindowDimensions();
   const wide = width > 860;
@@ -79,7 +80,11 @@ export default function Concierge() {
         const [loadedTrips, rawConsults] = await Promise.all([listTrips(db), getSetting(db, 'consultations')]);
         if (!active) return;
         setTrips(loadedTrips);
-        if (loadedTrips.length > 0) setSelectedTripId(loadedTrips[0].id);
+        if (loadedTrips.length > 0) {
+          const requestedId = Number(params.trip);
+          const match = loadedTrips.find(t => t.id === requestedId);
+          setSelectedTripId(match ? match.id : loadedTrips[0].id);
+        }
         if (rawConsults) {
           const parsed = JSON.parse(rawConsults);
           if (Array.isArray(parsed)) setBookings(parsed);
@@ -89,7 +94,7 @@ export default function Concierge() {
       }
     })();
     return () => { active = false; };
-  }, [db]);
+  }, [db, params.trip]);
 
   function askConcierge(inputPrompt = prompt) {
     setChatError('');
