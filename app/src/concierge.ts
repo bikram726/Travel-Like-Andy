@@ -275,7 +275,60 @@ function escapeIcs(text: string): string {
   return text.replace(/\\/g, '\\\\').replace(/\r?\n/g, '\\n').replace(/;/g, '\\;').replace(/,/g, '\\,');
 }
 
+export const LEGAL_DISCLOSURES = {
+  entity: 'travellikeandy LLC · CST 2174880-50',
+  californiaNotice: 'Registration as a seller of travel does not constitute approval by the State of California.',
+  foraContractor: 'Any travel-advisor services currently provided through Fora Travel are conducted solely in Andy Eisenmann’s capacity as a Fora independent contractor and are subject to Fora’s terms, registration and required disclosures.',
+  foraRegistrations: 'An Independent Affiliate of Fora. Fora Travel, Inc. is registered as a Seller of Travel in the following states: California Registration No: 2151995-50 · Florida Registration No: ST43973 · Washington Registration No (UBI): 605329242',
+  nonContractNotice: 'Submitting an inquiry or consultation request does not create a reservation, booking, or travel contract. Do not include passport numbers, payment card details, or medical information.',
+  privacyEmail: 'webmaster@travellikeandy.com',
+  privacyUrl: 'https://www.travellikeandy.com/privacy-policy',
+  contactUrl: 'https://www.travellikeandy.com/contact',
+} as const;
+
+export function buildConsultationInquiryPayload(booking: ConsultationBooking) {
+  const validated = validateConsultation({
+    typeId: booking.typeId,
+    date: booking.date,
+    time: booking.time,
+    clientName: booking.clientName,
+    clientEmail: booking.clientEmail,
+    tripTitle: booking.tripTitle,
+    tripSummary: booking.tripSummary,
+    notes: booking.notes,
+  });
+  return {
+    subject: `AndyGo Consultation Request: ${validated.typeLabel} (${validated.date} ${validated.time} CT)`,
+    from_name: 'AndyGo by Travel Like Andy',
+    name: validated.clientName,
+    email: validated.clientEmail,
+    consultation_type: validated.typeLabel,
+    requested_date: validated.date,
+    requested_time_ct: validated.time,
+    attached_trip: validated.tripTitle || 'None attached',
+    trip_blueprint: validated.tripSummary || 'No saved trip summary attached',
+    message: validated.notes || 'Consultation requested via AndyGo Concierge calendar.',
+    botcheck: '',
+  };
+}
+
+export function buildConsultationMailtoUrl(booking: ConsultationBooking): string {
+  const payload = buildConsultationInquiryPayload(booking);
+  const body = [
+    `Consultation Type: ${payload.consultation_type}`,
+    `Requested Slot: ${payload.requested_date} at ${payload.requested_time_ct} CT`,
+    `Traveler: ${payload.name} (${payload.email})`,
+    `Attached Trip: ${payload.attached_trip}`,
+    `Trip Blueprint: ${payload.trip_blueprint}`,
+    `Notes: ${payload.message}`,
+    '',
+    LEGAL_DISCLOSURES.nonContractNotice,
+  ].join('\n');
+  return `mailto:${LEGAL_DISCLOSURES.privacyEmail}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(body)}`;
+}
+
 export function buildConsultationIcs(booking: ConsultationBooking): string {
+
   const startUtc = new Date(`${booking.date}T${booking.time}:00Z`);
   const endUtc = new Date(startUtc.getTime() + booking.durationMinutes * 60_000);
   const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');

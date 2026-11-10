@@ -10,8 +10,10 @@ import { TravelPhoto } from '../components/TravelPhoto';
 import { Button, Choices, Input, Notice } from '../components/ui';
 import { adjacentMonth, calendarMonth } from '../calendar';
 import {
+  LEGAL_DISCLOSURES,
   buildConciergeProposal,
   buildConsultationIcs,
+  buildConsultationMailtoUrl,
   conciergePrompts,
   consultationSlots,
   consultationTypes,
@@ -422,14 +424,22 @@ export default function Concierge() {
                     <Text style={{ color: c.text, fontSize: 14, fontWeight: '700' }}>{b.typeLabel}</Text>
                     <Text style={{ color: c.primary, fontSize: 13, fontWeight: '600' }}>{dateLabel(b.date)} at {b.time} CT · {b.clientName}</Text>
                     {!!b.tripTitle && <Text style={{ color: c.muted, fontSize: 12 }}>Attached trip: {b.tripTitle}</Text>}
-                    <Pressable
-                      accessibilityRole="button"
-                      accessibilityLabel={`Download .ics invite for ${b.typeLabel}`}
-                      onPress={() => downloadIcsOnWeb(`andygo-consultation-${b.date}.ics`, buildConsultationIcs(b))}
-                      style={{ marginTop: 4 }}
-                    >
-                      <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700', textDecorationLine: 'underline' }}>Download .ics calendar file again</Text>
-                    </Pressable>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 14, marginTop: 4 }}>
+                      <Pressable
+                        accessibilityRole="button"
+                        accessibilityLabel={`Download .ics invite for ${b.typeLabel}`}
+                        onPress={() => downloadIcsOnWeb(`andygo-consultation-${b.date}.ics`, buildConsultationIcs(b))}
+                      >
+                        <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700', textDecorationLine: 'underline' }}>Download .ics calendar file again</Text>
+                      </Pressable>
+                      <Pressable
+                        accessibilityRole="button"
+                        accessibilityLabel={`Send consultation brief via email for ${b.typeLabel}`}
+                        onPress={() => Linking.openURL(buildConsultationMailtoUrl(b))}
+                      >
+                        <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700', textDecorationLine: 'underline' }}>Send consultation brief via email →</Text>
+                      </Pressable>
+                    </View>
                   </View>
                 ))}
               </View>
@@ -486,6 +496,23 @@ export default function Concierge() {
                 </View>
               </View>
             ))}
+          </View>
+        </View>
+
+        {/* LEGAL & WEBSITE REGISTRATION DISCLOSURES */}
+        <View style={{ backgroundColor: c.card, borderRadius: 18, borderWidth: 1, borderColor: c.border, padding: wide ? 22 : 16, gap: 8 }}>
+          <Text style={{ color: c.primary, fontSize: 11, fontWeight: '700', letterSpacing: 1.4 }}>LEGAL & SELLER OF TRAVEL DISCLOSURES</Text>
+          <Text style={{ color: c.text, fontSize: 13, fontWeight: '700' }}>{LEGAL_DISCLOSURES.entity}</Text>
+          <Text style={{ color: c.muted, fontSize: 12, lineHeight: 18 }}>{LEGAL_DISCLOSURES.californiaNotice}</Text>
+          <Text style={{ color: c.muted, fontSize: 12, lineHeight: 18 }}>{LEGAL_DISCLOSURES.foraContractor} {LEGAL_DISCLOSURES.foraRegistrations}</Text>
+          <Text style={{ color: c.muted, fontSize: 12, lineHeight: 18 }}>{LEGAL_DISCLOSURES.nonContractNotice}</Text>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 14, marginTop: 4 }}>
+            <Pressable accessibilityRole="button" onPress={() => Linking.openURL(LEGAL_DISCLOSURES.privacyUrl)}>
+              <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700', textDecorationLine: 'underline' }}>Website Privacy Policy</Text>
+            </Pressable>
+            <Pressable accessibilityRole="button" onPress={() => Linking.openURL(LEGAL_DISCLOSURES.contactUrl)}>
+              <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700', textDecorationLine: 'underline' }}>Travel Like Andy Contact Form</Text>
+            </Pressable>
           </View>
         </View>
       </ScrollView>

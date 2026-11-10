@@ -1,8 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  LEGAL_DISCLOSURES,
   buildConciergeProposal,
   buildConsultationIcs,
+  buildConsultationInquiryPayload,
+  buildConsultationMailtoUrl,
   curatedCollections,
   validateConsultation,
 } from '../src/concierge.ts';
@@ -75,4 +78,14 @@ test('validateConsultation and buildConsultationIcs enforce valid appointment fi
     clientName: 'Alex',
     clientEmail: 'not-an-email',
   }), /valid email address/);
+
+  const payload = buildConsultationInquiryPayload(booking);
+  assert.equal(payload.email, 'alex@example.com');
+  assert.equal(payload.attached_trip, 'From Wisconsin to Thailand (14 Days)');
+
+  const mailto = buildConsultationMailtoUrl(booking);
+  assert.ok(mailto.startsWith('mailto:webmaster@travellikeandy.com?subject='));
+  assert.match(decodeURIComponent(mailto), /does not create a reservation/);
+  assert.match(LEGAL_DISCLOSURES.entity, /CST 2174880-50/);
+  assert.match(LEGAL_DISCLOSURES.foraRegistrations, /ST43973/);
 });
