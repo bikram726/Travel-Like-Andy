@@ -23,6 +23,7 @@ import {
   type ConsultationBooking,
 } from '../concierge';
 import { addPlan, createPlannedTrip, getSetting, listTrips, saveSetting, type Trip } from '../data';
+import { FAQ_FALLBACK, routeConciergeInput } from '../faq';
 import { photoForPlaceText } from '../places';
 import { useTheme } from '../theme';
 import { dateLabel } from '../validation';
@@ -69,10 +70,10 @@ export default function Concierge() {
 
   // AI Concierge state
   const [prompt, setPrompt] = useState('');
-  const [history, setHistory] = useState<{ role: 'user' | 'assistant'; text: string; proposal?: ConciergeProposal }[]>([
+  const [history, setHistory] = useState<{ role: 'user' | 'assistant'; text: string; proposal?: ConciergeProposal; source?: string }[]>([
     {
       role: 'assistant',
-      text: 'Welcome to AndyGo Concierge. Ask me for any destination, number of days, traveler count, or budget target (or tap a prompt below) and I will draft a day-by-day route you can save directly to your trips or attach to a consultation with Andy.',
+      text: 'Welcome to AndyGo Concierge. Ask a question about Andy’s trips, groups, or services — or describe a destination, number of days, travelers, and budget and I will draft a day-by-day route you can save to your trips or attach to a consultation with Andy.',
       proposal: buildConciergeProposal(conciergePrompts[0]),
     },
   ]);
@@ -129,6 +130,19 @@ export default function Concierge() {
     setChatError('');
     setChatNotice('');
     try {
+      const route = routeConciergeInput(inputPrompt);
+      if (route.kind !== 'draft') {
+        if (!inputPrompt.trim()) throw Error('Enter a question or travel idea.');
+        setHistory(prev => [
+          ...prev,
+          { role: 'user', text: inputPrompt.trim() },
+          route.kind === 'faq'
+            ? { role: 'assistant', text: route.entry.answer, source: route.entry.source }
+            : { role: 'assistant', text: FAQ_FALLBACK },
+        ]);
+        setPrompt('');
+        return;
+      }
       const proposal = buildConciergeProposal(inputPrompt);
       setHistory(prev => [
         ...prev,
@@ -257,7 +271,7 @@ export default function Concierge() {
             </View>
 
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-              {conciergePrompts.map(chip => (
+              {['How big are the groups?', 'Is the Thailand trip still available?', 'How much does a trip cost?', ...conciergePrompts].map(chip => (
                 <Pressable
                   key={chip}
                   accessibilityRole="button"
@@ -284,6 +298,11 @@ export default function Concierge() {
                   }}
                 >
                   <Text style={{ color: msg.role === 'user' ? c.onPrimary : c.text, fontSize: 14, lineHeight: 22 }}>{msg.text}</Text>
+                  {!!msg.source && (
+                    <Pressable accessibilityRole="link" accessibilityLabel={`Open source page ${msg.source}`} onPress={() => Linking.openURL(msg.source!)}>
+                      <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700', textDecorationLine: 'underline' }}>Source: {msg.source.replace('https://', '')}</Text>
+                    </Pressable>
+                  )}
                   {msg.proposal && (
                     <View style={{ backgroundColor: c.card, borderRadius: 14, borderWidth: 1, borderColor: c.border, padding: 14, gap: 10 }}>
                       <Text style={{ color: c.primary, fontSize: 11, fontWeight: '700', letterSpacing: 1.2 }}>
@@ -320,13 +339,13 @@ export default function Concierge() {
             </View>
 
             <Input
-              label="Ask AndyGo to draft or refine a trip"
+              label="Ask a question or describe a trip"
               value={prompt}
               onChangeText={setPrompt}
               maxLength={400}
-              placeholder="e.g., 10 days in Thailand for 4 friends under $6,500"
+              placeholder="e.g., How big are the groups?  or  10 days in Thailand for 4 friends under $6,500"
             />
-            <Button label="Generate Route Draft" onPress={() => askConcierge(prompt)} />
+            <Button label="Ask AndyGo" onPress={() => askConcierge(prompt)} />
             {!!chatError && <Notice text={chatError} error />}
             {!!chatNotice && <Notice text={chatNotice} />}
           </View>
