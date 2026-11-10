@@ -1,0 +1,6 @@
+{
+  "observedAtUtc": "2026-11-10T21:28:34.407Z",
+  "scope": "Tracked/untracked non-ignored source plus web export; heuristic, not a complete secret/history scan",
+  "filesSelected": 192,
+  "findings": []
+}

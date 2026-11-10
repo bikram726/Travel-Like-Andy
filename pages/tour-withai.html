@@ -144,7 +144,8 @@
 /* Print: every day open, controls and chevrons gone. A traveller printing the
    itinerary should get all of it, not whatever happened to be expanded. */
 @media print {
-  .tla-tour .tlt-day::details-content { content-visibility:visible !important; }
+  .tla-tour .tlt-day::details-content { display:block !important; content-visibility:visible !important; }
+  .tla-tour .tlt-day > *:not(summary),
   .tla-tour .tlt-day-body { display:block !important; }
   .tla-tour .tlt-acc-controls,
   .tla-tour .tlt-day > summary::after { display:none !important; }

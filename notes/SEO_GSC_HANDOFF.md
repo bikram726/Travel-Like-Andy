@@ -166,37 +166,21 @@ one step of this is irreversible.
 
 ## STOP RULES — read before touching anything
 
-1. The ONLY irreversible action here is deleting blog posts. Squarespace has no
-   undo and no trash for this. Everything else reverts in seconds.
+1. Do NOT delete any pages or blog posts. As documented above, `/journal-native-draft` contains four published posts whose authorship must be confirmed with Andy before any removal.
 
 2. TWO PAGES HAVE CONFUSINGLY SIMILAR NAMES:
-      /journal-native-draft  = Squarespace DEMO content -> delete its sample posts
+      /journal-native-draft  = Legacy blog collection -> do NOT delete; only hide from search engines if Andy confirms it is unused seed copy
       /journal               = Andy's REAL Journal page -> DO NOT TOUCH, EVER
 
-3. Before deleting ANY post, confirm ALL THREE:
-      (a) its URL starts with /journal-native-draft/  — NOT /journal/
-      (b) its title is exactly one of: "Blog Post Title One", "Blog Post Title
-          Two", "Blog Post Title Three", "Blog Post Title Four"
-      (c) its body is Squarespace lorem-ipsum filler, not real writing
-   If any one fails -> STOP and ask me. Leaving demo posts up another week is far
-   better than deleting real content.
+3. Change NOTHING I don't name below. No theme edits, no navigation or page
+   reordering, no content rewrites, no design changes, and no page or post deletions.
 
-4. Change NOTHING I don't name below. No theme edits, no navigation or page
-   reordering, no content rewrites, no design changes.
-
-5. If anything is ambiguous or the UI doesn't match these steps, STOP and report
+4. If anything is ambiguous or the UI doesn't match these steps, STOP and report
    back rather than guessing.
 
-## TASK 1 — delete the demo blog posts
+## TASK 1 — inspect or hide `/journal-native-draft` (do NOT delete)
 
-Squarespace -> Pages -> open the `journal-native-draft` page (a blog collection).
-Delete the four sample posts named in rule 3(b), applying all three checks each
-time.
-
-Then handle the page itself: delete `journal-native-draft` entirely if Andy's
-real Journal is the separate `/journal` page (it is). If you're unsure, instead
-move it to "Not Linked" AND turn ON Page Settings -> SEO -> "Hide this page from
-search engines".
+Confirm with Andy whether `/journal-native-draft` is unused seed content. If Andy confirms it should not be indexed, keep the collection intact, move it to "Not Linked" if needed, and turn ON Page Settings -> SEO -> "Hide this page from search engines" (reversible). Do NOT delete the collection or its posts.
 
 IMPORTANT: unlisting a page does NOT remove it from sitemap.xml. Only the SEO
 hide toggle does. Do not skip the toggle if you choose that route.

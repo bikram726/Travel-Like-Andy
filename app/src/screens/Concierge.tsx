@@ -51,6 +51,10 @@ function RouteCompassBadge({ color, accent }: { color: string; accent: string })
   );
 }
 
+function defaultConsultationDate(): string {
+  return new Date(Date.now() + 7 * 86_400_000).toISOString().slice(0, 10);
+}
+
 export default function Concierge() {
   const { colors: c, mode } = useTheme();
   const router = useRouter();
@@ -77,9 +81,8 @@ export default function Concierge() {
   const [chatError, setChatError] = useState('');
 
   // Consultation Calendar & Appointment state
-  const defaultDate = '2026-11-18';
-  const [month, setMonth] = useState(defaultDate);
-  const [selectedDate, setSelectedDate] = useState(defaultDate);
+  const [month, setMonth] = useState(defaultConsultationDate);
+  const [selectedDate, setSelectedDate] = useState(defaultConsultationDate);
   const [selectedSlot, setSelectedSlot] = useState<string>(consultationSlots[1]);
   const [selectedType, setSelectedType] = useState<string>(consultationTypes[0].label);
   const [selectedTripId, setSelectedTripId] = useState<number | null>(null);
@@ -103,7 +106,17 @@ export default function Concierge() {
         }
         if (rawConsults) {
           const parsed = JSON.parse(rawConsults);
-          if (Array.isArray(parsed)) setBookings(parsed);
+          if (Array.isArray(parsed)) {
+            const validBookings: ConsultationBooking[] = [];
+            for (const item of parsed) {
+              try {
+                if (item && typeof item === 'object') validBookings.push(validateConsultation(item));
+              } catch {
+                // Skip malformed stored consultation entries
+              }
+            }
+            setBookings(validBookings);
+          }
         }
       } catch {
         // Ignore initial load error

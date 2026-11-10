@@ -56,7 +56,7 @@ any.
 |---|---|---|
 | `/` | `travellikeandy` | `Bespoke Luxury Travel Advisor \| Travel Like Andy` |
 | `/about` | `About — travellikeandy` | `Andy Eisenmann, Certified Fora Travel Advisor \| Travel Like Andy` |
-| `/corporate` | `Groups — travellikeandy` | `Corporate & Group Travel Planning \| Travel Like Andy` |
+| `/groups` (legacy slug `/corporate`) | `Groups — travellikeandy` | `Group & Corporate Travel Planning \| Travel Like Andy` |
 | `/collections` | `Collections — travellikeandy` | `Small-Group Curated Departures \| Travel Like Andy` |
 | `/access-and-care` | `Access & Care — travellikeandy` | `Accessible Luxury Travel Planning \| Travel Like Andy` |
 | `/contact` | `Contact — travellikeandy` | `Plan Your Trip — Private Travel Inquiry \| Travel Like Andy` |
@@ -298,8 +298,7 @@ Anyone promising faster than this on a new domain is selling something.
 
 1. **Homepage title tag** — 5 minutes, largest single effect
 2. **Remaining six title tags** — 20 minutes
-3. **Unlock `/bespoke` or build a public version** — your flagship service is
-   invisible to search behind a password
+3. **Keep `/bespoke` public and indexable** — password was cleared on October 5, 2026 so the flagship service is visible to search
 4. **Decide the service city** — everything local is blocked on this
 5. **Google Business Profile** — free, high return for a local service business
 6. **Complete the `TravelAgency` schema** — address, phone, `areaServed`; fill
@@ -308,19 +307,13 @@ Anyone promising faster than this on a new domain is selling something.
    opportunity
 8. **Fix the homepage word count** (~288 → 700+) with the descriptor lines in §6
 9. **Resolve the journal** — travel content, or accept the miscategorisation
-10. **Fix `/corporate`'s title/URL mismatch**
+10. **Align the Groups page title and `/groups` (or legacy `/corporate`) URL**
 
 Items 1, 2 and 10 are pure title-tag work with no visible page change, so they
-need no sign-off from Andy. Items 3, 7 and 9 are his decisions.
+need no sign-off from Andy. Items 7 and 9 are his decisions.
 
 ---
 
-## 11. One thing that is not SEO but will cost more than any of it
+## 11. Historical note on `/bespoke` visibility (resolved October 5, 2026)
 
-`/bespoke` — the highest-value offering — is password-protected and therefore
-**permanently invisible to Google**. No amount of optimisation reaches it.
-
-If Bespoke is meant to be exclusive, keep the lock and build a **public** page
-describing the service with an application route. Exclusivity and discoverability
-are not in conflict; the lock should sit on the *content*, not on the *existence*
-of the offer.
+`/bespoke` was previously password-protected and invisible to Google. As of October 5, 2026, the password gate was removed at Andy's request so the flagship private-journeys page is public and indexable.

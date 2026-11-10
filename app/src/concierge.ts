@@ -126,16 +126,16 @@ function futureDate(daysFromNow: number, baseDate = '2026-11-15'): string {
   return d.toISOString().slice(0, 10);
 }
 
-export function buildConciergeProposal(promptText: string, today = '2026-11-10'): ConciergeProposal {
+export function buildConciergeProposal(promptText: string, today = new Date().toISOString().slice(0, 10)): ConciergeProposal {
   const clean = promptText.replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, 400);
   if (!clean) throw Error('Enter a destination or travel idea so AndyGo can draft a route.');
   const lower = clean.toLowerCase();
 
   // Extract requested days (2..30)
   const dayMatch = /\b(\d{1,2})\s*(?:-\s*)?(?:day|days|night|nights)\b/i.exec(clean);
-  // Extract travelers (1..14)
+  // Extract travelers (1..50, matching validatePlanning)
   const travMatch = /\b(\d{1,2})\s*(?:traveler|travelers|people|persons|guests|friends|adults|pax)\b/i.exec(clean);
-  const travelers = travMatch ? Math.max(1, Math.min(20, Number(travMatch[1]))) : /\bcouple\b/i.test(clean) ? 2 : /\bsolo\b/i.test(clean) ? 1 : /\bgroup\b/i.test(clean) ? 8 : 2;
+  const travelers = travMatch ? Math.max(1, Math.min(50, Number(travMatch[1]))) : /\bcouple\b/i.test(clean) ? 2 : /\bsolo\b/i.test(clean) ? 1 : /\bgroup\b/i.test(clean) ? 8 : 2;
   const rooms = Math.max(1, Math.ceil(travelers / 2));
 
   // Extract budget ($3,500 or 3500 USD/EUR/GBP)
@@ -169,7 +169,10 @@ export function buildConciergeProposal(promptText: string, today = '2026-11-10')
       : days * travelers * 35000;
 
   const pace = /\bslow|relax|unhurried|easy|calm\b/i.test(lower) ? 'Relaxed' : /\bpack|fast|active\b/i.test(lower) ? 'Active' : 'Balanced';
-  const destination = collection?.destination ?? starter?.city ?? (clean.length <= 45 ? clean : 'Custom Destination');
+  const prepMatch = /\b(?:in|to|for|visit|around)\s+([A-Z][A-Za-z\s&'-]{1,34}?)(?=\s+(?:for|with|under|at|in|on|budget|\d)\b|$)/i.exec(clean);
+  const extractedPlace = prepMatch?.[1]?.trim();
+  const directStarterCity = starter && lower.includes(starter.city.toLowerCase()) ? starter.city : undefined;
+  const destination = collection?.destination ?? directStarterCity ?? (extractedPlace && extractedPlace.length >= 2 ? extractedPlace : starter?.city ?? (clean.length <= 45 ? clean : 'Custom Destination'));
   const title = collection
     ? `${collection.title} (${days} Days)`
     : `${destination} · ${days}-Day Curated Draft`;
@@ -327,9 +330,26 @@ export function buildConsultationMailtoUrl(booking: ConsultationBooking): string
   return `mailto:${LEGAL_DISCLOSURES.privacyEmail}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(body)}`;
 }
 
-export function buildConsultationIcs(booking: ConsultationBooking): string {
+function centralTimeToUtc(date: string, time: string): Date {
+  // Convert America/Chicago wall-clock time to UTC accurately across CST (UTC-6) and CDT (UTC-5).
+  const approxUtc = new Date(`${date}T${time}:00Z`);
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Chicago',
+    hour12: false,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }).formatToParts(approxUtc);
+  const get = (t: string) => Number(parts.find(p => p.type === t)?.value ?? 0);
+  const localAsUtc = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour') % 24, get('minute'));
+  const offsetMs = approxUtc.getTime() - localAsUtc;
+  return new Date(approxUtc.getTime() + offsetMs);
+}
 
-  const startUtc = new Date(`${booking.date}T${booking.time}:00Z`);
+export function buildConsultationIcs(booking: ConsultationBooking): string {
+  const startUtc = centralTimeToUtc(booking.date, booking.time);
   const endUtc = new Date(startUtc.getTime() + booking.durationMinutes * 60_000);
   const fmt = (d: Date) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}Z$/, 'Z');
   const details = [

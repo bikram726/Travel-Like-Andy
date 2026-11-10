@@ -30,6 +30,9 @@ test('buildConciergeProposal parses Thailand, Cabo, and custom prompts into vali
   assert.equal(lisbon.planning.pace, 'Relaxed');
   assert.equal(lisbon.stops.length, 3);
 
+  const rome = buildConciergeProposal('Plan a trip to Rome for 4 days with 3000 EUR', '2026-11-10');
+  assert.equal(rome.destination, 'Rome');
+
   assert.throws(() => buildConciergeProposal('   '), /Enter a destination/);
   assert.ok(curatedCollections.length >= 4);
 });
@@ -50,8 +53,9 @@ test('validateConsultation and buildConsultationIcs enforce valid appointment fi
 
   const ics = buildConsultationIcs(booking);
   assert.match(ics, /^BEGIN:VCALENDAR\r\n/);
-  assert.match(ics, /DTSTART:20261120T110000Z\r\n/);
-  assert.match(ics, /DTEND:20261120T114500Z\r\n/);
+  // 11:00 Central Standard Time (America/Chicago) in November is 17:00 UTC
+  assert.match(ics, /DTSTART:20261120T170000Z\r\n/);
+  assert.match(ics, /DTEND:20261120T174500Z\r\n/);
   assert.match(ics, /SUMMARY:Travel Like Andy: 45-Min Group Travel Briefing \(8–14 Guests\)\r\n/);
   assert.match(ics, /Attached Trip Draft: From Wisconsin to Thailand/);
 
