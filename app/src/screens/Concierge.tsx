@@ -3,7 +3,9 @@ import { Linking, Platform, Pressable, ScrollView, Text, View, useWindowDimensio
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSQLiteContext } from 'expo-sqlite';
+import Svg, { Circle, Path } from 'react-native-svg';
 import { AppHeader } from '../components/AppHeader';
+import { Brand } from '../components/Brand';
 import { TravelPhoto } from '../components/TravelPhoto';
 import { Button, Choices, Input, Notice } from '../components/ui';
 import { adjacentMonth, calendarMonth } from '../calendar';
@@ -19,6 +21,7 @@ import {
   type ConsultationBooking,
 } from '../concierge';
 import { addPlan, createPlannedTrip, getSetting, listTrips, saveSetting, type Trip } from '../data';
+import { photoForPlaceText } from '../places';
 import { useTheme } from '../theme';
 import { dateLabel } from '../validation';
 
@@ -35,8 +38,19 @@ function downloadIcsOnWeb(filename: string, content: string): boolean {
   return true;
 }
 
+function RouteCompassBadge({ color, accent }: { color: string; accent: string }) {
+  return (
+    <Svg width={36} height={36} viewBox="0 0 36 36" accessible={false} aria-hidden>
+      <Circle cx={18} cy={18} r={16} stroke={color} strokeWidth={1.6} fill="none" strokeDasharray="3 3" />
+      <Path d="M10 23C14 15 22 15 26 12" stroke={accent} strokeWidth={2.2} strokeLinecap="round" fill="none" />
+      <Circle cx={10} cy={23} r={2.6} fill={color} />
+      <Circle cx={26} cy={12} r={2.8} fill={accent} />
+    </Svg>
+  );
+}
+
 export default function Concierge() {
-  const { colors: c } = useTheme();
+  const { colors: c, mode } = useTheme();
   const router = useRouter();
   const params = useLocalSearchParams<{ trip?: string }>();
   const db = useSQLiteContext();
@@ -196,14 +210,24 @@ export default function Concierge() {
     <SafeAreaView style={{ flex: 1, backgroundColor: c.bg }}>
       <AppHeader />
       <ScrollView role="main" contentContainerStyle={{ width: '100%', maxWidth: 1160, padding: wide ? 36 : 20, alignSelf: 'center', paddingBottom: 60, gap: 32 }}>
-        <View style={{ gap: 10 }}>
-          <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700', letterSpacing: 1.8 }}>AI CONCIERGE · WEBSITE COLLECTIONS · ADVISOR CALENDAR</Text>
-          <Text accessibilityRole="header" aria-level={1} style={{ color: c.text, fontSize: wide ? 46 : 34, fontWeight: '800', letterSpacing: -1 }}>
-            Draft with AI. Curate with Andy.
-          </Text>
-          <Text style={{ color: c.muted, fontSize: 16, lineHeight: 25, maxWidth: 760 }}>
-            Shape a day-by-day route in seconds, load signature journeys from the Travel Like Andy website, or book a consultation slot on the calendar with your trip blueprint attached.
-          </Text>
+        <View style={{ backgroundColor: c.card, borderRadius: 24, borderWidth: 1, borderColor: c.border, padding: wide ? 28 : 20, flexDirection: wide ? 'row' : 'column', alignItems: wide ? 'center' : 'flex-start', justifyContent: 'space-between', gap: 20 }}>
+          <View style={{ flex: 1, gap: 10 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <RouteCompassBadge color={c.primary} accent="#EE765C" />
+              <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700', letterSpacing: 1.8 }}>AI CONCIERGE · WEBSITE COLLECTIONS · ADVISOR CALENDAR</Text>
+            </View>
+            <Text accessibilityRole="header" aria-level={1} style={{ color: c.text, fontSize: wide ? 44 : 32, fontWeight: '800', letterSpacing: -1 }}>
+              Draft with AI. Curate with Andy.
+            </Text>
+            <Text style={{ color: c.muted, fontSize: 16, lineHeight: 25, maxWidth: 720 }}>
+              Shape a day-by-day route in seconds, load signature journeys from the Travel Like Andy website, or book a consultation slot on the calendar with your trip blueprint attached.
+            </Text>
+          </View>
+          <View style={{ backgroundColor: c.soft, borderRadius: 18, padding: 16, borderWidth: 1, borderColor: c.border, alignItems: 'center', gap: 6 }}>
+            <Brand size={40} wordmark endorsed variant={mode === 'dark' ? 'dark' : 'light'} decorative />
+            <Text style={{ color: c.primary, fontSize: 11, fontWeight: '700', letterSpacing: 1.2 }}>4 ADVISORY PILLARS</Text>
+            <Text style={{ color: c.muted, fontSize: 12 }}>Anticipate · Advocate · Curate · Accompany</Text>
+          </View>
         </View>
 
         <View style={{ flexDirection: wide ? 'row' : 'column', alignItems: 'flex-start', gap: 24 }}>
@@ -251,13 +275,21 @@ export default function Concierge() {
                         STRUCTURED DRAFT · {msg.proposal.start_date} TO {msg.proposal.end_date} · {msg.proposal.planning.travelers} TRAVELERS
                       </Text>
                       <Text style={{ color: c.text, fontSize: 18, fontWeight: '700' }}>{msg.proposal.title}</Text>
-                      {msg.proposal.stops.map(stop => (
-                        <View key={stop.day + stop.title} style={{ borderLeftWidth: 2, borderLeftColor: c.primary, paddingLeft: 10, gap: 2 }}>
-                          <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700' }}>{dateLabel(stop.day)} · {stop.time} · {stop.kind}</Text>
-                          <Text style={{ color: c.text, fontSize: 14, fontWeight: '600' }}>{stop.title} ({stop.place})</Text>
-                          <Text style={{ color: c.muted, fontSize: 12, lineHeight: 18 }}>{stop.note}</Text>
-                        </View>
-                      ))}
+                      {msg.proposal.stops.map(stop => {
+                        const matchedPhoto = photoForPlaceText(stop.place) ?? photoForPlaceText(stop.title);
+                        return (
+                          <View key={stop.day + stop.title} style={{ borderLeftWidth: 3, borderLeftColor: c.primary, paddingLeft: 12, gap: 6 }}>
+                            {matchedPhoto && (
+                              <View style={{ borderRadius: 10, overflow: 'hidden', borderWidth: 1, borderColor: c.border }}>
+                                <TravelPhoto id={matchedPhoto.photo} height={110} />
+                              </View>
+                            )}
+                            <Text style={{ color: c.primary, fontSize: 12, fontWeight: '700' }}>{dateLabel(stop.day)} · {stop.time} · {stop.kind}</Text>
+                            <Text style={{ color: c.text, fontSize: 14, fontWeight: '700' }}>{stop.title} ({stop.place})</Text>
+                            <Text style={{ color: c.muted, fontSize: 12, lineHeight: 18 }}>{stop.note}</Text>
+                          </View>
+                        );
+                      })}
                       <Text style={{ color: c.muted, fontSize: 12, lineHeight: 18 }}>{msg.proposal.practicalNote}</Text>
                       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
                         <Button
