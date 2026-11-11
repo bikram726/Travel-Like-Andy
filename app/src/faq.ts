@@ -1,5 +1,5 @@
 // Grounded Q&A: every answer restates a fact already published on travellikeandy.com.
-// shortcut: keyword scoring, not semantic search; upgrade to embeddings + LLM (RAG over these entries) via a Worker endpoint when an API key and budget exist.
+// Runs locally at $0 cost and optionally upgrades to Worker /api/chat (Cloudflare Workers AI / Gemini free tier).
 import { LEGAL_DISCLOSURES } from './concierge.ts';
 
 export type FaqEntry = { id: string; keywords: string[]; answer: string; source: string };
@@ -15,7 +15,7 @@ export const faqEntries: readonly FaqEntry[] = [
   },
   {
     id: 'thailand-tour',
-    keywords: ['thailand', 'wisconsin', 'departure', 'bangkok', 'chiang mai', 'kanchanaburi', 'koh lanta', 'dates', 'sold out', 'available', 'spots'],
+    keywords: ['thailand', 'tour', 'itinerary', 'route', 'wisconsin', 'departure', 'bangkok', 'chiang mai', 'kanchanaburi', 'koh lanta', 'dates', 'sold out', 'spots'],
     answer: 'The first group departure, "From Wisconsin to Thailand," runs Oct 25 – Nov 7, 2027 for 8–14 travelers and is currently sold out. The route covers Bangkok (3 nights), Kanchanaburi (2), Chiang Mai (4), and Koh Lanta & the islands (4).',
     source: `${SITE}/corporate`,
   },
@@ -53,6 +53,12 @@ export const faqEntries: readonly FaqEntry[] = [
     id: 'price',
     keywords: ['price', 'cost', 'how much', 'fee', 'budget', 'expensive', 'quote', 'pay'],
     answer: 'Prices are not published. Each trip is quoted from dated supplier rates, and AndyGo drafts keep costs marked unknown until verified. Book a consultation below or use the contact form for a quote.',
+    source: `${SITE}/contact`,
+  },
+  {
+    id: 'consultation-calendar',
+    keywords: ['calendar', 'schedule', 'appointment', 'appointments', 'slot', 'slots', 'time', 'times', 'availability', 'available', 'call', 'meeting', 'consultation', 'session', 'ics', 'central time'],
+    answer: 'To book a session on the consultation calendar below: choose a meeting type (20-Min Discovery, 30-Min Access & Care, 45-Min Bespoke, or 45-Min Group), pick a date and Central Time slot (09:30, 11:00, 13:30, 15:00, or 16:30 CT), optionally attach a saved trip, then confirm to download your .ics calendar invite and email your brief to Andy.',
     source: `${SITE}/contact`,
   },
   {
@@ -109,4 +115,29 @@ export function answerQuestion(text: string): FaqEntry | null {
     if (score > bestScore) { best = entry; bestScore = score; }
   }
   return best;
+}
+
+export async function askRemoteChat(
+  message: string,
+  fetchImpl: typeof fetch | undefined = typeof window !== 'undefined' && typeof globalThis.fetch === 'function' ? globalThis.fetch.bind(globalThis) : undefined,
+): Promise<{ answer: string; provider: string } | null> {
+  const clean = message.replace(/[\u0000-\u001f]/g, ' ').trim().slice(0, 400);
+  if (!clean || !fetchImpl) return null;
+  try {
+    const res = await fetchImpl('/api/chat', {
+      method: 'POST',
+      credentials: 'omit',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: clean }),
+    });
+    if (!res.ok) return null;
+    const data = await res.json() as { answer?: unknown; provider?: unknown };
+    if (typeof data?.answer !== 'string' || !data.answer.trim()) return null;
+    return {
+      answer: data.answer.trim().slice(0, 1500),
+      provider: typeof data.provider === 'string' ? data.provider : 'free-tier-ai',
+    };
+  } catch {
+    return null;
+  }
 }

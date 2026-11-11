@@ -23,7 +23,7 @@ import {
   type ConsultationBooking,
 } from '../concierge';
 import { addPlan, createPlannedTrip, getSetting, listTrips, saveSetting, type Trip } from '../data';
-import { FAQ_FALLBACK, routeConciergeInput } from '../faq';
+import { FAQ_FALLBACK, askRemoteChat, routeConciergeInput } from '../faq';
 import { photoForPlaceText } from '../places';
 import { useTheme } from '../theme';
 import { dateLabel } from '../validation';
@@ -78,6 +78,7 @@ export default function Concierge() {
     },
   ]);
   const [savingDraft, setSavingDraft] = useState(false);
+  const [askingRemote, setAskingRemote] = useState(false);
   const [chatNotice, setChatNotice] = useState('');
   const [chatError, setChatError] = useState('');
 
@@ -126,21 +127,32 @@ export default function Concierge() {
     return () => { active = false; };
   }, [db, params.trip]);
 
-  function askConcierge(inputPrompt = prompt) {
+  async function askConcierge(inputPrompt = prompt) {
+    if (askingRemote) return;
     setChatError('');
     setChatNotice('');
     try {
       const route = routeConciergeInput(inputPrompt);
-      if (route.kind !== 'draft') {
-        if (!inputPrompt.trim()) throw Error('Enter a question or travel idea.');
+      if (route.kind === 'faq') {
+        const clean = inputPrompt.trim();
+        if (!clean) throw Error('Enter a question or travel idea.');
+        setHistory(prev => [...prev, { role: 'user', text: clean }, { role: 'assistant', text: route.entry.answer, source: route.entry.source }]);
+        setPrompt('');
+        return;
+      }
+      if (route.kind === 'fallback') {
+        const clean = inputPrompt.trim();
+        if (!clean) throw Error('Enter a question or travel idea.');
+        setHistory(prev => [...prev, { role: 'user', text: clean }]);
+        setPrompt('');
+        setAskingRemote(true);
+        const remote = await askRemoteChat(clean);
         setHistory(prev => [
           ...prev,
-          { role: 'user', text: inputPrompt.trim() },
-          route.kind === 'faq'
-            ? { role: 'assistant', text: route.entry.answer, source: route.entry.source }
+          remote
+            ? { role: 'assistant', text: remote.answer, source: LEGAL_DISCLOSURES.contactUrl }
             : { role: 'assistant', text: FAQ_FALLBACK },
         ]);
-        setPrompt('');
         return;
       }
       const proposal = buildConciergeProposal(inputPrompt);
@@ -152,6 +164,8 @@ export default function Concierge() {
       setPrompt('');
     } catch (error) {
       setChatError(error instanceof Error ? error.message : 'Could not generate a trip draft.');
+    } finally {
+      setAskingRemote(false);
     }
   }
 
@@ -271,7 +285,7 @@ export default function Concierge() {
             </View>
 
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
-              {['How big are the groups?', 'Is the Thailand trip still available?', 'How much does a trip cost?', ...conciergePrompts].map(chip => (
+              {['How do I book a calendar call?', 'How big are the groups?', 'Is the Thailand trip still available?', 'How much does a trip cost?', ...conciergePrompts].map(chip => (
                 <Pressable
                   key={chip}
                   accessibilityRole="button"
@@ -345,7 +359,7 @@ export default function Concierge() {
               maxLength={400}
               placeholder="e.g., How big are the groups?  or  10 days in Thailand for 4 friends under $6,500"
             />
-            <Button label="Ask AndyGo" onPress={() => askConcierge(prompt)} />
+            <Button label={askingRemote ? 'Checking…' : 'Ask AndyGo'} disabled={askingRemote} onPress={() => { void askConcierge(prompt); }} />
             {!!chatError && <Notice text={chatError} error />}
             {!!chatNotice && <Notice text={chatNotice} />}
           </View>
