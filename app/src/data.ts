@@ -2,7 +2,7 @@ import type { SQLiteDatabase } from 'expo-sqlite';
 import { parseBackup, type Backup } from './backup.ts';
 import { validateConversion, type ExpenseConversion } from './currency.ts';
 import { defaultPlanning, validatePlanning, type Planning } from './budget.ts';
-import { planningMigration } from './migrations.ts';
+import { applyV2Migration, planningMigration } from './migrations.ts';
 import { placeById } from './places.ts';
 
 export type Trip = { id: number; title: string; destination: string; start_date: string; end_date: string; currency: string; budget_cents: number; created_at: string };
@@ -74,6 +74,7 @@ async function initDatabaseInternal(db: SQLiteDatabase) {
   for (const name of ['duration_minutes', 'sort_order', 'completed']) {
     if (!planColumns.some(column => column.name === name)) await db.execAsync(`ALTER TABLE plan_items ADD COLUMN ${name} INTEGER NOT NULL DEFAULT 0`);
   }
+  await applyV2Migration(db);
 }
 
 const listTripsInternal = (db: SQLiteDatabase) => db.getAllAsync<Trip>('SELECT * FROM trips ORDER BY start_date ASC, id DESC');
