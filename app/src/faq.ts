@@ -15,8 +15,8 @@ export const faqEntries: readonly FaqEntry[] = [
   },
   {
     id: 'thailand-tour',
-    keywords: ['thailand', 'tour', 'itinerary', 'route', 'wisconsin', 'departure', 'bangkok', 'chiang mai', 'kanchanaburi', 'koh lanta', 'dates', 'sold out', 'spots'],
-    answer: 'The first group departure, "From Wisconsin to Thailand," runs Oct 25 – Nov 7, 2027 for 8–14 travelers and is currently sold out. The route covers Bangkok (3 nights), Kanchanaburi (2), Chiang Mai (4), and Koh Lanta & the islands (4).',
+    keywords: ['thailand', 'tour', 'itinerary', 'route', 'wisconsin', 'departure', 'bangkok', 'chiang mai', 'kanchanaburi', 'koh lanta', 'koh yao noi', 'dates', 'sold out', 'spots', '2027', 'waitlist'],
+    answer: 'The first "From Wisconsin to Thailand" group departure (Oct 25 – Nov 7, 2027 for 8–14 travelers) is sold out, and upcoming 2027 departure cycles are open for interest-list inquiries. The route covers Bangkok (3 nights), Kanchanaburi (2), Chiang Mai (4), and Koh Lanta & Koh Yao Noi in the Andaman islands (4).',
     source: `${SITE}/corporate`,
   },
   {

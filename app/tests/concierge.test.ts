@@ -19,7 +19,8 @@ test('buildConciergeProposal parses Thailand, Cabo, and custom prompts into vali
   assert.equal(thailand.budget_cents, 920_000);
   assert.equal(thailand.planning.travelers, 4);
   assert.equal(thailand.planning.rooms, 2);
-  assert.equal(thailand.stops.length, 4);
+  assert.equal(thailand.stops.length, 5);
+  assert.ok(thailand.stops.some(s => s.place === 'Koh Yao Noi'));
   assert.doesNotThrow(() => validatePlanning(thailand.planning));
   assert.ok(thailand.planning.lines.every(line => line.amount_cents === null));
 
@@ -58,6 +59,14 @@ test('validateConsultation and buildConsultationIcs enforce valid appointment fi
   assert.match(ics, /DTEND:20261120T174500Z\r\n/);
   assert.match(ics, /SUMMARY:Travel Like Andy: 45-Min Group Travel Briefing \(8–14 Guests\)\r\n/);
   assert.match(ics, /Attached Trip Draft: From Wisconsin to Thailand/);
+
+  // Cross-DST America/Chicago: CDT (UTC-5) vs CST (UTC-6) on transition & summer dates.
+  const cdtIcs = buildConsultationIcs({ ...booking, date: '2026-07-15', time: '11:00' });
+  assert.match(cdtIcs, /DTSTART:20260715T160000Z\r\n/);
+  const springForwardIcs = buildConsultationIcs({ ...booking, date: '2026-03-08', time: '09:30' });
+  assert.match(springForwardIcs, /DTSTART:20260308T143000Z\r\n/);
+  const fallBackIcs = buildConsultationIcs({ ...booking, date: '2026-11-01', time: '09:30' });
+  assert.match(fallBackIcs, /DTSTART:20261101T153000Z\r\n/);
 
   assert.throws(() => validateConsultation({
     typeId: 'invalid',
