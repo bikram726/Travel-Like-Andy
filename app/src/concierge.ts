@@ -31,13 +31,14 @@ export const curatedCollections: readonly CuratedCollection[] = [
     defaultBudgetCents: 680000,
     currency: 'USD',
     photo: 'thailand-bangkok-skyline-dawn',
-    summary: 'Temples, history, mountains, and Andaman Sea islands across Bangkok, Kanchanaburi, Chiang Mai, and Koh Lanta / Koh Yao.',
+    summary: 'Temples, history, mountains, and Andaman Sea islands across Bangkok, Kanchanaburi, Chiang Mai, Koh Lanta, and Koh Yao Noi.',
     practicalNote: 'Local currency is THB (Thai Baht). Domestic flights and longtail transfers require separate confirmation; no live prices are attached.',
     stops: [
       { dayOffset: 0, time: '09:30', kind: 'Activity', title: 'Grand Palace, Wat Pho & Chao Phraya River', place: 'Bangkok', note: 'Stop I · Bangkok (3 Nights). Temple dress code applies; verify river boat piers.', duration_minutes: 210 },
       { dayOffset: 3, time: '10:00', kind: 'Activity', title: 'River Kwai Bridge & Erawan Valley Train', place: 'Kanchanaburi', note: 'Stop II · Kanchanaburi (2 Nights). Riverfront sanctuary stay and historical railway route.', duration_minutes: 240 },
       { dayOffset: 5, time: '09:00', kind: 'Activity', title: 'Wat Phra Singh, Lanna Temples & 137 Pillars', place: 'Chiang Mai', note: 'Stop III · Chiang Mai (4 Nights). Old-city temples, ethical elephant sanctuary, and Thai cooking class.', duration_minutes: 240 },
       { dayOffset: 9, time: '10:30', kind: 'Activity', title: 'Four-Islands Longtail Crossing & Andaman Sunset', place: 'Koh Lanta & Phang Nga Bay', note: 'Stop IV · Andaman Islands (4 Nights). Emerald Cave, limestone karsts, and quiet coastal rest.', duration_minutes: 240 },
+      { dayOffset: 11, time: '09:30', kind: 'Activity', title: 'Koh Yao Noi Longtail & Phang Nga Karsts', place: 'Koh Yao Noi', note: 'Stop V · Koh Yao Noi & Andaman Coast. Longtail island crossing, quiet beaches, and limestone karst views.', duration_minutes: 240 },
     ],
   },
   {
@@ -148,7 +149,7 @@ export function buildConciergeProposal(promptText: string, today = new Date().to
     lower.includes(c.destination.toLowerCase()) ||
     lower.includes(c.country.toLowerCase()) ||
     (c.id === 'cabo-palmilla' && (lower.includes('cabo') || lower.includes('palmilla') || lower.includes('mexico'))) ||
-    (c.id === 'thailand-signature' && (lower.includes('bangkok') || lower.includes('chiang mai') || lower.includes('koh lanta') || lower.includes('phang nga'))),
+    (c.id === 'thailand-signature' && (lower.includes('bangkok') || lower.includes('chiang mai') || lower.includes('koh lanta') || lower.includes('koh yao') || lower.includes('phang nga'))),
   );
 
   // Or match international/domestic starter
@@ -330,9 +331,7 @@ export function buildConsultationMailtoUrl(booking: ConsultationBooking): string
   return `mailto:${LEGAL_DISCLOSURES.privacyEmail}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(body)}`;
 }
 
-function centralTimeToUtc(date: string, time: string): Date {
-  // Convert America/Chicago wall-clock time to UTC accurately across CST (UTC-6) and CDT (UTC-5).
-  const approxUtc = new Date(`${date}T${time}:00Z`);
+function centralTimeOffsetMs(utcInstant: Date): number {
   const parts = new Intl.DateTimeFormat('en-US', {
     timeZone: 'America/Chicago',
     hour12: false,
@@ -341,11 +340,17 @@ function centralTimeToUtc(date: string, time: string): Date {
     day: '2-digit',
     hour: '2-digit',
     minute: '2-digit',
-  }).formatToParts(approxUtc);
+  }).formatToParts(utcInstant);
   const get = (t: string) => Number(parts.find(p => p.type === t)?.value ?? 0);
   const localAsUtc = Date.UTC(get('year'), get('month') - 1, get('day'), get('hour') % 24, get('minute'));
-  const offsetMs = approxUtc.getTime() - localAsUtc;
-  return new Date(approxUtc.getTime() + offsetMs);
+  return utcInstant.getTime() - localAsUtc;
+}
+
+function centralTimeToUtc(date: string, time: string): Date {
+  // Two-pass America/Chicago offset resolution across CST (UTC-6) and CDT (UTC-5).
+  const wallAsUtc = new Date(`${date}T${time}:00Z`);
+  const firstPass = new Date(wallAsUtc.getTime() + centralTimeOffsetMs(wallAsUtc));
+  return new Date(wallAsUtc.getTime() + centralTimeOffsetMs(firstPass));
 }
 
 export function buildConsultationIcs(booking: ConsultationBooking): string {

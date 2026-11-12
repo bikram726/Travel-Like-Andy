@@ -16,6 +16,7 @@ test('questions route to grounded site answers; trip requests route to drafts; u
 
   assert.equal(answerQuestion('Is the Thailand trip still available?')?.id, 'thailand-tour');
   assert.equal(answerQuestion('What tour info do you have on Bangkok?')?.id, 'thailand-tour');
+  assert.match(answerQuestion('What about 2027 Thailand departure cycles?')?.answer ?? '', /upcoming 2027 departure cycles/i);
   assert.equal(answerQuestion('How much does a trip cost?')?.id, 'price');
   assert.equal(answerQuestion('Are you a registered seller of travel?')?.id, 'legal');
 
